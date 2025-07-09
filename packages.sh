@@ -57,14 +57,3 @@ hypr_packages=(
         xdg-desktop-portal-hyprland
         hyprpolkitagent
 )
-
-kde_packages=(
-	plasma
-	sddm
-)
-
-gnome_packages=(
-	gnome
-	gdm
-	gnome-tweaks
-)
