@@ -1,0 +1,70 @@
+#!/bin/bash
+
+app_packages=(
+  firefox
+  ghostty
+  neovim
+  steam
+  discord
+  cava
+  youtube-music-bin
+)
+
+system_utils=(
+  wget
+  git
+  viewnior
+  cliphist
+  mpv
+  mpvpaper
+  swww
+  ttf-font-awesome
+  ttf-jetbrains-mono-nerd
+  wireplumber
+  pavucontrol
+  playerctl
+  blueman
+  networkmanager
+  network-manager-applet
+  thunar
+  catppuccin-cursors-mocha
+  cups
+  system-config-printer
+  print-manager
+  rocm-smi-lib
+  lm_sensors
+  7zip
+  wine
+  ark
+  spectacle
+  timeshift
+  fastfetch
+  btop
+  coolercontrol
+  lsd
+)
+
+hypr_packages=(
+        hyprland
+        uwsm
+        waybar
+        wofi
+        swaync
+        hyprshot
+        hyprlock
+        hypridle
+	hyprpicker
+        xdg-desktop-portal-hyprland
+        hyprpolkitagent
+)
+
+kde_packages=(
+	plasma
+	sddm
+)
+
+gnome_packages=(
+	gnome
+	gdm
+	gnome-tweaks
+)
