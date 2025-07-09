@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./packages.sh
+source ./core/packages.sh
 
 install_yay () {
   sudo pacman -S --noconfirm git base-devel --noconfirm
@@ -140,4 +140,10 @@ detect_sensors() {
   else
     echo "Skipped sensors-detect."
   fi
+}
+
+config_setup() {
+  cp -r "$HOME/.config/hyprnosis/themes/default/." "$HOME/.config/"
+  cp -r "$HOME/.config/hyprnosis/configs/nvim/." "$HOME/.config/nvim/"
+  cp -r "$HOME/.config/hyprnosis/configs/waybar/." "$HOME/.config/waybar/"
 }

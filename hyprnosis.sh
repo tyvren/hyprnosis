@@ -16,8 +16,8 @@ EOF
 clear
 print_logo
 
-source ./functions.sh
-source ./packages.sh
+source ./core/functions.sh
+source ./core/packages.sh
 
 echo "Installing Hyprnosis..."
 sudo pacman -Syu --noconfirm
@@ -30,4 +30,4 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 detect_sensors
-cp -r "$HOME/.config/hyprnosis/themes/default/." "$HOME/.config/"
+config_setup
