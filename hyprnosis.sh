@@ -30,3 +30,4 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 detect_sensors
+cp -r "$HOME/.config/hyprnosis/themes/default/." "$HOME/.config/"

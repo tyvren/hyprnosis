@@ -101,7 +101,6 @@ EOF
   echo "Enabled systemd autologin for user: $username"
 }
 
-
 install_gpu_driver() {
 while true; do
   echo "Select a GPU Driver to install:"
@@ -133,7 +132,6 @@ while true; do
 done
 }
 
-#Enable fan and thermal sensors
 detect_sensors() {
   echo "Running fan and thermal sensor detection (lm_sensors)"
   read -rp "This will prompt for several yes/no hardware questions. Run now? [y/N]: " run_sensors
