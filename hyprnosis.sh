@@ -8,6 +8,7 @@ install_yay
 install_gpu_driver
 install_packages "${system_utils[@]}"
 install_packages "${app_packages[@]}"
+install_packages "${hypr_packages[@]}"
 hyprland_autologin
 enable_service "networkmanager"
 enable_service "bluetooth.service"

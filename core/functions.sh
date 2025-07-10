@@ -35,7 +35,6 @@ enable_user_service() {
   fi
 }
 
-
 enable_service() {
   local service=$1
   echo "Enabling $service..."
