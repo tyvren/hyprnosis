@@ -7,6 +7,8 @@ app_packages=(
   steam
   discord
   cava
+  gimp
+  occt
   youtube-music-bin
 )
 
