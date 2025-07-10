@@ -100,7 +100,7 @@ while true; do
   case "$GPU_CHOICE" in
     1)
       echo "Installing AMD GPU drivers..."
-      sudo pacman -S --needed mesa lib32-mesa-git vulkan-radeon
+      sudo pacman -S --needed mesa lib32-mesa vulkan-radeon
       break
       ;;
     2)
