@@ -1,48 +1,51 @@
-@define-color maintext           #dfdfff;
-@define-color dim    		 rgba(24, 26, 37, 0.5);
-@define-color base   		 rgba(32, 35, 58, 0.7);
-@define-color blacklight 	 rgba(146, 120, 250, 0.4);
-@define-color violet		 #aa88ee;
+@define-color white           rgba(250, 250, 250, 0.7);
+@define-color pink            rgba(254, 147, 215, 0.7);
+@define-color gray_blue       rgba(143, 151, 162, 0.2);
+@define-color sky_blue        rgba(127, 174, 204, 0.7);
+@define-color lavender        rgba(159, 150, 217, 0.7);
 
 * {
   outline: none;
   font-family: 'CaskaydiaCove Nerd Font', monospace;
   font-size: 18px;
-  border-radius: 100px;
+  border-radius: 30px;
   background-color: transparent;
 }
 
 window {
-  border: 6px solid @blacklight;
-  background-color: @dim;
+  border: 6px solid @sky_blue;
+  background-color: @gray_blue;
 }
 
 #text {
-  color: @violet;
+  color: @white;
 }
 
 #text:selected {
-  color: @violet;
+  color: @white;
 }
 
 #entry {
-  margin: 10px 55px;
+  margin: 10px 30px;
   padding: 4px;
 }
 
 #entry:selected {
-  border: 6px solid @blacklight;
+  border: 6px solid @sky_blue;
+  background-color: @gray_blue;
 }
 
 #input {
-  color: @violet;
+  color: @white;
   box-shadow: none;
   margin: 40px;
   padding: 10px;
-  border: 6px solid @blacklight;
+  border: 6px solid @sky_blue;
+  background-color: transparent;
 }
 
 #input:selected {
-  border: 6px solid @blacklight;
+  border: 6px solid @sky_blue;
+  background-color: @gray_blue;
 }
 

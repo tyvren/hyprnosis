@@ -1,21 +1,21 @@
 * {
-min-height: 0px;
-min-width: 10px;
-color: rgba(146, 120, 250, 0.7);
-font-weight: 500;
-border: none;
-text-shadow: none;
-transition: none;
-box-shadow: none;
-background: transparent;
-padding: 0px 1px;
-border-radius: 15px;
-margin: 1px 1px;
+  min-height: 0px;
+  min-width: 10px;
+  color: rgba(127, 174, 204, 0.7);
+  font-weight: 500;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0px 1px;
+  border-radius: 10px;
+  margin: 1px 1px;
 }
 
 window {
-  border: 3px solid rgba(146, 120, 250, 0.7);
-  border-radius: 20px;
+  border: 3px solid rgba(127, 174, 204, 0.7);
+  border-radius: 10px;
 }
 
 #custom-power {
@@ -29,15 +29,15 @@ window {
 }
 
 #workspaces {
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 #workspaces button.active {
-  border: 3px solid rgba(146, 120, 250, 0.7);
+  border: 3px solid rgba(127, 174, 204, 0.7);
 }
 
 #workspaces button:hover {
-  border: 3px solid rgba(146, 120, 250, 0.7);
+  border: 3px solid rgba(127, 174, 204, 0.7);
 }
 
 #custom-media {
@@ -48,3 +48,4 @@ window {
 #custom-notification {
   margin-right: 20px;
 }
+
