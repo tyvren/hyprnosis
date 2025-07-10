@@ -5,7 +5,7 @@ source ./core/packages.sh
 install_yay () {
   sudo pacman -S --noconfirm git base-devel --noconfirm
   rm -rf yay
-  git clone https://aur.archlinux.org/yay/git
+  git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
   cd ..
