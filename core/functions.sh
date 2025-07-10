@@ -22,19 +22,6 @@ install_packages() {
   done
 }
 
-enable_user_service() {
-  local svc=$1
-  if systemctl --user list-unit-files | grep -q "^${svc}"; then
-    if systemctl --user enable --now "$svc"; then
-      echo "Enabled and started $svc"
-    else
-      echo "Warning: Failed to enable/start $svc"
-    fi
-  else
-    echo "Warning: Service $svc not found, skipping enable/start"
-  fi
-}
-
 enable_service() {
   local service=$1
   echo "Enabling $service..."
