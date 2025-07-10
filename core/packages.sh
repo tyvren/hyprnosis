@@ -14,7 +14,6 @@ app_packages=(
 
 system_utils=(
   wget
-  git
   viewnior
   cliphist
   mpv
