@@ -10,6 +10,7 @@ Features
 - Steam, Discord, Coolercontrol, OCCT, fan config during setup
 - A fully configured, simple and easy to build from hyprland desktop environment
 - Waybar, Wofi, NVIM, Ghostty and all of the hyprland goodies I use regularly
+- Themes and a theme switching script. Including some inspired by my favorite band.
 
 ##########
 QuickStart
@@ -26,9 +27,3 @@ After logging into your new Arch system, run the following:
 - Follow the script's interactive prompts (e.g GPU driver selection and fan detection)
 
 The script installs all required packages and applies the Hyprnosis configuration
-
-After Script Completes
-
-You will have a fully pre-configured Hyprland environment
-
-Configured Waybar, Wofi, Ghostty, NVIM, and some additonal gaming features :)
