@@ -15,6 +15,8 @@ Features
 QuickStart
 ##########
 
+Dependencies - multilib repository - add this to your archinstall before running
+
 After logging into your new Arch system, run the following:
 
     bash <(curl -sL https://raw.githubusercontent.com/steve-conrad/hyprnosis/main/boot.sh)
