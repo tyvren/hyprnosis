@@ -58,47 +58,27 @@ enable_service() {
 }
 
 hyprland_autologin() {
-  #Enable waybar user service
   enable_user_service "waybar.service"
 
-  BASH_PROFILE="$HOME/.bash_profile"
-  if ! grep -q "uwsm check may-start" "$BASH_PROFILE"; then
-    cat >> "$BASH_PROFILE" << 'EOF'
+  local BASH_PROFILE="$HOME/.bash_profile"
+  grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >> "$BASH_PROFILE" << 'EOF'
 
 # Start Hyprland via uwsm if available
 if uwsm check may-start; then
   exec uwsm start hyprland.desktop
 fi
 EOF
-    echo "Appended autostart lines to ~/.bash_profile"
-  else
-    echo "~/.bash_profile already contains Hyprland autostart logic."
-  fi
-
-  #Ask about systemd autologin
-  while true; do
-    read -rp "Enter your username for autologin setup: " username1
-    read -rp "Confirm username: " username2
-    if [[ -z "$username1" ]]; then
-      echo "Username was empty. Please enter a valid username."
-    elif [[ "$username1" != "$username2" ]]; then
-      echo "Usernames did not match. Please try again."
-    else
-      username="$username1"
-      break
-    fi
-  done
 
   sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
   sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null <<EOF
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin "${username}" --noclear %I \$TERM
+ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
 EOF
 
   sudo systemctl daemon-reexec
   sudo systemctl restart getty@tty1
-  echo "Enabled systemd autologin for user: $username"
+  echo "Enabled systemd autologin for user: $H_USERNAME"
 }
 
 install_gpu_driver() {
@@ -152,4 +132,19 @@ config_setup() {
   git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
+}
+
+get_username() {
+  while true; do
+    read -rp "Enter your username: " username1
+    read -rp "Confirm username: " username2
+    if [[ -z "$username1" ]]; then
+      echo "Username cannot be empty."
+    elif [[ "$username1" != "$username2" ]]; then
+      echo "Usernames did not match. Please try again."
+    else
+      H_USERNAME="$username1"
+      break
+    fi
+  done
 }

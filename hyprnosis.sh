@@ -3,6 +3,7 @@
 source ./core/functions.sh
 source ./core/packages.sh
 
+get_username
 sudo pacman -Syu --noconfirm
 install_yay
 install_gpu_driver
