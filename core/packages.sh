@@ -51,6 +51,7 @@ hypr_packages=(
         waybar
         wofi
         swaync
+	hyprpaper
         hyprshot
         hyprlock
         hypridle
