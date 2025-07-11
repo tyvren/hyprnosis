@@ -46,16 +46,16 @@ system_utils=(
 )
 
 hypr_packages=(
-        hyprland
-        uwsm
-        waybar
-        wofi
-        swaync
-	hyprpaper
-        hyprshot
-        hyprlock
-        hypridle
-	hyprpicker
-        xdg-desktop-portal-hyprland
-        hyprpolkitagent
+  hyprland
+  uwsm
+  waybar
+  wofi
+  swaync
+  hyprpaper
+  hyprshot
+  hyprlock
+  hypridle
+  hyprpicker
+  xdg-desktop-portal-hyprland
+  hyprpolkitagent
 )
