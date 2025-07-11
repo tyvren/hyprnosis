@@ -7,7 +7,7 @@ Features
 ########
 
 - AMD or NVidia GPU drivers - choose during the setup
-- Steam, Discord, Coolercontrol, OCCT, fan config during setup
+- Steam, Discord, Coolercontrol, OCCT, motherboard sensor dection during setup
 - A fully configured, simple and easy to build from hyprland desktop environment
 - Waybar, Wofi, NVIM, Ghostty and all of the hyprland goodies I use regularly
 - Themes and a theme switching script. Including some inspired by my favorite band.
