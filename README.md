@@ -15,24 +15,18 @@ Features
 QuickStart
 ##########
 
-Running the Setup Script
-
 After logging into your new Arch system, run the following:
 
-bash <(curl -sL https://raw.githubusercontent.com/steve-conrad/hyprnosis/main/boot.sh)
+    bash <(curl -sL https://raw.githubusercontent.com/steve-conrad/hyprnosis/main/boot.sh)
 
-    Enter your sudo password when prompted
+- Enter your sudo password when prompted
 
-    Follow the script’s interactive prompts (e.g. GPU driver selection)
+- Follow the script's interactive prompts (e.g GPU driver selection and fan detection)
 
-    The script installs all required packages and applies the Hyprnosis configuration
+The script installs all required packages and applies the Hyprnosis configuration
 
 After Script Completes
 
-You will have:
+You will have a fully pre-configured Hyprland environment
 
-    A fully pre-configured Hyprland environment
-
-    Configured Waybar, Wofi, Ghostty, NVIM, and some additional gaming features :)
-
-    A modular config that supports theme switching
+Configured Waybar, Wofi, Ghostty, NVIM, and some additonal gaming features :)
