@@ -23,6 +23,7 @@ system_utils=(
   ttf-font-awesome
   ttf-jetbrains-mono-nerd
   wireplumber
+  pipewire
   pavucontrol
   playerctl
   blueman
