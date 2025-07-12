@@ -28,7 +28,6 @@ system_utils=(
   playerctl
   blueman
   bluez-utils
-  networkmanager
   network-manager-applet
   thunar
   catppuccin-cursors-mocha
