@@ -91,7 +91,7 @@
 
   "custom/wifi": {
     "return-type": "json",
-    "format": "ᯤ",
+    "format": " ",
     "tooltip": true,
     "on-click": "nm-connection-editor",
     "interval": 1,

@@ -47,7 +47,7 @@
 
   "custom/wifi": {
     "return-type": "json",
-    "format": "<span>ᯤ</span>",
+    "format": "<span> </span>",
     "tooltip": false,
     "on-click": "nm-connection-editor",
     "interval": 1,
