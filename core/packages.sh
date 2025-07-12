@@ -10,6 +10,7 @@ app_packages=(
   gimp
   occt
   youtube-music-bin
+  heroic-games-launcher
 )
 
 system_utils=(
