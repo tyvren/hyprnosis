@@ -25,6 +25,7 @@ system_utils=(
   pavucontrol
   playerctl
   blueman
+  bluez-utils
   networkmanager
   network-manager-applet
   thunar
