@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THEME_DIR="$HOME/hyprnosis/themes"
+THEME_DIR="$HOME/.config/hyprnosis/themes"
 
 mapfile -t THEMES < <(ls -1 "$THEME_DIR")
 
