@@ -43,6 +43,7 @@ system_utils=(
   btop
   coolercontrol
   lsd
+  v4l-utils
 )
 
 hypr_packages=(

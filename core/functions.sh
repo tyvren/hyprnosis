@@ -132,8 +132,10 @@ config_setup() {
   git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
+#Make modules executable
+  chmod +x "$HOME/.config/hyprnosis/modules/theme-changer.sh"
+  chmod +x "$HOME/.config/hyprnosis/modules/bluetooth.sh"
 }
-
 get_username() {
   while true; do
     read -rp "Enter your username: " username1
