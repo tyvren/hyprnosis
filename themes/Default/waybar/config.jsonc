@@ -2,25 +2,25 @@
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "spacing": 25,
+  "spacing": 10,
   "margin-top": 6,
-  "margin-left": 800,
-  "margin-right": 800,
+  "margin-left": 700,
+  "margin-right": 700,
   
   "modules-left": [
     "custom/power",
-    "custom/media"
+    "custom/media" 
   ],
 
-  "modules-center": [
+  "modules-center": [	  
     "hyprland/workspaces"
   ],
 
   "modules-right": [
     "clock",
+    "pulseaudio",
     "custom/wifi",
     "bluetooth",
-    "pulseaudio",
     "custom/notification"
   ],
 
@@ -34,7 +34,7 @@
     },
 
   "custom/power": {	  
-    "format": "<span></span>",
+    "format": "<span>  </span>",
     "tooltip": false,
     "on-click": "~/.config/waybar/scripts/power_menu.sh"
     },
@@ -47,7 +47,7 @@
 
   "custom/wifi": {
     "return-type": "json",
-    "format": "<span>ᯤ</span>",
+    "format": "<span> ᯤ </span>",
     "tooltip": false,
     "on-click": "nm-connection-editor",
     "interval": 1,
@@ -70,10 +70,10 @@
   },
 
   "bluetooth": {
-    "format": "<span></span>",
-    "format-disabled": "<span></span>",
-    "format-connected": "<span></span>",
-    "format-connected-battery": "<span> low/span>",
+    "format": "<span>  </span>",
+    "format-disabled": "<span>  </span>",
+    "format-connected": "<span>  </span>",
+    "format-connected-battery": "<span>  low/span>",
 
     "tooltip-format":
       "{num_connections} connected",
@@ -101,14 +101,14 @@
     "rotate": 0,
     "format": "{icon}",
     "format-icons": {
-      "notification": "󰅸",
-      "none": "󰂜",
-      "dnd-notification": "󰅸",
-      "dnd-none": "󱏨",
-      "inhibited-notification": "󰅸",
-      "inhibited-none": "󰂜",
-      "dnd-inhibited-notification": "󰅸",
-      "dnd-inhibited-none": "󱏨"
+      "notification": " 󰅸 ",
+      "none": " 󰂜 ",
+      "dnd-notification": " 󰅸 ",
+      "dnd-none": " 󱏨 ",
+      "inhibited-notification": " 󰅸 ",
+      "inhibited-none": " 󰂜 ",
+      "dnd-inhibited-notification": " 󰅸 ",
+      "dnd-inhibited-none": " 󱏨 "
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
