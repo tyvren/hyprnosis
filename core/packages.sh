@@ -47,14 +47,14 @@ system_utils=(
   coolercontrol
   lsd
   v4l-utils
-)
-
-hypr_packages=(
-  hyprland
   uwsm
   waybar
   wofi
   swaync
+)
+
+hypr_packages=(
+  hyprland
   hyprpaper
   hyprshot
   hyprlock
