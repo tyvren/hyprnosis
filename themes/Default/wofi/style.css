@@ -1,51 +1,58 @@
-@define-color white           rgba(250, 250, 250, 0.7);
-@define-color pink            rgba(254, 147, 215, 0.7);
-@define-color gray_blue       rgba(143, 151, 162, 0.2);
-@define-color sky_blue        rgba(127, 174, 204, 0.7);
-@define-color lavender        rgba(159, 150, 217, 0.7);
-
 * {
-  outline: none;
-  font-family: 'CaskaydiaCove Nerd Font', monospace;
-  font-size: 18px;
-  border-radius: 30px;
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(250, 250, 250, 0.9);
+  border-radius: 10px;
+  padding: 2px 1px;
+  transition: 0.5s ease-in-out;
   background-color: transparent;
+  outline: none;
 }
 
 window {
-  border: 6px solid @sky_blue;
-  background-color: @gray_blue;
-}
-
-#text {
-  color: @white;
-}
-
-#text:selected {
-  color: @white;
-}
-
-#entry {
-  margin: 10px 30px;
-  padding: 4px;
-}
-
-#entry:selected {
-  border: 6px solid @sky_blue;
-  background-color: @gray_blue;
+  background-color: rgba(0, 0, 2, 0.7);
+  border: 2px solid rgba(159, 150, 217, 0.3);
+  border-radius: 8px;
 }
 
 #input {
-  color: @white;
-  box-shadow: none;
-  margin: 40px;
-  padding: 10px;
-  border: 6px solid @sky_blue;
-  background-color: transparent;
+  margin: 20px 40px;
+  padding: 6px 10px;
+  color: rgba(250, 250, 250, 0.9);
+  background-color: rgba(127, 174, 204, 0.08);
+  border: 2px solid rgba(127, 174, 204, 0.3);
+  border-radius: 8px;
 }
 
 #input:selected {
-  border: 6px solid @sky_blue;
-  background-color: @gray_blue;
+  background-color: rgba(127, 174, 204, 0.15);
+  border: 2px solid rgba(127, 174, 204, 0.4);
+}
+
+#entry {
+  margin: 4px 20px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: rgba(159, 150, 217, 0.1);
+  color: rgba(250, 250, 250, 0.8);
+}
+
+#entry:selected {
+  background-color: rgba(127, 174, 204, 0.2);
+  border: 1px solid rgba(127, 174, 204, 0.6);
+  color: rgba(250, 250, 250, 0.2);
+}
+
+#text {
+  color: rgba(250, 250, 250, 0.9);
+}
+
+#text:selected {
+  color: rgba(250, 250, 250, 0.9);
+}
+
+#scroll {
+  margin: 0px 10px 10px 10px;
 }
 
