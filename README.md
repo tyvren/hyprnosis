@@ -1,7 +1,5 @@
 #hyprnosis - a hyprland offering - setup script and full configuration for hyprland on arch linux
 
-Inspired by the omarchy project, but focused on gaming desktops.
-
 ########
 Features
 ########
@@ -15,6 +13,8 @@ Features
 ##########
 QuickStart
 ##########
+
+Detailed documentation can be found in the wiki.
 
 Dependencies - multilib repository - add this to your archinstall before running
 
