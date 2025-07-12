@@ -138,7 +138,7 @@ config_setup() {
 }
 get_username() {
   while true; do
-    read -rp "Enter your username: " username1
+    read -rp "Enter your username (Required for Hyprland login): " username1
     read -rp "Confirm username: " username2
     if [[ -z "$username1" ]]; then
       echo "Username cannot be empty."
