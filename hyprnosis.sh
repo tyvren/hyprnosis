@@ -13,6 +13,7 @@ install_packages "${hypr_packages[@]}"
 enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
+enable_coolercontrol
 detect_sensors
 config_setup
 hyprland_autologin

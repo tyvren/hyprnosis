@@ -150,3 +150,7 @@ get_username() {
     fi
   done
 }
+
+enable_coolercontrol() {
+  sudo systemctl enable --now coolercontrold
+}
