@@ -133,8 +133,7 @@ config_setup() {
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
 #Make modules executable
-  chmod +x "$HOME/.config/hyprnosis/modules/theme-changer.sh"
-  chmod +x "$HOME/.config/hyprnosis/modules/bluetooth.sh"
+  chmod +x "$HOME/.config/hyprnosis/modules/"*
 }
 get_username() {
   while true; do
