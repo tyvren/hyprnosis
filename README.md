@@ -27,3 +27,15 @@ After logging into your new Arch system, run the following:
 - Follow the script's interactive prompts (e.g GPU driver selection and fan detection)
 
 The script installs all required packages and applies the Hyprnosis configuration
+
+
+**Default desktop theme**
+
+**Wofi app menu:**
+<img width="3840" height="2160" alt="2025-07-12-143306_hyprshot" src="https://github.com/user-attachments/assets/f23e9451-43c1-4c62-9d28-22d5f231a461" />
+
+**Wofi power menu**
+<img width="3840" height="2160" alt="2025-07-12-143412_hyprshot" src="https://github.com/user-attachments/assets/325209d8-9e7d-4e02-9071-539be44ee7b6" />
+
+**Wofi keybinds menu**
+<img width="1555" height="1065" alt="2025-07-12-180854_hyprshot" src="https://github.com/user-attachments/assets/dfc8e6ed-732a-45ec-8ef8-ab18b1c332b5" />
