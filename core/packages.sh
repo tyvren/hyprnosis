@@ -9,6 +9,8 @@ app_packages=(
   cava
   gimp
   occt
+  btop
+  coolercontrol
   youtube-music-bin
 )
 
@@ -41,14 +43,13 @@ system_utils=(
   spectacle
   timeshift
   fastfetch
-  btop
-  coolercontrol
   lsd
   v4l-utils
   uwsm
   waybar
   wofi
   swaync
+  python
 )
 
 hypr_packages=(
