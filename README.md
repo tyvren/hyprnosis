@@ -36,7 +36,10 @@ The script installs all required packages and applies the Hyprnosis configuratio
 <img width="3840" height="2160" alt="2025-07-12-143306_hyprshot" src="https://github.com/user-attachments/assets/f23e9451-43c1-4c62-9d28-22d5f231a461" />
 
 **Wofi power menu**
-<img width="3840" height="2160" alt="2025-07-12-143412_hyprshot" src="https://github.com/user-attachments/assets/325209d8-9e7d-4e02-9071-539be44ee7b6" />
+<img width="2737" height="1884" alt="2025-07-16-150812_hyprshot" src="https://github.com/user-attachments/assets/fb9182db-79b7-4b6b-a5bc-21906ffe441d" />
 
 **Wofi keybinds menu**
 <img width="1555" height="1065" alt="2025-07-12-180854_hyprshot" src="https://github.com/user-attachments/assets/dfc8e6ed-732a-45ec-8ef8-ab18b1c332b5" />
+
+**System Monitoring Apps**
+<img width="3837" height="2158" alt="2025-07-16-150708_hyprshot" src="https://github.com/user-attachments/assets/5c5195f4-2aaf-490c-a9e1-5f9e74e20f5f" />
