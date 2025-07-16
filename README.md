@@ -4,11 +4,12 @@
 Features
 ########
 
+- Built for Desktops with pre-loaded system monitoring and overclocking tools
 - AMD or NVidia GPU drivers - choose during the setup
-- Steam, Discord, Coolercontrol, OCCT, motherboard sensor dection during setup
+- Steam, Discord, Coolercontrol, OCCT
 - A fully configured, simple and easy to build from hyprland desktop environment
 - Waybar, Wofi, NVIM, Ghostty and all of the hyprland goodies I use regularly
-- Themes and a theme switching script. Including some inspired by my favorite band.
+- Theme switching script with 6 themes. Including some inspired by my favorite band.
 
 ##########
 QuickStart
@@ -24,7 +25,7 @@ After logging into your new Arch system, run the following:
 
 - Enter your sudo password when prompted
 
-- Follow the script's interactive prompts (e.g GPU driver selection and fan detection)
+- Follow the script's interactive prompts (e.g GPU driver selection, Hyprland auto-login and additional sudo prompts)
 
 The script installs all required packages and applies the Hyprnosis configuration
 
