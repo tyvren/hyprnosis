@@ -1,20 +1,19 @@
 * {
-min-height: 0px;
-min-width: 10px;
-color: rgba(254, 255, 255, 0.7);
-font-weight: 500;
-border: none;
-text-shadow: none;
-transition: none;
-box-shadow: none;
-background: transparent;
-padding: 0px 1px;
-border-radius: 15px;
-margin: 1px 1px;
+  min-height: 16px;
+  min-width: 10px;
+  color: rgba(254, 255, 255, 0.7);
+  font-weight: 500;
+  border: none;
+  text-shadow: 0 0 4px rgba(144, 147, 154, 0.5);
+  box-shadow: none;
+  background: transparent;
+  padding: 0px 1px;
+  border-radius: 15px;
+  margin: 1px 1px;
 }
 
 window {
-  border: 3px solid rgba(254, 255, 255, 0.7);
+  border: 2px solid rgba(254, 255, 255, 0.7);
   border-radius: 20px;
 }
 
@@ -33,11 +32,15 @@ window {
 }
 
 #workspaces button.active {
-  border: 3px solid rgba(254, 255, 255, 0.7);
+  border: 1px solid rgba(254, 255, 255, 0.7);
+  box-shadow: 0 0 4px rgba(144, 147, 154, 0.5);
+  transition: 0.5s ease-in;
 }
 
 #workspaces button:hover {
-  border: 3px solid rgba(254, 255, 255, 0.7);
+  border: 1px solid rgba(254, 255, 255, 0.7);
+  box-shadow: 0 0 4px rgba(89, 125, 255, 0.7);
+  transition: 0.5s ease-in;
 }
 
 #custom-media {
