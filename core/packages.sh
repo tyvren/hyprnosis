@@ -12,6 +12,7 @@ app_packages=(
   btop
   coolercontrol
   youtube-music-bin
+  obs-studio
 )
 
 system_utils=(
