@@ -58,8 +58,6 @@ enable_service() {
 }
 
 hyprland_autologin() {
-  enable_user_service "waybar.service"
-
   local BASH_PROFILE="$HOME/.bash_profile"
   grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >> "$BASH_PROFILE" << 'EOF'
 
