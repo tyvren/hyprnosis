@@ -91,12 +91,12 @@ while true; do
   case "$GPU_CHOICE" in
     1)
       echo "Installing AMD GPU drivers..."
-      sudo pacman -S --needed mesa lib32-mesa vulkan-radeon
+      yay -S --noconfirm --needed mesa lib32-mesa vulkan-radeon
       break
       ;;
     2)
       echo "Installing NVIDIA GPU drivers..."
-      sudo pacman -S --needed nvidia nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
+      yay -S --noconfirm --needed nvidia nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
       break
       ;;
     3)
@@ -132,6 +132,7 @@ config_setup() {
 #Make modules executable
   chmod +x "$HOME/.config/hyprnosis/modules/"*
 }
+
 get_username() {
   while true; do
     read -rp "Enter your username (Required for Hyprland login): " username1
