@@ -3,22 +3,21 @@
   "layer": "top",
   "position": "top",
   "spacing": 10,
-  "margin-top": 6,
-  "margin-left": 700,
-  "margin-right": 700,
+  "margin-top": 2,
   
   "modules-left": [
     "custom/power",
-    "custom/media" 
+    "hyprland/workspaces",
+    "wlr/taskbar"
   ],
 
-  "modules-center": [	  
-    "hyprland/workspaces"
+  "modules-center": [
+    "clock"
   ],
 
   "modules-right": [
-    "clock",
-    "pulseaudio",
+    "custom/media",
+    "group/audio",
     "custom/wifi",
     "bluetooth",
     "custom/notification"
@@ -27,10 +26,9 @@
   "custom/media": {
      "format": "{text}",
      "return-type": "json",
-     "max-length": 30,
+     "max-length": 50,
      "escape": true,
      "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
-     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
 
   "custom/power": {	  
@@ -49,10 +47,7 @@
     "return-type": "json",
     "format": "<span> </span>",
     "tooltip": false,
-    "on-click": "nm-connection-editor",
-    "interval": 1,
-    "min-length": 1,
-    "max-length": 12
+    "on-click": "nm-connection-editor"
   },
 
   "hyprland/workspaces": {
@@ -109,12 +104,139 @@
       "inhibited-none": " 󰂜 ",
       "dnd-inhibited-notification": " 󰅸 ",
       "dnd-inhibited-none": " 󱏨 "
-    },
+  },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click-right": "swaync-client -d -sw",
     "on-click": "swaync-client -t -sw",
     "escape": true
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-theme": "Tela-circle-nord",
+    "rotate": 0,
+    "icon-size": 20,
+    "spacing": 0
+  },
+
+  "group/brightness": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 400,
+      "children-class": "brightness",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "backlight",
+      "backlight/slider"
+    ]
+  },
+
+  "backlight/slider": {
+    "min": 5,
+    "max": 100,
+    "orientation": "horizontal",
+    "device": "intel_backlight"
+  },
+  
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}",
+    "format-icons": [
+      "<span size='12.5pt' font='Material Icons'>brightness_1</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_2</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_3</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_4</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_5</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_6</span>",
+      "<span size='12.5pt' font='Material Icons'>brightness_7</span>"
+    ],
+    // If you want to use scroll to change brightness, comment the following lines
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    // And Uncomment the following lines
+    // "reverse-scrolling": true,
+    // "smooth-scrolling-threshold": 0.1,
+    "tooltip": false
+  },
+  
+  "group/audio": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 400,
+      "children-class": "audio",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
+  },
+
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  
+  "pulseaudio": {
+    "interval": 1,
+    "format": "{icon}",
+    "format-muted": " 󰝟 ",
+    "format-icons": {
+      "default": [
+        "  ",
+        "  ",
+	"   "
+      ]
+    },
+    "on-click-right": "pavucontrol",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    // If you want to use scroll to change brightness, comment the following lines
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    // And Uncomment the following line
+    // "reverse-scrolling": true,
+    "tooltip": true,
+    "tooltip-format": "Volume: {volume}%\n{desc}"
+  },
+  
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "<span size='13.5pt' font='JetBrainsMono Nerd Font'>mic</span>",
+    "format-source-muted": "<span size='13.5pt' font='JetBrains Mono Nerd Font'>mic_off</span>",
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "tooltip": false
+  },
+    
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10,
+      "plugordie": 5
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-charging": " {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-plugordie": "󰂃 {capacity}",
+    "tooltip": false,
+    "exec-on-event": true,
+    "exec-if-event": "state-warning, state-critical",
+    "exec": "~/.config/scripts/battery-notification.sh {capacity}"
   }
 }

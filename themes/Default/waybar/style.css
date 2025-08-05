@@ -1,103 +1,158 @@
+@define-color blue rgba(24, 104, 193, 0.7);
+@define-color blue-dim rgba(24, 104, 193, 0.1);
+@define-color gray-blue rgba(127, 174, 204, 0.7);
+@define-color gray-blue-dim rgba(127, 174, 204, 0.1);
+@define-color white rgba(250, 250, 250, 0.9);
+@define-color white-dim rgba(250, 250, 250, 0.2);
+@define-color black rgba(0, 0, 2, 0.5);
+
 * {
   font-family: JetBrainsMono Nerd Font, monospace;
   font-size: 11px;
   font-weight: 500;
-  color: rgba(250, 250, 250, 0.9);
+  color: @white;
   border-radius: 10px;
-  padding: 2px 1px;
   transition: 0.5s ease-in-out;
 }
 
 window {
-  background: rgba(0, 0, 2, 0.7);
-  border: 2px solid rgba(159, 150, 217, 0.3);
+  background: @black;
   border-radius: 8px;
 }
 
 #workspaces {
-  background: rgba(159, 150, 217, 0.1);
-  border-radius: 8px;
-  padding: 0px 4px;
+  background: @gray-blue-dim;
+  border: 1px solid @gray-blue;
 }
 
 #workspaces button {
-  color: rgba(250, 250, 250, 0.6); 
-  padding: 1px 6px;
-  border-radius: 6px;
   margin: 1px 2px;
 }
 
 #workspaces button.active {
-  background: rgba(127, 174, 204, 0.2);
-  border: 1px solid rgba(127, 174, 204, 0.6);
-  color: rgba(250, 250, 250, 0.2);
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
 }
 
 #workspaces button:hover {
-  background: rgba(127, 174, 204, 0.15);
-  border: 1px solid rgba(127, 174, 204, 0.4);
+  border: 1px solid @blue;
+  background: @blue-dim;
 }
 
 #clock {
-  background: rgba(127, 174, 204, 0.1);
-  border: 1px solid rgba(127, 174, 204, 0.4);
-  margin-right: 50px;
-  padding: 2px 10px;
-  border-radius: 10px;
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
+  padding: 2px 8px;
 }
 
 #custom-power {
   font-weight: 900;
-  color: rgba(250, 250, 250, 0.9);
-  background: rgba(127, 174, 204, 0.08);
-  border: 1px solid rgba(127, 174, 204, 0.3);
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
   margin-left: 10px;
   padding: 0px 8px;
 }
 
 #custom-media {
   margin: 0 20px;
-  background: rgba(127, 174, 204, 0.1);
-  border: 1px solid rgba(127, 174, 204, 0.4);
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
   padding: 2px 10px;
-  margin-left: 90px;
-  border-radius: 8px;
+  margin-left: 60px;
 }
 
 #custom-notification {
-  background: rgba(127, 174, 204, 0.08);
-  border: 1px solid rgba(127, 174, 204, 0.3);
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
   margin-right: 10px;
-  padding: 2px 8px;
+  padding: 2px 10px;
 }
 
 #pulseaudio {
-  background: rgba(127, 174, 204, 0.1);
-  border: 1px solid rgba(127, 174, 204, 0.4);
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
   padding: 2px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @blue;
+    background: @blue-dim;
+}
+
+#pulseaudio.microphone {
+    color: @foreground;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @blue;
+    background: @blue-dim;
+}
+
+#pulseaudio-slider {
+    background: @gray-blue-dim;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    background: transparent;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @gray-blue-dim;
+}
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @gray-blue;
 }
 
 #custom-wifi {
-  background: rgba(127, 174, 204, 0.1);
-  border: 1px solid rgba(127, 174, 204, 0.4);
-  padding: 2px 10px;
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
+  padding: 2px 14px;
 }
 
 #bluetooth {
-  background: rgba(127, 174, 204, 0.1);
-  border: 1px solid rgba(127, 174, 204, 0.4);
-  padding: 2px 8px;	
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
+  padding: 2px 10px;	
 }
 
 tooltip {
   background: rgba(0, 0, 2, 0.9);
-  border: 1px solid rgba(250, 250, 250, 0.1);
+  border: 1px solid @gray-blue;
   border-radius: 6px;
 }
 
 tooltip label {
-  color: rgba(250, 250, 250, 0.95);
+  color: @white;
   font-size: 11px;
   padding: 4px;
 }
 
+#taskbar {
+  background: @blue-dim;
+  border: 1px solid @gray-blue;
+}
+
+#taskbar button {
+  margin: 1px 2px;
+}
+
+#taskbar button:hover {
+  background: rgba(127, 174, 204, 0.15);
+  border: 1px solid @gray-blue;
+ }
+
+#taskbar button.active {
+  background: @gray-blue-dim;
+  border: 1px solid @gray-blue;
+  color: @white-dim;
+}
