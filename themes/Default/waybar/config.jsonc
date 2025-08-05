@@ -236,7 +236,6 @@
     "format-plugordie": "󰂃 {capacity}",
     "tooltip": false,
     "exec-on-event": true,
-    "exec-if-event": "state-warning, state-critical",
-    "exec": "~/.config/scripts/battery-notification.sh {capacity}"
+    "exec-if-event": "state-warning, state-critical"
   }
 }

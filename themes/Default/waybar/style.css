@@ -37,6 +37,7 @@ window {
 #workspaces button:hover {
   border: 1px solid @blue;
   background: @blue-dim;
+  box-shadow: none;
 }
 
 #clock {
@@ -50,7 +51,7 @@ window {
   background: @blue-dim;
   border: 1px solid @gray-blue;
   margin-left: 10px;
-  padding: 0px 8px;
+  padding: 0px 10px;
 }
 
 #custom-media {
@@ -90,7 +91,8 @@ window {
 }
 
 #pulseaudio-slider {
-    background: @gray-blue-dim;
+    background: @blue-dim;
+    border: 1px solid @gray-blue;
     padding: 0 12px;
     margin: 0 4px;
 }
@@ -98,7 +100,8 @@ window {
 #pulseaudio-slider slider {
     min-height: 0px;
     min-width: 0px;
-    background: transparent;
+    background: @gray-blue;
+    border: 1px solid @gray-blue;
     box-shadow: none;
 }
 #pulseaudio-slider trough {
