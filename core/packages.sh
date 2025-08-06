@@ -60,6 +60,7 @@ hypr_packages=(
   hyprlock
   hypridle
   hyprpicker
+  hyprsysteminfo
   xdg-desktop-portal-hyprland
   hyprpolkitagent
   qt5-wayland
