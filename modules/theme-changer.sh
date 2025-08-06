@@ -19,7 +19,7 @@ if command -v hyprctl &> /dev/null; then
   hyprctl reload
 fi
 
-chmod +x ~/.config/waybar/scripts/mediaplayer.py
+chmod +x ~/.config/hyprnosis/modules/mediaplayer.py
 
 echo "Reloading Waybar..."
 killall waybar 2>/dev/null || true
