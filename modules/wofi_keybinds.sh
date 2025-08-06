@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+HYPR_CONF="$HOME/.config/hypr/settings/keybinds.conf"
 
 mapfile -t BINDINGS < <(
   grep -E '^bind\s*=' "$HYPR_CONF" | while IFS= read -r line; do
@@ -12,7 +12,7 @@ mapfile -t BINDINGS < <(
 )
 
 if [[ ${#BINDINGS[@]} -eq 0 ]]; then
-  notify-send "No keybinds found in hyprland.conf"
+  notify-send "No keybinds found in keybinds.conf"
   exit 1
 fi
 

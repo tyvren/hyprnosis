@@ -11,7 +11,7 @@ THEME_MENU=$(printf "%s\n" "${THEMES[@]}" | wofi --dmenu --width 300 --height 40
 SELECTED_THEME="$THEME_MENU"
 THEME_PATH="$THEME_DIR/$SELECTED_THEME"
 
-cp -r "$THEME_PATH/nvim" "$HOME/.config/nvim/lua/plugins"
+cp -r "$THEME_PATH/nvim/lua/plugins/colorscheme.lua" "$HOME/.config/nvim/lua/plugins"
 cp -r "$THEME_PATH/"* "$HOME/.config/"
 
 if command -v hyprctl &> /dev/null; then
