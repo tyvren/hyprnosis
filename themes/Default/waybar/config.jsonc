@@ -3,7 +3,6 @@
   "layer": "top",
   "position": "top",
   "spacing": 10,
-  "margin-top": 2,
   
   "modules-left": [
     "custom/power",
