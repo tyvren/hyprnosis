@@ -3,6 +3,8 @@
   "layer": "top",
   "position": "top",
   "spacing": 10,
+//"margin-top": 3,
+// add  margin-top for more space from top of your monitor, some display scaling may cut off the bar slightly
   
   "modules-left": [
     "custom/power",
