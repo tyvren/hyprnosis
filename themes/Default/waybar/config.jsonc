@@ -28,13 +28,13 @@
      "return-type": "json",
      "max-length": 50,
      "escape": true,
-     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+     "exec": "$HOME/.config/hyprnosis/modules/mediaplayer.py 2> /dev/null"
     },
 
   "custom/power": {	  
     "format": "<span>  </span>",
     "tooltip": false,
-    "on-click": "~/.config/waybar/scripts/power_menu.sh"
+    "on-click": "~/.config/hyprnosis/modules/power_menu.sh"
     },
 
   "clock": {
