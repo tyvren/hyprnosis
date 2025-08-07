@@ -51,6 +51,7 @@ system_utils=(
   wofi
   swaync
   python
+  gum
 )
 
 hypr_packages=(

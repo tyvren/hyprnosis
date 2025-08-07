@@ -151,3 +151,27 @@ get_username() {
 enable_coolercontrol() {
   sudo systemctl enable --now coolercontrold
 }
+
+setup_hyprnosis_alias() {
+    SHELL_RC="$HOME/.bashrc"
+    FUNCTION_NAME="hyprnosis"
+    SCRIPT_PATH="$HOME/.config/hyprnosis/modules/hyprnosis_update.sh"
+
+    FUNCTION_DEF=$(cat <<EOF
+
+# hyprnosis CLI
+$FUNCTION_NAME() {
+    bash "$SCRIPT_PATH"
+}
+EOF
+)
+
+    if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
+        echo "$FUNCTION_DEF" >> "$SHELL_RC"
+        echo "[hyprnosis] Added alias to $SHELL_RC"
+    else
+        echo "[hyprnosis] Alias already exists in $SHELL_RC"
+    fi
+}
+
+
