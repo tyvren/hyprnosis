@@ -28,13 +28,13 @@
      "return-type": "json",
      "max-length": 50,
      "escape": true,
-     "exec": "$HOME/.config/hyprnosis/modules/mediaplayer.py 2> /dev/null"
+     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
     },
 
   "custom/power": {	  
     "format": "<span>  </span>",
     "tooltip": false,
-    "on-click": "~/.config/hyprnosis/modules/power_menu.sh"
+    "on-click": "~/.config/waybar/scripts/power_menu.sh"
     },
 
   "clock": {
@@ -85,10 +85,6 @@
     "interval": 1,
     "min-length": 1,
     "max-length": 10
-  },
-
-  "pulseaudio": {
-    "on-click": "pavucontrol"
   },
 
   "custom/notification": {
@@ -153,12 +149,8 @@
       "<span size='12.5pt' font='Material Icons'>brightness_6</span>",
       "<span size='12.5pt' font='Material Icons'>brightness_7</span>"
     ],
-    // If you want to use scroll to change brightness, comment the following lines
     "on-scroll-up": "",
     "on-scroll-down": "",
-    // And Uncomment the following lines
-    // "reverse-scrolling": true,
-    // "smooth-scrolling-threshold": 0.1,
     "tooltip": false
   },
   
@@ -194,11 +186,8 @@
     },
     "on-click-right": "pavucontrol",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    // If you want to use scroll to change brightness, comment the following lines
     "on-scroll-up": "",
     "on-scroll-down": "",
-    // And Uncomment the following line
-    // "reverse-scrolling": true,
     "tooltip": true,
     "tooltip-format": "Volume: {volume}%\n{desc}"
   },
