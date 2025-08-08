@@ -47,7 +47,6 @@ window {
 }
 
 #custom-power {
-  font-weight: 900;
   background: @blue-dim;
   border: 1px solid @gray-blue;
   margin-left: 10px;
@@ -98,8 +97,6 @@ window {
 }
 
 #pulseaudio-slider slider {
-    min-height: 0px;
-    min-width: 0px;
     background: @gray-blue;
     border: 1px solid @gray-blue;
     box-shadow: none;
