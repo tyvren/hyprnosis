@@ -1,0 +1,154 @@
+@import "mocha.css";
+
+* {
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @lavender;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+window {
+  background: @crust;
+  border-radius: 8px;
+}
+
+#workspaces {
+  background: @base;
+  border: 1px solid @lavender;
+}
+
+#workspaces button {
+  margin: 1px 2px;
+}
+
+#workspaces button.active {
+  background: @base;
+  border: 1px solid @lavender;
+}
+
+#workspaces button:hover {
+  border: 1px solid @mauve;
+  background: @base;
+  box-shadow: none;
+}
+
+#clock {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
+#custom-power {
+  background: @base;
+  border: 1px solid @lavender;
+  margin-left: 10px;
+  padding: 0px 10px;
+}
+
+#custom-media {
+  margin: 0 20px;
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+  margin-left: 60px;
+}
+
+#custom-notification {
+  background: @base;
+  border: 1px solid @lavender;
+  margin-right: 10px;
+  padding: 0px 10px;
+}
+
+#pulseaudio {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @mauve;
+    background: @blue-dim;
+}
+
+#pulseaudio.microphone {
+    color: @mauve;
+    background: @base;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @mauve;
+    background: @base;
+}
+
+#pulseaudio-slider {
+    background: @base;
+    border: 1px solid @lavender;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    background: @base;
+    border: 1px solid @lavender;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @lavender;
+}
+#pulseaudio-slider highlight {
+    min-width: 7px;
+    min-height: 7px;
+    border-radius: 4px;
+    background: @lavender;
+}
+
+#custom-wifi {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 14px;
+}
+
+#bluetooth {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;	
+}
+
+tooltip {
+  background: @base;
+  border: 1px solid @lavender;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: @text;
+  font-size: 11px;
+  padding: 4px;
+}
+
+#taskbar {
+  background: @base;
+  border: 1px solid @lavender;
+}
+
+#taskbar button {
+  margin: 1px 2px;
+  box-shadow: none;
+}
+
+#taskbar button:hover {
+  background: @base;
+  border: 1px solid @mauve;
+  box-shadow: none;
+ }
+
+#taskbar button.active {
+  background: @base;
+  border: 1px solid @lavender;
+  color: @text;
+}
