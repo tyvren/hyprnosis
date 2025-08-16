@@ -54,6 +54,7 @@ system_utils=(
   gum
   dosfstools
   ntfs-3g
+  gvfs
 )
 
 hypr_packages=(
