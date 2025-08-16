@@ -52,6 +52,8 @@ system_utils=(
   swaync
   python
   gum
+  dosfstools
+  ntfs-3g
 )
 
 hypr_packages=(
