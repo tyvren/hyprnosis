@@ -55,6 +55,7 @@ system_utils=(
   dosfstools
   ntfs-3g
   gvfs
+  nwg-look
 )
 
 hypr_packages=(
