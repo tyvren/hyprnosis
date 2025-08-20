@@ -123,8 +123,8 @@ detect_sensors() {
 config_setup() {
 #Copy config files to the user's home directory
   cp -r "$HOME/.config/hyprnosis/themes/Default/." "$HOME/.config/"
-  cp -r "$HOME/.config/hyprnosis/configs/hypr/." "$HOME/.config/hypr/"
-  cp -r "$HOME/.config/hyprnosis/configs/nvim/." "$HOME/.config/nvim/"
+  cp -r "$HOME/.config/hyprnosis/config/hypr/." "$HOME/.config/hypr/"
+  cp -r "$HOME/.config/hyprnosis/config/nvim/." "$HOME/.config/nvim/"
 #Clone wallpaper repo
   git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
