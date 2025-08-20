@@ -1,8 +1,5 @@
 [ui.anchors]
-bottom = true
-left = true
-right = true
-top = true
+center = true
 
 [ui.window]
 h_align = "fill"
