@@ -153,7 +153,7 @@ enable_coolercontrol() {
 setup_hyprnosis_alias() {
     SHELL_RC="$HOME/.bashrc"
     FUNCTION_NAME="hyprnosis"
-    SCRIPT_PATH="$HOME/.config/hyprnosis/modules/hyprnosis_update.sh"
+    SCRIPT_PATH="$HOME/.config/hyprnosis/modules/hyprnosis_update_tui.sh"
 
     FUNCTION_DEF=$(cat <<EOF
 

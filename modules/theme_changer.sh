@@ -2,10 +2,16 @@
 
 THEME_DIR="$HOME/.config/hyprnosis/themes"
 
+menu() {
+    local prompt="$1"
+    local options="$2"
+    echo -e "$options" | walker --dmenu -H -p "$prompt…"
+}
+
 mapfile -t THEMES < <(ls -1 "$THEME_DIR")
+theme_list=$(printf "%s\n" "${THEMES[@]}")
 
-THEME_MENU=$(printf "%s\n" "${THEMES[@]}" | wofi --dmenu --width 300 --height 400 --cache-file /dev/null --prompt "Select a theme")
-
+THEME_MENU=$(menu "Select a theme" "$theme_list")
 [[ -z "$THEME_MENU" ]] && exit 0
 
 SELECTED_THEME="$THEME_MENU"
@@ -34,3 +40,4 @@ if command -v hyprpaper &> /dev/null; then
 fi
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
+
