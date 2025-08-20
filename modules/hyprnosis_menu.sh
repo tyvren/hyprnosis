@@ -16,7 +16,7 @@ selection=$(menu "Hyprnosis Menu" "$main_items")
 
 case "$selection" in
     *Power*) exec ~/.config/hyprnosis/modules/power_menu.sh ;;
-    *Update*) exec ~/.config/hyprnosis/modules/hyprnosis_update.sh ;;
+    *Update*) exec ~/.config/hyprnosis/modules/update.sh ;;
     *Keybinds*) exec ~/.config/hyprnosis/modules/wofi_keybinds.sh ;;
 esac
 
