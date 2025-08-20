@@ -125,6 +125,7 @@ config_setup() {
   cp -r "$HOME/.config/hyprnosis/config/hypr/." "$HOME/.config/hypr/"
   cp -r "$HOME/.config/hyprnosis/config/nvim/." "$HOME/.config/nvim/"
   cp -r "$HOME/.config/hyprnosis/config/walker/." "$HOME/.config/walker/"
+  cp -r "$HOME/.config/hyprnosis/config/waybar/." "$HOME/.config/waybar/"
   git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
