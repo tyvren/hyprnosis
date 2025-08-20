@@ -1,0 +1,175 @@
+@define-color blue rgba(24, 104, 193, 0.7);
+@define-color blue-dim rgba(24, 104, 193, 0.1);
+@define-color gray-blue rgba(127, 174, 204, 0.7);
+@define-color gray-blue-dim rgba(127, 174, 204, 0.1);
+@define-color white rgba(250, 250, 250, 0.9);
+@define-color white-dim rgba(250, 250, 250, 0.2);
+@define-color black rgba(0, 0, 2, 0.5);
+
+#window,
+#box,
+#aiScroll,
+#aiList,
+#search,
+#password,
+#input,
+#prompt,
+#clear,
+#typeahead,
+#list,
+child,
+scrollbar,
+slider,
+#item,
+#text,
+#label,
+#bar,
+#sub,
+#activationlabel {
+  all: unset;
+}
+
+#cfgerr {
+  background: rgba(255, 0, 0, 0.4);
+  margin-top: 20px;
+  padding: 8px;
+  font-size: 1.2em;
+}
+
+* {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @white;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+  background-color: transparent;
+  outline: none;
+}
+
+window {
+  background-color: @black;
+  border: 2px solid @gray-blue;
+}
+
+#box {
+  background: @black;
+  padding: 36px;
+  border: 2px solid lighter(@gray-blue);
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#search {
+  background: lighter(@blue-dim);
+  padding: 8px;
+}
+
+#prompt {
+  margin-left: 4px;
+  margin-right: 12px;
+  color: @white;
+  opacity: 0.2;
+}
+
+#clear {
+  color: @white;
+  opacity: 0.8;
+}
+
+#password,
+#input,
+#typeahead {
+  border-radius: 8px;
+}
+
+#input {
+  color: @white;
+  background-color: @blue-dim;
+  border: 2px solid @gray-blue;
+}
+
+#password {
+}
+
+#spinner {
+  padding: 8px;
+}
+
+#typeahead {
+  color: @white;
+  opacity: 0.8;
+}
+
+#input placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+child {
+  padding: 8px;
+  border-radius: 2px;
+}
+
+child:selected,
+child:hover {
+  background-color: @blue-dim;
+  border: 2px solid @gray-blue;
+}
+
+#item {
+}
+
+#icon {
+  margin-right: 8px;
+}
+
+#text {
+  color: @white;
+}
+
+#label {
+  font-weight: 500;
+}
+
+#sub {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+#activationlabel {
+}
+
+#bar {
+}
+
+.barentry {
+}
+
+.activation #activationlabel {
+}
+
+.activation #text,
+.activation #icon,
+.activation #search {
+  opacity: 0.5;
+}
+
+.aiItem {
+  padding: 10px;
+  border-radius: 2px;
+  color: @blue;
+  background: @blue-dim;
+}
+
+.aiItem.user {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.aiItem.assistant {
+  background: @blue-dim;
+}
