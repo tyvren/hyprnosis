@@ -1,9 +1,18 @@
 #!/bin/bash
 
-choice=$(printf "  Shutdown\n  Restart\n  Lock" | wofi --dmenu --width 300 --height 360 --cache-file /dev/null)
+menu() {
+    local prompt="$1"
+    local options="$2"
+    echo -e "$options" | walker --dmenu -H -p "$prompt…"
+}
 
-case "$choice" in
-    "  Shutdown") systemctl poweroff ;;
-    "  Restart") systemctl reboot ;;
-    "  Lock") hyprlock ;;
+items=" Shutdown\n Restart\n Lock"
+
+selection=$(menu "Power Menu" "$items")
+
+case "$selection" in
+    *Shutdown*) systemctl poweroff ;;
+    *Restart*) systemctl reboot ;;
+    *Lock*) hyprlock ;;
 esac
+

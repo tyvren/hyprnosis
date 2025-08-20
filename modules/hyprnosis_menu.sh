@@ -15,9 +15,8 @@ main_items="  Power Menu\n  Update\n Keybinds"
 selection=$(menu "Hyprnosis Menu" "$main_items")
 
 case "$selection" in
-    *Power*) exec ~/hyprnosis/modules/power_walker.sh ;;
-    *Update*) exec ~/hyprnosis/modules/hyprnosis_update.sh ;;
-    *Keybinds*) exec ~/hyprnosis/modules/wofi_keybinds.sh ;;
-    *) echo "Please select a command" ;;
+    *Power*) exec ~/.config/hyprnosis/modules/power_menu.sh ;;
+    *Update*) exec ~/.config/hyprnosis/modules/hyprnosis_update.sh ;;
+    *Keybinds*) exec ~/.config/hyprnosis/modules/wofi_keybinds.sh ;;
 esac
 
