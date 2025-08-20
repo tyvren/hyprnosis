@@ -50,11 +50,13 @@ slider,
 window {
   background-color: @black;
   border: 2px solid @gray-blue;
+  border-radius: 10px;
 }
 
 #box {
   background: @black;
   padding: 36px;
+  border-radius: 10px;
   border: 2px solid lighter(@gray-blue);
   box-shadow:
     0 19px 38px rgba(0, 0, 0, 0.3),
@@ -118,6 +120,7 @@ child:selected,
 child:hover {
   background-color: @blue-dim;
   border: 2px solid @gray-blue;
+  border-radius: 10px;
 }
 
 #item {
