@@ -34,7 +34,7 @@
     },
 
   "custom/hyprnosis": {	  
-    "format": "<span> 󰢘 </span>",
+    "format": "<span>  </span>",
     "tooltip": false,
     "on-click": "~/.config/hyprnosis/modules/hyprnosis_menu.sh"
     },
