@@ -7,7 +7,7 @@
 // add  margin-top for more space from top of your monitor, some display scaling may cut off the bar slightly
   
   "modules-left": [
-    "custom/power",
+    "custom/hyprnosis",
     "hyprland/workspaces",
     "wlr/taskbar"
   ],
@@ -35,7 +35,7 @@
   "custom/power": {	  
     "format": "<span> 󰢘 </span>",
     "tooltip": false,
-    "on-click": "~/.config/hyprnosis/modules/power_walker.sh"
+    "on-click": "~/.config/hyprnosis/modules/hyprnosis_menu.sh"
     },
 
   "clock": {
