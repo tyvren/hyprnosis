@@ -1,12 +1,17 @@
+@define-color gray-light rgba(167, 168, 172, 0.8);
+@define-color gray-dark rgba(73, 73, 77, 0.5);
+@define-color red-dark rgba(172, 47, 82, 0.7);
+@define-color purple-dark rgba(138, 54, 99, 0.7);
+
 * {
   min-height: 15px;
   min-width: 10px;
-  color: rgba(167, 168, 172, 0.8);
+  color: @gray-light;
   font-weight: 500;
   border: none;
   text-shadow: none;
   box-shadow: none;
-  background: rgba(73, 73, 77, 0.5);
+  background: @gray-dark;
   padding: 0px 1px;
   border-radius: 0px 30px 0px 30px;
   margin: 1px 1px;
@@ -14,11 +19,11 @@
 }
 
 window {
-  border: 5px solid rgba(172, 47, 82, 0.7);
+  border: 5px solid @red-dark;
   border-radius: 0px 30px 0px 30px;
 }
 
-#custom-power {
+#custom-hyprnosis {
   font-weight: 900;
   margin-left: 20px;
 }
@@ -33,11 +38,11 @@ window {
 }
 
 #workspaces button.active {
-  border: 3px solid rgba(138, 54, 99, 0.7);
+  border: 3px solid @purple-dark;
 }
 
 #workspaces button:hover {
-  border: 3px solid rgba(172, 47, 82, 0.7);
+  border: 3px solid @red-dark;
 }
 
 #custom-media {
@@ -48,3 +53,4 @@ window {
 #custom-notification {
   margin-right: 20px;
 }
+

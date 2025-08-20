@@ -1,19 +1,25 @@
+@define-color white rgba(254, 255, 255, 0.7);
+@define-color white-dim rgba(254, 255, 255, 0.3);
+@define-color glow-gray rgba(144, 147, 154, 0.5);
+@define-color glow-blue rgba(89, 125, 255, 0.7);
+@define-color transparent rgba(0, 0, 0, 0);
+
 * {
   min-height: 16px;
   min-width: 10px;
-  color: rgba(254, 255, 255, 0.7);
+  color: @white;
   font-weight: 500;
   border: none;
-  text-shadow: 0 0 4px rgba(144, 147, 154, 0.5);
+  text-shadow: 0 0 4px @glow-gray;
   box-shadow: none;
-  background: transparent;
+  background: @transparent;
   padding: 0px 1px;
   border-radius: 15px;
   margin: 1px 1px;
 }
 
 window {
-  border: 2px solid rgba(254, 255, 255, 0.7);
+  border: 2px solid @white;
   border-radius: 20px;
 }
 
@@ -32,14 +38,14 @@ window {
 }
 
 #workspaces button.active {
-  border: 1px solid rgba(254, 255, 255, 0.7);
-  box-shadow: 0 0 4px rgba(144, 147, 154, 0.5);
+  border: 1px solid @white;
+  box-shadow: 0 0 4px @glow-gray;
   transition: 0.5s ease-in;
 }
 
 #workspaces button:hover {
-  border: 1px solid rgba(254, 255, 255, 0.7);
-  box-shadow: 0 0 4px rgba(89, 125, 255, 0.7);
+  border: 1px solid @white;
+  box-shadow: 0 0 4px @glow-blue;
   transition: 0.5s ease-in;
 }
 
@@ -51,3 +57,4 @@ window {
 #custom-notification {
   margin-right: 20px;
 }
+
