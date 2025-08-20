@@ -56,6 +56,7 @@ system_utils=(
   ntfs-3g
   gvfs
   nwg-look
+  walker-bin
 )
 
 hypr_packages=(
