@@ -32,7 +32,7 @@
      "exec": "$HOME/.config/hyprnosis/modules/mediaplayer.py 2> /dev/null"
     },
 
-  "custom/power": {	  
+  "custom/hyprnosis": {	  
     "format": "<span> 󰢘 </span>",
     "tooltip": false,
     "on-click": "~/.config/hyprnosis/modules/hyprnosis_menu.sh"
