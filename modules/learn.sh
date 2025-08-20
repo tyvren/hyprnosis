@@ -13,7 +13,7 @@ case "$selection" in
         firefox https://wiki.archlinux.org/title/Main_page &
         ;;
     "  Hyprland Wiki")
-        firefox https://hypr.land/ &
+        firefox https://wiki.hypr.land/ &
         ;;
 esac
 
