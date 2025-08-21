@@ -11,7 +11,7 @@ Features
 - Theme switching script with 4 themes, including some inspired by my favorite band
 
 - Waybar - status bar
-- Wofi - power menu, bluetooth menu, and app launcher 
+- Walker - hyprnosis main menu system, app launcher, theme changer, and power menu
 - NVIM - preconfigured neovim plugins and themes
 
 ##########
