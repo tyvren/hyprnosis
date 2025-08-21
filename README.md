@@ -1,8 +1,8 @@
 **hyprnosis - a hyprland offering - setup script and full configuration for hyprland on arch linux**
 
-########
-Features
-########
+-----------------------------------------------------------------------
+
+**Features**
 
 - Built for Desktops with pre-loaded system monitoring and overclocking tools
 - AMD or NVidia GPU drivers
@@ -14,9 +14,9 @@ Features
 - Walker - hyprnosis main menu system, app launcher, theme changer, and power menu
 - NVIM - preconfigured neovim plugins and themes
 
-##########
-QuickStart
-##########
+----------------------------------------------------------------------
+
+**QuickStart**
 
 Detailed documentation can be found in the wiki.
 
