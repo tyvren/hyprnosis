@@ -8,7 +8,7 @@ Features
 - AMD or NVidia GPU drivers
 - Steam, Discord, Coolercontrol, OCCT
 - A fully configured, simple and easy to build from hyprland desktop environment
-- Theme switching script with 4 themes, including some inspired by my favorite band
+- Theme switching script with multiple preinstalled themes, including some inspired by my favorite band
 
 - Waybar - status bar
 - Walker - hyprnosis main menu system, app launcher, theme changer, and power menu
