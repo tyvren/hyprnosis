@@ -4,7 +4,7 @@ menu() {
     echo -e "$options" | walker --dmenu -H -p "$prompt…"
 }
 
-main_items="  Arch Wiki\n  Hyprland Wiki"
+main_items="  Arch Wiki\n  Hyprland Wiki\n  Hyprnosis Wiki\n  Waybar Wiki"
 
 selection=$(menu "Launcher" "$main_items")
 
@@ -15,5 +15,10 @@ case "$selection" in
     "  Hyprland Wiki")
         firefox https://wiki.hypr.land/ &
         ;;
+    "  Hyprnosis Wiki")
+	firefox https://github.com/steve-conrad/hyprnosis/wiki &
+	;;
+    "  Waybar Wiki")
+	firefox https://github.com/Alexays/Waybar/wiki &
+	;;
 esac
-
