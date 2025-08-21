@@ -10,11 +10,12 @@ present_terminal() {
     ghostty -e bash -c "$1"
 }
 
-main_items="  Power Menu\n  Update\n  Keybinds\n Themes\n  Learn"
+main_items=" Apps\n  Power\n  Update\n  Keybinds\n Themes\n  Learn"
 
 selection=$(menu "Hyprnosis Menu" "$main_items")
 
 case "$selection" in
+    *Apps*) exec uwsm app -- walker ;;
     *Power*) exec ~/.config/hyprnosis/modules/power_menu.sh ;;
     *Update*) exec ~/.config/hyprnosis/modules/update.sh ;;
     *Keybinds*) exec ~/.config/hyprnosis/modules/wofi_keybinds.sh ;;

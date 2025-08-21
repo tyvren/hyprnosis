@@ -3,7 +3,7 @@ locale = ""
 close_when_open = false
 theme = "hyprnosis"
 monitor = ""
-hotreload_theme = false
+hotreload_theme = true
 as_window = false
 timeout = 0
 disable_click_to_close = false
@@ -55,7 +55,7 @@ delay = 0
 resume_last_query = false
 
 [activation_mode]
-labels = "jkl;asdf"
+labels = ""
 
 [builtins.hyprland_keybinds]
 show_sub_when_single = true
