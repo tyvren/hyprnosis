@@ -1,16 +1,20 @@
-@define-color blue rgba(24, 104, 193, 0.7);
-@define-color blue-dim rgba(24, 104, 193, 0.1);
-@define-color gray-blue rgba(127, 174, 204, 0.7);
-@define-color gray-blue-dim rgba(127, 174, 204, 0.1);
-@define-color white rgba(250, 250, 250, 0.9);
-@define-color white-dim rgba(250, 250, 250, 0.2);
-@define-color black rgba(0, 0, 2, 0.5);
+@define-color mauve    #cba6f7;
+@define-color teal     #94e2d5;
+@define-color sky      #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue     #89b4fa;
+@define-color lavender #b4befe;
+@define-color text     #cdd6f4;
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+
 
 * {
   font-family: 'JetBrainsMono Nerd Font', monospace;
   font-size: 11px;
   font-weight: 500;
-  color: @white;
+  color: @text;
   border-radius: 10px;
   transition: 0.5s ease-in-out;
   background-color: transparent;
@@ -18,34 +22,35 @@
 }
 
 window {
-  background-color: @black;
-  border: 2px solid @gray-blue;
+  background-color: @base;
+  border: 2px solid @lavender;
   border-radius: 10px;
 }
 
 #box {
-  background: @black;
+  background: @base;
   padding: 36px;
   border-radius: 10px;
+  border: 2px solid @mantle;
   box-shadow:
     0 19px 38px rgba(0, 0, 0, 0.3),
     0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 #search {
-  background: @blue-dim;
+  background: @base;
   padding: 8px;
 }
 
 #prompt {
   margin-left: 4px;
   margin-right: 12px;
-  color: @white;
-  opacity: 0.2;
+  color: @text;
+  opacity: 0.6;
 }
 
 #clear {
-  color: @white;
+  color: @lavender;
   opacity: 0.8;
 }
 
@@ -56,9 +61,9 @@ window {
 }
 
 #input {
-  color: @white;
-  background-color: @blue-dim;
-  border: 2px solid @gray-blue;
+  color: @text;
+  background-color: @base;
+  border: 2px solid @lavender;
 }
 
 #password {
@@ -69,7 +74,7 @@ window {
 }
 
 #typeahead {
-  color: @white;
+  color: @text;
   opacity: 0.8;
 }
 
@@ -87,8 +92,8 @@ child {
 
 child:selected,
 child:hover {
-  background-color: @blue-dim;
-  border: 2px solid @gray-blue;
+  background-color: @base;
+  border: 2px solid @lavender;
   border-radius: 10px;
 }
 
@@ -100,7 +105,7 @@ child:hover {
 }
 
 #text {
-  color: @white;
+  color: @text;
 }
 
 #label {
@@ -133,8 +138,8 @@ child:hover {
 .aiItem {
   padding: 10px;
   border-radius: 2px;
-  color: @blue;
-  background: @blue-dim;
+  color: @lavender;
+  background: @base;
 }
 
 .aiItem.user {
@@ -143,6 +148,6 @@ child:hover {
 }
 
 .aiItem.assistant {
-  background: @blue-dim;
+  background: @base;
 }
 
