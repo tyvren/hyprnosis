@@ -1,60 +1,141 @@
-@define-color white rgba(254, 255, 255, 0.7);
-@define-color white-dim rgba(254, 255, 255, 0.3);
-@define-color glow-gray rgba(144, 147, 154, 0.5);
-@define-color glow-blue rgba(89, 125, 255, 0.7);
-@define-color transparent rgba(0, 0, 0, 0);
+@define-color moon  	#feffff;
+@define-color moon_a 	rgba(254, 255, 255, 0.7);
+@define-color ocean 	#12161f;
+@define-color ocean_a	rgba(18, 22, 31, 0.7);
+@define-color surface   #90939A;
+@define-color surface_a rgba(144, 147, 154, 0.5);
 
 * {
   min-height: 16px;
   min-width: 10px;
-  color: @white;
+  color: @moon_a;
   font-weight: 500;
   border: none;
-  text-shadow: 0 0 4px @glow-gray;
+  text-shadow: 0 0 4px @surface_a;
   box-shadow: none;
-  background: @transparent;
+  background: @ocean_a;
   padding: 0px 1px;
   border-radius: 15px;
   margin: 1px 1px;
 }
 
 window {
-  border: 2px solid @white;
+  border: 2px solid @moon_a;
   border-radius: 20px;
-}
-
-#custom-power {
-  font-weight: 900;
-  margin-left: 20px;
-}
-
-#clock {
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 #workspaces {
-  border-radius: 20px;
+}
+
+#workspaces button {
+  margin: 1px 2px;
 }
 
 #workspaces button.active {
-  border: 1px solid @white;
-  box-shadow: 0 0 4px @glow-gray;
-  transition: 0.5s ease-in;
+  background: @ocean_a;
+  border: 1px solid @moon_a;
 }
 
 #workspaces button:hover {
-  border: 1px solid @white;
-  box-shadow: 0 0 4px @glow-blue;
-  transition: 0.5s ease-in;
+  border: 1px solid @moon_a;
+  background: @ocean_a;
+  box-shadow: none;
+}
+
+#clock {
+  padding: 2px 8px;
+}
+
+#custom-hyprnosis {
+  margin-left: 10px;
+  padding: 0px 10px;
 }
 
 #custom-media {
+  margin: 0 20px;
+  padding: 2px 10px;
   margin-left: 60px;
-  margin-right: 50px;
 }
 
 #custom-notification {
-  margin-right: 20px;
+  margin-right: 10px;
+  padding: 2px 10px;
 }
 
+#pulseaudio {
+  padding: 2px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @surface;
+}
+
+#pulseaudio.microphone {
+    color: @moon_a;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @surface;
+}
+
+#pulseaudio-slider {
+    background: @ocean_a;
+    border: 1px solid @moon_a;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    background: @ocean_a;
+    border: 1px solid @moon_a;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+}
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+}
+
+#custom-wifi {
+  padding: 2px 14px;
+}
+
+#bluetooth {
+  padding: 2px 10px;	
+}
+
+tooltip {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: @moon;
+  font-size: 11px;
+  padding: 4px;
+}
+
+#taskbar {
+}
+
+#taskbar button {
+  margin: 1px 2px;
+  box-shadow: none;
+}
+
+#taskbar button:hover {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  box-shadow: none;
+ }
+
+#taskbar button.active {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  color: @moon;
+}

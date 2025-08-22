@@ -1,17 +1,15 @@
-@define-color crimson		 #ac2f52;
-@define-color crimson_a	 	 rgba(172, 47, 82, 0.8);
-@define-color heart		 #8a3663;
-@define-color heart_a		 rgba(138, 54, 99, 0.8);
-@define-color ash		 #a7a8ac;
-@define-color ash_a		 rgba(167, 168, 172, 0.8);
-@define-color granite		 #49494d;
-@define-color granite_a	 	 rgba(73, 73, 77, 0.8);
+@define-color moon  	#feffff;
+@define-color moon_a 	rgba(254, 255, 255, 0.7);
+@define-color ocean 	#12161f;
+@define-color ocean_a	rgba(18, 22, 31, 0.7);
+@define-color surface   #90939A;
+@define-color surface_a rgba(144, 147, 154, 0.5);
 
 * {
   font-family: 'JetBrainsMono Nerd Font', monospace;
   font-size: 11px;
   font-weight: 500;
-  color: @ash;
+  color: @moon;
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   background: transparent;
@@ -20,13 +18,13 @@
 }
 
 window {
-  background: @granite_a;
-  border: 2px solid @crimson_a;
+  background: @ocean_a;
+  border: 2px solid @moon_a;
   border-radius: 10px;
 }
 
 #box {
-  background: @granite_a;
+  background: @ocean_a;
   padding: 36px;
   border-radius: 10px;
   box-shadow:
@@ -35,19 +33,19 @@ window {
 }
 
 #search {
-  background: @granite_a;
+  background: @ocean_a;
   padding: 8px;
 }
 
 #prompt {
   margin-left: 4px;
   margin-right: 12px;
-  color: @ash;
+  color: @moon;
   opacity: 0.2;
 }
 
 #clear {
-  color: @ash;
+  color: @moon;
   opacity: 0.8;
 }
 
@@ -58,9 +56,9 @@ window {
 }
 
 #input {
-  color: @ash;
-  background: @granite_a;
-  border: 2px solid @crimson_a;
+  color: @moon;
+  background: @ocean_a;
+  border: 2px solid @surface_a;
 }
 
 #password {
@@ -71,7 +69,7 @@ window {
 }
 
 #typeahead {
-  color: @ash;
+  color: @moon;
   opacity: 0.8;
 }
 
@@ -89,8 +87,8 @@ child {
 
 child:selected,
 child:hover {
-  background: @granite_a;
-  border: 2px solid @heart_a;
+  background: @ocean_a;
+  border: 2px solid @surface_a;
   border-radius: 10px;
 }
 
@@ -102,7 +100,7 @@ child:hover {
 }
 
 #text {
-  color: @ash;
+  color: @moon;
 }
 
 #label {
@@ -135,8 +133,8 @@ child:hover {
 .aiItem {
   padding: 10px;
   border-radius: 2px;
-  color: @ash;
-  background: @granite_a;
+  color: @moon;
+  background: @ocean_a;
 }
 
 .aiItem.user {
@@ -145,6 +143,6 @@ child:hover {
 }
 
 .aiItem.assistant {
-  background: @granite_a;
+  background: @ocean_a;
 }
 
