@@ -28,6 +28,7 @@ case "$CHOICE" in
     cp -r "$INSTALL_DIR/themes/Default/." "$HOME/.config/"
     cp -r "$INSTALL_DIR/config/hypr/." "$HOME/.config/hypr/"
     cp -r "$INSTALL_DIR/config/nvim/." "$HOME/.config/nvim/"
+    cp -r "$INSTALL_DIR/config/walker/." "$HOME/.config/walker/"
 
     gum confirm "Hyprnosis updated. Press Enter to return to menu." && exec "$0"
     ;;
