@@ -1,0 +1,150 @@
+@define-color crimson		 #ac2f52;
+@define-color crimson_a	 	 rgba(172, 47, 82, 0.8);
+@define-color heart		 #8a3663;
+@define-color heart_a		 rgba(138, 54, 99, 0.8);
+@define-color ash		 #a7a8ac;
+@define-color ash_a		 rgba(167, 168, 172, 0.8);
+@define-color granite		 #49494d;
+@define-color granite_a	 	 rgba(73, 73, 77, 0.8);
+
+* {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @ash;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  outline: none;
+  margin: 4px;
+}
+
+window {
+  background-color: @granite_a;
+  border: 2px solid @crimson_a;
+  border-radius: 10px;
+}
+
+#box {
+  background: @granite_a;
+  padding: 36px;
+  border-radius: 10px;
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#search {
+  background: @granite_a;
+  padding: 8px;
+}
+
+#prompt {
+  margin-left: 4px;
+  margin-right: 12px;
+  color: @ash;
+  opacity: 0.2;
+}
+
+#clear {
+  color: @ash;
+  opacity: 0.8;
+}
+
+#password,
+#input,
+#typeahead {
+  border-radius: 8px;
+}
+
+#input {
+  color: @ash;
+  background-color: @granite_a;
+  border: 2px solid @crimson_a;
+}
+
+#password {
+}
+
+#spinner {
+  padding: 8px;
+}
+
+#typeahead {
+  color: @ash;
+  opacity: 0.8;
+}
+
+#input placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+child {
+  padding: 8px;
+  border-radius: 2px;
+}
+
+child:selected,
+child:hover {
+  background-color: @granite_a;
+  border: 2px solid @heart_a;
+  border-radius: 10px;
+}
+
+#item {
+}
+
+#icon {
+  margin-right: 8px;
+}
+
+#text {
+  color: @ash;
+}
+
+#label {
+  font-weight: 500;
+}
+
+#sub {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+#activationlabel {
+}
+
+#bar {
+}
+
+.barentry {
+}
+
+.activation #activationlabel {
+}
+
+.activation #text,
+.activation #icon,
+.activation #search {
+  opacity: 0.5;
+}
+
+.aiItem {
+  padding: 10px;
+  border-radius: 2px;
+  color: @ash;
+  background: @granite_a;
+}
+
+.aiItem.user {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.aiItem.assistant {
+  background: @granite_a;
+}
+

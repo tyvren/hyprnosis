@@ -52,5 +52,98 @@ window {
 
 #custom-notification {
   margin-right: 20px;
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+  padding: 2px 10px;
 }
 
+#pulseaudio {
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+  padding: 2px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @purple-dark;
+    background: @gray-dark;
+}
+
+#pulseaudio.microphone {
+    color: @gray-light;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @gray-light;
+    background: @gray-dark;
+}
+
+#pulseaudio-slider {
+    background: @gray-dark;
+    border: 1px solid @red-dark;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    background: @gray-dark;
+    border: 1px solid @red-dark;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @gray-dark;
+}
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @gray-dark;
+}
+
+#custom-wifi {
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+  padding: 2px 14px;
+}
+
+#bluetooth {
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+  padding: 2px 10px;	
+}
+
+tooltip {
+  background: rgba(0, 0, 2, 0.9);
+  border: 1px solid @red-dark;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: @gray-light;
+  font-size: 11px;
+  padding: 4px;
+}
+
+#taskbar {
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+}
+
+#taskbar button {
+  margin: 1px 2px;
+  box-shadow: none;
+}
+
+#taskbar button:hover {
+  background: rgba(127, 174, 204, 0.15);
+  border: 1px solid @red-dark;
+  box-shadow: none;
+ }
+
+#taskbar button.active {
+  background: @gray-dark;
+  border: 1px solid @red-dark;
+  color: @gray-light;
+}
