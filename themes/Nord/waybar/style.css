@@ -1,0 +1,158 @@
+@define-color green #8fbcbb;
+@define-color teal #88c0d0;
+@define-color light-blue #81a1c1;
+@define-color dark-blue #5e81ac;
+
+* {
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @green;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+window {
+  background: @dark-blue;
+  border-radius: 8px;
+}
+
+#workspaces {
+  background: @teal;
+  border: 1px solid @light-blue;
+}
+
+#workspaces button {
+  margin: 1px 2px;
+}
+
+#workspaces button.active {
+  background: @teal;
+  border: 1px solid @light-blue;
+}
+
+#workspaces button:hover {
+  border: 1px solid @teal;
+  background: @teal;
+  box-shadow: none;
+}
+
+#clock {
+  background: @teal;
+  border: 1px solid @light-blue;
+  padding: 2px 8px;
+}
+
+#custom-hyprnosis {
+  background: @teal;
+  border: 1px solid @light-blue;
+  margin-left: 10px;
+  padding: 0px 10px;
+}
+
+#custom-media {
+  margin: 0 20px;
+  background: @teal;
+  border: 1px solid @light-blue;
+  padding: 2px 10px;
+  margin-left: 60px;
+}
+
+#custom-notification {
+  background: @teal;
+  border: 1px solid @light-blue;
+  margin-right: 10px;
+  padding: 2px 10px;
+}
+
+#pulseaudio {
+  background: @teal;
+  border: 1px solid @light-blue;
+  padding: 2px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @teal;
+    background: @teal;
+}
+
+#pulseaudio.microphone {
+    color: @green;
+    background: @dark-blue;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @teal;
+    background: @teal;
+}
+
+#pulseaudio-slider {
+    background: @teal;
+    border: 1px solid @light-blue;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    background: @light-blue;
+    border: 1px solid @light-blue;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @dark-blue;
+}
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @light-blue;
+}
+
+#custom-wifi {
+  background: @teal;
+  border: 1px solid @light-blue;
+  padding: 2px 14px;
+}
+
+#bluetooth {
+  background: @teal;
+  border: 1px solid @light-blue;
+  padding: 2px 10px;	
+}
+
+tooltip {
+  background: @dark-blue;
+  border: 1px solid @light-blue;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: @green;
+  font-size: 11px;
+  padding: 4px;
+}
+
+#taskbar {
+  background: @teal;
+  border: 1px solid @light-blue;
+}
+
+#taskbar button {
+  margin: 1px 2px;
+  box-shadow: none;
+}
+
+#taskbar button:hover {
+  background: @light-blue;
+  border: 1px solid @teal;
+  box-shadow: none;
+ }
+
+#taskbar button.active {
+  background: @dark-blue;
+  border: 1px solid @light-blue;
+  color: @green;
+}
+
