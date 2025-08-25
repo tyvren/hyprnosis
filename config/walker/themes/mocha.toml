@@ -1,0 +1,10 @@
+[ui.window.box]
+h_align = "center"
+width = 450
+
+[ui.window.box.scroll.list]
+marker_color = "#1BFFE1"
+max_height = 500
+max_width = 400
+min_width = 400
+width = 400
