@@ -1,7 +1,7 @@
 terminal_title_flag = ""
 locale = ""
 close_when_open = false
-theme = "hyprnosis"
+theme = "Hyprnosis"
 monitor = ""
 hotreload_theme = true
 as_window = false

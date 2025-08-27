@@ -48,7 +48,6 @@ system_utils=(
   v4l-utils
   uwsm
   waybar
-  wofi
   swaync
   python
   gum

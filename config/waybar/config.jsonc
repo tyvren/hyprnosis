@@ -82,7 +82,7 @@
     "tooltip-format-enumerate-connected-battery":
       "{device_alias}: {device_battery_percentage}%",
 
-    "on-click": "~/.config/hyprnosis/modules/bluetooth.sh",
+    "on-click": "uwsm app -- blueman-manager",
     "interval": 1,
     "min-length": 1,
     "max-length": 10
