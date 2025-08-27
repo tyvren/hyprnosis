@@ -58,6 +58,7 @@ system_utils=(
   nwg-look
   walker-bin
   gnome-boxes
+  fzf
 )
 
 hypr_packages=(
