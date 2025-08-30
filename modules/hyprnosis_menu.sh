@@ -61,31 +61,6 @@ show_power_menu() {
   esac
 }
 
-show_update_menu() {
-  case $(menu "Update" "Update System\nUpdate Hyprnosis") in
-    *System*) ghostty -e bash -c "yay -Syu" ;;
-    *Hyprnosis*) ghostty -e bash -c '
-      INSTALL_DIR="$HOME/.config/hyprnosis"
-      BRANCH="main"
-
-      git -C "$INSTALL_DIR" fetch origin
-      git -C "$INSTALL_DIR" reset --hard origin/$BRANCH
-
-      git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
-      cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
-      rm -rf /tmp/wallpapers
-
-      cp -r "$INSTALL_DIR/themes/Default/." "$HOME/.config/"
-      cp -r "$INSTALL_DIR/config/hypr/." "$HOME/.config/hypr/"
-      cp -r "$INSTALL_DIR/config/nvim/." "$HOME/.config/nvim/"
-
-      echo "Hyprnosis updated. Press enter to close..."
-      read
-    ' ;;
-    *) show_main_menu ;;
-  esac
-}
-
 show_packages_menu() {
   case $(menu "Packages" "Install Arch Package\nInstall AUR Package\nUninstall Package") in
     *Arch*) ghostty -e ~/.config/hyprnosis/modules/pkg_install.sh ;;
@@ -115,7 +90,7 @@ go_to_menu() {
   case "${1,,}" in
     *apps*) walker -p "Launch…" ;;
     *power*) show_power_menu ;;
-    *update*) show_update_menu ;;
+    *update*) terminal bash -c ~/.config/hyprnosis/modules/hyprnosis_update_tui.sh ;;
     *packages*) show_packages_menu ;;
     *theme*) exec ~/.config/hyprnosis/modules/theme_changer.sh ;;
     *learn*) show_learn_menu ;;
@@ -128,4 +103,3 @@ if [[ -n "$1" ]]; then
 else
   show_main_menu
 fi
-
