@@ -96,7 +96,7 @@ while true; do
       ;;
     2)
       echo "Installing NVIDIA GPU drivers..."
-      yay -S --noconfirm --needed nvidia nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
+      yay -S --noconfirm --needed nvidia-open nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
       break
       ;;
     3)
@@ -110,22 +110,9 @@ while true; do
 done
 }
 
-detect_sensors() {
-  echo "Running fan and thermal sensor detection (lm_sensors)"
-  read -rp "This will prompt for several yes/no hardware questions. Run now? [y/N]: " run_sensors
-  if [[ "$run_sensors" =~ ^[Yy]$ ]]; then
-    sudo sensors-detect
-  else
-    echo "Skipped sensors-detect."
-  fi
-}
-
 config_setup() {
   cp -r "$HOME/.config/hyprnosis/themes/Default/." "$HOME/.config/"
-  cp -r "$HOME/.config/hyprnosis/config/hypr/." "$HOME/.config/hypr/"
-  cp -r "$HOME/.config/hyprnosis/config/nvim/." "$HOME/.config/nvim/"
-  cp -r "$HOME/.config/hyprnosis/config/walker/." "$HOME/.config/walker/"
-  cp -r "$HOME/.config/hyprnosis/config/waybar/." "$HOME/.config/waybar/"
+  cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
   git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
@@ -155,15 +142,12 @@ setup_hyprnosis_alias() {
     SHELL_RC="$HOME/.bashrc"
     FUNCTION_NAME="hyprnosis"
     SCRIPT_PATH="$HOME/.config/hyprnosis/modules/hyprnosis_update_tui.sh"
-
     FUNCTION_DEF=$(cat <<EOF
-
 # hyprnosis CLI
 $FUNCTION_NAME() {
     bash "$SCRIPT_PATH"
 }
-EOF
-)
+EOF)
 
     if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
         echo "$FUNCTION_DEF" >> "$SHELL_RC"
