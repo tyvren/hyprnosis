@@ -3,13 +3,6 @@
 # A script to display Hyprland keybindings defined in your configuration
 # using walker for an interactive search menu.
 
-# Fetch dynamic keybindings from Hyprland
-#
-# Also do some pre-processing:
-# - Remove standard Omarchy bin path prefix
-# - Remove uwsm prefix
-# - Map numeric modifier key mask to a textual rendition
-# - Output comma-separated values that the parser can understand
 dynamic_bindings() {
   hyprctl -j binds | \
     jq -r '.[] | {modmask, key, keycode, description, dispatcher, arg} | "\(.modmask),\(.key)@\(.keycode),\(.description),\(.dispatcher),\(.arg)"' | \
@@ -37,13 +30,6 @@ dynamic_bindings() {
         -e 's/^77,/SUPER SHIFT CTRL ALT,/'
 }
 
-# Parse and format keybindings
-#
-# `awk` does the heavy lifting:
-# - Set the field separator to a comma ','.
-# - Joins the key combination (e.g., "SUPER + Q").
-# - Joins the command that the key executes.
-# - Prints everything in a nicely aligned format.
 parse_bindings() {
   awk -F, '
 {

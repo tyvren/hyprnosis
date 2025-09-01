@@ -7,7 +7,7 @@ get_username
 sudo -v
 sudo pacman -Syu --noconfirm
 install_yay
-install_gpu_driver
+install_gpu_packages
 install_packages "${system_utils[@]}"
 install_packages "${app_packages[@]}"
 install_packages "${hypr_packages[@]}"

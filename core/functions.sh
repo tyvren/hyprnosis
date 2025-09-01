@@ -79,9 +79,9 @@ EOF
   echo "Enabled systemd autologin for user: $H_USERNAME"
 }
 
-install_gpu_driver() {
+install_gpu_packages() {
 while true; do
-  echo "Select a GPU Driver to install:"
+  echo "Select your GPU type to install necessary packages:"
   echo "  1) AMD"
   echo "  2) NVIDIA"
   echo "  3) Skip"
@@ -90,17 +90,17 @@ while true; do
 
   case "$GPU_CHOICE" in
     1)
-      echo "Installing AMD GPU drivers..."
+      echo "Installing AMD GPU packages..."
       install_packages "${amd_packages[@]}"
       break
       ;;
     2)
-      echo "Installing NVIDIA GPU drivers..."
+      echo "Installing NVIDIA GPU packages..."
       install_packages "${nvidia_packages[@]}"
       break
       ;;
     3)
-      echo "Skipping GPU driver installation."
+      echo "Skipping GPU package installation."
       break
       ;;
     *)
