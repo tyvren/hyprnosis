@@ -1,16 +1,17 @@
 @define-color teal rgba(136, 192, 208, 0.7);
 @define-color teal-dim rgba(136, 192, 208, 0.1);
-@define-color light-blue rgba(129, 161, 193, 0.9);
+@define-color light-blue rgba(129, 161, 193, 0.7);
 @define-color light-blue-dim rgba(129, 161, 193, 0.1);
-@define-color green rgba(143, 188, 187, 0.9);
+@define-color green rgba(143, 188, 187, 0.5);
 @define-color green-dim rgba(143, 188, 187, 0.2);
-@define-color dark-blue rgba(94, 129, 172, 0.4);
+@define-color dark-blue rgba(94, 129, 172, 0.5);
+@define-color white rgba(255, 255, 255, 0.9);
 
 * {
   font-family: 'JetBrainsMono Nerd Font', monospace;
   font-size: 11px;
   font-weight: 500;
-  color: @green;
+  color: @white;
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   background-color: transparent;
@@ -19,7 +20,7 @@
 }
 
 window {
-  background: @green-dim;
+  background: @teal-dim;
   border: 2px solid @dark-blue;
   border-radius: 10px;
 }
@@ -89,7 +90,7 @@ child {
 child:selected,
 child:hover {
   background: @dark-blue;
-  border: 2px solid @green-dim;
+  border: 2px solid @green;
   border-radius: 10px;
 }
 
@@ -101,7 +102,7 @@ child:hover {
 }
 
 #text {
-  color: @green;
+  color: @white;
 }
 
 #label {

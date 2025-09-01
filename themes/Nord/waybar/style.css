@@ -2,21 +2,22 @@
 @define-color teal-dim rgba(136, 192, 208, 0.1);
 @define-color light-blue rgba(129, 161, 193, 0.7);
 @define-color light-blue-dim rgba(129, 161, 193, 0.1);
-@define-color green rgba(143, 188, 187, 0.9);
+@define-color green rgba(143, 188, 187, 0.5);
 @define-color green-dim rgba(143, 188, 187, 0.2);
 @define-color dark-blue rgba(94, 129, 172, 0.5);
+@define-color white rgba(255, 255, 255, 0.9);
 
 * {
   font-family: JetBrainsMono Nerd Font, monospace;
   font-size: 11px;
   font-weight: 500;
-  color: @green;
+  color: @white;
   border-radius: 10px;
   transition: 0.5s ease-in-out;
 }
 
 window {
-  background: @dark-blue;
+  background: @teal-dim;
   border-radius: 8px;
 }
 
@@ -43,7 +44,7 @@ window {
 #clock {
   background: @teal-dim;
   border: 1px solid @light-blue;
-  padding: 2px 8px;
+  padding: 0px 10px;
 }
 
 #custom-hyprnosis {
@@ -126,7 +127,7 @@ window {
 }
 
 tooltip {
-  background: rgba(94, 129, 172, 0.9);
+  background: @teal-dim;
   border: 1px solid @light-blue;
   border-radius: 6px;
 }
