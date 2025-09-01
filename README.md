@@ -20,7 +20,7 @@
 
 Detailed documentation can be found in the wiki.
 
-**Dependencies** - multilib repository - add this to your archinstall before running
+**Dependencies** - multilib repository must be added during arch install. Secure boot must be disabled in UEFI for systemd bootloader use.
 
 After logging into your new Arch system, run the following:
 
