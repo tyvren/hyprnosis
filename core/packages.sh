@@ -58,6 +58,7 @@ system_utils=(
   walker-bin
   gnome-boxes
   fzf
+  openrgb
 )
 
 hypr_packages=(
@@ -72,4 +73,18 @@ hypr_packages=(
   hyprpolkitagent
   qt5-wayland
   qt6-wayland
+)
+
+amd_packages=(
+  mesa
+  lib32-mesa
+  vulkan-radeon
+)
+
+nvidia_packages=(
+  nvidia-open
+  nvidia-utils
+  lib32-nvidia-utils
+  vulkan-icd-loader
+  lib32-vulkan-icd-loader
 )

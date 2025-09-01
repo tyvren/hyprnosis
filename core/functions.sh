@@ -91,12 +91,12 @@ while true; do
   case "$GPU_CHOICE" in
     1)
       echo "Installing AMD GPU drivers..."
-      yay -S --noconfirm --needed mesa lib32-mesa vulkan-radeon
+      install_packages "${amd_packages[@]}"
       break
       ;;
     2)
       echo "Installing NVIDIA GPU drivers..."
-      yay -S --noconfirm --needed nvidia-open nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
+      install_packages "${nvidia_packages[@]}"
       break
       ;;
     3)
