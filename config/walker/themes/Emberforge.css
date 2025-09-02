@@ -1,0 +1,152 @@
+@define-color neon-orange rgba(254, 79, 0, 0.9);     
+@define-color neon-orange-dim rgba(254, 79, 0, 0.25); 
+@define-color gunmetal rgba(43, 43, 43, 0.95);        
+@define-color gunmetal-dim rgba(60, 60, 60, 0.6);
+@define-color white rgba(255, 255, 255, 0.85);
+@define-color gray-light rgba(180, 180, 180, 0.6);
+
+* {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @white;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  outline: none;
+  margin: 4px;
+}
+
+window {
+  background: @gunmetal-dim;
+  border: 2px solid @neon-orange;
+  border-radius: 10px;
+  box-shadow: 0 0 12px @neon-orange-dim;
+}
+
+#box {
+  background: @gunmetal;
+  padding: 36px;
+  border-radius: 10px;
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#search {
+  background: @gunmetal;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid @neon-orange-dim;
+}
+
+#prompt {
+  margin-left: 4px;
+  margin-right: 12px;
+  color: @neon-orange;
+  opacity: 0.7;
+}
+
+#clear {
+  color: @neon-orange;
+  opacity: 0.9;
+}
+
+#password,
+#input,
+#typeahead {
+  border-radius: 8px;
+}
+
+#input {
+  color: @white;
+  background-color: @gunmetal;
+  border: 2px solid @neon-orange-dim;
+}
+
+#password {
+}
+
+#spinner {
+  padding: 8px;
+}
+
+#typeahead {
+  color: @gray-light;
+  opacity: 0.8;
+}
+
+#input placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+child {
+  padding: 8px;
+  border-radius: 2px;
+}
+
+child:selected,
+child:hover {
+  background: @gunmetal;
+  border: 2px solid @neon-orange;
+  border-radius: 10px;
+  box-shadow: 0 0 8px @neon-orange;
+}
+
+#item {
+}
+
+#icon {
+  margin-right: 8px;
+}
+
+#text {
+  color: @white;
+}
+
+#label {
+  font-weight: 500;
+}
+
+#sub {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+#activationlabel {
+}
+
+#bar {
+}
+
+.barentry {
+}
+
+.activation #activationlabel {
+}
+
+.activation #text,
+.activation #icon,
+.activation #search {
+  opacity: 0.5;
+}
+
+.aiItem {
+  padding: 10px;
+  border-radius: 2px;
+  color: @neon-orange;
+  background: @gunmetal;
+}
+
+.aiItem.user {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.aiItem.assistant {
+  background: @gunmetal;
+}
+

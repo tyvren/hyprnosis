@@ -1,0 +1,164 @@
+@define-color neon-orange rgba(254, 79, 0, 0.9);     
+@define-color neon-orange-dim rgba(254, 79, 0, 0.25); 
+@define-color gunmetal rgba(43, 43, 43, 0.95);        
+@define-color gunmetal-dim rgba(60, 60, 60, 0.6);
+@define-color white rgba(255, 255, 255, 0.85);
+@define-color gray-light rgba(180, 180, 180, 0.6);
+
+* {
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @white;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
+}
+
+window {
+  background: @gunmetal-dim;
+  border-radius: 8px;
+}
+
+#workspaces {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+}
+
+#workspaces button {
+  margin: 1px 2px;
+}
+
+#workspaces button.active {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  box-shadow: 0 0 6px @neon-orange;
+}
+
+#workspaces button:hover {
+  border: 1px solid @neon-orange;
+  background: @gunmetal-dim;
+  box-shadow: 0 0 8px @neon-orange;
+}
+
+#clock {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 0px 10px;
+}
+
+#custom-hyprnosis {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  margin-left: 10px;
+  padding: 0px 10px;
+}
+
+#custom-media {
+  margin: 0 20px;
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 10px;
+  margin-left: 60px;
+}
+
+#custom-notification {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  margin-right: 10px;
+  padding: 2px 10px;
+}
+
+#pulseaudio {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 10px;
+}
+
+#pulseaudio.sink-muted {
+    color: @gray-light;
+    background: @gunmetal-dim;
+}
+
+#pulseaudio.microphone {
+    color: @neon-orange;
+    background: @neon-orange-dim;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @gray-light;
+    background: @gunmetal-dim;
+}
+
+#pulseaudio-slider {
+    background: @gunmetal-dim;
+    border: 1px solid @neon-orange;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#pulseaudio-slider slider {
+    background: @neon-orange;
+    border: 1px solid @neon-orange;
+    box-shadow: 0 0 6px @neon-orange;
+}
+#pulseaudio-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @gunmetal-dim;
+}
+#pulseaudio-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @neon-orange;
+    box-shadow: 0 0 8px @neon-orange;
+}
+
+#custom-wifi {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 14px;
+}
+
+#bluetooth {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 10px;	
+}
+
+tooltip {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  border-radius: 6px;
+  box-shadow: 0 0 8px @neon-orange-dim;
+}
+
+tooltip label {
+  color: @neon-orange;
+  font-size: 11px;
+  padding: 4px;
+}
+
+#taskbar {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+}
+
+#taskbar button {
+  margin: 1px 2px;
+  box-shadow: none;
+}
+
+#taskbar button:hover {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  box-shadow: 0 0 8px @neon-orange;
+ }
+
+#taskbar button.active {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  color: @white;
+  box-shadow: 0 0 6px @neon-orange;
+}
+
