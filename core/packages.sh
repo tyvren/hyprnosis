@@ -10,7 +10,6 @@ app_packages=(
   gimp
   occt
   btop
-  coolercontrol
   youtube-music-bin
   obs-studio
 )
