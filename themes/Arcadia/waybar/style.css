@@ -118,6 +118,42 @@ window {
   padding: 2px 10px;	
 }
 
+#battery {
+  background: @granite_a;
+  border: 1px solid @crimson_a;
+  padding: 2px 14px;
+}
+
+#backlight {
+  background: @granite_a;
+  border: 1px solid @crimson_a;
+  padding: 2px 14px;
+}
+
+#backlight-slider {
+    background: @granite_a;
+    border: 1px solid @crimson_a;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#backlight-slider slider {
+    background: @granite_a;
+    border: 1px solid @crimson_a;
+    box-shadow: none;
+}
+#backlight-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background: @granite_a;
+}
+#backlight-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @granite_a;
+}
+
 tooltip {
   background: rgba(0, 0, 2, 0.9);
   border: 1px solid @crimson_a;

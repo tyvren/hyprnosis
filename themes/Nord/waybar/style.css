@@ -126,6 +126,42 @@ window {
   padding: 2px 10px;	
 }
 
+#battery {
+  background: @teal-dim;
+  border: 1px solid @light-blue;
+  padding: 2px 10px;	
+}
+
+#backlight {
+  background: @teal-dim;
+  border: 1px solid @light-blue;
+  padding: 2px 10px;	
+}
+
+#backlight-slider {
+    background: @teal-dim;
+    border: 1px solid @light-blue;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#backlight-slider slider {
+    background: @light-blue;
+    border: 1px solid @light-blue;
+    box-shadow: none;
+}
+#backlight-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @light-blue-dim;
+}
+#backlight-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @light-blue;
+}
+
 tooltip {
   background: @teal-dim;
   border: 1px solid @light-blue;

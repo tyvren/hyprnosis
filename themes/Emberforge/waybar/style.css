@@ -126,6 +126,43 @@ window {
   padding: 2px 10px;	
 }
 
+#battery {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 10px;	
+}
+
+#backlight {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 2px 10px;	
+}
+
+#backlight-slider {
+    background: @gunmetal-dim;
+    border: 1px solid @neon-orange;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#backlight-slider slider {
+    background: @neon-orange;
+    border: 1px solid @neon-orange;
+    box-shadow: 0 0 6px @neon-orange;
+}
+#backlight-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @gunmetal-dim;
+}
+#backlight-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+    background: @neon-orange;
+    box-shadow: 0 0 8px @neon-orange;
+}
+
 tooltip {
   background: @gunmetal-dim;
   border: 1px solid @neon-orange;

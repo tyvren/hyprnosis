@@ -108,6 +108,36 @@ window {
   padding: 2px 10px;	
 }
 
+#battery {
+  padding: 2px 10px;	
+}
+
+#backlight {
+  padding: 2px 10px;	
+}
+
+#backlight-slider {
+    background: @ocean_a;
+    border: 1px solid @moon_a;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#backlight-slider slider {
+    background: @ocean_a;
+    border: 1px solid @moon_a;
+    box-shadow: none;
+}
+#backlight-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+}
+#backlight-slider highlight {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+}
+
 tooltip {
   background: @ocean_a;
   border: 1px solid @moon_a;
