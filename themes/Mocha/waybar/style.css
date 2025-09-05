@@ -113,10 +113,46 @@ window {
   padding: 0px 14px;
 }
 
+#battery {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
 #bluetooth {
   background: @base;
   border: 1px solid @lavender;
   padding: 0px 10px;	
+}
+
+#backlight {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;	
+}
+
+#backlight-slider {
+    background: @base;
+    border: 1px solid @lavender;
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#backlight-slider slider {
+    background: @base;
+    border: 1px solid @lavender;
+    box-shadow: none;
+}
+#backlight-slider trough {
+    min-height: 8px;
+    min-width: 100px;
+    background-color: @lavender;
+}
+#backlight-slider highlight {
+    min-width: 7px;
+    min-height: 7px;
+    border-radius: 4px;
+    background: @lavender;
 }
 
 tooltip {

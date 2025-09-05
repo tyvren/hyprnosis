@@ -18,6 +18,8 @@
 
   "modules-right": [
     "custom/media",
+    "battery",
+    "group/brightness",
     "group/audio",
     "custom/wifi",
     "bluetooth",
@@ -142,13 +144,12 @@
     "device": "intel_backlight",
     "format": "{icon}",
     "format-icons": [
-      "<span size='12.5pt' font='Material Icons'>brightness_1</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_2</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_3</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_4</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_5</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_6</span>",
-      "<span size='12.5pt' font='Material Icons'>brightness_7</span>"
+      "<span> 󰃞  </span>",
+      "<span> 󰃞  </span>",
+      "<span> 󰃟  </span>",
+      "<span> 󰃟  </span>",
+      "<span> 󰃠  </span>",
+      "<span> 󰃠  </span>"
     ],
     "on-scroll-up": "",
     "on-scroll-down": "",
