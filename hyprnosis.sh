@@ -15,7 +15,6 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 enable_user_service "waybar.service"
-enable_coolercontrol
 config_setup
 setup_hyprnosis_alias
 hyprland_autologin
