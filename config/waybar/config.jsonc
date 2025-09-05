@@ -144,12 +144,12 @@
     "device": "intel_backlight",
     "format": "{icon}",
     "format-icons": [
-      "<span> 󰃞  </span>",
-      "<span> 󰃞  </span>",
-      "<span> 󰃟  </span>",
-      "<span> 󰃟  </span>",
-      "<span> 󰃠  </span>",
-      "<span> 󰃠  </span>"
+      "<span> 󰃞 </span>",
+      "<span> 󰃞 </span>",
+      "<span> 󰃟 </span>",
+      "<span> 󰃟 </span>",
+      "<span> 󰃠 </span>",
+      "<span> 󰃠 </span>"
     ],
     "on-scroll-up": "",
     "on-scroll-down": "",
