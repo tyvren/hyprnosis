@@ -58,6 +58,7 @@ system_utils=(
   gnome-boxes
   fzf
   openrgb
+  brightnessctl
 )
 
 hypr_packages=(
