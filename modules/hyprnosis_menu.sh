@@ -24,32 +24,7 @@ terminal() {
 }
 
 present_terminal() {
-    ghostty -e bash -c "$1"
-}
-
-edit_in_nvim() {
-  notify-send "Editing config file" "$1"
-  ghostty -e nvim "$1"
-}
-
-install() {
-  present_terminal "echo 'Installing $1...'; sudo pacman -Sy --noconfirm $2"
-}
-
-install_and_launch() {
-  present_terminal "echo 'Installing $1...'; sudo pacman -Sy --noconfirm $2 && setsid gtk-launch $3"
-}
-
-install_font() {
-  present_terminal "echo 'Installing $1...'; sudo pacman -Sy --noconfirm --needed $2 && sleep 2 && omarchy-font-set '$3'"
-}
-
-aur_install() {
-  present_terminal "echo 'Installing $1 from AUR...'; yay -Sy --noconfirm $2"
-}
-
-aur_install_and_launch() {
-  present_terminal "echo 'Installing $1 from AUR...'; yay -Sy --noconfirm $2 && setsid gtk-launch $3"
+  ghostty -e bash -c "$1"
 }
 
 show_power_menu() {
