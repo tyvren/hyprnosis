@@ -4,7 +4,7 @@
 
 **Features**
 
-- Built for Desktops with pre-loaded system monitoring and overclocking tools
+- System monitoring and overclocking tools
 - AMD or NVidia GPU packages installed during setup
 - Steam, Discord, OCCT
 - A fully configured, simple and easy to build from hyprland desktop environment
