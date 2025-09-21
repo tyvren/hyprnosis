@@ -121,7 +121,7 @@ case "$main_choice" in
      ;;
 
   "Configure")
-     config_choice=$(gum choose "Autostart" "Default Apps" "Keybinds" "Monitors" "Windows and Workspaces" "Back ")
+     config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Back ")
      case "$config_choice" in
 	"Autostart")
 	    nvim ~/.config/hypr/settings/autostart.conf
@@ -129,6 +129,10 @@ case "$main_choice" in
 
  	"Default Apps")
 	    nvim ~/.config/hypr/settings/default-apps.conf
+	    ;;
+
+	"Input")
+	    nvim ~/.config/hypr/settings/input.conf	
 	    ;;
 
 	"Keybinds")
@@ -141,6 +145,14 @@ case "$main_choice" in
 
         "Windows and Workspaces")
 	    nvim ~/.config/hypr/settings/windows-and-workspaces.conf
+	    ;;
+
+	"Hyprland")
+	    nvim ~/.config/hypr/hyprland.conf
+	    ;;
+
+    	"Hypridle")
+	    nvim ~/.config/hypr/hypridle.conf
 	    ;;
 
 	"Back ")
