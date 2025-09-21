@@ -91,27 +91,27 @@ case "$main_choice" in
     	    gum confirm "AUR package installed. Press enter to return to menu." && exec "$0"
     	    ;;
 
-    	"Uninstall package")
-    	    fzf_args=(
-      	    --multi
-      	    --preview 'yay -Qi {1}'
-      	    --preview-label='alt-p: toggle description, alt-j/k: scroll, tab: multi-select, F11: maximize'
-      	    --preview-label-pos='bottom'
-      	    --preview-window 'down:65%:wrap'
-      	    --bind 'alt-p:toggle-preview'
-      	    --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
-      	    --bind 'alt-k:preview-up,alt-j:preview-down'
-      	    --color 'pointer:red,marker:red'
-    	    )
+    	"Uninstall Package")
+	    fzf_args=(
+  	    --multi
+  	    --preview 'yay -Qi {1}'
+  	    --preview-label='alt-p: toggle description, alt-j/k: scroll, tab: multi-select, F11: maximize'
+  	    --preview-label-pos='bottom'
+  	    --preview-window 'down:65%:wrap'
+  	    --bind 'alt-p:toggle-preview'
+  	    --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
+  	    --bind 'alt-k:preview-up,alt-j:preview-down'
+  	    --color 'pointer:red,marker:red'
+	    )
 
-    	    pkg_names=$(yay -Qqe | fzf "${fzf_args[@]}")
+	    pkg_names=$(yay -Qqe | fzf "${fzf_args[@]}")
 
-    	    if [[ -n "$pkg_names" ]]; then
-      	    	echo "$pkg_names" | tr '\n' ' ' | xargs sudo pacman -Rns --noconfirm
-      	    	sudo updatedb
-    	    fi
+	    if [[ -n "$pkg_names" ]]; then
+  	    	echo "$pkg_names" | tr '\n' ' ' | xargs sudo pacman -Rns --noconfirm
+  		sudo updatedb
+	    fi
 
-    	    gum confirm "Press enter to return to menu." && exec "$0"
+    	    gum confirm "Package Uninstalled. Press enter to return to menu." && exec "$0"
     	    ;;
       
 	"Back ")
