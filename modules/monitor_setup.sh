@@ -4,10 +4,10 @@
 monitors=$(hyprctl monitors)
 
 #Capture monitor name
-monitor_name=$(echo "$monitors" | grep "Monitor" | awk '{print $2}')
+name=$(echo "$monitors" | grep "Monitor" | awk '{print $2}')
 
 #Capture monitor modes
-optimal_mode=$(echo "$monitors" | grep "availableModes" | awk '{print $2}')
+mode=$(echo "$monitors" | grep "availableModes" | awk '{print $2}')
 
 #Write to hyprland monitor config
-sed -i "s/^#monitor=DP-1.*/monitor=${monitor_name},${optimal_mode},auto,1.5/" ~/.config/hypr/settings/monitors.conf
+sed -i "s/^#monitor=DP-1.*/monitor=${name},${mode},auto,1.5/" ~/.config/hypr/settings/monitors.conf

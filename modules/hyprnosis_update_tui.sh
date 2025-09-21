@@ -25,8 +25,6 @@ case "$CHOICE" in
     git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
     cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
     rm -rf /tmp/wallpapers
-    cp -r "$INSTALL_DIR/themes/Hyprnosis/." "$HOME/.config/"
-    cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
 
     gum confirm "Hyprnosis updated. Press Enter to return to menu." && exec "$0"
     ;;
