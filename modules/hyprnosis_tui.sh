@@ -124,7 +124,31 @@ case "$main_choice" in
      config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Back ")
      case "$config_choice" in
 	"Autostart")
-	    nvim ~/.config/hypr/settings/autostart.conf
+	    config_path="$HOME/.config/hypr/settings/autostart.conf"
+
+	    autostart_choice=$(gum choose "Add App" "Remove App" "Back " --header "Manage Autostart Apps")
+     	    case "$autostart_choice" in
+		"Add App")
+		    app_name=$(gum input --placeholder "Enter app name(e.g. firefox)")
+		    if [ -n "$app_name" ]; then
+			new_app="exec-once = uwsm app -- $app_name"
+			sed -i "/#Admin authentication agent/i $new_app" "$config_path"
+			echo "Added: $new_app"
+		    fi
+		    ;;
+		"Remove App")
+    		    apps=$(sed -n '/#Autostart these apps/,/#Admin authentication agent/{/#/!p}' "$config_path")
+
+    		    selected=$(echo "$apps" | gum choose --header "Select an app to remove from startup")
+    		    [ -z "$selected" ] && exit 0
+
+    		    sed -i "\|$selected|d" "$config_path"
+    		    echo "Removed: $selected"
+		    ;;
+		"Back ")
+		    gum confirm "Press enter to return to menu." && exec "$0"
+		    ;;
+    	    esac
 	    ;;
 
  	"Default Apps")
