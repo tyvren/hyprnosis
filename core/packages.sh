@@ -59,6 +59,8 @@ system_utils=(
   fzf
   openrgb
   brightnessctl
+  localsend
+  jellyfin-media-player
 )
 
 hypr_packages=(
