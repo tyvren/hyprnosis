@@ -46,8 +46,7 @@ show_packages_menu() {
 }
 
 show_learn_menu() {
-  case $(menu "Learn" "  Keybindings\n  Hyprnosis\n  Hyprland\n󰣇  Arch\n  Neovim\n󱆃  Bash") in
-    *Keybindings*) exec ~/.config/hyprnosis/modules/hyprnosis_menu_keybinds.sh ;;
+  case $(menu "Learn" "  Hyprnosis\n  Hyprland\n󰣇  Arch\n  Neovim\n󱆃  Bash") in
     *Hyprnosis*) firefox "https://github.com/steve-conrad/hyprnosis/wiki" ;;
     *Hyprland*) firefox "https://wiki.hypr.land/" ;;
     *Arch*) firefox "https://wiki.archlinux.org/title/Main_page" ;;
@@ -65,7 +64,7 @@ go_to_menu() {
   case "${1,,}" in
     *apps*) walker -p "Launch…" ;;
     *power*) show_power_menu ;;
-    *update*) terminal bash -c ~/.config/hyprnosis/modules/hyprnosis_update_tui.sh ;;
+    *update*) terminal bash -c ~/.config/hyprnosis/modules/hyprnosis_tui.sh ;;
     *packages*) show_packages_menu ;;
     *theme*) exec ~/.config/hyprnosis/modules/theme_changer.sh ;;
     *learn*) show_learn_menu ;;
