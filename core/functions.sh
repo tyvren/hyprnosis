@@ -157,4 +157,6 @@ EOF)
     fi
 }
 
-
+enable_walker_service () {
+  walker --gapplication-service
+}
