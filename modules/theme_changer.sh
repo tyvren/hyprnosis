@@ -26,21 +26,20 @@ if [[ -n "$SELECTED_THEME" ]]; then
 fi
 
 if command -v hyprctl &> /dev/null; then
-  echo "Reloading Hyprland config..."
   hyprctl reload
 fi
 
-echo "Reloading Waybar..."
 killall waybar 2>/dev/null || true
 if command -v waybar &> /dev/null; then
   nohup waybar > /dev/null 2>&1 &
 fi
 
-echo "Reloading Hyprpaper..."
 killall hyprpaper 2>/dev/null || true
 if command -v hyprpaper &> /dev/null; then
   nohup hyprpaper > /dev/null 2>&1 &
 fi
+
+systemctl --user restart walker.service
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
 
