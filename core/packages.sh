@@ -10,7 +10,6 @@ app_packages=(
   gimp
   occt
   btop
-  youtube-music-bin
   obs-studio
 )
 
@@ -54,7 +53,9 @@ system_utils=(
   ntfs-3g
   gvfs
   nwg-look
-  walker-bin
+  elephant
+  elephant-desktopapplications
+  walker
   gnome-boxes
   fzf
   openrgb
