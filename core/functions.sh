@@ -157,6 +157,31 @@ EOF)
     fi
 }
 
-enable_walker_service () {
-  walker --gapplication-service
+enable_walker_service() {
+    local svc="walker.service"
+    local path="$HOME/.config/systemd/user/$svc"
+
+    if [[ ! -f "$path" ]]; then
+        cat > "$path" <<EOF
+[Unit]
+Description=Walker GApplication Service
+
+[Service]
+ExecStart=/usr/bin/walker --gapplication-service
+Restart=always
+
+[Install]
+WantedBy=default.target
+EOF
+        echo "[enable_walker_service] Created $svc at $path"
+    fi
+
+    systemctl --user daemon-reload
+
+    if systemctl --user enable --now "$svc"; then
+        echo "[enable_walker_service] Enabled and started $svc"
+    else
+        echo "[enable_walker_service] Failed to enable/start $svc"
+    fi
 }
+
