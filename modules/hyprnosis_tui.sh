@@ -28,10 +28,12 @@ case "$main_choice" in
     	  BRANCH="main"
     	  git -C "$INSTALL_DIR" fetch origin
     	  git -C "$INSTALL_DIR" reset --hard origin/$BRANCH
+
+	  [ -d /tmp/wallpapers ] && rm -rf /tmp/wallpapers
+
     	  git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
     	  cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
     	  rm -rf /tmp/wallpapers
-
     	  gum confirm "Press enter to return to menu." && exec "$0"
     	  ;;
 
