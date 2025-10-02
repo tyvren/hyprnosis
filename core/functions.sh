@@ -148,6 +148,12 @@ $FUNCTION_NAME() {
     bash "$SCRIPT_PATH"
 }
 EOF)
+  if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
+    echo "$FUNCTION_DEF" >> "$SHELL_RC"
+    echo "Alias function '$FUNCTION_NAME' added to $SHELL_RC"
+  else
+    echo "Function '$FUNCTION_NAME' already exists in $SHELL_RC"
+  fi
 }
 
 enable_elephant_service() {
