@@ -148,13 +148,12 @@ $FUNCTION_NAME() {
     bash "$SCRIPT_PATH"
 }
 EOF)
+}
 
-    if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
-        echo "$FUNCTION_DEF" >> "$SHELL_RC"
-        echo "[hyprnosis] Added alias to $SHELL_RC"
-    else
-        echo "[hyprnosis] Alias already exists in $SHELL_RC"
-    fi
+enable_elephant_service() {
+  elephant service enable
+  systemctl --user enable elephant.service
+  systemctl --user start elephant.service
 }
 
 enable_walker_service() {

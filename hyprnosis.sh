@@ -15,6 +15,7 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 enable_user_service "waybar.service"
+enable_elephant_service
 enable_walker_service
 config_setup
 setup_hyprnosis_alias
