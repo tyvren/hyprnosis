@@ -195,5 +195,9 @@ enable_plymouth() {
 
   sudo plymouth-set-default-theme -R hyprnosis
 
-  sudo sed -i 's|$| quiet splash|' /boot/loader/entries/linux.conf
+  for entry in /boot/loader/entries/*.conf; do
+      # Skip fallback entries
+      [[ "$entry" == *"-fallback.conf" ]] && continue
+      sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
+  done
 }
