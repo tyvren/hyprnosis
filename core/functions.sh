@@ -190,3 +190,10 @@ EOF
     fi
 }
 
+enable_plymouth() {
+  sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
+
+  sudo plymouth-set-default-theme -R hyprnosis
+
+  sudo sed -i 's|$| quiet splash|' /boot/loader/entries/linux.conf
+}

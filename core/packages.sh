@@ -62,6 +62,7 @@ system_utils=(
   brightnessctl
   localsend
   jellyfin-media-player
+  plymouth
 )
 
 hypr_packages=(

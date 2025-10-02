@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=hyprnosis
+Description=Static splash screen with Hyprnosis logo
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/hyprnosis
+ScriptFile=/usr/share/plymouth/themes/hyprnosis/hyprnosis.script
+
