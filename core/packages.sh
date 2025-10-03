@@ -11,6 +11,9 @@ app_packages=(
   occt
   btop
   obs-studio
+  localsend
+  jellyfin-media-player
+  gnome-boxes
 )
 
 system_utils=(
@@ -55,13 +58,10 @@ system_utils=(
   nwg-look
   elephant
   elephant-desktopapplications
-  walker
-  gnome-boxes
+  walker 
   fzf
   openrgb
   brightnessctl
-  localsend
-  jellyfin-media-player
   plymouth
 )
 
