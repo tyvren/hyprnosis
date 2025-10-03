@@ -34,6 +34,7 @@ system_utils=(
   network-manager-applet
   thunar
   catppuccin-cursors-mocha
+  catppuccin-gtk-theme-mocha
   cups
   system-config-printer
   print-manager
