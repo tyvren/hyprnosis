@@ -12,8 +12,7 @@
   font-weight: 500;
   color: @white;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
-  background-color: transparent;
+  background: transparent;
   outline: none;
   margin: 4px;
 }
@@ -83,14 +82,13 @@ window {
 
 child {
   padding: 8px;
-  border-radius: 2px;
 }
 
 child:selected,
 child:hover {
-  background-color: @blue-dim;
+  background: @blue-dim;
   border: 2px solid @gray-blue;
-  border-radius: 10px;
+  transition: 0.3s ease-in-out;
 }
 
 #item {
@@ -123,6 +121,7 @@ child:hover {
 }
 
 .activation #activationlabel {
+  display: none;
 }
 
 .activation #text,
@@ -146,4 +145,3 @@ child:hover {
 .aiItem.assistant {
   background: @blue-dim;
 }
-

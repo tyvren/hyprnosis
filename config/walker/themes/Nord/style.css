@@ -1,9 +1,9 @@
 @define-color teal rgba(136, 192, 208, 0.7);
-@define-color teal-dim rgba(136, 192, 208, 0.1);
+@define-color teal-dim rgba(136, 192, 208, 0.5);
 @define-color light-blue rgba(129, 161, 193, 0.7);
-@define-color light-blue-dim rgba(129, 161, 193, 0.1);
+@define-color light-blue-dim rgba(129, 161, 193, 0.5);
 @define-color green rgba(143, 188, 187, 0.5);
-@define-color green-dim rgba(143, 188, 187, 0.2);
+@define-color green-dim rgba(143, 188, 187, 0.5);
 @define-color dark-blue rgba(94, 129, 172, 0.5);
 @define-color white rgba(255, 255, 255, 0.9);
 
@@ -11,9 +11,7 @@
   font-family: 'JetBrainsMono Nerd Font', monospace;
   font-size: 11px;
   font-weight: 500;
-  color: @white;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
   background-color: transparent;
   outline: none;
   margin: 4px;
@@ -22,16 +20,12 @@
 window {
   background: @teal-dim;
   border: 2px solid @dark-blue;
-  border-radius: 10px;
 }
 
 #box {
   background: @dark-blue;
   padding: 36px;
   border-radius: 10px;
-  box-shadow:
-    0 19px 38px rgba(0, 0, 0, 0.3),
-    0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 #search {
@@ -54,13 +48,13 @@ window {
 #password,
 #input,
 #typeahead {
-  border-radius: 8px;
 }
 
 #input {
   color: @teal;
-  background-color: @dark-blue;
+  background: @dark-blue;
   border: 2px solid @green-dim;
+  border-radius: 10px;
 }
 
 #password {
@@ -84,14 +78,14 @@ window {
 
 child {
   padding: 8px;
-  border-radius: 2px;
+  border-radius: 10px;
 }
 
 child:selected,
 child:hover {
   background: @dark-blue;
   border: 2px solid @green;
-  border-radius: 10px;
+  transition: 0.3s ease-in-out;
 }
 
 #item {
@@ -134,7 +128,6 @@ child:hover {
 
 .aiItem {
   padding: 10px;
-  border-radius: 2px;
   color: @green;
   background: @dark-blue;
 }
