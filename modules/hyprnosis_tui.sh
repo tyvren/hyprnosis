@@ -25,6 +25,8 @@ case "$main_choice" in
 	  clear
 	  gum style --foreground 99 --border double --padding "2 4" "Updating Hyprnosis..."
 	  INSTALL_DIR="$HOME/.config/hyprnosis"
+	  CONFIG_DIR="$HOME/.config/hyprnosis/config"
+	  LOCAL_CONFIG="$HOME/.config"
     	  BRANCH="main"
     	  git -C "$INSTALL_DIR" fetch origin
     	  git -C "$INSTALL_DIR" reset --hard origin/$BRANCH
@@ -35,6 +37,9 @@ case "$main_choice" in
 	  rm -rf /tmp/wallpapers/.git && \
 	  cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
 	  rm -rf /tmp/wallpapers
+
+	  rm -r $HOME/.config/walker
+	  cp -r $CONFIG_DIR/walker $LOCAL_CONFIG
     	  ;;
 
        "Back ")
