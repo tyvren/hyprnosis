@@ -1,0 +1,154 @@
+@define-color mauve    #cba6f7;
+@define-color teal     #94e2d5;
+@define-color sky      #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue     #89b4fa;
+@define-color lavender #b4befe;
+@define-color text     #cdd6f4;
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+
+
+* {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: @text;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  background-color: transparent;
+  outline: none;
+  margin: 4px;
+}
+
+window {
+  background-color: @base;
+  border: 2px solid @lavender;
+  border-radius: 10px;
+}
+
+#box {
+  background: @base;
+  padding: 36px;
+  border-radius: 10px;
+  border: 2px solid @mantle;
+  box-shadow:
+    0 19px 38px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#search {
+  background: @base;
+  padding: 8px;
+}
+
+#prompt {
+  margin-left: 4px;
+  margin-right: 12px;
+  color: @text;
+  opacity: 0.6;
+}
+
+#clear {
+  color: @lavender;
+  opacity: 0.8;
+}
+
+#password,
+#input,
+#typeahead {
+  border-radius: 8px;
+}
+
+#input {
+  color: @text;
+  background-color: @base;
+  border: 2px solid @lavender;
+}
+
+#password {
+}
+
+#spinner {
+  padding: 8px;
+}
+
+#typeahead {
+  color: @text;
+  opacity: 0.8;
+}
+
+#input placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+child {
+  padding: 8px;
+  border-radius: 2px;
+}
+
+child:selected,
+child:hover {
+  background-color: @base;
+  border: 2px solid @lavender;
+  border-radius: 10px;
+}
+
+#item {
+}
+
+#icon {
+  margin-right: 8px;
+}
+
+#text {
+  color: @text;
+}
+
+#label {
+  font-weight: 500;
+}
+
+#sub {
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+#activationlabel {
+}
+
+#bar {
+}
+
+.barentry {
+}
+
+.activation #activationlabel {
+}
+
+.activation #text,
+.activation #icon,
+.activation #search {
+  opacity: 0.5;
+}
+
+.aiItem {
+  padding: 10px;
+  border-radius: 2px;
+  color: @lavender;
+  background: @base;
+}
+
+.aiItem.user {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.aiItem.assistant {
+  background: @base;
+}
+
