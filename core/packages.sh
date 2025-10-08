@@ -29,7 +29,7 @@ system_utils=(
   pipewire
   pavucontrol
   playerctl
-  blueman
+  overskride
   bluez-utils
   network-manager-applet
   thunar
