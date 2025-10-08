@@ -14,7 +14,8 @@ done
 
 gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
 "Select the monitor to configure"
-monitor_choice=$(printf "%s\n" "${display_list[@]}" | gum choose --limit=1)
+monitor_choice=$(printf "%s\n" "${display_list[@]}" | gum choose --limit=1) || exit 0
+[[ -z "$monitor_choice" ]] && exit 0
 
 selected_connection=$(echo "$monitor_choice" | awk '{print $1}')
 
@@ -25,17 +26,20 @@ mode_list=$(echo "$modes" | tr ' ' '\n')
 
 gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
 "Select the resolution and refresh rate"
-chosen_mode=$(echo "$mode_list" | gum choose --limit=1)
+chosen_mode=$(echo "$mode_list" | gum choose --limit=1) || exit 0
+[[ -z "$chosen_mode" ]] && exit 0
 clear
 
 gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
 "Select the monitor's position"
-position=$(printf "auto\nauto-left\nauto-right\n" | gum choose --limit=1)
+position=$(printf "auto\nauto-left\nauto-right\n" | gum choose --limit=1) || exit 0
+[[ -z "$position" ]] && exit 0
 clear
 
 gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
 "Select the scale"
-chosen_scale=$(printf "1\n1.5\n2\n" | gum choose --limit=1)
+chosen_scale=$(printf "1\n1.5\n2\n" | gum choose --limit=1) || exit 0
+[[ -z "$chosen_scale" ]] && exit 0
 clear
 
 sed -i "/^monitor=${selected_connection}/d" "$config_path"
