@@ -30,6 +30,7 @@ system_utils=(
   pavucontrol
   playerctl
   overskride
+  bluez
   bluez-utils
   network-manager-applet
   thunar
