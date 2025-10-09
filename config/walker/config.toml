@@ -3,16 +3,12 @@ close_when_open = true          # close walker when invoking while already opene
 click_to_close = true           # closes walker if clicking outside of the main content area
 selection_wrap = false          # wrap list if at bottom or top
 global_argument_delimiter = "#" # query: firefox#https://benz.dev => part after delimiter will be ignored when querying. this should be the same as in the elephant config
-keep_open_modifier = "shift"    # won't close on activation, but rather select the next item in the list
 exact_search_prefix = "'"       # disable fuzzy searching
 theme = "Hyprnosis"               # theme to use
 disable_mouse = false           # disable mouse (on input and list only)
 debug = false                   # enables debug printing for some stuff, f.e. keybinds
 hotreload_theme = true
 timeout = 60
-
-#[activation_mode]
-#labels = ""
 
 [shell]
 anchor_top = false
@@ -40,6 +36,10 @@ default = [
   "websearch",
 ] # providers to be queried by default
 empty = ["desktopapplications"] # providers to be queried when query is empty
+max_results = 50 # global max results
+
+[providers.sets] # define your own defaults/empty sets of providers
+[providers.max_results_provider] # define max results per provider in here
 
 [[providers.prefixes]]
 prefix = ";"
