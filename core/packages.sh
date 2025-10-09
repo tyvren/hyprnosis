@@ -59,6 +59,8 @@ system_utils=(
   nwg-look
   elephant
   elephant-desktopapplications
+  elephant-calc
+  elephant-websearch
   walker 
   fzf
   openrgb
