@@ -24,7 +24,7 @@ Detailed documentation can be found in the wiki.
 
 After logging into your new Arch system, run the following:
 
-    bash <(curl -sL https://raw.githubusercontent.com/steve-conrad/hyprnosis/main/boot.sh)
+    bash <(curl -sL https://raw.githubusercontent.com/tyvren/hyprnosis/main/boot.sh)
 
 - Enter your sudo password when prompted
 
