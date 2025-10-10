@@ -113,7 +113,7 @@ done
 config_setup() {
   cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
   cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-  git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
+  git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers && \
   cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
   rm -rf /tmp/wallpapers
   chmod +x "$HOME/.config/hyprnosis/modules/"*

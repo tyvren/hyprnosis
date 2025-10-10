@@ -47,7 +47,7 @@ show_packages_menu() {
 
 show_learn_menu() {
   case $(menu "Learn" "  Hyprnosis\n  Hyprland\n󰣇  Arch\n  Neovim\n󱆃  Bash") in
-    *Hyprnosis*) firefox "https://github.com/steve-conrad/hyprnosis/wiki" ;;
+    *Hyprnosis*) firefox "https://github.com/tyvren/hyprnosis/wiki" ;;
     *Hyprland*) firefox "https://wiki.hypr.land/" ;;
     *Arch*) firefox "https://wiki.archlinux.org/title/Main_page" ;;
     *Neovim*) firefox "https://www.lazyvim.org/keymaps" ;;

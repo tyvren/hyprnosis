@@ -33,7 +33,7 @@ case "$main_choice" in
 
 	  [ -d /tmp/wallpapers ] && rm -rf /tmp/wallpapers
 
-	  git clone --depth 1 https://github.com/steve-conrad/hyprnosis-wallpapers.git /tmp/wallpapers && \
+	  git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers && \
 	  rm -rf /tmp/wallpapers/.git && \
 	  cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
 	  rm -rf /tmp/wallpapers

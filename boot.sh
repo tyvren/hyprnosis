@@ -20,7 +20,7 @@ sudo pacman -Sy --noconfirm --needed git
 
 INSTALL_DIR="$HOME/.config/hyprnosis"
 echo -e "\nCloning hyprnosis"
-git clone https://github.com/steve-conrad/hyprnosis.git "$INSTALL_DIR"
+git clone https://github.com/tyvren/hyprnosis.git "$INSTALL_DIR"
 
 echo "Starting Hyprnosis installation..."
 cd "$INSTALL_DIR"
