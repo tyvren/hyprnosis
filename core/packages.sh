@@ -67,6 +67,8 @@ system_utils=(
   openrgb
   brightnessctl
   plymouth
+  nodejs
+  npm
 )
 
 hypr_packages=(
