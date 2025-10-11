@@ -21,6 +21,10 @@ cp -r "$THEME_PATH/nvim/lua/plugins/colorscheme.lua" "$HOME/.config/nvim/lua/plu
 cp -r "$THEME_PATH/"* "$HOME/.config/"
 
 if [[ -n "$SELECTED_THEME" ]]; then
+  sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" ~/.config/hyprnosis/modules/randomize_wallpaper.sh
+fi
+
+if [[ -n "$SELECTED_THEME" ]]; then
   sed -i "s/^theme = \".*\"/theme = \"$SELECTED_THEME\"/" ~/.config/walker/config.toml
   walker --reload 
 fi
