@@ -10,7 +10,7 @@
 }
 
 window {
-  background: @crust;
+  background: @crust_a;
   border-radius: 8px;
 }
 
