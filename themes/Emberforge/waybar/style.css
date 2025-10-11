@@ -46,6 +46,24 @@ window {
   padding: 0px 10px;
 }
 
+#cpu {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 0px 10px;
+}
+
+#memory {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 0px 10px;
+}
+
+#temperature {
+  background: @gunmetal-dim;
+  border: 1px solid @neon-orange;
+  padding: 0px 10px;
+}
+
 #custom-hyprnosis {
   background: @gunmetal-dim;
   border: 1px solid @neon-orange;

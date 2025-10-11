@@ -37,6 +37,18 @@ window {
   margin-right: 20px;
 }
 
+#cpu {
+  padding: 2px 8px;
+}
+
+#memory {
+  padding: 2px 8px;
+}
+
+#temperature {
+  padding: 2px 8px;
+}
+
 #workspaces {
   border-radius: 20px;
 }

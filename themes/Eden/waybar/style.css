@@ -46,6 +46,18 @@ window {
   padding: 2px 8px;
 }
 
+#cpu {
+  padding: 2px 8px;
+}
+
+#memory {
+  padding: 2px 8px;
+}
+
+#temperature {
+  padding: 2px 8px;
+}
+
 #custom-hyprnosis {
   margin-left: 10px;
   padding: 0px 10px;

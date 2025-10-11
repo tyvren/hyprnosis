@@ -47,6 +47,24 @@ window {
   padding: 0px 10px;
 }
 
+#cpu {
+  background: @teal-dim;
+  border: 1px solid @light-blue;
+  padding: 0px 10px;
+}
+
+#memory {
+  background: @teal-dim;
+  border: 1px solid @light-blue;
+  padding: 0px 10px;
+}
+
+#temperature {
+  background: @teal-dim;
+  border: 1px solid @light-blue;
+  padding: 0px 10px;
+}
+
 #custom-hyprnosis {
   background: @teal-dim;
   border: 1px solid @light-blue;

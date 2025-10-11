@@ -40,6 +40,24 @@ window {
   padding: 0px 10px;
 }
 
+#cpu {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
+#memory {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
+#temperature {
+  background: @base;
+  border: 1px solid @lavender;
+  padding: 0px 10px;
+}
+
 #custom-hyprnosis {
   background: @base;
   border: 1px solid @lavender;
