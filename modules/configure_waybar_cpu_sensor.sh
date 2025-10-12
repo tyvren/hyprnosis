@@ -19,12 +19,12 @@ for hw in /sys/class/hwmon/hwmon*; do
 done
 
 if [[ -z "$hwmon_path" ]]; then
-  echo "Error: k10temp hwmon not found"
+  echo "Error: k10temp/coretemp hwmon not found"
   exit 1
 fi
 
 full_path="${hwmon_path}/temp1_input"
-echo "k10temp found at: $full_path"
+echo "k10temp/coretemp found at: $full_path"
 
 sed -i.bak -E "s|^([[:space:]]*)//?[[:space:]]*(\"hwmon-path\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")|\1\2${full_path}\3|" "$WAYBAR_CONF"
 
