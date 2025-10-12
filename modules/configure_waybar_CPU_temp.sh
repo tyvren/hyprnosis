@@ -26,4 +26,4 @@ fi
 full_path="${hwmon_path}/temp1_input"
 echo "k10temp found at: $full_path"
 
-sed -i.bak -E "s|(\"hwmon-path\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")|\1${full_path}\2|" "$WAYBAR_CONF"
+sed -i.bak -E "s|^([[:space:]]*)//?[[:space:]]*(\"hwmon-path\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")|\1\2${full_path}\3|" "$WAYBAR_CONF"
