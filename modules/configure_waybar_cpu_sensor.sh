@@ -27,3 +27,8 @@ full_path="${hwmon_path}/temp1_input"
 echo "k10temp found at: $full_path"
 
 sed -i.bak -E "s|^([[:space:]]*)//?[[:space:]]*(\"hwmon-path\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")|\1\2${full_path}\3|" "$WAYBAR_CONF"
+
+killall waybar 2>/dev/null || true
+if command -v waybar &> /dev/null; then
+  nohup waybar > /dev/null 2>&1 &
+fi
