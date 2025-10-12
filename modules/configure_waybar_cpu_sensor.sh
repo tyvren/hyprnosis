@@ -11,7 +11,7 @@ hwmon_path=""
 for hw in /sys/class/hwmon/hwmon*; do
   if [[ -r "$hw/name" ]]; then
     name=$(< "$hw/name")
-    if [[ "$name" == "k10temp" ]]; then
+    if [[ "$name" == "k10temp" || "$name" == "coretemp" ]]; then
       hwmon_path="$hw"
       break
     fi
