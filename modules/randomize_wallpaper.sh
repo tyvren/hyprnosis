@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Wallpaper randomizer - SUPER+SHIFT+T - changes your wallpaper to another random one within the specific theme folder then applies to hyprpaper and hyprlock configs
+
 WALLPAPER_DIR="$HOME/.config/hyprnosis/wallpapers/Mocha/"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
