@@ -4,14 +4,14 @@
 
 **Features**
 
-- System monitoring and overclocking tools
+- A fully configured and easy to use hyprland environment
 - AMD or NVidia GPU packages installed during setup
 - Steam, Discord, OCCT
-- A fully configured, simple and easy to build from hyprland desktop environment
+- System monitoring and overclocking tools
 - Theme switching script with multiple preinstalled themes, including some inspired by my favorite band
 
-- Waybar - status bar
-- Walker - hyprnosis main menu system, app launcher, theme changer, and power menu
+- Waybar - menu and status bar
+- Walker - hyprnosis GUI menu system and app launcher
 - NVIM - preconfigured neovim plugins and themes
 
 ----------------------------------------------------------------------
