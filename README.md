@@ -9,7 +9,8 @@
 - Steam, Discord, OCCT and many more preinstalled apps and tools
 - NVIM - preconfigured neovim plugins and themes
 - Theme switching script with multiple preinstalled themes, including some inspired by my favorite band
-- The full list of preinstalled packages can be found under /core/packages.sh
+
+**The full list of preinstalled packages can be found under /core/packages.sh**
 
 ----------------------------------------------------------------------
 
@@ -25,7 +26,7 @@ Detailed documentation can be found in the wiki.
 
 **Dependencies** - multilib repository must be added during arch install. Secure boot must be disabled in UEFI for systemd bootloader use.
 
-**This script is meant to be used as an automated setup for new arch systems. Clean installs only, as I can not guarantee the functionality when applied to a pre-configured system**
+**This script is meant to be used as an automated setup for new arch systems. Clean installs only, as I can not guarantee the functionality when applied to a pre-configured system.**
 
 After logging into your new Arch system, run the following command to start the setup:
 
