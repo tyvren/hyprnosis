@@ -57,7 +57,7 @@ show_learn_menu() {
 }
 
 show_main_menu() {
-  go_to_menu "$(menu "Main Menu" " Apps\n Power\n Update\n Packages\n Theme\n  Learn\n About")"
+  go_to_menu "$(menu "Main Menu" " Apps\n Power\n Update\n Packages\n Theme\n Wallpaper\n  Learn\n About")"
 }
 
 go_to_menu() {
@@ -67,6 +67,7 @@ go_to_menu() {
     *update*) terminal bash -c ~/.config/hyprnosis/modules/hyprnosis_tui.sh ;;
     *packages*) show_packages_menu ;;
     *theme*) exec ~/.config/hyprnosis/modules/theme_changer.sh ;;
+    *wallpaper*) exec ~/.config/hyprnosis/modules/wallpaper_changer.sh ;;
     *learn*) show_learn_menu ;;
     *about*) terminal bash -c 'fastfetch; read -n 1 -s' ;;
   esac
