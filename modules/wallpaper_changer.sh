@@ -14,14 +14,14 @@ menu() {
 mapfile -t THEMES < <(find "$WALLPAPER_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n")
 theme_list=$(printf "%s\n" "${THEMES[@]}")
 
-SELECTED_THEME=$(menu "Select a theme to view wallpaper options" "$theme_list")
+SELECTED_THEME=$(menu "Select the folder name where your image file is stored" "$theme_list")
 [[ -z "$SELECTED_THEME" ]] && exit 0
 
 THEME_PATH="$WALLPAPER_DIR/$SELECTED_THEME"
 mapfile -t WALLPAPERS < <(find "$THEME_PATH" -type f -printf "%f\n")
 wallpaper_list=$(printf "%s\n" "${WALLPAPERS[@]}")
 
-SELECTED_WALLPAPER=$(menu "Select a wallpaper" "$wallpaper_list")
+SELECTED_WALLPAPER=$(menu "Select the image to apply to hyprpaper and hyprlock" "$wallpaper_list")
 [[ -z "$SELECTED_WALLPAPER" ]] && exit 0
 
 WALLPAPER_PATH="$THEME_PATH/$SELECTED_WALLPAPER"
