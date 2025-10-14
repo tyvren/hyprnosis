@@ -17,7 +17,6 @@
         <property name="valign">center</property>
         <property name="halign">center</property>
         <property name="width-request">600</property>
-        <property name="height-request">550</property>
         <child>
           <object class="GtkBox" id="Box">
             <style>
@@ -86,7 +85,7 @@
                     <property name="can_focus">false</property>
                     <property name="overlay-scrolling">true</property>
                     <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
+                    <property name="vexpand">false</property>
                     <property name="max-content-width">500</property>
                     <property name="min-content-width">400</property>
                     <property name="max-content-height">500</property>
