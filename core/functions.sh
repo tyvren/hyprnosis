@@ -195,9 +195,20 @@ enable_plymouth() {
 
   sudo plymouth-set-default-theme -R hyprnosis
 
-  for entry in /boot/loader/entries/*.conf; do
-      # Skip fallback entries
+  for entry in /boot/loader/entries/*.conf; do 
       [[ "$entry" == *"-fallback.conf" ]] && continue
       sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
+  done
+}
+
+cursor_symlinks() {
+  mkdir -p ~/.icons
+
+  for theme in /usr/share/icons/catppuccin-mocha-*-cursors; do
+      name=$(basename "$theme")
+      if [[ ! -e "$HOME/.icons/$name" ]]; then
+          ln -s "$theme" "$HOME/.icons/$name"
+          echo "Linked $name"
+      fi
   done
 }
