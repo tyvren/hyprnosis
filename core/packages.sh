@@ -29,9 +29,9 @@ system_utils=(
   pipewire
   pavucontrol
   playerctl
-  overskride
   bluez
   bluez-utils
+  overskride
   network-manager-applet
   thunar
   catppuccin-cursors-mocha
@@ -44,8 +44,6 @@ system_utils=(
   7zip
   wine
   ark
-  spectacle
-  timeshift
   fastfetch
   lsd
   v4l-utils
@@ -57,7 +55,6 @@ system_utils=(
   dosfstools
   ntfs-3g
   gvfs
-  nwg-look
   elephant
   elephant-desktopapplications
   elephant-calc
