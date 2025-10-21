@@ -62,6 +62,7 @@ system_utils=(
   elephant-archlinuxpkgs
   elephant-files
   elephant-clipboard
+  elephant-menus
   walker 
   fzf
   openrgb
