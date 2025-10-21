@@ -1,0 +1,37 @@
+name = "hyprnosismenu"
+name_pretty = "hyprnosis menu"
+
+[[entries]]
+text = "Apps"
+icon = "view-app-grid"
+actions = { apps = "walker" }
+
+[[entries]]
+text = "Power"
+icon = "system-shutdown"
+actions = { power = "walker --provider menus:power" }
+
+[[entries]]
+text = "Update"
+icon = "view-refresh"
+actions = { update = "walker --provider menus:updates" }
+
+[[entries]]
+text = "Packages"
+icon = "applications-all"
+actions = { packages = "walker --provider archlinuxpkgs" }
+
+[[entries]]
+text = "Theme"
+icon = "preferences-color-symbolic"
+actions = { theme = "~/.config/hyprnosis/modules/theme_changer.sh" }
+
+[[entries]]
+text = "Wallpaper"
+icon = "preferences-desktop-wallpaper-symbolic"
+actions = { wallpaper = "~/.config/hyprnosis/modules/wallpaper_changer.sh" }
+
+[[entries]]
+text = "Learn"
+icon = "bookmark"
+actions = { learn = "walker --provider menus:learn" }

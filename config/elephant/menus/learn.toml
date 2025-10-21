@@ -1,0 +1,28 @@
+name = "learn"
+name_pretty = "Learn"
+icon = "bookmark"
+action = "xdg-open %VALUE%"
+
+[[entries]]
+text = "Walker"
+value = "https://github.com/abenz1267/walker"
+
+[[entries]]
+text = "Elephant"
+value = "https://github.com/abenz1267/elephant"
+
+[[entries]]
+text = "hyprnosis"
+value = "https://github.com/tyvren/hyprnosis/wiki"
+
+[[entries]]
+text = "Hyprland"
+value = "https://wiki.hypr.land/"
+
+[[entries]]
+text = "Arch"
+value = "https://wiki.archlinux.org/title/Main_page"
+
+[[entries]]
+text = "Neovim"
+value = "https://www.lazyvim.org/keymaps"

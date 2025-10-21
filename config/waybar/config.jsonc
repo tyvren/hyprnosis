@@ -36,7 +36,7 @@
   "custom/hyprnosis": {	  
     "format": "<span>  </span>",
     "tooltip": false,
-    "on-click": "~/.config/hyprnosis/modules/hyprnosis_menu.sh"
+    "on-click": "walker --provider menus:hyprnosismenu"
     },
 
   "clock": {

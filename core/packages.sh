@@ -59,6 +59,9 @@ system_utils=(
   elephant-desktopapplications
   elephant-calc
   elephant-websearch
+  elephant-archlinuxpkgs
+  elephant-files
+  elephant-clipboard
   walker 
   fzf
   openrgb

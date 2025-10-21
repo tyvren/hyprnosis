@@ -1,0 +1,17 @@
+name = "power"
+name_pretty = "Power"
+
+[[entries]]
+text = "Lock"
+icon = "system-lock-screen"
+actions = { default = "hyprlock" }
+
+[[entries]]
+text = "Restart"
+icon = "system-reboot"
+actions = { default = "systemctl reboot" }
+
+[[entries]]
+text = "Shutdown"
+icon = "system-shutdown"
+actions = { default = "systemctl poweroff" }
