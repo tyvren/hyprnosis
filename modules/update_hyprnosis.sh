@@ -15,5 +15,5 @@ cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/" && \
 rm -rf /tmp/wallpapers
 
 rm -r $HOME/.config/walker
-cp -r $CONFIG_DIR/walker $LOCAL_CONFIG
-cp -r $CONFIG_DIR/elephant $LOCAL_CONFIG
+cp -ru $CONFIG_DIR/walker $LOCAL_CONFIG
+cp -ru $CONFIG_DIR/elephant $LOCAL_CONFIG
