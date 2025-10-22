@@ -5,7 +5,9 @@ source ./core/functions_test.sh
 source ./core/packages.sh
 
 ensure_gum
-log_header
+
+log_header "hyprnosis"
+
 create_log
 
 log_step "Getting username"
@@ -52,6 +54,7 @@ setup_hyprnosis_alias
 log_step "Enabling Hyprland autologin"
 hyprland_autologin
 
+clear
 log_success "Hyprnosis installation complete!"
 log_info "Please reboot for all changes to take effect."
 
