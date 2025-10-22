@@ -27,8 +27,7 @@ is_installed() {
 }
 
 ensure_gum() {
-    if ! is_installed "gum"; then
-        echo "Installing gum for better UI..."
+    if ! is_installed "gum"; then 
         sudo pacman -S --noconfirm gum
     fi
 }
@@ -48,23 +47,25 @@ log_header() {
             "$text"
         echo
     else
-        echo -e "\n${_GREEN}════════════════════════════════════════${_NC}"
-        echo -e "${_GREEN}  $text${_NC}"
-        echo -e "${_GREEN}════════════════════════════════════════${_NC}\n"
+        echo -e "\n${_BLUE}════════════════════════════════════════${_NC}"
+        echo -e "${_BLUE}  $text${_NC}"
+        echo -e "${_BLUE}════════════════════════════════════════${_NC}\n"
     fi
 }
 
 log_step() {
     local text="$1"
+
     if _has_gum; then
         gum style --foreground 108 --bold "$_ICON_STEP $text"
     else
-        echo -e "\n${_GREEN}$_ICON_STEP${_NC} $text"
+        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text"
     fi
 }
 
 log_info() {
     local text="$1"
+
     if _has_gum; then
         gum style --foreground 246 "  $_ICON_INFO $text"
     else
@@ -74,6 +75,7 @@ log_info() {
 
 log_success() {
     local text="$1"
+
     if _has_gum; then
         gum style --foreground 108 "  $_ICON_SUCCESS $text"
     else
@@ -83,6 +85,7 @@ log_success() {
 
 log_error() {
     local text="$1"
+
     if _has_gum; then
         gum style --foreground 196 --bold "  $_ICON_ERROR $text"
     else
@@ -92,6 +95,7 @@ log_error() {
 
 log_detail() {
     local text="$1"
+
     if _has_gum; then
         gum style --foreground 241 "    $_ICON_ARROW $text"
     else
@@ -107,12 +111,13 @@ spinner() {
         gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
     else
         echo -e "${_CYAN}⟳${_NC} $title"
-        "$@" </dev/tty >/dev/null 2>&1
+        "$@" #</dev/tty >/dev/null 2>&1
     fi
 }
 
 ask_yes_no() {
     local prompt="$1"
+
     if _has_gum; then
         gum confirm "$prompt" && return 0 || return 1
     else
