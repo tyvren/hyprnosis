@@ -5,6 +5,13 @@ source ./core/packages.sh
 LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
+_GREEN='\033[0;32m'
+_BLUE='\033[0;34m'
+_YELLOW='\033[1;33m'
+_RED='\033[0;31m'
+_CYAN='\033[0;36m'
+_NC='\033[0m'
+
 _ICON_STEP="▸"
 _ICON_INFO="→"
 _ICON_SUCCESS="✓"
@@ -27,47 +34,50 @@ ensure_gum() {
 }
 
 log_header() {
-    clear
+    local text="$1"
     if _has_gum; then
+        echo
         gum style \
-            --foreground 99 \
-            --border-foreground 120 \
+            --foreground 108 \
             --border double \
-            --align center \
+            --border-foreground 108 \
+            --padding "0 2" \
+            --margin "1 0" \
             --width 50 \
-            --margin "1 2" \
-            --padding "2 4" \
-            "Hyprnosis"
+            --align center \
+            "$text"
         echo
     else
-        echo "==== Hyprnosis ===="
+        echo -e "\n${_GREEN}════════════════════════════════════════${_NC}"
+        echo -e "${_GREEN}  $text${_NC}"
+        echo -e "${_GREEN}════════════════════════════════════════${_NC}\n"
     fi
 }
 
 log_step() {
     local text="$1"
     if _has_gum; then
-        gum style --foreground 99 --bold "$_ICON_STEP $text"
+        gum style --foreground 108 --bold "$_ICON_STEP $text"
     else
-        echo "$_ICON_STEP $text"
+        echo -e "\n${_GREEN}$_ICON_STEP${_NC} $text"
     fi
 }
 
 log_info() {
     local text="$1"
     if _has_gum; then
-        gum style --foreground 99 "  $_ICON_INFO $text"
+        gum style --foreground 246 "  $_ICON_INFO $text"
     else
-        echo "  -> $text"
+        echo -e "  ${_YELLOW}$_ICON_INFO${_NC} $text"
     fi
 }
 
 log_success() {
     local text="$1"
     if _has_gum; then
-        gum style --foreground 120 "  $_ICON_SUCCESS $text"
+        gum style --foreground 108 "  $_ICON_SUCCESS $text"
     else
-        echo "  [OK] $text"
+        echo -e "  ${_GREEN}$_ICON_SUCCESS${_NC} $text"
     fi
 }
 
@@ -76,7 +86,7 @@ log_error() {
     if _has_gum; then
         gum style --foreground 196 --bold "  $_ICON_ERROR $text"
     else
-        echo "  [ERROR] $text"
+        echo -e "  ${_RED}$_ICON_ERROR${_NC} $text"
     fi
 }
 
@@ -85,17 +95,18 @@ log_detail() {
     if _has_gum; then
         gum style --foreground 241 "    $_ICON_ARROW $text"
     else
-        echo "    -> $text"
+        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text"
     fi
 }
 
 spinner() {
     local title="$1"
     shift
+
     if _has_gum; then
         gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
     else
-        echo "⟳ $title"
+        echo -e "${_CYAN}⟳${_NC} $title"
         "$@" </dev/tty >/dev/null 2>&1
     fi
 }
@@ -135,16 +146,31 @@ install_yay() {
 install_packages() {
     local pkgs=("$@")
     for pkg in "${pkgs[@]}"; do
+        log_info "Installing package: $pkg"
         if ! spinner "Installing $pkg..." yay -S --noconfirm --needed "$pkg"; then
-            log_error "Failed to install package $pkg"
+            log_error "Failed to install package $pkg, continuing..."
         else
             log_success "$pkg installed"
         fi
     done
 }
 
+enable_user_service() {
+    local svc="$1"
+    if systemctl --user list-unit-files | grep -q "^${svc}"; then
+        if systemctl --user enable --now "$svc"; then
+            log_success "Enabled and started $svc"
+        else
+            log_error "Failed to enable/start $svc"
+        fi
+    else
+        log_error "Service $svc not found, skipping enable/start"
+    fi
+}
+
 enable_service() {
     local svc="$1"
+    log_info "Enabling $svc..."
     if systemctl list-unit-files | grep -q "^${svc}"; then
         spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
         spinner "Enabling $svc at boot" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
@@ -154,40 +180,48 @@ enable_service() {
     fi
 }
 
-enable_user_service() {
-    local svc="$1"
-    if systemctl --user list-unit-files | grep -q "^${svc}"; then
-        if systemctl --user enable --now "$svc"; then
-            log_success "$svc started"
-        else
-            log_error "Failed to start $svc"
-        fi
-    else
-        log_error "User service $svc not found, skipping"
-    fi
+hyprland_autologin() {
+    local BASH_PROFILE="$HOME/.bash_profile"
+    grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >>"$BASH_PROFILE" <<'EOF'
+
+# Start Hyprland via uwsm if available
+if uwsm check may-start; then
+  exec uwsm start hyprland.desktop
+fi
+EOF
+
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf >/dev/null <<EOF
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
+EOF
+
+    sudo systemctl daemon-reexec
+    sudo systemctl restart getty@tty1
+    log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
 
 install_gpu_packages() {
     local GPU_CHOICE
     GPU_CHOICE=$(_has_gum && gum choose "AMD" "NVIDIA" "Skip" || echo "Skip")
     case "$GPU_CHOICE" in
-        AMD) install_packages "${amd_packages[@]}" ;;
-        NVIDIA) install_packages "${nvidia_packages[@]}" ;;
-        Skip) log_info "Skipping GPU package installation." ;;
+        AMD)
+            log_info "Installing AMD GPU packages..."
+            install_packages "${amd_packages[@]}"
+            ;;
+        NVIDIA)
+            log_info "Installing NVIDIA GPU packages..."
+            install_packages "${nvidia_packages[@]}"
+            ;;
+        Skip)
+            log_info "Skipping GPU package installation."
+            ;;
     esac
 }
 
-get_username() {
-    H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
-    while [[ -z "$H_USERNAME" ]]; do
-        gum style --foreground 196 "Username cannot be empty."
-        H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
-    done
-    log_info "Username set to $H_USERNAME"
-}
-
 config_setup() {
-    spinner "Copying theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
     spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
     spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
     spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
@@ -196,9 +230,17 @@ config_setup() {
     log_success "Configuration setup complete"
 }
 
+get_username() {
+    H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+    while [[ -z "$H_USERNAME" ]]; do
+        gum style --foreground 196 "Username cannot be empty. Please enter a valid username."
+        H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+    done
+    log_info "Username set to $H_USERNAME"
+}
+
 enable_coolercontrol() {
     sudo systemctl enable --now coolercontrold
-    log_success "CoolerControl enabled"
 }
 
 setup_hyprnosis_alias() {
@@ -206,6 +248,7 @@ setup_hyprnosis_alias() {
     FUNCTION_NAME="hyprnosis"
     SCRIPT_PATH="$HOME/.config/hyprnosis/modules/hyprnosis_tui.sh"
     FUNCTION_DEF=$(cat <<EOF
+# hyprnosis CLI
 $FUNCTION_NAME() {
     bash "$SCRIPT_PATH"
 }
@@ -213,38 +256,42 @@ EOF
 )
     if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
         echo "$FUNCTION_DEF" >> "$SHELL_RC"
-        log_success "Alias '$FUNCTION_NAME' added"
+        log_success "Alias function '$FUNCTION_NAME' added to $SHELL_RC"
     else
-        log_info "Alias '$FUNCTION_NAME' already exists"
+        log_info "Function '$FUNCTION_NAME' already exists in $SHELL_RC"
     fi
 }
 
 enable_elephant_service() {
     elephant service enable
     systemctl --user start elephant.service
-    log_success "Elephant service started"
+    log_success "Enabled and started elephant.service"
 }
 
 enable_walker_service() {
     local svc="walker.service"
     local path="$HOME/.config/systemd/user/$svc"
+
     if [[ ! -f "$path" ]]; then
         cat >"$path" <<EOF
 [Unit]
 Description=Walker GApplication Service
+
 [Service]
 ExecStart=/usr/bin/walker --gapplication-service
 Restart=always
+
 [Install]
 WantedBy=default.target
 EOF
-        log_info "Created walker.service file"
+        log_info "Created $svc at $path"
     fi
+
     systemctl --user daemon-reload
     if systemctl --user enable --now "$svc"; then
-        log_success "Walker service started"
+        log_success "Enabled and started $svc"
     else
-        log_error "Failed to start walker.service"
+        log_error "Failed to enable/start $svc"
     fi
 }
 
@@ -268,4 +315,11 @@ cursor_symlinks() {
         fi
     done
 }
+
+if _has_gum; then
+    gum style \
+        --foreground 99 --border-foreground 120 --border double \
+        --align center --width 50 --margin "1 2" --padding "2 4" \
+        'hyprnosis Menu'
+fi
 
