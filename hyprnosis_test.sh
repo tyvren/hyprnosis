@@ -1,11 +1,10 @@
 #!/bin/bash
 set -e
 
-source ./core/functions_test.sh
+source ./core/functions.sh
 source ./core/packages.sh
 
-clear
-log_header "Hyprnosis"
+log_header
 
 create_log
 
@@ -54,7 +53,6 @@ log_step "Enabling Hyprland autologin"
 hyprland_autologin
 
 log_success "Hyprnosis installation complete!"
-
 log_info "Please reboot for all changes to take effect."
 
 if ask_yes_no "Reboot now?"; then
