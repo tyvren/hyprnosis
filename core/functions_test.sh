@@ -5,8 +5,25 @@ source ./core/packages.sh
 LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
+_GREEN='\033[0;32m'
+_BLUE='\033[0;34m'
+_YELLOW='\033[1;33m'
+_RED='\033[0;31m'
+_CYAN='\033[0;36m'
+_NC='\033[0m'
+
+_ICON_STEP="▸"
+_ICON_INFO="→"
+_ICON_SUCCESS="✓"
+_ICON_ERROR="✗"
+_ICON_ARROW="›"
+
 _has_gum() {
     command -v gum &> /dev/null
+}
+
+is_installed() {
+    pacman -Q "$1" &>/dev/null
 }
 
 ensure_gum() {
@@ -18,53 +35,95 @@ ensure_gum() {
 
 log_header() {
     local text="$1"
-    echo
-    gum style \
-        --foreground 108 \
-        --border double \
-        --border-foreground 108 \
-        --padding "0 2" \
-        --margin "1 0" \
-        --width 50 \
-        --align center \
-        "$text"
-    echo
+    if _has_gum; then
+        echo
+        gum style \
+            --foreground 108 \
+            --border double \
+            --border-foreground 108 \
+            --padding "0 2" \
+            --margin "1 0" \
+            --width 50 \
+            --align center \
+            "$text"
+        echo
+    else
+        echo -e "\n${_GREEN}════════════════════════════════════════${_NC}"
+        echo -e "${_GREEN}  $text${_NC}"
+        echo -e "${_GREEN}════════════════════════════════════════${_NC}\n"
+    fi
 }
 
 log_step() {
     local text="$1"
-    gum style --foreground 108 --bold "▸ $text"
+    if _has_gum; then
+        gum style --foreground 108 --bold "$_ICON_STEP $text"
+    else
+        echo -e "\n${_GREEN}$_ICON_STEP${_NC} $text"
+    fi
 }
 
 log_info() {
     local text="$1"
-    gum style --foreground 246 "→ $text"
+    if _has_gum; then
+        gum style --foreground 246 "  $_ICON_INFO $text"
+    else
+        echo -e "  ${_YELLOW}$_ICON_INFO${_NC} $text"
+    fi
 }
 
 log_success() {
     local text="$1"
-    gum style --foreground 108 "✓ $text"
+    if _has_gum; then
+        gum style --foreground 108 "  $_ICON_SUCCESS $text"
+    else
+        echo -e "  ${_GREEN}$_ICON_SUCCESS${_NC} $text"
+    fi
 }
 
 log_error() {
     local text="$1"
-    gum style --foreground 196 --bold "✗ $text"
+    if _has_gum; then
+        gum style --foreground 196 --bold "  $_ICON_ERROR $text"
+    else
+        echo -e "  ${_RED}$_ICON_ERROR${_NC} $text"
+    fi
 }
 
 log_detail() {
     local text="$1"
-    gum style --foreground 241 "  › $text"
+    if _has_gum; then
+        gum style --foreground 241 "    $_ICON_ARROW $text"
+    else
+        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text"
+    fi
 }
 
 spinner() {
     local title="$1"
     shift
-    gum spin --spinner dot --title "$title" --show-error -- "$@"
+    if _has_gum; then
+        gum spin --spinner dot --title "$title" --show-output -- "$@"
+    else
+        echo -e "${_CYAN}⟳${_NC} $title"
+        "$@"
+    fi
 }
 
 ask_yes_no() {
     local prompt="$1"
-    gum confirm "$prompt" && return 0 || return 1
+    if _has_gum; then
+        gum confirm "$prompt" && return 0 || return 1
+    else
+        while true; do
+            read -rp "$prompt [y/n]: " yn
+            case $yn in
+                [Yy]*) return 0 ;;
+                [Nn]*) return 1 ;;
+                *) echo "Please answer yes or no." ;;
+            esac
+        done
+    fi
 }
 
 create_log() {
@@ -77,7 +136,8 @@ install_yay() {
     rm -rf yay
     spinner "Cloning yay AUR helper" git clone https://aur.archlinux.org/yay.git
     cd yay || return
-    spinner "Building and installing yay" makepkg -si --noconfirm
+    log_info "Building yay; may prompt for sudo password"
+    makepkg -si --noconfirm
     cd ..
     rm -rf yay
     log_success "yay installed"
@@ -109,20 +169,20 @@ enable_user_service() {
 }
 
 enable_service() {
-    local service=$1
-    log_info "Enabling $service..."
-    if systemctl list-unit-files | grep -q "^${service}"; then
-        spinner "Starting $service" sudo systemctl start "$service"
-        spinner "Enabling $service at boot" sudo systemctl enable "$service"
-        log_success "$service enabled"
+    local svc="$1"
+    log_info "Enabling $svc..."
+    if systemctl list-unit-files | grep -q "^${svc}"; then
+        spinner "Starting $svc" sudo systemctl start "$svc"
+        spinner "Enabling $svc at boot" sudo systemctl enable "$svc"
+        log_success "$svc enabled"
     else
-        log_error "Service '$service' not found, skipping."
+        log_error "Service '$svc' not found, skipping."
     fi
 }
 
 hyprland_autologin() {
     local BASH_PROFILE="$HOME/.bash_profile"
-    grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >> "$BASH_PROFILE" << 'EOF'
+    grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >>"$BASH_PROFILE" <<'EOF'
 
 # Start Hyprland via uwsm if available
 if uwsm check may-start; then
@@ -131,7 +191,7 @@ fi
 EOF
 
     sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-    sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null <<EOF
+    sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf >/dev/null <<EOF
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
@@ -144,7 +204,7 @@ EOF
 
 install_gpu_packages() {
     local GPU_CHOICE
-    GPU_CHOICE=$(gum choose "AMD" "NVIDIA" "Skip")
+    GPU_CHOICE=$(_has_gum && gum choose "AMD" "NVIDIA" "Skip" || echo "Skip")
     case "$GPU_CHOICE" in
         AMD)
             log_info "Installing AMD GPU packages..."
@@ -161,7 +221,7 @@ install_gpu_packages() {
 }
 
 config_setup() {
-    spinner "Copying Hyprnosis theme files" cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying theme files" cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
     spinner "Copying config files" cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
     spinner "Cloning wallpapers repo" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
     spinner "Copying wallpapers" cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
@@ -213,7 +273,7 @@ enable_walker_service() {
     local path="$HOME/.config/systemd/user/$svc"
 
     if [[ ! -f "$path" ]]; then
-        cat > "$path" <<EOF
+        cat >"$path" <<EOF
 [Unit]
 Description=Walker GApplication Service
 
@@ -255,4 +315,3 @@ cursor_symlinks() {
         fi
     done
 }
-

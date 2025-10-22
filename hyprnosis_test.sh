@@ -5,7 +5,7 @@ source ./core/functions_test.sh
 source ./core/packages.sh
 
 clear
-log_header "Hyprnosis Primary Installation"
+log_header "Hyprnosis"
 
 create_log
 
