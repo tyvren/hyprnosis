@@ -4,8 +4,8 @@ set -e
 source ./core/functions_test.sh
 source ./core/packages.sh
 
+ensure_gum
 log_header
-
 create_log
 
 log_step "Getting username"
