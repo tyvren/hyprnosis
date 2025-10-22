@@ -42,9 +42,8 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 enable_service "lm_sensors"
-enable_user_service "waybar.service"
-enable_user_service "elephant.service"
-enable_user_service "walker.service"
+enable_elephant_service
+enable_walker_service
 config_setup
 enable_plymouth
 setup_hyprnosis_alias

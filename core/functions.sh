@@ -164,7 +164,6 @@ EOF)
 }
 
 enable_elephant_service() {
-  elephant service enable
   systemctl --user enable elephant.service
   systemctl --user start elephant.service
 }
