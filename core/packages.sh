@@ -12,8 +12,12 @@ app_packages=(
   btop
   obs-studio
   localsend
-  jellyfin-media-player
   gnome-boxes
+)
+
+extras=(
+  jellyfin-media-player 
+  mpvpaper
 )
 
 system_utils=(
@@ -21,7 +25,6 @@ system_utils=(
   viewnior
   cliphist
   mpv
-  mpvpaper
   swww
   ttf-font-awesome
   ttf-jetbrains-mono-nerd

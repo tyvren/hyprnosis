@@ -2,6 +2,13 @@
 
 source ./core/packages.sh
 
+create_log () {
+  LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
+  LOG_PATH="$LOG_DIR/hyprnosis.log"
+  mkdir -p "$LOG_DIR"
+  touch "$LOG_PATH"
+}
+
 install_yay () {
   sudo pacman -S --noconfirm git base-devel --noconfirm
   rm -rf yay
@@ -15,9 +22,9 @@ install_yay () {
 install_packages() {
   local pkgs=("$@")
   for pkg in "${pkgs[@]}"; do
-    echo "Installing package: $pkg"
+    echo "Installing package: $pkg" >> "$LOG_PATH"
     if ! yay -S --noconfirm --needed "$pkg"; then
-      echo "Warning: Failed to install package $pkg. Continuing..."
+      echo "Warning: Failed to install package $pkg. Continuing..." >> "$LOG_PATH"
     fi
   done
 }
@@ -26,35 +33,34 @@ enable_user_service() {
   local svc="$1"
   if systemctl --user list-unit-files | grep -q "^${svc}"; then
     if systemctl --user enable --now "$svc"; then
-      echo "Enabled and started $svc"
+      echo "Enabled and started $svc" >> "$LOG_PATH"
     else
-      echo "Warning: Failed to enable/start $svc"
+      echo "Warning: Failed to enable/start $svc" >> "$LOG_PATH"
     fi
   else
-    echo "Warning: Service $svc not found, skipping enable/start"
+    echo "Warning: Service $svc not found, skipping enable/start" >> "$LOG_PATH"
   fi
 }
 
 enable_service() {
   local service=$1
-  echo "Enabling $service..."
+  echo "Enabling $service..." >> "$LOG_PATH"
 
   if systemctl list-unit-files | grep -q "^${service}"; then
     if sudo systemctl start "$service"; then
-      echo "Started $service"
+      echo "Started $service" >> "$LOG_PATH"
     else
-      echo "Failed to start $service"
+      echo "Failed to start $service" >> "$LOG_PATH"
     fi
 
     if sudo systemctl enable "$service"; then
-      echo "Enabled $service to start at boot"
+      echo "Enabled $service to start at boot" >> "$LOG_PATH"
     else
-      echo "Failed to enable $service"
+      echo "Failed to enable $service" >> "$LOG_PATH"
     fi
   else
-    echo "Service '$service' not found. Skipping."
+    echo "Service '$service' not found. Skipping." >> "$LOG_PATH"
   fi
-  echo
 }
 
 hyprland_autologin() {
@@ -76,7 +82,7 @@ EOF
 
   sudo systemctl daemon-reexec
   sudo systemctl restart getty@tty1
-  echo "Enabled systemd autologin for user: $H_USERNAME"
+  echo "Enabled systemd autologin for user: $H_USERNAME" >> "$LOG_PATH"
 }
 
 install_gpu_packages() {
@@ -90,17 +96,17 @@ while true; do
 
   case "$GPU_CHOICE" in
     1)
-      echo "Installing AMD GPU packages..."
+      echo "Installing AMD GPU packages..." >> "$LOG_PATH"
       install_packages "${amd_packages[@]}"
       break
       ;;
     2)
-      echo "Installing NVIDIA GPU packages..."
+      echo "Installing NVIDIA GPU packages..." >> "$LOG_PATH"
       install_packages "${nvidia_packages[@]}"
       break
       ;;
     3)
-      echo "Skipping GPU package installation."
+      echo "Skipping GPU package installation." >> "$LOG_PATH"
       break
       ;;
     *)
@@ -150,9 +156,9 @@ $FUNCTION_NAME() {
 EOF)
   if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
     echo "$FUNCTION_DEF" >> "$SHELL_RC"
-    echo "Alias function '$FUNCTION_NAME' added to $SHELL_RC"
+    echo "Alias function '$FUNCTION_NAME' added to $SHELL_RC" >> "$LOG_PATH"
   else
-    echo "Function '$FUNCTION_NAME' already exists in $SHELL_RC"
+    echo "Function '$FUNCTION_NAME' already exists in $SHELL_RC" >> "$LOG_PATH"
   fi
 }
 
@@ -178,15 +184,15 @@ Restart=always
 [Install]
 WantedBy=default.target
 EOF
-        echo "[enable_walker_service] Created $svc at $path"
+        echo "[enable_walker_service] Created $svc at $path" >> "$LOG_PATH"
     fi
 
     systemctl --user daemon-reload
 
     if systemctl --user enable --now "$svc"; then
-        echo "[enable_walker_service] Enabled and started $svc"
+        echo "[enable_walker_service] Enabled and started $svc" >> "$LOG_PATH"
     else
-        echo "[enable_walker_service] Failed to enable/start $svc"
+        echo "[enable_walker_service] Failed to enable/start $svc" >> "$LOG_PATH"
     fi
 }
 

@@ -1,6 +1,6 @@
 name = "learn"
 name_pretty = "Learn"
-icon = "bookmark"
+icon = "  "
 action = "xdg-open %VALUE%"
 
 [[entries]]

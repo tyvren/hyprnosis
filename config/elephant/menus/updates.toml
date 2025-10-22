@@ -1,12 +1,17 @@
-name = "updates"
-name_pretty = "Updates"
+name = "power"
+name_pretty = "Power"
 
 [[entries]]
-text = "Update System Packages"
-icon = "system-software-update"
-actions = { updatesystem = "ghostty -e yay -Syu --noconfirm" }
+text = "Lock"
+icon = "  "
+actions = { default = "hyprlock" }
 
 [[entries]]
-text = "Update hyprnosis"
-icon = "system-software-update"
-actions = { updatehyprnosis = "ghostty -e ~/.config/hyprnosis/modules/update_hyprnosis.sh" }
+text = "Restart"
+icon = "  "
+actions = { default = "systemctl reboot" }
+
+[[entries]]
+text = "Shutdown"
+icon = "  "
+actions = { default = "systemctl poweroff" }
