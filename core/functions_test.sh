@@ -315,12 +315,3 @@ cursor_symlinks() {
         fi
     done
 }
-
-# Example TUI header using your previous style
-if _has_gum; then
-    gum style \
-        --foreground 99 --border-foreground 120 --border double \
-        --align center --width 50 --margin "1 2" --padding "2 4" \
-        'hyprnosis Menu'
-fi
-
