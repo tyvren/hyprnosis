@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source ./core/functions.sh
+source ./core/functions_test.sh
 source ./core/packages.sh
 
 log_header
