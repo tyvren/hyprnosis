@@ -1,5 +1,6 @@
 name = "hyprnosismenu"
 name_pretty = "hyprnosis menu"
+fixed_order = true
 
 [[entries]]
 text = "Apps"
