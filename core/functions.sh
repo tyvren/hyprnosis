@@ -2,9 +2,10 @@
 
 source ./core/packages.sh
 
-create_log () {
-  LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
-  LOG_PATH="$LOG_DIR/hyprnosis.log"
+LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
+LOG_PATH="$LOG_DIR/hyprnosis.log"
+
+create_log() {
   mkdir -p "$LOG_DIR"
   touch "$LOG_PATH"
 }
