@@ -54,6 +54,8 @@ log_header() {
 }
 
 log_step() {
+    clear
+    log_header "hyprnosis"
     local text="$1"
 
     if _has_gum; then
