@@ -316,6 +316,7 @@ cursor_symlinks() {
     done
 }
 
+# Example TUI header using your previous style
 if _has_gum; then
     gum style \
         --foreground 99 --border-foreground 120 --border double \
