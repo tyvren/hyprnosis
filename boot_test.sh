@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source ./core/functions_test.sh
+bash ./core/functions_test.sh
 
 # Ensure Gum is installed
 ensure_gum
@@ -17,4 +17,4 @@ spinner "Cloning hyprnosis repo..." git clone https://github.com/tyvren/hyprnosi
 
 log_step "Starting Hyprnosis installation"
 cd "$INSTALL_DIR" || exit
-spinner "Running primary installer..." bash ./hyprnosis.sh
+spinner "Running primary installer..." source ./hyprnosis.sh
