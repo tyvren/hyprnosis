@@ -5,11 +5,9 @@ source ./core/packages.sh
 LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
-_GREEN='\033[0;32m'
 _BLUE='\033[0;34m'
-_YELLOW='\033[1;33m'
-_RED='\033[0;31m'
 _CYAN='\033[0;36m'
+_PURPLE='\033[0;35m'
 _NC='\033[0m'
 
 _ICON_STEP="▸"
@@ -37,9 +35,9 @@ log_header() {
     if _has_gum; then
         echo
         gum style \
-            --foreground 108 \
+            --foreground 55 \
             --border double \
-            --border-foreground 108 \
+            --border-foreground 55 \
             --padding "0 2" \
             --margin "1 0" \
             --width 50 \
@@ -47,9 +45,9 @@ log_header() {
             "$text"
         echo
     else
-        echo -e "\n${_BLUE}════════════════════════════════════════${_NC}"
+        echo -e "\n${_PURPLE}════════════════════════════════════════${_NC}"
         echo -e "${_BLUE}  $text${_NC}"
-        echo -e "${_BLUE}════════════════════════════════════════${_NC}\n"
+        echo -e "${_PURPLE}════════════════════════════════════════${_NC}\n"
     fi
 }
 
@@ -71,7 +69,7 @@ log_info() {
     if _has_gum; then
         gum style --foreground 246 "  $_ICON_INFO $text"
     else
-        echo -e "  ${_YELLOW}$_ICON_INFO${_NC} $text"
+        echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text"
     fi
 }
 
@@ -81,7 +79,7 @@ log_success() {
     if _has_gum; then
         gum style --foreground 108 "  $_ICON_SUCCESS $text"
     else
-        echo -e "  ${_GREEN}$_ICON_SUCCESS${_NC} $text"
+        echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text"
     fi
 }
 
@@ -91,7 +89,7 @@ log_error() {
     if _has_gum; then
         gum style --foreground 196 --bold "  $_ICON_ERROR $text"
     else
-        echo -e "  ${_RED}$_ICON_ERROR${_NC} $text"
+        echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text"
     fi
 }
 
@@ -240,7 +238,7 @@ config_setup() {
 get_username() {
     H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
     while [[ -z "$H_USERNAME" ]]; do
-        gum style --foreground 196 "Username cannot be empty. Please enter a valid username."
+        gum style --foreground 55 "Username cannot be empty. Please enter a valid username."
         H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
     done
     log_info "Username set to $H_USERNAME"
