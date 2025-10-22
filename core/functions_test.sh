@@ -172,11 +172,11 @@ enable_service() {
     local svc="$1"
     log_info "Enabling $svc..."
     if systemctl list-unit-files | grep -q "^${svc}"; then
-        spinner "Starting $svc" sudo systemctl start "$svc"
-        spinner "Enabling $svc at boot" sudo systemctl enable "$svc"
+        spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
+        spinner "Enabling $svc at boot" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
         log_success "$svc enabled"
     else
-        log_error "Service '$svc' not found, skipping."
+        log_info "Service '$svc' not found, skipping."
     fi
 }
 
@@ -296,7 +296,7 @@ EOF
 }
 
 enable_plymouth() {
-    spinner "Installing Plymouth theme" sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
+    spinner "Installing Plymouth theme..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
     sudo plymouth-set-default-theme -R hyprnosis
     for entry in /boot/loader/entries/*.conf; do
         [[ "$entry" == *"-fallback.conf" ]] && continue
@@ -315,3 +315,11 @@ cursor_symlinks() {
         fi
     done
 }
+
+if _has_gum; then
+    gum style \
+        --foreground 99 --border-foreground 120 --border double \
+        --align center --width 50 --margin "1 2" --padding "2 4" \
+        'hyprnosis'
+fi
+
