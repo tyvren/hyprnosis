@@ -165,9 +165,7 @@ EOF)
 
 enable_elephant_service() {
   elephant service enable
-  systemctl --user daemon-reload 
   systemctl --user start elephant.service
-  systemctl --user restart elephant.service
   echo "[enable_elephant_service] Enabled and started elephant.service" >> "$LOG_PATH"
 }
 
@@ -220,4 +218,9 @@ cursor_symlinks() {
           echo "Linked $name"
       fi
   done
+}
+
+services_check() {
+  systemctl --user restart elephant.service
+  systemctl --user restart walker.service
 }
