@@ -165,8 +165,9 @@ EOF)
 
 enable_elephant_service() {
   elephant service enable
-  systemctl --user enable elephant.service
+  systemctl --user daemon-reload 
   systemctl --user start elephant.service
+  echo "[enable_elephant_service] Enabled and started elephant.service" >> "$LOG_PATH"
 }
 
 enable_walker_service() {
