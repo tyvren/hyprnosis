@@ -102,11 +102,12 @@ log_detail() {
 spinner() {
     local title="$1"
     shift
+
     if _has_gum; then
-        gum spin --spinner dot --title "$title" --show-output -- "$@"
+        gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
     else
         echo -e "${_CYAN}⟳${_NC} $title"
-        "$@"
+        "$@" </dev/tty >/dev/null 2>&1
     fi
 }
 
@@ -132,12 +133,11 @@ create_log() {
 }
 
 install_yay() {
-    spinner "Installing git and base-devel" sudo pacman -S --noconfirm git base-devel
+    spinner "Installing git and base-devel..." sudo pacman -S --noconfirm git base-devel
     rm -rf yay
-    spinner "Cloning yay AUR helper" git clone https://aur.archlinux.org/yay.git
+    spinner "Cloning yay AUR helper..." git clone https://aur.archlinux.org/yay.git
     cd yay || return
-    log_info "Building yay; may prompt for sudo password"
-    makepkg -si --noconfirm
+    spinner "Building and installing yay..." makepkg -si --noconfirm
     cd ..
     rm -rf yay
     log_success "yay installed"
@@ -221,10 +221,10 @@ install_gpu_packages() {
 }
 
 config_setup() {
-    spinner "Copying theme files" cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-    spinner "Copying config files" cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-    spinner "Cloning wallpapers repo" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
-    spinner "Copying wallpapers" cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
     rm -rf /tmp/wallpapers
     chmod +x "$HOME/.config/hyprnosis/modules/"*
     log_success "Configuration setup complete"
