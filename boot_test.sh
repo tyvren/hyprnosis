@@ -1,13 +1,14 @@
 #!/bin/bash
 set -e
 
-source ./core/functions_test.sh
-
-# Ensure Gum is installed
-ensure_gum
+# Ensure Gum is installed first
+if ! command -v gum &>/dev/null; then
+    echo "Installing gum..."
+    sudo pacman -Sy --noconfirm gum
+fi
 
 clear
-log_header "Hyprnosis Installer"
+gum style --bold --underline "Hyprnosis Installer"
 
 spinner "Installing git..." sudo pacman -Sy --noconfirm --needed git
 
@@ -17,4 +18,5 @@ spinner "Cloning hyprnosis repo..." git clone https://github.com/tyvren/hyprnosi
 
 log_step "Starting Hyprnosis installation"
 cd "$INSTALL_DIR" || exit
-spinner "Running primary installer..." source ./hyprnosis_test.sh
+chmod +x ./hyprnosis_test.sh
+spinner "Running primary installer..." bash ./hyprnosis_test.sh
