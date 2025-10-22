@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-bash ./core/functions_test.sh
+source ./core/functions_test.sh
 
 # Ensure Gum is installed
 ensure_gum
