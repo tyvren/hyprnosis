@@ -49,4 +49,3 @@ config_setup
 enable_plymouth
 setup_hyprnosis_alias
 hyprland_autologin
-services_check

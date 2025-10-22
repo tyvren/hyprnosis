@@ -220,7 +220,3 @@ cursor_symlinks() {
   done
 }
 
-services_check() {
-  systemctl --user restart elephant.service
-  systemctl --user restart walker.service
-}
