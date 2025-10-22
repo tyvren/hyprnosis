@@ -17,4 +17,4 @@ spinner "Cloning hyprnosis repo..." git clone https://github.com/tyvren/hyprnosi
 
 log_step "Starting Hyprnosis installation"
 cd "$INSTALL_DIR" || exit
-spinner "Running primary installer..." source ./hyprnosis.sh
+spinner "Running primary installer..." source ./hyprnosis_test.sh
