@@ -40,7 +40,7 @@ log_step() {
     clear
     header "hyprnosis"
     local text="$1"
-    gum style --foreground 99 --bold "$_ICON_STEP $text" >> "$LOG_PATH" 
+    gum style --foreground 99 --bold "$_ICON_STEP $text" | tee -a "$LOG_PATH" 
 }
 
 log_info() {
@@ -55,7 +55,7 @@ log_success() {
 
 log_error() {
     local text="$1"
-    gum style --foreground 19 --bold "  $_ICON_ERROR $text" >> "$LOG_PATH" 
+    gum style --foreground 19 --bold "  $_ICON_ERROR $text" | tee -a "$LOG_PATH" 
 }
 
 log_detail() {
