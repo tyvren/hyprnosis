@@ -77,7 +77,7 @@ log_success() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 33 "  $_ICON_SUCCESS $text" 
+        gum style --foreground 37 "  $_ICON_SUCCESS $text" 
     else
         echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text" 
     fi
@@ -87,7 +87,7 @@ log_error() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 90 --bold "  $_ICON_ERROR $text" 
+        gum style --foreground 19 --bold "  $_ICON_ERROR $text" 
     else
         echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text" 
     fi
@@ -97,7 +97,7 @@ log_detail() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 111 "    $_ICON_ARROW $text" 
+        gum style --foreground 244 "    $_ICON_ARROW $text" 
     else
         echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text" 
     fi
