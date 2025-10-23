@@ -7,7 +7,7 @@ source ./core/packages.sh
 ensure_gum
 create_log
 
-log_header "hyprnosis"
+header "hyprnosis"
 
 log_step "Getting username"
 get_username
@@ -23,6 +23,9 @@ install_gpu_packages
 
 log_step "Installing system utilities"
 install_packages "${system_utils[@]}"
+
+log_step "Installing theme icons, cursors and fonts"
+install_packages "${themes_fonts_packages[@]}"
 
 log_step "Installing application packages"
 install_packages "${app_packages[@]}"
@@ -56,8 +59,7 @@ hyprland_autologin
 log_success "Hyprnosis installation complete!"
 log_info "Please reboot for all changes to take effect."
 
-if ask_yes_no "Reboot now?"; then
+if prompt_yes_no "Reboot now?"; then
     clear
     spinner "Rebooting system..." sudo systemctl reboot --no-wall 2>/dev/null || reboot 2>/dev/null
 fi
-

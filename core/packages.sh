@@ -11,13 +11,14 @@ app_packages=(
   occt
   btop
   obs-studio
-  localsend
+  localsend-bin
   gnome-boxes
 )
 
 extras=(
   jellyfin-media-player 
   mpvpaper
+  chromium
 )
 
 system_utils=(
@@ -26,8 +27,6 @@ system_utils=(
   cliphist
   mpv
   swww
-  ttf-font-awesome
-  ttf-jetbrains-mono-nerd
   wireplumber
   pipewire
   pavucontrol
@@ -37,8 +36,6 @@ system_utils=(
   overskride
   network-manager-applet
   thunar
-  catppuccin-cursors-mocha
-  catppuccin-gtk-theme-mocha
   cups
   system-config-printer
   print-manager
@@ -72,6 +69,13 @@ system_utils=(
   plymouth
   nodejs
   npm
+)
+
+themes_fonts_packages=(
+  ttf-font-awesome
+  ttf-jetbrains-mono-nerd
+  catppuccin-cursors-mocha
+  catppuccin-gtk-theme-mocha
 )
 
 hypr_packages=(

@@ -5,20 +5,11 @@ source ./core/packages.sh
 LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
-_BLUE='\033[0;34m'
-_CYAN='\033[0;36m'
-_PURPLE='\033[0;35m'
-_NC='\033[0m'
-
 _ICON_STEP="▸"
 _ICON_INFO="→"
 _ICON_SUCCESS="✓"
 _ICON_ERROR="✗"
 _ICON_ARROW="›"
-
-_has_gum() {
-    command -v gum &> /dev/null
-}
 
 is_installed() {
     pacman -Q "$1" &>/dev/null
@@ -30,107 +21,58 @@ ensure_gum() {
     fi
 }
 
-log_header() {
+header() {
     local text="$1"
-    if _has_gum; then
-        echo
-        gum style \
-            --foreground 55 \
-            --border double \
-            --border-foreground 69 \
-            --padding "0 2" \
-            --margin "1 0" \
-            --width 50 \
-            --align center \
-            "$text"
-        echo
-    else
-        echo -e "\n${_PURPLE}════════════════════════════════════════${_NC}"
-        echo -e "${_BLUE}  $text${_NC}"
-        echo -e "${_PURPLE}════════════════════════════════════════${_NC}\n"
-    fi
+    echo
+    gum style \
+        --foreground 55 \
+        --border double \
+        --border-foreground 69 \
+        --padding "0 2" \
+        --margin "1 0" \
+        --width 50 \
+        --align center \
+        "$text"
+    echo
 }
 
 log_step() {
     clear
-    log_header "hyprnosis"
+    header "hyprnosis"
     local text="$1"
-
-    if _has_gum; then
-        gum style --foreground 99 --bold "$_ICON_STEP $text" >> "$LOG_PATH" 
-    else
-        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text" >> "$LOG_PATH"
-    fi
+    gum style --foreground 99 --bold "$_ICON_STEP $text" >> "$LOG_PATH" 
 }
 
 log_info() {
     local text="$1"
-
-    if _has_gum; then
-        gum style --foreground 69 "  $_ICON_INFO $text"  
-    else
-        echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text" 
-    fi
+    gum style --foreground 69 "  $_ICON_INFO $text"   
 }
 
 log_success() {
     local text="$1"
-
-    if _has_gum; then
-        gum style --foreground 37 "  $_ICON_SUCCESS $text" 
-    else
-        echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text" 
-    fi
+    gum style --foreground 37 "  $_ICON_SUCCESS $text" 
 }
 
 log_error() {
     local text="$1"
-
-    if _has_gum; then
-        gum style --foreground 19 --bold "  $_ICON_ERROR $text" 
-    else
-        echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text" 
-    fi
+    gum style --foreground 19 --bold "  $_ICON_ERROR $text" >> "$LOG_PATH" 
 }
 
 log_detail() {
     local text="$1"
-
-    if _has_gum; then
-        gum style --foreground 244 "    $_ICON_ARROW $text" 
-    else
-        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text" 
-    fi
+    gum style --foreground 244 "   $_ICON_ARROW $text" 
 }
 
 
 spinner() {
     local title="$1"
     shift
-
-    if _has_gum; then
-        gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
-    else
-        echo -e "${_CYAN}⟳${_NC} $title"
-        "$@" </dev/tty >/dev/null 2>&1
-    fi
+    gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
 }
 
-ask_yes_no() {
+prompt_yes_no() {
     local prompt="$1"
-
-    if _has_gum; then
-        gum confirm "$prompt" && return 0 || return 1
-    else
-        while true; do
-            read -rp "$prompt [y/n]: " yn
-            case $yn in
-                [Yy]*) return 0 ;;
-                [Nn]*) return 1 ;;
-                *) echo "Please answer yes or no." ;;
-            esac
-        done
-    fi
+    gum confirm "$prompt" && return 0 || return 1
 }
 
 create_log() {
@@ -204,14 +146,14 @@ ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
 EOF
 
     sudo systemctl daemon-reexec
-    #Testing without this for user reboot instead
+    #Commented out to prevent auto-start of hyprland
     #sudo systemctl restart getty@tty1
     log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
 
 install_gpu_packages() {
     local GPU_CHOICE
-    GPU_CHOICE=$(_has_gum && gum choose "AMD" "NVIDIA" "Skip" || echo "Skip")
+    GPU_CHOICE=$(gum choose "AMD" "NVIDIA" "Skip")
     case "$GPU_CHOICE" in
         AMD)
             log_info "Installing AMD GPU packages..."
@@ -244,10 +186,6 @@ get_username() {
         H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
     done
     log_info "Username set to $H_USERNAME"
-}
-
-enable_coolercontrol() {
-    sudo systemctl enable --now coolercontrold
 }
 
 setup_hyprnosis_alias() {
@@ -310,4 +248,8 @@ enable_plymouth() {
         sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
     done
     log_success "hyprnosis bootloader logo configured"
+}
+
+enable_coolercontrol() {
+    sudo systemctl enable --now coolercontrold
 }
