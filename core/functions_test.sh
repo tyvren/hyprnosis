@@ -57,9 +57,9 @@ log_step() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 108 --bold "$_ICON_STEP $text"
+        gum style --foreground 135 --bold "$_ICON_STEP $text" 
     else
-        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text"
+        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text"  
     fi
 }
 
@@ -67,9 +67,9 @@ log_info() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 246 "  $_ICON_INFO $text"
+        gum style --foreground 147 "  $_ICON_INFO $text"  
     else
-        echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text"
+        echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text" 
     fi
 }
 
@@ -77,9 +77,9 @@ log_success() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 108 "  $_ICON_SUCCESS $text"
+        gum style --foreground 135 "  $_ICON_SUCCESS $text" 
     else
-        echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text"
+        echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text" 
     fi
 }
 
@@ -87,9 +87,9 @@ log_error() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 196 --bold "  $_ICON_ERROR $text"
+        gum style --foreground 196 --bold "  $_ICON_ERROR $text" 
     else
-        echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text"
+        echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text" 
     fi
 }
 
@@ -97,11 +97,12 @@ log_detail() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 241 "    $_ICON_ARROW $text"
+        gum style --foreground 240 "    $_ICON_ARROW $text" 
     else
-        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text"
+        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text" 
     fi
 }
+
 
 spinner() {
     local title="$1"
