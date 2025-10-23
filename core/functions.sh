@@ -5,68 +5,190 @@ source ./core/packages.sh
 LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
-create_log() {
-  mkdir -p "$LOG_DIR"
-  touch "$LOG_PATH"
+_BLUE='\033[0;34m'
+_CYAN='\033[0;36m'
+_PURPLE='\033[0;35m'
+_NC='\033[0m'
+
+_ICON_STEP="▸"
+_ICON_INFO="→"
+_ICON_SUCCESS="✓"
+_ICON_ERROR="✗"
+_ICON_ARROW="›"
+
+_has_gum() {
+    command -v gum &> /dev/null
 }
 
-install_yay () {
-  sudo pacman -S --noconfirm git base-devel --noconfirm
-  rm -rf yay
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepkg -si --noconfirm
-  cd ..
-  rm -rf yay
+is_installed() {
+    pacman -Q "$1" &>/dev/null
+}
+
+ensure_gum() {
+    if ! is_installed "gum"; then 
+        sudo pacman -S --noconfirm gum
+    fi
+}
+
+log_header() {
+    local text="$1"
+    if _has_gum; then
+        echo
+        gum style \
+            --foreground 55 \
+            --border double \
+            --border-foreground 69 \
+            --padding "0 2" \
+            --margin "1 0" \
+            --width 50 \
+            --align center \
+            "$text"
+        echo
+    else
+        echo -e "\n${_PURPLE}════════════════════════════════════════${_NC}"
+        echo -e "${_BLUE}  $text${_NC}"
+        echo -e "${_PURPLE}════════════════════════════════════════${_NC}\n"
+    fi
+}
+
+log_step() {
+    clear
+    log_header "hyprnosis"
+    local text="$1"
+
+    if _has_gum; then
+        gum style --foreground 99 --bold "$_ICON_STEP $text" 
+    else
+        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text"  
+    fi
+}
+
+log_info() {
+    local text="$1"
+
+    if _has_gum; then
+        gum style --foreground 69 "  $_ICON_INFO $text"  
+    else
+        echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text" 
+    fi
+}
+
+log_success() {
+    local text="$1"
+
+    if _has_gum; then
+        gum style --foreground 37 "  $_ICON_SUCCESS $text" 
+    else
+        echo -e "  ${_PURPLE}$_ICON_SUCCESS${_NC} $text" 
+    fi
+}
+
+log_error() {
+    local text="$1"
+
+    if _has_gum; then
+        gum style --foreground 19 --bold "  $_ICON_ERROR $text" 
+    else
+        echo -e "  ${_CYAN}$_ICON_ERROR${_NC} $text" 
+    fi
+}
+
+log_detail() {
+    local text="$1"
+
+    if _has_gum; then
+        gum style --foreground 244 "    $_ICON_ARROW $text" 
+    else
+        echo -e "    ${_CYAN}$_ICON_ARROW${_NC} $text" 
+    fi
+}
+
+
+spinner() {
+    local title="$1"
+    shift
+
+    if _has_gum; then
+        gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
+    else
+        echo -e "${_CYAN}⟳${_NC} $title"
+        "$@" </dev/tty >/dev/null 2>&1
+    fi
+}
+
+ask_yes_no() {
+    local prompt="$1"
+
+    if _has_gum; then
+        gum confirm "$prompt" && return 0 || return 1
+    else
+        while true; do
+            read -rp "$prompt [y/n]: " yn
+            case $yn in
+                [Yy]*) return 0 ;;
+                [Nn]*) return 1 ;;
+                *) echo "Please answer yes or no." ;;
+            esac
+        done
+    fi
+}
+
+create_log() {
+    mkdir -p "$LOG_DIR"
+    touch "$LOG_PATH"
+}
+
+install_yay() {
+    spinner "Installing git and base-devel..." sudo pacman -S --noconfirm git base-devel
+    rm -rf yay
+    spinner "Cloning yay AUR helper..." git clone https://aur.archlinux.org/yay.git
+    cd yay || return
+    spinner "Building and installing yay..." makepkg -si --noconfirm
+    cd ..
+    rm -rf yay
+    log_success "yay installed"
 }
 
 install_packages() {
-  local pkgs=("$@")
-  for pkg in "${pkgs[@]}"; do
-    echo "Installing package: $pkg" >> "$LOG_PATH"
-    if ! yay -S --noconfirm --needed "$pkg"; then
-      echo "Warning: Failed to install package $pkg. Continuing..." >> "$LOG_PATH"
-    fi
-  done
+    local pkgs=("$@")
+    for pkg in "${pkgs[@]}"; do
+        log_info "Installing package: $pkg"
+        if ! spinner "Installing $pkg..." yay -S --noconfirm --needed "$pkg"; then
+            log_error "Failed to install package $pkg, continuing..."
+        else
+            log_success "$pkg installed"
+        fi
+    done
 }
 
 enable_user_service() {
-  local svc="$1"
-  if systemctl --user list-unit-files | grep -q "^${svc}"; then
-    if systemctl --user enable --now "$svc"; then
-      echo "Enabled and started $svc" >> "$LOG_PATH"
+    local svc="$1"
+    if systemctl --user list-unit-files | grep -q "^${svc}"; then
+        if systemctl --user enable --now "$svc"; then
+            log_success "Enabled and started $svc"
+        else
+            log_error "Failed to enable/start $svc"
+        fi
     else
-      echo "Warning: Failed to enable/start $svc" >> "$LOG_PATH"
+        log_error "Service $svc not found, skipping enable/start"
     fi
-  else
-    echo "Warning: Service $svc not found, skipping enable/start" >> "$LOG_PATH"
-  fi
 }
 
 enable_service() {
-  local service=$1
-  echo "Enabling $service..." >> "$LOG_PATH"
-
-  if systemctl list-unit-files | grep -q "^${service}"; then
-    if sudo systemctl start "$service"; then
-      echo "Started $service" >> "$LOG_PATH"
+    local svc="$1"
+    log_info "Enabling $svc..."
+    if systemctl list-unit-files | grep -q "^${svc}"; then
+        spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
+        spinner "Enabling $svc at boot" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
+        log_success "$svc enabled"
     else
-      echo "Failed to start $service" >> "$LOG_PATH"
+        log_info "Service '$svc' not found, skipping."
     fi
-
-    if sudo systemctl enable "$service"; then
-      echo "Enabled $service to start at boot" >> "$LOG_PATH"
-    else
-      echo "Failed to enable $service" >> "$LOG_PATH"
-    fi
-  else
-    echo "Service '$service' not found. Skipping." >> "$LOG_PATH"
-  fi
 }
 
 hyprland_autologin() {
-  local BASH_PROFILE="$HOME/.bash_profile"
-  grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >> "$BASH_PROFILE" << 'EOF'
+    local BASH_PROFILE="$HOME/.bash_profile"
+    grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >>"$BASH_PROFILE" <<'EOF'
 
 # Start Hyprland via uwsm if available
 if uwsm check may-start; then
@@ -74,75 +196,57 @@ if uwsm check may-start; then
 fi
 EOF
 
-  sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-  sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf > /dev/null <<EOF
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo tee /etc/systemd/system/getty@tty1.service.d/override.conf >/dev/null <<EOF
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
 EOF
 
-  sudo systemctl daemon-reexec
-  sudo systemctl restart getty@tty1
-  echo "Enabled systemd autologin for user: $H_USERNAME" >> "$LOG_PATH"
+    sudo systemctl daemon-reexec
+    sudo systemctl restart getty@tty1
+    log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
 
 install_gpu_packages() {
-while true; do
-  echo "Select your GPU type to install necessary packages:"
-  echo "  1) AMD"
-  echo "  2) NVIDIA"
-  echo "  3) Skip"
-  echo -n "Enter 1, 2, or 3: "
-  read -r GPU_CHOICE
-
-  case "$GPU_CHOICE" in
-    1)
-      echo "Installing AMD GPU packages..." >> "$LOG_PATH"
-      install_packages "${amd_packages[@]}"
-      break
-      ;;
-    2)
-      echo "Installing NVIDIA GPU packages..." >> "$LOG_PATH"
-      install_packages "${nvidia_packages[@]}"
-      break
-      ;;
-    3)
-      echo "Skipping GPU package installation." >> "$LOG_PATH"
-      break
-      ;;
-    *)
-      echo "Invalid choice. Please enter 1, 2, or 3."
-      ;;
-  esac
-done
+    local GPU_CHOICE
+    GPU_CHOICE=$(_has_gum && gum choose "AMD" "NVIDIA" "Skip" || echo "Skip")
+    case "$GPU_CHOICE" in
+        AMD)
+            log_info "Installing AMD GPU packages..."
+            install_packages "${amd_packages[@]}"
+            ;;
+        NVIDIA)
+            log_info "Installing NVIDIA GPU packages..."
+            install_packages "${nvidia_packages[@]}"
+            ;;
+        Skip)
+            log_info "Skipping GPU package installation."
+            ;;
+    esac
 }
 
 config_setup() {
-  cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-  cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-  git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers && \
-  cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/" && \
-  rm -rf /tmp/wallpapers
-  chmod +x "$HOME/.config/hyprnosis/modules/"*
+    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    rm -rf /tmp/wallpapers
+    chmod +x "$HOME/.config/hyprnosis/modules/"*
+    log_success "Configuration setup complete"
 }
 
 get_username() {
-  while true; do
-    read -rp "Enter your username (Required for Hyprland login): " username1
-    read -rp "Confirm username: " username2
-    if [[ -z "$username1" ]]; then
-      echo "Username cannot be empty."
-    elif [[ "$username1" != "$username2" ]]; then
-      echo "Usernames did not match. Please try again."
-    else
-      H_USERNAME="$username1"
-      break
-    fi
-  done
+    H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+    while [[ -z "$H_USERNAME" ]]; do
+        gum style --foreground 55 "Username cannot be empty. Please enter a valid username."
+        H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+    done
+    log_info "Username set to $H_USERNAME"
 }
 
 enable_coolercontrol() {
-  sudo systemctl enable --now coolercontrold
+    sudo systemctl enable --now coolercontrold
 }
 
 setup_hyprnosis_alias() {
@@ -154,19 +258,20 @@ setup_hyprnosis_alias() {
 $FUNCTION_NAME() {
     bash "$SCRIPT_PATH"
 }
-EOF)
-  if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
-    echo "$FUNCTION_DEF" >> "$SHELL_RC"
-    echo "Alias function '$FUNCTION_NAME' added to $SHELL_RC" >> "$LOG_PATH"
-  else
-    echo "Function '$FUNCTION_NAME' already exists in $SHELL_RC" >> "$LOG_PATH"
-  fi
+EOF
+)
+    if ! grep -q "$FUNCTION_NAME()" "$SHELL_RC"; then
+        echo "$FUNCTION_DEF" >> "$SHELL_RC"
+        log_success "Alias function '$FUNCTION_NAME' added to $SHELL_RC"
+    else
+        log_info "Function '$FUNCTION_NAME' already exists in $SHELL_RC"
+    fi
 }
 
 enable_elephant_service() {
-  elephant service enable
-  systemctl --user start elephant.service
-  echo "[enable_elephant_service] Enabled and started elephant.service" >> "$LOG_PATH"
+    elephant service enable
+    systemctl --user start elephant.service
+    log_success "Enabled and started elephant.service"
 }
 
 enable_walker_service() {
@@ -174,7 +279,7 @@ enable_walker_service() {
     local path="$HOME/.config/systemd/user/$svc"
 
     if [[ ! -f "$path" ]]; then
-        cat > "$path" <<EOF
+        cat >"$path" <<EOF
 [Unit]
 Description=Walker GApplication Service
 
@@ -185,38 +290,23 @@ Restart=always
 [Install]
 WantedBy=default.target
 EOF
-        echo "[enable_walker_service] Created $svc at $path" >> "$LOG_PATH"
+        log_info "Created $svc at $path"
     fi
 
     systemctl --user daemon-reload
-
     if systemctl --user enable --now "$svc"; then
-        echo "[enable_walker_service] Enabled and started $svc" >> "$LOG_PATH"
+        log_success "Enabled and started $svc"
     else
-        echo "[enable_walker_service] Failed to enable/start $svc" >> "$LOG_PATH"
+        log_error "Failed to enable/start $svc"
     fi
 }
 
 enable_plymouth() {
-  sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
-
-  sudo plymouth-set-default-theme -R hyprnosis
-
-  for entry in /boot/loader/entries/*.conf; do 
-      [[ "$entry" == *"-fallback.conf" ]] && continue
-      sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
-  done
+    spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
+    sudo plymouth-set-default-theme -R hyprnosis
+    for entry in /boot/loader/entries/*.conf; do
+        [[ "$entry" == *"-fallback.conf" ]] && continue
+        sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
+    done
+    log_success "hyprnosis bootloader logo configured"
 }
-
-cursor_symlinks() {
-  mkdir -p ~/.icons
-
-  for theme in /usr/share/icons/catppuccin-mocha-*-cursors; do
-      name=$(basename "$theme")
-      if [[ ! -e "$HOME/.icons/$name" ]]; then
-          ln -s "$theme" "$HOME/.icons/$name"
-          echo "Linked $name"
-      fi
-  done
-}
-
