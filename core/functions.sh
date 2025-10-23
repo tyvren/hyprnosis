@@ -57,9 +57,9 @@ log_step() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 99 --bold "$_ICON_STEP $text" 
+        gum style --foreground 99 --bold "$_ICON_STEP $text" >> "$LOG_PATH" 
     else
-        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text"  
+        echo -e "\n${_BLUE}$_ICON_STEP${_NC} $text" >> "$LOG_PATH"
     fi
 }
 
