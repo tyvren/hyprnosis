@@ -6,16 +6,9 @@ app_packages=(
   discord
   gimp
   occt
-  btop
   obs-studio
   localsend-bin
   gnome-boxes
-)
-
-extras=(
-  jellyfin-media-player 
-  mpvpaper
-  chromium
 )
 
 system_utils=(
@@ -59,6 +52,7 @@ development=(
 terminal_shell=(
   ghostty
   fastfetch
+  btop
   cava
   lsd
   fzf
@@ -112,4 +106,9 @@ nvidia_packages=(
   lib32-nvidia-utils
   vulkan-icd-loader
   lib32-vulkan-icd-loader
+)
+
+extras=(
+  jellyfin-media-player 
+  mpvpaper
 )
