@@ -50,7 +50,7 @@ log_info() {
 
 log_success() {
     local text="$1"
-    gum style --foreground 37 "  $_ICON_SUCCESS $text" 
+    gum style --foreground 37 "  $_ICON_SUCCESS $text" | tee -a "$LOG_PATH 
 }
 
 log_error() {
