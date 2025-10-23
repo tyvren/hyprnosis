@@ -54,7 +54,6 @@ system_utils=(
   waybar
   swaync
   python
-  gum
   dosfstools
   ntfs-3g
   gvfs

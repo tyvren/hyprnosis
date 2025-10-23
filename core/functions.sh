@@ -204,7 +204,8 @@ ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
 EOF
 
     sudo systemctl daemon-reexec
-    sudo systemctl restart getty@tty1
+    #Testing without this for user reboot instead
+    #sudo systemctl restart getty@tty1
     log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
 

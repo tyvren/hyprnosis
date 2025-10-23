@@ -30,7 +30,7 @@ install_packages "${app_packages[@]}"
 log_step "Installing Hyprland packages"
 install_packages "${hypr_packages[@]}"
 
-log_step "Enabling essential services"
+log_step "Enabling system services"
 enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
@@ -44,13 +44,13 @@ enable_walker_service
 log_step "Setting up configuration"
 config_setup
 
-log_step "Enabling Plymouth theme"
+log_step "Setting up hyprnosis bootloader logo"
 enable_plymouth
 
 log_step "Setting up hyprnosis alias"
 setup_hyprnosis_alias
 
-log_step "Enabling Hyprland autologin"
+log_step "Configuring Hyprland login settings"
 hyprland_autologin
 
 log_success "Hyprnosis installation complete!"
