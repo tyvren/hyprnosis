@@ -25,7 +25,7 @@ header() {
     local text="$1"
     echo
     gum style \
-        --foreground 55 \
+        --foreground 37 \
         --border double \
         --border-foreground 69 \
         --padding "0 2" \

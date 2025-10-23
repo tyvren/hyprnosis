@@ -3,9 +3,9 @@
 clear
 
 gum style \
-	--foreground 99 --border-foreground 120 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'hyprnosis Menu'
+	--foreground 37 --border-foreground 69 --border double \
+	--align center --width 50 --margin "1 0" --padding "0 2" \
+	'hyprnosis menu'
 
 main_choice=$(gum choose "Updates" "Packages" "Configure" "Exit")
 
