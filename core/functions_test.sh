@@ -67,7 +67,7 @@ log_info() {
     local text="$1"
 
     if _has_gum; then
-        gum style --foreground 147 "  $_ICON_INFO $text"  
+        gum style --foreground 39 "  $_ICON_INFO $text"  
     else
         echo -e "  ${_CYAN}$_ICON_INFO${_NC} $text" 
     fi
