@@ -24,6 +24,15 @@ install_gpu_packages
 log_step "Installing system utilities"
 install_packages "${system_utils[@]}"
 
+log_step "Installing desktop environment packages"
+install_packages "${desktop_environment[@]}"
+
+log_step "Installing development tools"
+install_packages "${development[@]}"
+
+log_step "Installing terminal emulator and shell tools"
+install_packages "${terminal_shell[@]}"
+
 log_step "Installing theme icons, cursors and fonts"
 install_packages "${themes_fonts_packages[@]}"
 

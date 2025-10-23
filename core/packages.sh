@@ -1,12 +1,9 @@
 #!/bin/bash
 
 app_packages=(
-  firefox
-  ghostty
-  neovim
+  zen-browser-bin
   steam
   discord
-  cava
   gimp
   occt
   btop
@@ -22,7 +19,6 @@ extras=(
 )
 
 system_utils=(
-  wget
   viewnior
   cliphist
   mpv
@@ -44,16 +40,35 @@ system_utils=(
   7zip
   wine
   ark
-  fastfetch
-  lsd
   v4l-utils
-  uwsm
-  waybar
-  swaync
-  python
   dosfstools
   ntfs-3g
   gvfs
+  openrgb
+  brightnessctl
+  plymouth
+)
+
+development=(
+  neovim  
+  python
+  nodejs
+  npm
+)
+
+terminal_shell=(
+  ghostty
+  fastfetch
+  cava
+  lsd
+  fzf
+  wget
+)
+
+desktop_environment=(
+  uwsm
+  swaync
+  waybar
   elephant
   elephant-desktopapplications
   elephant-calc
@@ -62,13 +77,7 @@ system_utils=(
   elephant-files
   elephant-clipboard
   elephant-menus
-  walker 
-  fzf
-  openrgb
-  brightnessctl
-  plymouth
-  nodejs
-  npm
+  walker
 )
 
 themes_fonts_packages=(
