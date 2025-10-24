@@ -61,7 +61,7 @@ log_error() {
 spinner() {
     local title="$1"
     shift
-    gum spin --spinner points --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
+    gum spin --spinner points --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1 || true
 }
 
 prompt_yes_no() {
