@@ -44,7 +44,7 @@ log_step() {
 
 log_info() {
     local text="$1"
-    gum style --foreground 69 "  $_ICON_INFO $text"   
+    gum style --foreground 69 "  $_ICON_INFO $text" | tee -a "$LOG_PATH"   
 }
 
 log_success() {
@@ -56,12 +56,6 @@ log_error() {
     local text="$1"
     gum style --foreground 19 --bold "  $_ICON_ERROR $text" | tee -a "$LOG_PATH" 
 }
-
-log_detail() {
-    local text="$1"
-    gum style --foreground 244 "   $_ICON_ARROW $text" 
-}
-
 
 spinner() {
     local title="$1"
@@ -80,11 +74,14 @@ create_log() {
 }
 
 install_yay() {
-    spinner "Installing git and base-devel..." sudo pacman -S --noconfirm git base-devel
+    log_info "Installing git and base-devel..." 
+    sudo pacman -S --noconfirm git base-devel
     rm -rf yay
-    spinner "Cloning yay AUR helper..." git clone https://aur.archlinux.org/yay.git
+    log_info "Cloning yay AUR helper..." 
+    git clone https://aur.archlinux.org/yay.git
     cd yay || return
-    spinner "Building and installing yay..." makepkg -si --noconfirm
+    log_info "Building and installing yay..." 
+    makepkg -si --noconfirm
     cd ..
     rm -rf yay
     log_success "yay installed"
@@ -94,7 +91,7 @@ install_packages() {
     local pkgs=("$@")
     for pkg in "${pkgs[@]}"; do
         log_info "Installing package: $pkg"
-        if ! spinner "Installing $pkg..." yay -S --noconfirm --needed "$pkg"; then
+        if ! yay -S --noconfirm --needed "$pkg" >/dev/null 2>&1; then
             log_error "Failed to install package $pkg, continuing..."
         else
             log_success "$pkg installed"
@@ -119,9 +116,11 @@ enable_service() {
     local svc="$1"
     log_info "Enabling $svc..."
     if systemctl list-unit-files | grep -q "^${svc}"; then
-        spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
-        spinner "Enabling $svc at boot" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
-        log_success "$svc enabled"
+        if sudo systemctl start "$svc" && sudo systemctl enable "$svc"; then
+            log_success "$svc enabled and started"
+        else
+            log_error "Failed to enable/start $svc"
+        fi
     else
         log_info "Service '$svc' not found, skipping."
     fi
@@ -169,10 +168,14 @@ install_gpu_packages() {
 }
 
 config_setup() {
-    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
-    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    log_info "Copying Hyprnosis theme files..." 
+    cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    log_info "Copying config files..." 
+    cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+    log_info "Cloning wallpapers repo..." 
+    git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    log_info "Copying wallpapers..." 
+    cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
     rm -rf /tmp/wallpapers
     chmod +x "$HOME/.config/hyprnosis/modules/"*
     log_success "Configuration setup complete"
@@ -240,7 +243,8 @@ EOF
 }
 
 enable_plymouth() {
-    spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
+    log_info "Installing bootloader logo..." 
+    sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
     sudo plymouth-set-default-theme -R hyprnosis
     for entry in /boot/loader/entries/*.conf; do
         [[ "$entry" == *"-fallback.conf" ]] && continue
