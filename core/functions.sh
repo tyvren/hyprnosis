@@ -45,7 +45,7 @@ log_step() {
 
 log_info() {
     local text="$1"
-    gum style --foreground 69 "  $_ICON_INFO $text" | tee -a "$LOG_PATH" 
+    gum style --foreground 69 "  $_ICON_INFO $text"   
 }
 
 log_success() {
@@ -58,10 +58,16 @@ log_error() {
     gum style --foreground 19 --bold "  $_ICON_ERROR $text" | tee -a "$LOG_PATH" 
 }
 
+log_detail() {
+    local text="$1"
+    gum style --foreground 244 "   $_ICON_ARROW $text" 
+}
+
+
 spinner() {
     local title="$1"
     shift
-    gum spin --spinner points --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1 || true
+    gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
 }
 
 prompt_yes_no() {
@@ -147,7 +153,6 @@ EOF
 
 install_gpu_packages() {
     local GPU_CHOICE
-    gum style --foreground 37 "Install GPU packages?"
     GPU_CHOICE=$(gum choose "AMD" "NVIDIA" "Skip")
     case "$GPU_CHOICE" in
         AMD)
@@ -165,14 +170,10 @@ install_gpu_packages() {
 }
 
 config_setup() {
-    log_step "Copying Hyprnosis theme files..."
-    cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-    log_step "Copying config files..." 
-    cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-    log_step "Cloning wallpapers repo.." 
-    git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
-    log_step "Copying wallpapers.." 
-    cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
     rm -rf /tmp/wallpapers
     chmod +x "$HOME/.config/hyprnosis/modules/"*
     log_success "Configuration setup complete"
@@ -240,10 +241,8 @@ EOF
 }
 
 enable_plymouth() {
-    sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
-
+    spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
     sudo plymouth-set-default-theme -R hyprnosis
-
     for entry in /boot/loader/entries/*.conf; do
         [[ "$entry" == *"-fallback.conf" ]] && continue
         sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"

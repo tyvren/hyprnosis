@@ -15,23 +15,32 @@ get_username
 log_step "Updating system packages"
 spinner "Updating system..." sudo pacman -Syu --noconfirm
 
-spinner "Installing yay AUR helper" install_yay
+log_step "Installing yay AUR helper"
+install_yay
 
-spinner "Installing GPU packages" install_gpu_packages
+log_step "Installing GPU packages"
+install_gpu_packages
 
-spinner "Installing system utilities" install_packages "${system_utils[@]}"
+log_step "Installing system utilities"
+install_packages "${system_utils[@]}"
 
-spinner "Installing desktop environment packages" install_packages "${desktop_environment[@]}"
+log_step "Installing desktop environment packages"
+install_packages "${desktop_environment[@]}"
 
-spinner "Installing development tools" install_packages "${development[@]}"
+log_step "Installing development tools"
+install_packages "${development[@]}"
 
-spinner "Installing terminal emulator and shell tools" install_packages "${terminal_shell[@]}"
+log_step "Installing terminal emulator and shell tools"
+install_packages "${terminal_shell[@]}"
 
-spinner "Installing theme icons, cursors and fonts" install_packages "${themes_fonts_packages[@]}"
+log_step "Installing theme icons, cursors and fonts"
+install_packages "${themes_fonts_packages[@]}"
 
-spinner "Installing application packages" install_packages "${app_packages[@]}"
+log_step "Installing application packages"
+install_packages "${app_packages[@]}"
 
-spinner "Installing Hyprland packages" install_packages "${hypr_packages[@]}"
+log_step "Installing Hyprland packages"
+install_packages "${hypr_packages[@]}"
 
 log_step "Enabling system services"
 enable_service "networkmanager"
@@ -44,13 +53,17 @@ enable_user_service "waybar.service"
 enable_elephant_service
 enable_walker_service
 
-spinner "Setting up configuration" config_setup
-#Change other steps to use spinner while running - no need to show each individual output
-spinner "Setting up hyprnosis bootloader logo" enable_plymouth
+log_step "Setting up configuration"
+config_setup
 
-spinner "Setting up hyprnosis alias" setup_hyprnosis_alias
+log_step "Setting up hyprnosis bootloader logo"
+enable_plymouth
 
-spinner "Configuring Hyprland login settings" hyprland_autologin
+log_step "Setting up hyprnosis alias"
+setup_hyprnosis_alias
+
+log_step "Configuring Hyprland login settings"
+hyprland_autologin
 
 log_success "Hyprnosis installation complete!"
 log_info "Please reboot for all changes to take effect."
