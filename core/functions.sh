@@ -6,7 +6,7 @@ LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
 LOG_PATH="$LOG_DIR/hyprnosis.log"
 
 _ICON_STEP="▸"
-_ICON_INFO="›"
+_ICON_INFO="→"
 _ICON_SUCCESS="✓"
 _ICON_ERROR="✗"
 
@@ -37,22 +37,14 @@ header() {
 
 log_step() {
     clear
-
     header "hyprnosis"
-    local title="$1"
-    shift
-
-    gum spin --spinner dot \
-    --title "$title" \
-    --show-output \
-    -- "$@"
-
-    echo
+    local text="$1"
+    gum style --foreground 99 --bold "$_ICON_STEP $text" | tee -a "$LOG_PATH" 
 }
 
 log_info() {
     local text="$1"
-    gum style --foreground 69 "  $_ICON_INFO $text" | tee -a "$LOG_PATH"  
+    gum style --foreground 69 "  $_ICON_INFO $text"   
 }
 
 log_success() {
@@ -63,6 +55,18 @@ log_success() {
 log_error() {
     local text="$1"
     gum style --foreground 19 --bold "  $_ICON_ERROR $text" | tee -a "$LOG_PATH" 
+}
+
+log_detail() {
+    local text="$1"
+    gum style --foreground 244 "   $_ICON_ARROW $text" 
+}
+
+
+spinner() {
+    local title="$1"
+    shift
+    gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
 }
 
 prompt_yes_no() {
@@ -76,14 +80,11 @@ create_log() {
 }
 
 install_yay() {
-    log_info "Installing git and base-devel..."
-    sudo pacman -S --noconfirm git base-devel
+    spinner "Installing git and base-devel..." sudo pacman -S --noconfirm git base-devel
     rm -rf yay
-    log_info "Cloning yay AUR helper..." 
-    git clone https://aur.archlinux.org/yay.git
+    spinner "Cloning yay AUR helper..." git clone https://aur.archlinux.org/yay.git
     cd yay || return
-    log_info "Building and installing yay..." 
-    makepkg -si --noconfirm
+    spinner "Building and installing yay..." makepkg -si --noconfirm
     cd ..
     rm -rf yay
     log_success "yay installed"
@@ -93,7 +94,7 @@ install_packages() {
     local pkgs=("$@")
     for pkg in "${pkgs[@]}"; do
         log_info "Installing package: $pkg"
-        if ! yay -S --noconfirm --needed "$pkg" >/dev/null 2>&1; then
+        if ! spinner "Installing $pkg..." yay -S --noconfirm --needed "$pkg"; then
             log_error "Failed to install package $pkg, continuing..."
         else
             log_success "$pkg installed"
@@ -101,17 +102,16 @@ install_packages() {
     done
 }
 
-enable_service() {
+enable_user_service() {
     local svc="$1"
-    log_info "Enabling $svc..."
-    if systemctl list-unit-files | grep -q "^${svc}"; then
-        if sudo systemctl start "$svc" && sudo systemctl enable "$svc"; then
-            log_success "$svc enabled and started"
+    if systemctl --user list-unit-files | grep -q "^${svc}"; then
+        if systemctl --user enable --now "$svc"; then
+            log_success "Enabled and started $svc"
         else
             log_error "Failed to enable/start $svc"
         fi
     else
-        log_info "Service '$svc' not found, skipping."
+        log_error "Service $svc not found, skipping enable/start"
     fi
 }
 
@@ -169,13 +169,10 @@ install_gpu_packages() {
 }
 
 config_setup() {
-    log_info "Copying Hyprnosis theme files..." 
-    cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-    log_info "Copying config files..." 
-    cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-    log_info "Cloning wallpapers repo..." 
-    git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
-    log_info "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
     rm -rf /tmp/wallpapers
     chmod +x "$HOME/.config/hyprnosis/modules/"*
     log_success "Configuration setup complete"
@@ -212,7 +209,7 @@ EOF
 enable_elephant_service() {
     elephant service enable
     systemctl --user start elephant.service
-    log_info "Enabled and started elephant service"
+    log_success "Enabled and started elephant.service"
 }
 
 enable_walker_service() {
@@ -243,8 +240,7 @@ EOF
 }
 
 enable_plymouth() {
-    log_info "Installing bootloader logo..." 
-    sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
+    spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
     sudo plymouth-set-default-theme -R hyprnosis
     for entry in /boot/loader/entries/*.conf; do
         [[ "$entry" == *"-fallback.conf" ]] && continue
