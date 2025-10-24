@@ -9,8 +9,7 @@ create_log
 
 header "hyprnosis"
 
-log_step "Getting username"
-get_username
+log_step "Getting username" get_username
 
 log_step "Updating system packages" sudo pacman -Syu --noconfirm
 
