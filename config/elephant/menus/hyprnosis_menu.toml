@@ -29,10 +29,15 @@ actions = { theme = "~/.config/hyprnosis/modules/theme_changer.sh" }
 
 [[entries]]
 text = "Wallpaper"
-icon = "  "
+icon = " 󰸉 "
 actions = { wallpaper = "~/.config/hyprnosis/modules/wallpaper_changer.sh" }
 
 [[entries]]
+text = "Utilities"
+icon = "  "
+actions = { utilities = "walker --provider menus:utilities" }
+
+[[entries]]
 text = "Learn"
-icon = "  "
+icon = "  "
 actions = { learn = "walker --provider menus:learn" }
