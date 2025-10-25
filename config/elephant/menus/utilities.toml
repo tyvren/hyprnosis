@@ -16,8 +16,3 @@ actions = { walker = "systemctl --user restart walker.service" }
 text = "Restart Elephant"
 icon = " 󰜉 "
 actions = { waybar = "systemctl --user restart elephant.service" }
-
-[[entries]]
-text = "Reset Config - hyprnosis default"
-icon = " 󰜉 "
-actions = { waybar = "~/.config/hyprnosis/modules/config_reset.sh" }

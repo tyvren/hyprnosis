@@ -20,4 +20,14 @@ rm -rf /tmp/wallpapers
 #Update Configs
 rm -r $HOME/.config/walker
 rm -r $HOME/.config/elephant
-cp -r "$CONFIG_DIR"/. "$LOCAL_CONFIG"
+rm -r $HOME/.config/hypr/settings/theme.conf
+cp -r "$CONFIG_DIR/gtk-3.0" "$LOCAL_CONFIG"
+cp -r "$CONFIG_DIR/gtk-4.0" "$LOCAL_CONFIG"
+cp -r "$CONFIG_DIR/nvim" "$LOCAL_CONFIG"
+cp -r "~/.config/hyprnosis/themes/Hyprnosis/hypr" "$LOCAL_CONFIG"
+
+#Restart services
+systemctl --user restart waybar.service
+systemctl --user restart elephant.service
+systemctl --user restart walker.service
+hyprctl reload
