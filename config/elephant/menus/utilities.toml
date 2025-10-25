@@ -6,3 +6,18 @@ fixed_order = true
 text = "Restart Waybar"
 icon = " 󰜉 "
 actions = { waybar = "systemctl --user restart waybar.service" }
+
+[[entries]]
+text = "Restart Walker"
+icon = " 󰜉 "
+actions = { walker = "systemctl --user restart walker.service" }
+
+[[entries]]
+text = "Restart Elephant"
+icon = " 󰜉 "
+actions = { waybar = "systemctl --user restart elephant.service" }
+
+[[entries]]
+text = "Reset Config - hyprnosis default"
+icon = " 󰜉 "
+actions = { waybar = "~/.config/hyprnosis/modules/config_reset.sh" }
