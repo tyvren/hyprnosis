@@ -1,10 +1,9 @@
 #!/bin/bash
 set -e
 
-source ./core/functions.sh
-source ./core/packages.sh
-source ./core/hardware.sh
-source ./core/services.sh
+for file in ./core/*.sh; do
+  source "$file"
+done
 
 ensure_gum
 create_log
