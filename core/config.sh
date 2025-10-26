@@ -3,12 +3,21 @@
 source ./core/functions.sh
 
 config_setup() {
-    spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
-    spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
-    spinner "Cloning wallpapers repo..." git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
-    spinner "Copying wallpapers..." cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+    log_info "Copying Hyprnosis theme files..." 
+    cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
+
+    log_info "Copying config files..." 
+    cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
+
+    log_info "Cloning wallpapers repo..." 
+    git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+    log_info "Copying wallpapers..." 
+    cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
     rm -rf /tmp/wallpapers
+    rm -rf "$HOME/.config/hyprnosis/wallpapers/.git"
+
     chmod +x "$HOME/.config/hyprnosis/modules/"*
+
     log_success "Configuration setup complete"
 }
 
