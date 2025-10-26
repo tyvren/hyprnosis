@@ -3,7 +3,8 @@ set -e
 
 source ./core/functions.sh
 source ./core/packages.sh
-source ./core/configure_hardware.sh
+source ./core/hardware.sh
+source ./core/services.sh
 
 ensure_gum
 create_log

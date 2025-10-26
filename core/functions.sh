@@ -96,31 +96,6 @@ install_packages() {
     done
 }
 
-enable_user_service() {
-    local svc="$1"
-    if systemctl --user list-unit-files | grep -q "^${svc}"; then
-        if systemctl --user enable --now "$svc"; then
-            log_success "Enabled and started $svc"
-        else
-            log_error "Failed to enable/start $svc"
-        fi
-    else
-        log_error "Service $svc not found, skipping enable/start"
-    fi
-}
-
-enable_service() {
-    local svc="$1"
-    log_info "Enabling $svc..."
-    if systemctl list-unit-files | grep -q "^${svc}"; then
-        spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
-        spinner "Enabling $svc at boot" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
-        log_success "$svc enabled"
-    else
-        log_info "Service '$svc' not found, skipping."
-    fi
-}
-
 hyprland_autologin() {
     local BASH_PROFILE="$HOME/.bash_profile"
     grep -q "uwsm check may-start" "$BASH_PROFILE" || cat >>"$BASH_PROFILE" <<'EOF'
@@ -144,24 +119,6 @@ EOF
     log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
 
-install_gpu_packages() {
-    local GPU_CHOICE
-    GPU_CHOICE=$(gum choose "AMD" "NVIDIA" "Skip")
-    case "$GPU_CHOICE" in
-        AMD)
-            log_info "Installing AMD GPU packages..."
-            install_packages "${amd_packages[@]}"
-            ;;
-        NVIDIA)
-            log_info "Installing NVIDIA GPU packages..."
-            install_packages "${nvidia_packages[@]}"
-            ;;
-        Skip)
-            log_info "Skipping GPU package installation."
-            ;;
-    esac
-}
-
 config_setup() {
     spinner "Copying Hyprnosis theme files..." cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"
     spinner "Copying config files..." cp -r "$HOME/.config/hyprnosis/config/"* "$HOME/.config/"
@@ -173,10 +130,10 @@ config_setup() {
 }
 
 get_username() {
-    H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+    H_USERNAME=$(gum input --placeholder "Enter your Arch username to configure Hyprland login")
     while [[ -z "$H_USERNAME" ]]; do
         gum style --foreground 55 "Username cannot be empty. Please enter a valid username."
-        H_USERNAME=$(gum input --placeholder "Enter your username for Hyprland login")
+        H_USERNAME=$(gum input --placeholder "Enter your Arch username to configure Hyprland login")
     done
     log_info "Username set to $H_USERNAME"
 }
@@ -200,49 +157,3 @@ EOF
     fi
 }
 
-enable_elephant_service() {
-    elephant service enable
-    systemctl --user start elephant.service
-    log_success "Enabled and started elephant.service"
-}
-
-enable_walker_service() {
-    local svc="walker.service"
-    local path="$HOME/.config/systemd/user/$svc"
-
-    if [[ ! -f "$path" ]]; then
-        cat >"$path" <<EOF
-[Unit]
-Description=Walker GApplication Service
-
-[Service]
-ExecStart=/usr/bin/walker --gapplication-service
-Restart=always
-
-[Install]
-WantedBy=default.target
-EOF
-        log_info "Created $svc at $path"
-    fi
-
-    systemctl --user daemon-reload
-    if systemctl --user enable --now "$svc"; then
-        log_success "Enabled and started $svc"
-    else
-        log_error "Failed to enable/start $svc"
-    fi
-}
-
-enable_plymouth() {
-    spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
-    sudo plymouth-set-default-theme -R hyprnosis
-    for entry in /boot/loader/entries/*.conf; do
-        [[ "$entry" == *"-fallback.conf" ]] && continue
-        sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
-    done
-    log_success "hyprnosis bootloader logo configured"
-}
-
-enable_coolercontrol() {
-    sudo systemctl enable --now coolercontrold
-}
