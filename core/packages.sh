@@ -27,8 +27,7 @@ system_utils=(
   thunar
   cups
   system-config-printer
-  print-manager
-  rocm-smi-lib
+  print-manager 
   lm_sensors
   7zip
   wine
@@ -37,8 +36,7 @@ system_utils=(
   dosfstools
   ntfs-3g
   gvfs
-  openrgb
-  brightnessctl
+  openrgb 
   plymouth
 )
 
@@ -47,6 +45,7 @@ development=(
   python
   nodejs
   npm
+  gcc
 )
 
 terminal_shell=(
@@ -98,6 +97,7 @@ amd_packages=(
   mesa
   lib32-mesa
   vulkan-radeon
+  rocm-smi-lib
 )
 
 nvidia_packages=(
@@ -106,6 +106,10 @@ nvidia_packages=(
   lib32-nvidia-utils
   vulkan-icd-loader
   lib32-vulkan-icd-loader
+)
+
+laptop_packages=(
+  brightnessctl
 )
 
 extras=(

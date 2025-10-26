@@ -3,6 +3,7 @@ set -e
 
 source ./core/functions.sh
 source ./core/packages.sh
+source ./core/configure_hardware.sh
 
 ensure_gum
 create_log
@@ -18,8 +19,11 @@ spinner "Updating system..." sudo pacman -Syu --noconfirm
 log_step "Installing yay AUR helper"
 install_yay
 
-log_step "Installing GPU packages"
-install_gpu_packages
+log_step "Configuring hardware type (Laptop/Desktop)"
+configure_hardware_type
+
+log_step "Configuring GPU (Nvidia/AMD)"
+configure_gpu
 
 log_step "Installing system utilities"
 install_packages "${system_utils[@]}"
