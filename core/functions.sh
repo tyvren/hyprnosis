@@ -74,14 +74,11 @@ create_log() {
 }
 
 install_yay() {
-    log_info "Installing git and base-devel..." 
-    sudo pacman -S --noconfirm git base-devel
+    spinner "Installing git and base-devel..." sudo pacman -S --noconfirm git base-devel
     rm -rf yay
-    log_info "Cloning yay AUR helper..." 
-    git clone https://aur.archlinux.org/yay.git
+    spinner "Cloning yay AUR helper..." git clone https://aur.archlinux.org/yay.git
     cd yay || return
-    log_info "Building and installing yay..." 
-    makepkg -si --noconfirm
+    spinner "Building and installing yay..." makepkg -si --noconfirm
     cd ..
     rm -rf yay
     log_success "yay installed"
