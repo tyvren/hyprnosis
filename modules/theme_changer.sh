@@ -3,9 +3,9 @@
 THEME_DIR="$HOME/.config/hyprnosis/themes"
 
 menu() {
-    local prompt="$1"
-    local options="$2"
-    echo -e "$options" | walker --dmenu -H -p "$prompt…"
+  local prompt="$1"
+  local options="$2"
+  echo -e "$options" | walker --dmenu -H -p "$prompt…"
 }
 
 mapfile -t THEMES < <(ls -1 "$THEME_DIR")
@@ -17,7 +17,6 @@ THEME_MENU=$(menu "Select a theme" "$theme_list")
 SELECTED_THEME="$THEME_MENU"
 THEME_PATH="$THEME_DIR/$SELECTED_THEME"
 
-cp -r "$THEME_PATH/nvim/lua/plugins/colorscheme.lua" "$HOME/.config/nvim/lua/plugins"
 cp -r "$THEME_PATH/"* "$HOME/.config/"
 
 if [[ -n "$SELECTED_THEME" ]]; then
