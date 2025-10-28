@@ -17,7 +17,6 @@
         <property name="hexpand">true</property>
         <property name="vexpand-set">true</property>
         <property name="spacing">0</property>
-        <property name="height-request">400</property>
         <child>
           <object class="GtkLabel" id="ItemText">
             <style>
