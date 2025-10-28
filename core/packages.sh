@@ -27,7 +27,7 @@ system_utils=(
   thunar
   cups
   system-config-printer
-  print-manager 
+  print-manager
   lm_sensors
   7zip
   wine
@@ -36,12 +36,12 @@ system_utils=(
   dosfstools
   ntfs-3g
   gvfs
-  openrgb 
+  openrgb
   plymouth
 )
 
 development=(
-  neovim  
+  neovim
   python
   nodejs
   npm
@@ -50,6 +50,7 @@ development=(
 
 terminal_shell=(
   ghostty
+  yazi
   fastfetch
   btop
   cava
@@ -113,6 +114,6 @@ laptop_packages=(
 )
 
 extras=(
-  jellyfin-media-player 
+  jellyfin-media-player
   mpvpaper
 )
