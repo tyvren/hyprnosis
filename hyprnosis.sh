@@ -54,6 +54,7 @@ enable_service "lm_sensors"
 
 log_step "Enabling user services"
 enable_user_service "waybar.service"
+enable_user_service "app-com.mitchellh.ghostty.service"
 enable_elephant_service
 enable_walker_service
 
@@ -73,6 +74,6 @@ log_success "Hyprnosis installation complete!"
 log_info "Please reboot for all changes to take effect."
 
 if prompt_yes_no "Reboot now?"; then
-    clear
-    spinner "Rebooting system..." sudo systemctl reboot --no-wall 2>/dev/null || reboot 2>/dev/null
+  clear
+  spinner "Rebooting system..." sudo systemctl reboot --no-wall 2>/dev/null || reboot 2>/dev/null
 fi
