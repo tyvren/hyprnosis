@@ -57,6 +57,7 @@ terminal_shell=(
   lsd
   fzf
   wget
+  man
 )
 
 desktop_environment=(

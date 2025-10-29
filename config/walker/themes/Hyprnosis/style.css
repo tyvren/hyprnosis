@@ -4,7 +4,7 @@
 @define-color gray-blue-dim rgba(127, 174, 204, 0.1);
 @define-color white rgba(250, 250, 250, 0.9);
 @define-color white-dim rgba(250, 250, 250, 0.2);
-@define-color black rgba(0, 0, 2, 0.8);
+@define-color black rgba(0, 0, 2, 0.6);
 
 * {
   font-family: 'JetBrainsMono Nerd Font', monospace;
