@@ -9,15 +9,13 @@
 @define-color mantle   #181825;
 @define-color crust    #11111b;
 
-
 * {
   font-family: 'JetBrainsMono Nerd Font', monospace;
   font-size: 14px;
   font-weight: 500;
   color: @text;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
-  background-color: transparent;
+  background: transparent;
   outline: none;
   margin: 4px;
 }
@@ -25,80 +23,112 @@
 window {
   background-color: @base;
   border: 2px solid @lavender;
-  border-radius: 10px;
 }
 
-#box {
-  background: @base;
-  padding: 36px;
-  border-radius: 10px;
-  border: 2px solid @mantle;
-  box-shadow:
-    0 19px 38px rgba(0, 0, 0, 0.3),
-    0 15px 12px rgba(0, 0, 0, 0.22);
+.normal-icons {
+  -gtk-icon-size: 16px;
 }
 
-#search {
-  background: @base;
-  padding: 8px;
+.large-icons {
+  -gtk-icon-size: 36px;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.box-wrapper {
+}
+
+.preview-box,
+.elephant-hint,
+.placeholder {
+  color: @text;
+}
+
+.box {
+  background: @transparent;
+}
+
+.search-container {
+  border-radius: 10px;
+  background: @transparent;
 }
 
 #prompt {
   margin-left: 4px;
   margin-right: 12px;
   color: @text;
-  opacity: 0.6;
+  opacity: 0.2;
 }
 
 #clear {
-  color: @lavender;
+  color: @text;
   opacity: 0.8;
 }
 
-#password,
-#input,
-#typeahead {
-  border-radius: 8px;
-}
-
+.input,
 #input {
   color: @text;
-  background-color: @base;
+  background-color: @transparent;
   border: 2px solid @lavender;
+  border-radius: 10px;
+  padding: 1px;
+  caret-color: @lavender;
 }
 
-#password {
-}
-
-#spinner {
-  padding: 8px;
-}
-
-#typeahead {
-  color: @text;
-  opacity: 0.8;
-}
-
+.input placeholder,
 #input placeholder {
   opacity: 0.5;
 }
 
+#password,
+#typeahead {
+  border-radius: 8px;
+}
+
+#typeahead {
+  color: @text;
+  opacity: 0.8;
+}
+
+.list,
 #list {
+  color: @text;
 }
 
 child {
-  padding: 8px;
-  border-radius: 2px;
 }
 
 child:selected,
-child:hover {
-  background-color: @base;
+child:hover {  
+  background: @base;
   border: 2px solid @lavender;
-  border-radius: 10px;
 }
 
-#item {
+.item-box {
+}
+
+.item-quick-activation {
+  opacity: 0;
+}
+
+.item-text-box {
+}
+
+.item-subtext,
+#sub {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.providerlist .item-subtext {
+  font-size: unset;
+  opacity: 0.75;
+}
+
+.item-image-text {
+  font-size: 28px;
 }
 
 #icon {
@@ -110,45 +140,62 @@ child:hover {
 }
 
 #label {
-  font-weight: 500;
 }
 
-#sub {
-  opacity: 0.5;
-  font-size: 0.8em;
-}
-
-#activationlabel {
-}
-
-#bar {
-}
-
-.barentry {
-}
-
-.activation #activationlabel {
-}
-
-.activation #text,
-.activation #icon,
-.activation #search {
-  opacity: 0.5;
-}
-
-.aiItem {
+.preview {
+  border: 2px solid @lavender;
   padding: 10px;
-  border-radius: 2px;
-  color: @lavender;
-  background: @base;
+  border-radius: 10px;
+  color: @text;
 }
 
-.aiItem.user {
-  padding-left: 0;
-  padding-right: 0;
+.preview .large-icons {
+  -gtk-icon-size: 64px;
 }
 
-.aiItem.assistant {
+.calc .item-text {
+  font-size: 24px;
+}
+
+.symbols .item-image {
+  font-size: 24px;
+}
+
+.todo.done .item-text-box {
+  opacity: 0.25;
+}
+
+.todo.urgent {
+  font-size: 24px;
+}
+
+.todo.active {
+  font-weight: bold;
+}
+
+.bluetooth.disconnected {
+  opacity: 0.5;
+}
+
+.keybinds-wrapper {
+  border-top: 1px solid @lavender;
+  font-size: 12px;
+  opacity: 0.5;
+  color: @text;
+}
+
+.keybind-bind {
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.error {
+  padding: 10px;
   background: @base;
+  color: @text;
+}
+
+:not(.calc).current {
+  font-style: italic;
 }
 

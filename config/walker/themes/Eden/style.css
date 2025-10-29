@@ -11,30 +11,44 @@
   font-weight: 500;
   color: @moon;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
   background: transparent;
   outline: none;
   margin: 4px;
 }
 
 window {
-  background: @ocean_a;
+  background-color: @ocean_a;
   border: 2px solid @moon_a;
-  border-radius: 10px;
 }
 
-#box {
-  background: @ocean_a;
-  padding: 36px;
-  border-radius: 10px;
-  box-shadow:
-    0 19px 38px rgba(0, 0, 0, 0.3),
-    0 15px 12px rgba(0, 0, 0, 0.22);
+.normal-icons {
+  -gtk-icon-size: 16px;
 }
 
-#search {
-  background: @ocean_a;
-  padding: 8px;
+.large-icons {
+  -gtk-icon-size: 36px;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.box-wrapper {
+}
+
+.preview-box,
+.elephant-hint,
+.placeholder {
+  color: @moon_a;
+}
+
+.box {
+  background: @transparent;
+}
+
+.search-container {
+  border-radius: 10px;
+  background: @transparent;
 }
 
 #prompt {
@@ -49,23 +63,24 @@ window {
   opacity: 0.8;
 }
 
-#password,
-#input,
-#typeahead {
-  border-radius: 8px;
-}
-
+.input,
 #input {
   color: @moon;
-  background: @ocean_a;
-  border: 2px solid @surface_a;
+  background-color: @transparent;
+  border: 2px solid @moon_a;
+  border-radius: 10px;
+  padding: 1px;
+  caret-color: @moon_a;
 }
 
-#password {
+.input placeholder,
+#input placeholder {
+  opacity: 0.5;
 }
 
-#spinner {
-  padding: 8px;
+#password,
+#typeahead {
+  border-radius: 8px;
 }
 
 #typeahead {
@@ -73,26 +88,43 @@ window {
   opacity: 0.8;
 }
 
-#input placeholder {
-  opacity: 0.5;
-}
-
+.list,
 #list {
+  color: @moon;
 }
 
 child {
-  padding: 8px;
-  border-radius: 2px;
 }
 
 child:selected,
-child:hover {
+child:hover {  
   background: @ocean_a;
-  border: 2px solid @surface_a;
-  border-radius: 10px;
+  border: 2px solid @moon_a;
 }
 
-#item {
+.item-box {
+}
+
+.item-quick-activation {
+  opacity: 0;
+}
+
+.item-text-box {
+}
+
+.item-subtext,
+#sub {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.providerlist .item-subtext {
+  font-size: unset;
+  opacity: 0.75;
+}
+
+.item-image-text {
+  font-size: 28px;
 }
 
 #icon {
@@ -100,49 +132,65 @@ child:hover {
 }
 
 #text {
-  color: @moon;
+  color: @moon_a;
 }
 
 #label {
-  font-weight: 500;
 }
 
-#sub {
-  opacity: 0.5;
-  font-size: 0.8em;
-}
-
-#activationlabel {
-}
-
-#bar {
-}
-
-.barentry {
-}
-
-.activation #activationlabel {
-}
-
-.activation #text,
-.activation #icon,
-.activation #search {
-  opacity: 0.5;
-}
-
-.aiItem {
+.preview {
+  border: 2px solid @moon_a;
   padding: 10px;
-  border-radius: 2px;
+  border-radius: 10px;
   color: @moon;
-  background: @ocean_a;
 }
 
-.aiItem.user {
-  padding-left: 0;
-  padding-right: 0;
+.preview .large-icons {
+  -gtk-icon-size: 64px;
 }
 
-.aiItem.assistant {
-  background: @ocean_a;
+.calc .item-text {
+  font-size: 24px;
 }
 
+.symbols .item-image {
+  font-size: 24px;
+}
+
+.todo.done .item-text-box {
+  opacity: 0.25;
+}
+
+.todo.urgent {
+  font-size: 24px;
+}
+
+.todo.active {
+  font-weight: bold;
+}
+
+.bluetooth.disconnected {
+  opacity: 0.5;
+}
+
+.keybinds-wrapper {
+  border-top: 1px solid @moon_a;
+  font-size: 12px;
+  opacity: 0.5;
+  color: @white;
+}
+
+.keybind-bind {
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.error {
+  padding: 10px;
+  background: @moon_a;
+  color: @moon;
+}
+
+:not(.calc).current {
+  font-style: italic;
+}
