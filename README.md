@@ -1,14 +1,16 @@
-**hyprnosis - a hyprland offering - setup script and full configuration for arch linux**
+<img width="761" height="204" alt="hyprnosis" src="https://github.com/user-attachments/assets/25d6c010-0cec-4fae-bc0e-d9253c9fcee5" />
 
+**A hyprland offering - setup script and full configuration for arch linux**
 -----------------------------------------------------------------------
 
 **Features**
 
 - A fully configured hyprland environment
 - AMD or NVidia GPU packages installed automatically during setup
-- Steam, Discord, OCCT and many more preinstalled apps and tools
+- Steam, Discord, OCCT and other useful tools pre-installed
 - NVIM - preconfigured neovim plugins and themes using lazyvim
-- Theme switching script with multiple preinstalled themes, including some inspired by my favorite band
+- Theme switching with multiple preinstalled themes
+- Helpful config scripts in the modules directory with predefined shortcuts
 
 Check out the desktop environment themes in the wiki: https://github.com/tyvren/hyprnosis/wiki/themes
 
