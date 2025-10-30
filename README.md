@@ -4,11 +4,13 @@
 
 **Features**
 
-- A fully configured and easy to use hyprland environment
-- AMD or NVidia GPU packages installed during setup
+- A fully configured hyprland environment
+- AMD or NVidia GPU packages installed automatically during setup
 - Steam, Discord, OCCT and many more preinstalled apps and tools
-- NVIM - preconfigured neovim plugins and themes
+- NVIM - preconfigured neovim plugins and themes using lazyvim
 - Theme switching script with multiple preinstalled themes, including some inspired by my favorite band
+
+Check out the desktop environment themes in the wiki: https://github.com/tyvren/hyprnosis/wiki/themes
 
 **The full list of preinstalled packages can be found under /core/packages.sh**
 
