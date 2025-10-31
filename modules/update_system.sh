@@ -34,10 +34,11 @@ else
   installed_kernel=$(pacman -Q linux | awk '{print $2}')
 
   if [[ "$running_kernel" != "$installed_kernel" ]]; then
-    header
     prompt "Kernel update detected."
+
     if gum confirm "Reboot now to apply the new kernel?"; then
       sudo reboot
+
     fi
   fi
 
