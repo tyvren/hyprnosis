@@ -4,7 +4,7 @@ name_pretty = "Updates"
 [[entries]]
 text = "Update System Packages"
 icon = "  "
-actions = { updatesystem = "ghostty -e yay -Syu --noconfirm" }
+actions = { updatesystem = "ghostty -e ~/.config/hyprnosis/modules/update_system.sh" }
 
 [[entries]]
 text = "Update hyprnosis"
