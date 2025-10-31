@@ -15,8 +15,7 @@ case "$main_choice" in
   case "$update_choice" in
   "Update system")
     clear
-    gum style --foreground 99 --border double --padding "2 4" "System Update"
-    yay -Syu --noconfirm
+    bash ~/.config/hyprnosis/modules/update_system.sh
 
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
