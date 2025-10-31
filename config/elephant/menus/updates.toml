@@ -1,5 +1,6 @@
 name = "updates"
 name_pretty = "Updates"
+fixed_order = true
 
 [[entries]]
 text = "Update System Packages"

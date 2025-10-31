@@ -1,5 +1,6 @@
 name = "power"
 name_pretty = "Power"
+fixed_order = true
 
 [[entries]]
 text = "Lock"

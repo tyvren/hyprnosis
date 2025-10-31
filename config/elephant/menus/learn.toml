@@ -2,14 +2,7 @@ name = "learn"
 name_pretty = "Learn"
 icon = "  "
 action = "xdg-open %VALUE%"
-
-[[entries]]
-text = "Walker"
-value = "https://github.com/abenz1267/walker"
-
-[[entries]]
-text = "Elephant"
-value = "https://github.com/abenz1267/elephant"
+fixed_order = true
 
 [[entries]]
 text = "hyprnosis"
@@ -26,3 +19,11 @@ value = "https://wiki.archlinux.org/title/Main_page"
 [[entries]]
 text = "Neovim"
 value = "https://www.lazyvim.org/keymaps"
+
+[[entries]]
+text = "Walker"
+value = "https://github.com/abenz1267/walker"
+
+[[entries]]
+text = "Elephant"
+value = "https://github.com/abenz1267/elephant"
