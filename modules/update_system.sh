@@ -22,13 +22,14 @@ gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
 if [[ -z "$repo_updates" && -z "$aur_updates" ]]; then
   prompt "No available updates."
-  exit 0
+  gum confirm "Press enter to close"
 else
   sudo -v
-  gum spin --spinner dot --title "Updates found, now installing..." -- yay -Syu --noconfirm --show-output
+  gum spin --spinner dot --title "Updates found, now installing..." -- yay -Syu --noconfirm
 
   prompt "Updates Installed."
   prompt "$repo_updates $aur_updates"
+
   running_kernel=$(uname -r | sed 's/-arch/\.arch/')
   installed_kernel=$(pacman -Q linux | awk '{print $2}')
 
@@ -39,4 +40,6 @@ else
       sudo reboot
     fi
   fi
+
+  gum confirm "Updates Complete. Press enter to close."
 fi
