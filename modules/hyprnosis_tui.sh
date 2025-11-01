@@ -7,6 +7,11 @@ gum style \
   --align center --width 50 --margin "1 0" --padding "0 2" \
   'hyprnosis menu'
 
+prompt() {
+  local text="$1"
+  gum style --foreground 69 "$1"
+}
+
 main_choice=$(gum choose "Updates" "Packages" "Configure" "Exit")
 
 case "$main_choice" in
@@ -58,27 +63,15 @@ case "$main_choice" in
   config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Waybar" "Back ")
   case "$config_choice" in
   "Autostart")
-    CONFIG_PATH="$HOME/.config/hypr/settings/autostart.conf"
-
-    autostart_choice=$(gum choose "Add App" "Remove App" "Back " --header "Manage Autostart Apps")
+    autostart_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
     case "$autostart_choice" in
-    "Add App")
-      app_name=$(gum input --placeholder "Enter app name(e.g. firefox)")
-      if [ -n "$app_name" ]; then
-        new_app="exec-once = uwsm app -- $app_name"
-        sed -i "/#Admin authentication agent/i $new_app" "$CONFIG_PATH"
-        echo "Added: $new_app"
-      fi
+    "Config TUI")
+      bash ~/.config/hyprnosis/modules/manage_autostart_apps.sh
+      gum confirm "Press enter to return to menu." && exec "$0"
       ;;
 
-    "Remove App")
-      apps=$(sed -n '/#Autostart these apps/,/#Admin authentication agent/{/#/!p}' "$config_path")
-
-      selected=$(echo "$apps" | gum choose --header "Select an app to remove from startup")
-      [ -z "$selected" ] && exit 0
-
-      sed -i "\|$selected|d" "$config_path"
-      echo "Removed: $selected"
+    "Manual Config")
+      nvim ~/.config/hypr/settings/autostart.conf
       ;;
 
     "Back ")
