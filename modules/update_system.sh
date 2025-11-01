@@ -37,7 +37,7 @@ else
     prompt "Kernel update detected."
 
     if gum confirm "Reboot now to apply the new kernel?"; then
-      sudo reboot
+      systemctl reboot
 
     fi
   fi
