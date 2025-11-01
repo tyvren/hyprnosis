@@ -30,7 +30,7 @@
      "return-type": "json",
      "max-length": 50,
      "escape": true,
-     "exec": "$HOME/.config/hyprnosis/modules/mediaplayer.py 2> /dev/null"
+     "exec": "$HOME/.config/hyprnosis/modules/waybar/mediaplayer.py 2> /dev/null"
     },
 
   "custom/hyprnosis": {	  
