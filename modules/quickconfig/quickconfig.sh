@@ -5,7 +5,7 @@ clear
 gum style \
   --foreground 37 --border-foreground 69 --border double \
   --align center --width 50 --margin "1 0" --padding "0 2" \
-  'hyprland config utility'
+  'quickconfig - hyprland config utility'
 
 prompt() {
   local text="$1"
@@ -18,7 +18,7 @@ case "$config_choice" in
   autostart_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$autostart_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/manage_autostart_apps.sh
+    bash ~/.config/hyprnosis/modules/quickconfig/autostart_apps.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
 
@@ -72,7 +72,7 @@ case "$config_choice" in
   monitors_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$monitors_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/monitor_setup.sh
+    bash ~/.config/hyprnosis/modules/quickconfig/monitors.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
 
@@ -114,7 +114,7 @@ case "$config_choice" in
   idle_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$idle_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/hypridle_setup.sh
+    bash ~/.config/hyprnosis/modules/quickconfig/hypridle.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
 
@@ -132,7 +132,7 @@ case "$config_choice" in
   waybar_choice=$(gum choose "CPU Temp Autoconfig" "Manual Config" "Back ")
   case "$waybar_choice" in
   "CPU Temp Autoconfig")
-    bash ~/.config/hyprnosis/modules/configure_waybar_cpu_sensor.sh
+    bash ~/.config/hyprnosis/modules/quickconfig/waybar_cpu.sh
     ;;
   "Manual Config")
     nvim ~/.config/waybar/config.jsonc

@@ -64,8 +64,8 @@ config_setup
 log_step "Setting up hyprnosis bootloader logo"
 enable_plymouth
 
-log_step "Setting up hyprnosis alias"
-setup_hyprnosis_alias
+log_step "Setting up quickconfig bash alias"
+setup_quickconfig_alias
 
 log_step "Configuring Hyprland login settings"
 hyprland_autologin
