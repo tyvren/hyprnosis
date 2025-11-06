@@ -64,14 +64,14 @@ listener {
 EOF
 
 if $enable_sleep; then
-  cat >>"$IDLECONFIG" <<-EOF
+  cat >>"$IDLE_CONFIG" <<-EOF
 listener {
   timeout = $sleep_seconds
   on-timeout = systemctl suspend
 }
 EOF
 else
-  cat >>"$IDLECONFIG" <<-'EOF'
+  cat >>"$IDLE_CONFIG" <<-'EOF'
 # listener {
 #   timeout = 1800
 #   on-timeout = systemctl suspend
