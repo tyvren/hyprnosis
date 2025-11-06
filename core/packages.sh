@@ -9,6 +9,7 @@ app_packages=(
   obs-studio
   localsend-bin
   gnome-boxes
+  obsidian
 )
 
 system_utils=(
@@ -27,7 +28,6 @@ system_utils=(
   thunar
   cups
   system-config-printer
-  print-manager
   lm_sensors
   7zip
   wine
