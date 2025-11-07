@@ -23,8 +23,9 @@ system_utils=(
   playerctl
   bluez
   bluez-utils
-  overskride
-  network-manager-applet
+  bluetui
+  iwd
+  impala
   thunar
   cups
   system-config-printer

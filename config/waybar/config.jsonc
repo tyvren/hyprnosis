@@ -30,7 +30,7 @@
      "return-type": "json",
      "max-length": 50,
      "escape": true,
-     "exec": "$HOME/.config/hyprnosis/modules/waybar/mediaplayer.py 2> /dev/null"
+     "exec": "$HOME/.config/hyprnosis/modules/mediaplayer.py 2> /dev/null"
     },
 
   "custom/hyprnosis": {	  
@@ -49,7 +49,7 @@
     "return-type": "json",
     "format": "<span> </span>",
     "tooltip": false,
-    "on-click": "nm-connection-editor"
+    "on-click": "ghostty -e impala"
   },
 
   "hyprland/workspaces": {
@@ -83,7 +83,7 @@
     "tooltip-format-enumerate-connected-battery":
       "{device_alias}: {device_battery_percentage}%",
 
-    "on-click": "uwsm app -- overskride",
+    "on-click": "ghostty -e bluetui",
     "interval": 1,
     "min-length": 1,
     "max-length": 10
@@ -200,7 +200,7 @@
       "default": [
         "  ",
         "  ",
-	"   "
+	      "   "
       ]
     },
     "on-click-right": "pavucontrol",
