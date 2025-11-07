@@ -1,0 +1,18 @@
+name = "packages"
+name_pretty = "Packages"
+fixed_order = true
+
+[[entries]]
+text = "Install Arch Package"
+icon = " 󰣇 "
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_install.sh" }
+
+[[entries]]
+text = "Install AUR Package"
+icon = "  "
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_aur_install.sh" }
+
+[[entries]]
+text = "Uninstall Package"
+icon = " 󱧙 "
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_uninstall.sh" }

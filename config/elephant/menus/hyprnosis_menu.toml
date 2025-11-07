@@ -20,7 +20,7 @@ actions = { update = "walker --provider menus:updates" }
 [[entries]]
 text = "Packages"
 icon = "  "
-actions = { packages = "walker --provider archlinuxpkgs" }
+actions = { packages = "walker --provider menus:packages" }
 
 [[entries]]
 text = "Theme"
