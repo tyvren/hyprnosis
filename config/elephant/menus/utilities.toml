@@ -5,7 +5,7 @@ fixed_order = true
 [[entries]]
 text = "Configure Hyprland"
 icon = "  "
-actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/hyprnosis_tui.sh" }
+actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh" }
 
 [[entries]]
 text = "Restart Waybar"
