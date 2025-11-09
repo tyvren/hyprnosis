@@ -69,7 +69,6 @@ desktop_environment=(
   elephant-desktopapplications
   elephant-calc
   elephant-websearch
-  elephant-archlinuxpkgs
   elephant-files
   elephant-clipboard
   elephant-menus
