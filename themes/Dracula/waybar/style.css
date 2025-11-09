@@ -40,7 +40,7 @@ window {
 }
 
 #workspaces button:hover {
-  border: 1px solid @cyan;
+  border: 1px solid @pink;
   background: @background;
   box-shadow: none;
 }
@@ -185,7 +185,7 @@ window {
 }
 
 tooltip {
-  background: rgba(0, 0, 2, 0.9);
+  background: @background;
   border: 1px solid @purple;
   border-radius: 6px;
 }
@@ -207,13 +207,13 @@ tooltip label {
 }
 
 #taskbar button:hover {
-  background: rgba(127, 174, 204, 0.15);
-  border: 1px solid @purple;
+  background: @background;
+  border: 1px solid @pink;
   box-shadow: none;
  }
 
 #taskbar button.active {
-  background: @background;
+  background: @background-darker;
   border: 1px solid @purple;
   color: @comment;
 }
