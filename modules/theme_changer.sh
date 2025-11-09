@@ -25,6 +25,14 @@ if [[ -n "$SELECTED_THEME" ]]; then
   walker --reload
 fi
 
+if [ "$SELECTED_THEME" = "Dracula" ]; then
+  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
+fi
+
+if [ "$SELECTED_THEME" = "Nord" ]; then
+  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-nord'
+fi
+
 hyprctl reload
 killall hyprpaper waybar walker
 systemctl --user restart hyprpaper.service waybar.service walker.service

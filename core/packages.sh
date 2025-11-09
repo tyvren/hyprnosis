@@ -86,6 +86,9 @@ themes_fonts_packages=(
   ttf-jetbrains-mono-nerd
   catppuccin-cursors-mocha
   catppuccin-gtk-theme-mocha
+  dracula-gtk-theme
+  tela-circle-icon-theme-dracula
+  tela-circle-icon-theme-nord
 )
 
 hypr_packages=(
