@@ -28,6 +28,12 @@ configure_gpu
 log_step "Installing system utilities"
 install_packages "${system_utils[@]}"
 
+log_step "Installing file and disk management utilities"
+install_packages "${files_disk_management[@]}"
+
+log_step "Installing network and bluetooth utilities"
+install_packages "${network_bluetooth[@]}"
+
 log_step "Installing desktop environment packages"
 install_packages "${desktop_environment[@]}"
 
@@ -40,8 +46,8 @@ install_packages "${terminal_shell[@]}"
 log_step "Installing theme icons, cursors and fonts"
 install_packages "${themes_fonts_packages[@]}"
 
-log_step "Installing application packages"
-install_packages "${app_packages[@]}"
+log_step "Installing default application packages"
+install_packages "${default_packages[@]}"
 
 log_step "Installing Hyprland packages"
 install_packages "${hypr_packages[@]}"

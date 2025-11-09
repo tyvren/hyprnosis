@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_packages=(
+default_packages=(
   zen-browser-bin
   steam
   discord
@@ -17,26 +17,15 @@ system_utils=(
   cliphist
   mpv
   swww
+  v4l-utils
   wireplumber
   pipewire
   pavucontrol
   playerctl
-  bluez
-  bluez-utils
-  bluetui
-  iwd
-  impala
-  thunar
   cups
   system-config-printer
   lm_sensors
-  7zip
   wine
-  ark
-  v4l-utils
-  dosfstools
-  ntfs-3g
-  gvfs
   openrgb
   plymouth
 )
@@ -49,9 +38,26 @@ development=(
   gcc
 )
 
+files_disk_management=(
+  yazi
+  thunar
+  7zip
+  ark
+  dosfstools
+  ntfs-3g
+  gvfs
+)
+
+network_bluetooth=(
+  bluez
+  bluez-utils
+  bluetui
+  iwd
+  impala
+)
+
 terminal_shell=(
   ghostty
-  yazi
   fastfetch
   btop
   cava
