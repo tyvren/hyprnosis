@@ -1,0 +1,203 @@
+@define-color background-darker rgba(30, 31, 41, 230);
+@define-color background #282a36;
+@define-color selection #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment #6272a4;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
+
+* {
+  font-family: 'JetBrainsMono Nerd Font', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: @foreground;
+  border-radius: 10px;
+  background: transparent;
+  outline: none;
+  margin: 4px;
+}
+
+window {
+  background-color: @background;
+  border: 2px solid @purple;
+}
+
+.normal-icons {
+  -gtk-icon-size: 16px;
+}
+
+.large-icons {
+  -gtk-icon-size: 36px;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.box-wrapper {
+}
+
+.preview-box,
+.elephant-hint,
+.placeholder {
+  color: @text;
+}
+
+.box {
+  background: @transparent;
+}
+
+.search-container {
+  border-radius: 10px;
+  background: @transparent;
+}
+
+#prompt {
+  margin-left: 4px;
+  margin-right: 12px;
+  color: @foreground;
+  opacity: 0.2;
+}
+
+#clear {
+  color: @foreground;
+  opacity: 0.8;
+}
+
+.input,
+#input {
+  color: @foreground;
+  background-color: @transparent;
+  border: 2px solid @green;
+  border-radius: 10px;
+  padding: 1px;
+  caret-color: @pink;
+}
+
+.input placeholder,
+#input placeholder {
+  opacity: 0.5;
+}
+
+#password,
+#typeahead {
+  border-radius: 8px;
+}
+
+#typeahead {
+  color: @foreground;
+  opacity: 0.8;
+}
+
+.list,
+#list {
+  color: @foreground;
+}
+
+child {
+}
+
+child:selected,
+child:hover {  
+  background: @background;
+  border: 2px solid @purple;
+}
+
+.item-box {
+}
+
+.item-quick-activation {
+  opacity: 0;
+}
+
+.item-text-box {
+}
+
+.item-subtext,
+#sub {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.providerlist .item-subtext {
+  font-size: unset;
+  opacity: 0.75;
+}
+
+.item-image-text {
+  font-size: 28px;
+}
+
+#icon {
+  margin-right: 8px;
+}
+
+#text {
+  color: @text;
+}
+
+#label {
+}
+
+.preview {
+  border: 2px solid @purple;
+  padding: 10px;
+  border-radius: 10px;
+  color: @foreground;
+}
+
+.preview .large-icons {
+  -gtk-icon-size: 64px;
+}
+
+.calc .item-text {
+  font-size: 24px;
+}
+
+.symbols .item-image {
+  font-size: 24px;
+}
+
+.todo.done .item-text-box {
+  opacity: 0.25;
+}
+
+.todo.urgent {
+  font-size: 24px;
+}
+
+.todo.active {
+  font-weight: bold;
+}
+
+.bluetooth.disconnected {
+  opacity: 0.5;
+}
+
+.keybinds-wrapper {
+  border-top: 1px solid @purple;
+  font-size: 12px;
+  opacity: 0.5;
+  color: @foreground;
+}
+
+.keybind-bind {
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.error {
+  padding: 10px;
+  background: @base;
+  color: @foreground;
+}
+
+:not(.calc).current {
+  font-style: italic;
+}
+walker
