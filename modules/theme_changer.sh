@@ -23,14 +23,13 @@ if [[ -n "$SELECTED_THEME" ]]; then
   sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" ~/.config/hyprnosis/modules/randomize_wallpaper.sh
   sed -i "s/^theme = \".*\"/theme = \"$SELECTED_THEME\"/" ~/.config/walker/config.toml
   walker --reload
-fi
-
-if [ "$SELECTED_THEME" = "Dracula" ]; then
-  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
-fi
-
-if [ "$SELECTED_THEME" = "Nord" ]; then
-  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-nord'
+  if [ "$SELECTED_THEME" = "Dracula" ]; then
+    gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
+  elif [ "$SELECTED_THEME" = "Nord" ]; then
+    gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-nord'
+  else
+    gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
+  fi
 fi
 
 hyprctl reload
