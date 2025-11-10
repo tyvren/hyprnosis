@@ -89,6 +89,7 @@ themes_fonts_packages=(
   dracula-gtk-theme
   tela-circle-icon-theme-dracula
   tela-circle-icon-theme-nord
+  tela-circle-icon-theme-black
 )
 
 hypr_packages=(
