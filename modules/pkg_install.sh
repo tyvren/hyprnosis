@@ -2,22 +2,15 @@
 
 set -e
 
-fzf_args=(
-  --multi
-  --preview 'pacman -Sii {1}'
-  --preview-label='alt-p: toggle description, alt-j/k: scroll, tab: multi-select, F11: maximize'
-  --preview-label-pos='bottom'
-  --preview-window 'down:65%:wrap'
-  --bind 'alt-p:toggle-preview'
-  --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
-  --bind 'alt-k:preview-up,alt-j:preview-down'
-  --color 'pointer:green,marker:green'
-)
+pkg_names=$(pacman -Slq)
 
-sudo pacman -Sy
-pkg_names=$(pacman -Slq | fzf "${fzf_args[@]}")
+filter() {
+  gum filter --no-limit --text.foreground="99" --placeholder="Search for an AUR pkg to install" \
+    --match.foreground="69"
+}
 
-if [[ -n "$pkg_names" ]]; then
-  echo "$pkg_names" | tr '\n' ' ' | xargs sudo pacman -Sy --noconfirm
-  sudo updatedb
-fi
+selection=$(echo "$pkg_names\n" | filter)
+
+sudo pacman -S $selection --noconfirm
+
+gum confirm "$selection installed. Select yes to exit."
