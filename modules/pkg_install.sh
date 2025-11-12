@@ -11,6 +11,7 @@ filter() {
 
 selection=$(echo "$pkg_names\n" | filter)
 
-sudo pacman -S $selection --noconfirm
+sudo -v
+gum spin --spinner dot --title "Installing $selection..." -- sudo pacman -S $selection --noconfirm
 
 gum confirm "$selection installed. Select yes to exit."

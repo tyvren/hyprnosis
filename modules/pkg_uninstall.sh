@@ -11,6 +11,7 @@ filter() {
 
 selection=$(echo "$pkg_names\n" | filter)
 
-sudo pacman -Rns $selection --noconfirm
+sudo -v
+gum spin --spinner dot --title "Uninstalling $selection..." -- sudo pacman -Rns $selection --noconfirm
 
 gum confirm "$selection uninstalled. Select yes to exit."
