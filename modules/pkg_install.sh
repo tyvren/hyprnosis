@@ -5,7 +5,7 @@ set -e
 pkg_names=$(pacman -Slq)
 
 filter() {
-  gum filter --no-limit --text.foreground="99" --placeholder="Search for an AUR pkg to install" \
+  gum filter --no-limit --text.foreground="99" --placeholder="Search for an Arch pkg to install" \
     --match.foreground="69"
 }
 
