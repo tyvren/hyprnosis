@@ -46,6 +46,7 @@ files_disk_management=(
   dosfstools
   ntfs-3g
   gvfs
+  gvfs-smb
 )
 
 network_bluetooth=(
