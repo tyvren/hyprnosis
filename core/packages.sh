@@ -20,6 +20,9 @@ system_utils=(
   v4l-utils
   wireplumber
   pipewire
+  pipewire-jack
+  pipewire-alsa
+  pipewire-pulse
   pavucontrol
   playerctl
   cups
