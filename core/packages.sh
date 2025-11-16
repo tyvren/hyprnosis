@@ -18,9 +18,11 @@ system_utils=(
   v4l-utils
   wireplumber
   pipewire
-  pipewire-jack
   pipewire-alsa
   pipewire-pulse
+  pipewire-jack
+  gst-plugin-pipewire
+  libpulse
   pavucontrol
   playerctl
   cups
