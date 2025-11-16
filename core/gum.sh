@@ -1,5 +1,5 @@
 install_gum() {
-  sudo pacman -S gum
+  sudo pacman -S gum --noconfirm
 }
 
 header() {
