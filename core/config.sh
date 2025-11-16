@@ -1,7 +1,3 @@
-#!/bin/bash
-
-source ./core/functions.sh
-
 config_setup() {
   log_info "Copying Hyprnosis theme files..."
   cp -r "$HOME/.config/hyprnosis/themes/Hyprnosis/." "$HOME/.config/"

@@ -1,7 +1,3 @@
-#!/bin/bash
-
-source ./core/functions.sh
-
 enable_user_service() {
   local svc="$1"
   if systemctl --user list-unit-files | grep -q "^${svc}"; then
@@ -68,8 +64,4 @@ enable_plymouth() {
     sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
   done
   log_success "hyprnosis bootloader logo configured"
-}
-
-enable_coolercontrol() {
-  sudo systemctl enable --now coolercontrold
 }

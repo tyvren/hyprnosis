@@ -1,5 +1,3 @@
-#!/bin/bash
-
 default_packages=(
   zen-browser-bin
   steam

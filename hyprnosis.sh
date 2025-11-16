@@ -5,7 +5,7 @@ for file in ./core/*.sh; do
   source "$file"
 done
 
-ensure_gum
+install_gum
 create_log
 
 header "hyprnosis"
@@ -18,6 +18,9 @@ spinner "Updating system..." sudo pacman -Syu --noconfirm
 
 log_step "Installing yay AUR helper"
 install_yay
+
+log_step "Setting up default configuration"
+config_setup
 
 log_step "Configuring hardware type (Laptop/Desktop)"
 configure_hardware_type
@@ -64,9 +67,6 @@ enable_user_service "waybar.service"
 enable_user_service "app-com.mitchellh.ghostty.service"
 enable_elephant_service
 enable_walker_service
-
-log_step "Setting up configuration"
-config_setup
 
 log_step "Setting up hyprnosis bootloader logo"
 enable_plymouth
