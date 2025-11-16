@@ -16,12 +16,8 @@ system_utils=(
   mpv
   swww
   v4l-utils
-  wireplumber
   pipewire
-  pipewire-alsa
-  pipewire-pulse
-  gst-plugin-pipewire
-  libpulse
+  wireplumber
   pavucontrol
   playerctl
   cups
