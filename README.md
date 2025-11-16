@@ -29,8 +29,8 @@ Check out the desktop environment themes in the wiki: https://github.com/tyvren/
 Detailed documentation can be found in the wiki.
 
 **Dependencies** 
-- multilib repository must be added during arch install. Secure boot must be disabled in UEFI for systemd bootloader use.
-- gum - used for the terminal UI installer aesthetic
+- multilib repository, pipewire and network manager must be added during arch install.
+- Secure boot must be disabled in UEFI for systemd bootloader use.
 
 **This script is meant to be used as an automated setup for new arch systems. Clean installs only, as I can not guarantee the functionality when applied to a pre-configured system.**
 
