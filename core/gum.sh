@@ -28,7 +28,7 @@ header() {
 spinner() {
   local title="$1"
   shift
-  gum spin --spinner dot --title "$title" --show-error -- "$@" </dev/tty >/dev/null 2>&1
+  gum spin --spinner dot --title "$title" --show-error -- "$@"
 }
 
 prompt_yes_no() {
