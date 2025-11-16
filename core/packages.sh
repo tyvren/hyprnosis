@@ -20,7 +20,6 @@ system_utils=(
   pipewire
   pipewire-alsa
   pipewire-pulse
-  pipewire-jack
   gst-plugin-pipewire
   libpulse
   pavucontrol
