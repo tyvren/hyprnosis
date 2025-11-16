@@ -7,8 +7,7 @@ done
 
 install_gum
 create_log
-
-header "hyprnosis"
+header
 
 log_step "Getting username"
 get_username
