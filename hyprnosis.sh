@@ -45,6 +45,8 @@ install_packages "${development[@]}"
 log_step "Installing terminal emulator and shell tools"
 install_packages "${terminal_shell[@]}"
 
+spinner "Installing LazyVim" git clone https://github.com/LazyVim/starter ~/.config/nvim
+
 log_step "Installing theme icons, cursors and fonts"
 install_packages "${themes_fonts_packages[@]}"
 
