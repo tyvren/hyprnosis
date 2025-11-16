@@ -48,7 +48,7 @@ install_packages "${terminal_shell[@]}"
 log_step "Installing theme icons, cursors and fonts"
 install_packages "${themes_fonts_packages[@]}"
 
-log_step "Installing default application packages"
+log_step "Installing default applications"
 install_packages "${default_packages[@]}"
 
 log_step "Installing Hyprland packages"
