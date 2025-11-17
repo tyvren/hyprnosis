@@ -45,8 +45,12 @@ case "$config_choice" in
   ;;
 
 "Input")
-  input_choice=$(gum choose "Manual Config" "Back ")
+  input_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$input_choice" in
+  "Config TUI")
+    bash ~/.config/hyprnosis/modules/quickconfig/input.sh
+    gum confirm "Press enter to return to menu." && exec "$0"
+    ;;
   "Manual Config")
     nvim ~/.config/hypr/settings/input.conf
     ;;
