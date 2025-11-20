@@ -1,0 +1,31 @@
+#!/bin/bash
+
+clear
+
+header() {
+  gum style \
+    --foreground 37 --border-foreground 69 --border double \
+    --align center --width 50 --margin "1 0" --padding "0 2" \
+    'AUR Updates'
+}
+
+prompt() {
+  local text="$1"
+  gum style --foreground 69 "$1"
+}
+
+aur_updates=$(yay -Qua 2>/dev/null)
+
+header
+gum spin --spinner dot --title "Checking for updates..." -- sleep 2
+
+if [[ "$aur_updates" ]]; then
+  sudo -v
+  gum spin --spinner dot --title "Updates found, installing AUR updates..." -- yay -Sua --noconfirm
+  prompt "$aur_updates"
+  prompt "AUR updates installed."
+else
+  prompt "No AUR updates available."
+fi
+
+gum confirm "AUR update check complete. Press enter to close."

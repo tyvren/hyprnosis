@@ -15,7 +15,6 @@ prompt() {
 }
 
 repo_updates=$(pacman -Qu 2>/dev/null)
-aur_updates=$(yay -Qua 2>/dev/null)
 
 header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
@@ -27,15 +26,6 @@ if [[ "$repo_updates" ]]; then
   prompt "Arch updates installed."
 else
   prompt "No Arch repo updates available."
-fi
-
-if [[ "$aur_updates" ]]; then
-  sudo -v
-  gum spin --spinner dot --title "Updates found, installing AUR updates..." -- yay -Sua --noconfirm
-  prompt "$aur_updates"
-  prompt "AUR updates installed."
-else
-  prompt "No AUR updates available."
 fi
 
 running_kernel=$(uname -r | sed 's/-arch/\.arch/')
