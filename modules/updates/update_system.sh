@@ -14,7 +14,6 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
-sudo -v
 repo_updates=$(sudo pacman -Qu 2>/dev/null)
 
 header
