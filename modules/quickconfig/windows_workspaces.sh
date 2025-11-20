@@ -10,12 +10,12 @@ CONFIG_PATH="$HOME/.config/hypr/settings/windows-and-workspaces.conf"
 waw_choice=$(gum choose "Single Window Aspect Ratio" "Back ")
 case "$waw_choice" in
 "Single Window Aspect Ratio")
-  ratio_choice=$(gum choose "Fullscreen" "Windowed")
+  ratio_choice=$(gum choose "Fullscreen" "Centered")
   case "$ratio_choice" in
   "Fullscreen")
     sed -i 's/single_window_aspect_ratio = .*/single_window_aspect_ratio = 16 9/' "$CONFIG_PATH"
     ;;
-  "Windowed")
+  "Centered")
     sed -i 's/single_window_aspect_ratio = .*/single_window_aspect_ratio = 6 5/' "$CONFIG_PATH"
     ;;
   esac
