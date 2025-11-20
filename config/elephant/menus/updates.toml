@@ -10,7 +10,7 @@ actions = { updatesystem = "ghostty -e ~/.config/hyprnosis/modules/updates/updat
 [[entries]]
 text = "Update AUR Packages"
 icon = "  "
-actions = { updatesystem = "ghostty -e ~/.config/hyprnosis/modules/updates/update_aur.sh" }
+actions = { updateaur = "ghostty -e ~/.config/hyprnosis/modules/updates/update_aur.sh" }
 
 [[entries]]
 text = "Update hyprnosis"
