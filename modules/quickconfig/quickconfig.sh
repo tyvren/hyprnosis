@@ -21,11 +21,9 @@ case "$config_choice" in
     bash ~/.config/hyprnosis/modules/quickconfig/autostart_apps.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
-
   "Manual Config")
     nvim ~/.config/hypr/settings/autostart.conf
     ;;
-
   "Back ")
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
@@ -79,11 +77,9 @@ case "$config_choice" in
     bash ~/.config/hyprnosis/modules/quickconfig/monitors.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
-
   "Manual Config")
     nvim ~/.config/hypr/settings/monitors.conf
     ;;
-
   "Back ")
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
@@ -91,8 +87,11 @@ case "$config_choice" in
   ;;
 
 "Windows and Workspaces")
-  waw_choice=$(gum choose "Manual Config" "Back ")
+  waw_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$waw_choice" in
+  "Config TUI")
+    bash ~/.config/hyprnosis/modules/quickconfig/windows_workspaces.sh
+    ;;
   "Manual Config")
     nvim ~/.config/hypr/settings/windows-and-workspaces.conf
     ;;
@@ -121,11 +120,9 @@ case "$config_choice" in
     bash ~/.config/hyprnosis/modules/quickconfig/hypridle.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
-
   "Manual Config")
     nvim ~/.config/hypr/hypridle.conf
     ;;
-
   "Back ")
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
