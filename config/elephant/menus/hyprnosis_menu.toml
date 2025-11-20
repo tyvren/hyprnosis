@@ -23,14 +23,9 @@ icon = "  "
 actions = { packages = "walker --provider menus:packages" }
 
 [[entries]]
-text = "Theme"
+text = "Style"
 icon = "  "
-actions = { theme = "~/.config/hyprnosis/modules/theme_changer.sh" }
-
-[[entries]]
-text = "Wallpaper"
-icon = " 󰸉 "
-actions = { wallpaper = "~/.config/hyprnosis/modules/wallpaper_changer.sh" }
+actions = { update = "walker --provider menus:style" }
 
 [[entries]]
 text = "Utilities"

@@ -5,9 +5,9 @@ fixed_order = true
 [[entries]]
 text = "Update System Packages"
 icon = "  "
-actions = { updatesystem = "ghostty -e ~/.config/hyprnosis/modules/update_system.sh" }
+actions = { updatesystem = "ghostty -e ~/.config/hyprnosis/modules/updates/update_system.sh" }
 
 [[entries]]
 text = "Update hyprnosis"
 icon = "  "
-actions = { updatehyprnosis = "ghostty -e ~/.config/hyprnosis/modules/update_hyprnosis.sh" }
+actions = { updatehyprnosis = "ghostty -e ~/.config/hyprnosis/modules/updates/update_hyprnosis.sh" }

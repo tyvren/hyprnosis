@@ -1,0 +1,14 @@
+name = "style"
+name_pretty = "Style"
+fixed_order = true
+
+[[entries]]
+text = "Theme"
+icon = "  "
+actions = { theme = "~/.config/hyprnosis/modules/style/theme_changer.sh" }
+
+[[entries]]
+text = "Wallpaper"
+icon = " 󰸉 "
+actions = { wallpaper = "~/.config/hyprnosis/modules/style/wallpaper_changer.sh" }
+

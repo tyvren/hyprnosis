@@ -5,14 +5,14 @@ fixed_order = true
 [[entries]]
 text = "Install Arch Package"
 icon = " 󰣇 "
-actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_install.sh" }
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh" }
 
 [[entries]]
 text = "Install AUR Package"
 icon = "  "
-actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_aur_install.sh" }
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh" }
 
 [[entries]]
 text = "Uninstall Package"
 icon = " 󱧙 "
-actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/pkg_uninstall.sh" }
+actions = { apps = "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_uninstall.sh" }
