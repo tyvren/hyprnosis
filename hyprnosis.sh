@@ -63,6 +63,7 @@ enable_service "bluetooth.service"
 enable_service "cups"
 enable_service "lm_sensors"
 enable_service "iwd.service"
+enable_service "paccache.timer"
 
 log_step "Enabling user services"
 enable_user_service "waybar.service"

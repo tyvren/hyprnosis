@@ -26,6 +26,7 @@ system_utils=(
   wine
   openrgb
   plymouth
+  pacman-contrib
 )
 
 development=(
