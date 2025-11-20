@@ -20,27 +20,33 @@ aur_updates=$(yay -Qua 2>/dev/null)
 header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
-if [[ -z "$repo_updates" && -z "$aur_updates" ]]; then
-  prompt "No available updates."
-  gum confirm "Press enter to close"
-else
+if [[ "$repo_updates" ]]; then
   sudo -v
-  gum spin --spinner dot --title "Updates found, now installing..." -- yay -Syu --noconfirm
-
-  prompt "Updates Installed."
-  prompt "$repo_updates $aur_updates"
-
-  running_kernel=$(uname -r | sed 's/-arch/\.arch/')
-  installed_kernel=$(pacman -Q linux | awk '{print $2}')
-
-  if [[ "$running_kernel" != "$installed_kernel" ]]; then
-    prompt "Kernel update detected."
-
-    if gum confirm "Reboot now to apply the new kernel?"; then
-      systemctl reboot
-
-    fi
-  fi
-
-  gum confirm "Updates Complete. Press enter to close."
+  gum spin --spinner dot --title "Updates found, installing Arch updates..." -- sudo pacman -Syu --noconfirm
+  prompt "$repo_updates"
+  prompt "Arch updates installed."
+else
+  prompt "No Arch repo updates available."
 fi
+
+if [[ "$aur_updates" ]]; then
+  sudo -v
+  gum spin --spinner dot --title "Updates found, installing AUR updates..." -- yay -Sua --noconfirm
+  prompt "$aur_updates"
+  prompt "AUR updates installed."
+else
+  prompt "No AUR updates available."
+fi
+
+running_kernel=$(uname -r | sed 's/-arch/\.arch/')
+installed_kernel=$(pacman -Q linux | awk '{print $2}')
+
+if [[ "$running_kernel" != "$installed_kernel" ]]; then
+  prompt "Kernel update detected."
+
+  if gum confirm "Reboot now to apply the new kernel?"; then
+    systemctl reboot
+  fi
+fi
+
+gum confirm "Update check complete. Press enter to close."
