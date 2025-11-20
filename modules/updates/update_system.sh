@@ -14,13 +14,13 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
-repo_updates=$(pacman -Qu 2>/dev/null)
+sudo -v
+repo_updates=$(sudo pacman -Qu 2>/dev/null)
 
 header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
 if [[ "$repo_updates" ]]; then
-  sudo -v
   gum spin --spinner dot --title "Updates found, installing Arch updates..." -- sudo pacman -Syu --noconfirm
   prompt "$repo_updates"
   prompt "Arch updates installed."
