@@ -1,6 +1,7 @@
 #!/bin/bash
 
 clear
+
 IDLE_CONFIG="$HOME/.config/hypr/hypridle.conf"
 
 gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 gum style \
   --foreground 37 --border-foreground 69 --border double \
   --align center --width 50 --margin "1 0" --padding "0 2" \

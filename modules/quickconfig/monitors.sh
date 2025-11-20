@@ -1,4 +1,5 @@
-#A simple gum tui for managing a single hyprland monitor config
+#!/bin/bash
+
 clear
 
 config_path="$HOME/.config/hypr/settings/monitors.conf"

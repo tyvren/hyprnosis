@@ -1,5 +1,6 @@
 #!/bin/bash
-set -euo pipefail
+
+clear
 
 WAYBAR_CONF="$HOME/.config/waybar/config.jsonc"
 
@@ -10,7 +11,7 @@ fi
 hwmon_path=""
 for hw in /sys/class/hwmon/hwmon*; do
   if [[ -r "$hw/name" ]]; then
-    name=$(< "$hw/name")
+    name=$(<"$hw/name")
     if [[ "$name" == "k10temp" || "$name" == "coretemp" ]]; then
       hwmon_path="$hw"
       break
@@ -29,6 +30,6 @@ echo "k10temp/coretemp found at: $full_path"
 sed -i.bak -E "s|^([[:space:]]*)//?[[:space:]]*(\"hwmon-path\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")|\1\2${full_path}\3|" "$WAYBAR_CONF"
 
 killall waybar 2>/dev/null || true
-if command -v waybar &> /dev/null; then
-  nohup waybar > /dev/null 2>&1 &
+if command -v waybar &>/dev/null; then
+  nohup waybar >/dev/null 2>&1 &
 fi
