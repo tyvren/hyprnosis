@@ -1,10 +1,21 @@
 get_username() {
-  H_USERNAME=$(gum input --placeholder "Enter your Arch username to configure Hyprland login")
-  while [[ -z "$H_USERNAME" ]]; do
-    gum style --foreground 55 "Username cannot be empty. Please enter a valid username."
+  while true; do
     H_USERNAME=$(gum input --placeholder "Enter your Arch username to configure Hyprland login")
+
+    while [[ -z "$H_USERNAME" ]]; do
+      gum style --foreground 37 "Username cannot be empty. Please enter a valid username."
+      H_USERNAME=$(gum input --placeholder "Enter your Arch username to configure Hyprland login")
+    done
+
+    CONFIRM=$(gum input --placeholder "Re-enter your Arch username to confirm")
+
+    if [[ "$H_USERNAME" == "$CONFIRM" ]]; then
+      log_info "Username set to $H_USERNAME"
+      break
+    else
+      gum style --foreground 37 "Usernames do not match. Please try again."
+    fi
   done
-  log_info "Username set to $H_USERNAME"
 }
 
 hyprland_autologin() {
@@ -25,7 +36,5 @@ ExecStart=-/usr/bin/agetty --autologin "$H_USERNAME" --noclear %I \$TERM
 EOF
 
   sudo systemctl daemon-reexec
-  #Commented out to prevent auto-start of hyprland
-  #sudo systemctl restart getty@tty1
   log_success "Enabled systemd autologin for user: $H_USERNAME"
 }
