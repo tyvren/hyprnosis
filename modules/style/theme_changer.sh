@@ -28,11 +28,7 @@ if [[ -n "$SELECTED_THEME" ]]; then
     gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
   elif [ "$SELECTED_THEME" = "Nord" ]; then
     gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-nord'
-  elif [ "$SELECTED_THEME" = "Mocha" ]; then
-    gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-lavender-standard+default'
-    gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
   else
-    gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-lavender-standard+default'
     gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
   fi
 fi
