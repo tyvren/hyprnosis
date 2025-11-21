@@ -5,7 +5,7 @@ fixed_order = true
 [[entries]]
 text = "Theme"
 icon = "  "
-actions = { theme = "~/.config/hyprnosis/modules/style/theme_changer.sh" }
+actions = { theme = "walker --provider menus:hyprnosisthemes" }
 
 [[entries]]
 text = "Wallpaper"
