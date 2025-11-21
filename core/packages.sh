@@ -5,7 +5,6 @@ default_packages=(
   gimp
   occt
   obs-studio
-  localsend-bin
   gnome-boxes
   obsidian
 )
@@ -41,7 +40,7 @@ files_disk_management=(
   yazi
   thunar
   7zip
-  ark
+  xarchiver
   dosfstools
   ntfs-3g
   gvfs
@@ -122,9 +121,4 @@ nvidia_packages=(
 
 laptop_packages=(
   brightnessctl
-)
-
-extras=(
-  jellyfin-media-player
-  mpvpaper
 )
