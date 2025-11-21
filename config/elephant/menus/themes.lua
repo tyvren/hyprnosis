@@ -32,9 +32,10 @@ function GetEntries()
 
 			-- If no preview found, use first image from wallpapers folder
 			if not preview_path or preview_path == "" then
+				local wallpaper_dir = os.getenv("HOME") .. "/.config/hyprnosis/wallpapers/" .. theme_name
 				local bg_cmd = "find -L '"
-					.. theme_path
-					.. "/wallpapers' -maxdepth 1 -type f \\( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \\) 2>/dev/null | head -n 1"
+					.. wallpaper_dir
+					.. "' -maxdepth 1 -type f \\( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \\) 2>/dev/null | head -n 1"
 				local bg_handle = io.popen(bg_cmd)
 				if bg_handle then
 					preview_path = bg_handle:read("*l")
