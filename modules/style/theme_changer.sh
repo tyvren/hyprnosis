@@ -20,7 +20,7 @@ THEME_PATH="$THEME_DIR/$SELECTED_THEME"
 cp -r "$THEME_PATH/"* "$HOME/.config/"
 
 if [[ -n "$SELECTED_THEME" ]]; then
-  sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" ~/.config/hyprnosis/modules/randomize_wallpaper.sh
+  sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" ~/.config/hyprnosis/modules/style/randomize_wallpaper.sh
   sed -i "s/^theme = \".*\"/theme = \"$SELECTED_THEME\"/" ~/.config/walker/config.toml
   walker --reload
   if [ "$SELECTED_THEME" = "Dracula" ]; then
