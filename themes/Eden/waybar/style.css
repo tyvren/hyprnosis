@@ -6,25 +6,22 @@
 @define-color surface_a rgba(144, 147, 154, 0.5);
 
 * {
-  min-height: 16px;
-  min-width: 10px;
-  color: @moon_a;
+  font-family: JetBrainsMono Nerd Font, monospace;
+  font-size: 11px;
   font-weight: 500;
-  border: none;
-  text-shadow: 0 0 4px @surface_a;
-  box-shadow: none;
-  background: @ocean_a;
-  padding: 0px 1px;
-  border-radius: 15px;
-  margin: 1px 1px;
+  color: @moon_a;
+  border-radius: 10px;
+  transition: 0.5s ease-in-out;
 }
 
 window {
-  border: 2px solid @moon_a;
-  border-radius: 20px;
+  background: @ocean_a;
+  border-radius: 8px;
 }
 
 #workspaces {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
 }
 
 #workspaces button {
@@ -43,51 +40,70 @@ window {
 }
 
 #clock {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 8px;
 }
 
 #cpu {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 8px;
 }
 
 #memory {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 8px;
 }
 
 #temperature {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 8px;
 }
 
 #custom-hyprnosis {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   margin-left: 10px;
   padding: 0px 10px;
 }
 
 #custom-media {
   margin: 0 20px;
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 10px;
   margin-left: 60px;
 }
 
 #custom-notification {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   margin-right: 10px;
   padding: 2px 10px;
 }
 
 #pulseaudio {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 10px;
 }
 
 #pulseaudio.sink-muted {
     color: @surface;
+    background: @ocean_a;
 }
 
 #pulseaudio.microphone {
     color: @moon_a;
+    background: @ocean_a;
 }
 
 #pulseaudio.microphone.source-muted {
     color: @surface;
+    background: @ocean_a;
 }
 
 #pulseaudio-slider {
@@ -105,27 +121,31 @@ window {
 #pulseaudio-slider trough {
     min-height: 8px;
     min-width: 100px;
+    background-color: @ocean_a;
 }
 #pulseaudio-slider highlight {
     min-width: 8px;
     min-height: 8px;
     border-radius: 4px;
+    background: @moon_a;
 }
 
 #custom-wifi {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
   padding: 2px 14px;
 }
 
 #bluetooth {
-  padding: 2px 10px;	
-}
-
-#battery {
-  padding: 2px 10px;	
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  padding: 2px 10px;
 }
 
 #backlight {
-  padding: 2px 10px;	
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  padding: 2px 10px;
 }
 
 #backlight-slider {
@@ -143,11 +163,19 @@ window {
 #backlight-slider trough {
     min-height: 8px;
     min-width: 100px;
+    background-color: @ocean_a;
 }
 #backlight-slider highlight {
     min-width: 8px;
     min-height: 8px;
     border-radius: 4px;
+    background: @moon_a;
+}
+
+#battery {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
+  padding: 2px 14px;
 }
 
 tooltip {
@@ -163,6 +191,8 @@ tooltip label {
 }
 
 #taskbar {
+  background: @ocean_a;
+  border: 1px solid @moon_a;
 }
 
 #taskbar button {
