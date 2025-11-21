@@ -2,8 +2,8 @@ enable_user_service() {
   local svc="$1"
   log_info "Enabling $svc..."
   if systemctl --user list-unit-files | grep -q "^${svc}"; then
-    spinner "Enabling $svc" sudo systemctl --user enable "$svc" || log_error "Failed to enable $svc"
-    spinner "Starting $svc" sudo systemctl --user start "$svc" || log_error "Failed to start $svc"
+    spinner "Enabling $svc" systemctl --user enable "$svc" || log_error "Failed to enable $svc"
+    spinner "Starting $svc" systemctl --user start "$svc" || log_error "Failed to start $svc"
     log_success "$svc enabled"
   else
     log_error "Service $svc not found, skipping."
@@ -14,8 +14,8 @@ enable_service() {
   local svc="$1"
   log_info "Enabling $svc..."
   if systemctl list-unit-files | grep -q "^${svc}"; then
-    spinner "Enabling $svc" systemctl enable "$svc" || log_error "Failed to enable $svc"
-    spinner "Starting $svc" systemctl start "$svc" || log_error "Failed to start $svc"
+    spinner "Enabling $svc" sudo systemctl enable "$svc" || log_error "Failed to enable $svc"
+    spinner "Starting $svc" sudo systemctl start "$svc" || log_error "Failed to start $svc"
     log_success "$svc enabled"
   else
     log_info "Service '$svc' not found, skipping."
