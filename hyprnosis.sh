@@ -35,6 +35,7 @@ install_packages "${files_disk_management[@]}"
 
 log_step "Installing network and bluetooth utilities"
 install_packages "${network_bluetooth[@]}"
+spinner "Enabling iwd for wifi backend" enable_iwd
 
 log_step "Installing desktop environment packages"
 install_packages "${desktop_environment[@]}"
@@ -62,7 +63,6 @@ enable_service "networkmanager"
 enable_service "bluetooth.service"
 enable_service "cups"
 enable_service "lm_sensors"
-enable_service "iwd.service"
 enable_service "paccache.timer"
 
 log_step "Enabling user services"

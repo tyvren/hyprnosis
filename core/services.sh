@@ -64,3 +64,10 @@ enable_plymouth() {
   done
   log_success "hyprnosis bootloader logo configured"
 }
+
+enable_iwd() {
+  sudo tee /etc/NetworkManager/conf.d/wifi_backend.conf >/dev/null <<'EOF'
+[device]
+wifi.backend=iwd
+EOF
+}
