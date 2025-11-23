@@ -127,13 +127,13 @@ window {
 #pulseaudio-slider trough {
     min-height: 8px;
     min-width: 100px;
-    background-color: @background;
+    background-color: @selection;
 }
 #pulseaudio-slider highlight {
     min-width: 8px;
     min-height: 8px;
     border-radius: 4px;
-    background: @background;
+    background: @green;
 }
 
 #custom-wifi {
@@ -169,13 +169,13 @@ window {
 #backlight-slider trough {
     min-height: 8px;
     min-width: 100px;
-    background-color: @background;
+    background-color: @selection;
 }
 #backlight-slider highlight {
     min-width: 8px;
     min-height: 8px;
     border-radius: 4px;
-    background: @background;
+    background: @green;
 }
 
 #battery {
