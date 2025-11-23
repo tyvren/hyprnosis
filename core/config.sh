@@ -8,9 +8,10 @@ config_setup() {
   log_info "Cloning wallpapers repo..."
   git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
   log_info "Copying wallpapers..."
-  cp -r /tmp/wallpapers/. "$HOME/.config/hyprnosis/wallpapers/"
+  rm -rf /tmp/wallpapers/.git
+  rm -rf /tmp/wallpapers/README.md
+  cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
   rm -rf /tmp/wallpapers
-  rm -rf "$HOME/.config/hyprnosis/wallpapers/.git"
 
   chmod +x "$HOME/.config/hyprnosis/modules/packages/"*
   chmod +x "$HOME/.config/hyprnosis/modules/style/"*

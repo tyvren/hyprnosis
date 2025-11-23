@@ -25,6 +25,7 @@ gum spin --spinner dot --title "Resetting repo to main branch" -- git -C "$INSTA
 
 gum spin --spinner dot --title "Updating wallpapers..." -- git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
 rm -rf /tmp/wallpapers/.git
+rm -rf /tmp/wallpapers/README.md
 cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
 rm -rf /tmp/wallpapers
 
