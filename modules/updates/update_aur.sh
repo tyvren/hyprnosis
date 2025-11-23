@@ -21,7 +21,7 @@ gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
 if [[ "$aur_updates" ]]; then
   sudo -v
-  gum spin --spinner dot --title "Updates found, installing AUR updates..." -- yay -Sua --noconfirm
+  gum spin --spinner dot --title "Updates found, installing AUR updates..." -- yay --aur --noconfirm
   prompt "$aur_updates"
   prompt "AUR updates installed."
 else

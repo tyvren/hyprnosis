@@ -12,7 +12,10 @@ config_setup() {
   rm -rf /tmp/wallpapers
   rm -rf "$HOME/.config/hyprnosis/wallpapers/.git"
 
-  chmod +x "$HOME/.config/hyprnosis/modules/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/packages/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/style/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/updates/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/quickconfig/"*
 
   log_success "Configuration setup complete"
 }
