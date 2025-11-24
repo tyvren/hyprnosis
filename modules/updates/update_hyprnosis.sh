@@ -13,11 +13,6 @@ header() {
     'hyprnosis update'
 }
 
-prompt() {
-  local text="$1"
-  gum style --foreground 69 "$1"
-}
-
 header
 
 gum spin --spinner dot --title "Fetching updates for hyprnosis..." -- git -C "$INSTALL_DIR" fetch origin
@@ -29,9 +24,9 @@ rm -rf /tmp/wallpapers/README.md
 cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
 rm -rf /tmp/wallpapers
 
-prompt "Updating elephant/walker configs..."
-rm -r $HOME/.config/walker
-cp -ru $CONFIG_DIR/walker "$LOCAL_CONFIG"
-cp -ru $CONFIG_DIR/elephant "$LOCAL_CONFIG"
+gum style --foreground 69 "Updating elephant/walker configs..."
+rm -r "$HOME/.config/walker"
+cp -ru "$CONFIG_DIR/walker" "$LOCAL_CONFIG"
+cp -ru "$CONFIG_DIR/elephant" "$LOCAL_CONFIG"
 
 gum confirm "Update complete. Press enter to close."

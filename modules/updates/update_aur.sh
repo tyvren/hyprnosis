@@ -10,7 +10,6 @@ header() {
 }
 
 prompt() {
-  local text="$1"
   gum style --foreground 69 "$1"
 }
 
