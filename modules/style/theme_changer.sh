@@ -32,6 +32,8 @@ cp -r "$THEME_PATH/"* "$HOME/.config/"
 if [[ -n "$SELECTED_THEME" ]]; then
   sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" ~/.config/hyprnosis/modules/style/randomize_wallpaper.sh
   sed -i "s/^theme = \".*\"/theme = \"$SELECTED_THEME\"/" ~/.config/walker/config.toml
+  sed -i 's|\(local wall_dir = os.getenv("HOME") .. "/.config/hyprnosis/wallpapers/\)[^"]*|\1'"$SELECTED_THEME"'|' \
+    ~/.config/elephant/menus/wallpapers.lua
   walker --reload
 
   if [ "$SELECTED_THEME" = "Dracula" ]; then
@@ -45,7 +47,7 @@ if [[ -n "$SELECTED_THEME" ]]; then
 fi
 
 hyprctl reload
-killall hyprpaper waybar walker
-systemctl --user restart hyprpaper.service waybar.service walker.service
+killall hyprpaper waybar walker elephant
+systemctl --user restart hyprpaper.service waybar.service elephant.service walker.service
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."

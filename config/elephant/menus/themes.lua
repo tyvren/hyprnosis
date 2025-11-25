@@ -1,12 +1,10 @@
-Name = "hyprnosisthemes"
-NamePretty = "Hyprnosis Themes"
+Name = "themes"
+NamePretty = "Themes"
 
--- The main function elephant will call
 function GetEntries()
 	local entries = {}
 	local theme_dir = os.getenv("HOME") .. "/.config/hyprnosis/themes"
 
-	-- First, get all theme directories
 	local find_dirs_cmd = "find -L '" .. theme_dir .. "' -mindepth 1 -maxdepth 1 -type d 2>/dev/null"
 
 	local handle = io.popen(find_dirs_cmd)
@@ -18,8 +16,8 @@ function GetEntries()
 		local theme_name = theme_path:match(".*/(.+)$")
 
 		if theme_name then
-			-- find preview image
-			local find_preview_cmd = "find -L '"
+
+      local find_preview_cmd = "find -L '"
 				.. theme_path
 				.. "' -maxdepth 1 -type f \\( -name 'preview.png' -o -name 'preview.jpg' \\) 2>/dev/null | head -n 1"
 			local preview_handle = io.popen(find_preview_cmd)
@@ -30,7 +28,6 @@ function GetEntries()
 				preview_handle:close()
 			end
 
-			-- If no preview found, use first image from wallpapers folder
 			if not preview_path or preview_path == "" then
 				local wallpaper_dir = os.getenv("HOME") .. "/.config/hyprnosis/wallpapers/" .. theme_name
 				local bg_cmd = "find -L '"

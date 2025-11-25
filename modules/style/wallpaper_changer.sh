@@ -6,33 +6,39 @@ HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 
 menu() {
-    local prompt="$1"
-    local options="$2"
-    echo -e "$options" | walker --dmenu -H -p "$prompt…"
+  local prompt="$1"
+  local options="$2"
+  echo -e "$options" | walker --dmenu -H -p "$prompt…"
 }
 
-mapfile -t THEMES < <(find "$WALLPAPER_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n")
-theme_list=$(printf "%s\n" "${THEMES[@]}")
+if [[ -n "$1" ]]; then
+  SELECTED_WALL="$1"
+  WALLPAPER_PATH="$WALLPAPER_DIR_DIR/$SELECTED_WALL"
 
-SELECTED_THEME=$(menu "Select the folder name where your image file is stored" "$theme_list")
-[[ -z "$SELECTED_THEME" ]] && exit 0
+else
+  mapfile -t THEMES < <(find "$WALLPAPER_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n")
+  theme_list=$(printf "%s\n" "${THEMES[@]}")
 
-THEME_PATH="$WALLPAPER_DIR/$SELECTED_THEME"
-mapfile -t WALLPAPERS < <(find "$THEME_PATH" -type f -printf "%f\n")
-wallpaper_list=$(printf "%s\n" "${WALLPAPERS[@]}")
+  SELECTED_THEME=$(menu "Select the folder name where your image file is stored" "$theme_list")
+  [[ -z "$SELECTED_THEME" ]] && exit 0
 
-SELECTED_WALLPAPER=$(menu "Select the image to apply to hyprpaper and hyprlock" "$wallpaper_list")
-[[ -z "$SELECTED_WALLPAPER" ]] && exit 0
+  THEME_PATH="$WALLPAPER_DIR/$SELECTED_THEME"
+  mapfile -t WALLPAPERS < <(find "$THEME_PATH" -type f -printf "%f\n")
+  wallpaper_list=$(printf "%s\n" "${WALLPAPERS[@]}")
 
-WALLPAPER_PATH="$THEME_PATH/$SELECTED_WALLPAPER"
+  SELECTED_WALLPAPER=$(menu "Select the image to apply to hyprpaper and hyprlock" "$wallpaper_list")
+  [[ -z "$SELECTED_WALLPAPER" ]] && exit 0
+
+  WALLPAPER_PATH="$THEME_PATH/$SELECTED_WALLPAPER"
+fi
 
 killall hyprpaper 2>/dev/null || true
-if command -v hyprpaper &> /dev/null; then
-  nohup hyprpaper > /dev/null 2>&1 &
+if command -v hyprpaper &>/dev/null; then
+  nohup hyprpaper >/dev/null 2>&1 &
 fi
 
 sed -i "s|^preload = .*|preload = $WALLPAPER_PATH|" "$HYPRPAPER_CONF"
 sed -i "s|^wallpaper = .*|wallpaper = ,$WALLPAPER_PATH|" "$HYPRPAPER_CONF"
 sed -i "/background {/,/}/{s|^\s*path = .*|  path = $WALLPAPER_PATH|}" "$HYPRLOCK_CONF"
 
-notify-send "Wallpaper Changed" "Wallpaper '$SELECTED_WALLPAPER' applied."
+notify-send "Wallpaper Changed" "Wallpaper applied."
