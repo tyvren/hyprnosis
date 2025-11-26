@@ -39,8 +39,6 @@ if [[ -n "$SELECTED_THEME" ]]; then
   if [ "$SELECTED_THEME" = "Dracula" ]; then
     gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
     gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
-  elif [ "$SELECTED_THEME" = "Nord" ]; then
-    gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-nord'
   else
     gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
   fi
