@@ -45,6 +45,7 @@ if [[ -n "$SELECTED_THEME" ]]; then
 fi
 
 hyprctl reload
+pkill walker
 systemctl --user restart hyprpaper.service waybar.service elephant.service walker.service
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
