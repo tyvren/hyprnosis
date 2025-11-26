@@ -3,6 +3,11 @@ name_pretty = "Utilities"
 fixed_order = true
 
 [[entries]]
+text = "Capture"
+icon = " 󰹑 "
+actions = { capture = "walker --provider menus:capture" }
+
+[[entries]]
 text = "Configure Hyprland"
 icon = "  "
 actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh" }
