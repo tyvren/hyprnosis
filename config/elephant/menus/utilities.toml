@@ -15,5 +15,5 @@ actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/quickconfig/quick
 [[entries]]
 text = "Manage Services"
 icon = "  "
-actions = { capture = "walker --provider menus:capture" }
+actions = { services = "walker --provider menus:services" }
 
