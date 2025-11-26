@@ -13,16 +13,7 @@ icon = "  "
 actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh" }
 
 [[entries]]
-text = "Restart Waybar"
-icon = " 󰜉 "
-actions = { waybar = "systemctl --user restart waybar.service" }
+text = "Manage Services"
+icon = "  "
+actions = { capture = "walker --provider menus:capture" }
 
-[[entries]]
-text = "Restart Walker"
-icon = " 󰜉 "
-actions = { walker = "systemctl --user restart walker.service" }
-
-[[entries]]
-text = "Restart Elephant"
-icon = " 󰜉 "
-actions = { waybar = "systemctl --user restart elephant.service" }
