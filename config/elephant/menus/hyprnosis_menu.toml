@@ -3,19 +3,14 @@ name_pretty = "hyprnosis menu"
 fixed_order = true
 
 [[entries]]
-text = "Apps"
-icon = "  "
-actions = { apps = "walker" }
-
-[[entries]]
 text = "Power"
 icon = "  "
 actions = { power = "walker --provider menus:power" }
 
 [[entries]]
-text = "Update"
-icon = "  "
-actions = { update = "walker --provider menus:updates" }
+text = "Apps"
+icon = "  "
+actions = { apps = "walker" }
 
 [[entries]]
 text = "Packages"
@@ -28,11 +23,11 @@ icon = "  "
 actions = { update = "walker --provider menus:style" }
 
 [[entries]]
+text = "Update"
+icon = "  "
+actions = { update = "walker --provider menus:updates" }
+
+[[entries]]
 text = "Utilities"
 icon = "  "
 actions = { utilities = "walker --provider menus:utilities" }
-
-[[entries]]
-text = "Learn"
-icon = "  "
-actions = { learn = "walker --provider menus:learn" }
