@@ -73,8 +73,6 @@ desktop_environment=(
   elephant
   elephant-desktopapplications
   elephant-calc
-  elephant-websearch
-  elephant-files
   elephant-clipboard
   elephant-menus
   walker
