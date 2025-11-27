@@ -31,27 +31,30 @@ if [ "${drives[$i]}" ]; then
     prompt "${drive_list[$i]}"
   done
 
-  prompt "Choose the USB drive to image"
-  drive_choice=$(printf "%s\n" "${drive_list[@]}" | gum choose --limit=1)
-  #Grab the drive name (sdb/sda)
-  selection_name=$(echo "$drive_choice" | awk '{print $3}')
-  #Remove the ../../ from the output
-  selection_mod=${selection_name: -3}
-  #Grab the device name for later
-  drive_name=$(echo "$drive_choice" | awk '{print $1}')
-  #Unmount the disk
-  prompt "Unmounting disk"
-  umount "/dev/$selection_mod"
+  if gum confirm "Press enter to continue."; then
+    prompt "Choose the USB drive to image. (sda/sdb are the top level and overwrites entire disk. sda1,sdb1,sda2 etc.. are partitions)"
+    drive_choice=$(printf "%s\n" "${drive_list[@]}" | gum choose --limit=1)
+    #Grab the drive name (sdb/sda)
+    selection_name=$(echo "$drive_choice" | awk '{print $3}')
+    #Remove the ../../ from the output
+    selection_mod=${selection_name: -3}
+    #Grab the device name for later
+    drive_name=$(echo "$drive_choice" | awk '{print $1}')
+    #Unmount the disk
+    prompt "Unmounting disk"
+    umount "/dev/$selection_mod"
 
-  #Enter ISO image path
-  iso_path=$(gum input --placeholder "Enter the path to your ISO file. ex: /home/user/Downloads/archlinux-version-x86_64.iso")
+    #Enter ISO image path
+    iso_path=$(gum input --placeholder "Enter the path to your ISO file. ex: /home/user/Downloads/archlinux-version-x86_64.iso")
 
-  #Build cp command using iso_path and drive name
-  prompt "Copying ISO image to USB.."
-  sudo cp "$iso_path" "$drive_name"
+    #Build cp command using iso_path and drive name
+    prompt "Copying ISO image to USB.."
+    sudo cp "$iso_path" "$drive_name"
 
-  gum confirm "Your ISO image has written successfully. Press enter to close."
-  exit 0
+    gum confirm "Your ISO image has written successfully. Press enter to close."
+  else
+    exit 0
+  fi
 else
   prompt "No USB drives found"
   exit 1
