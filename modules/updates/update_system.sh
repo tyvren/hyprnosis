@@ -19,7 +19,8 @@ header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
 if [[ "$repo_updates" ]]; then
-  gum spin --spinner dot --title "Updates found, installing... $repo_updates" -- sudo pacman -Syu --noconfirm
+  prompt "$repo_updates"
+  gum spin --spinner dot --title "Updates found, installing..." -- sudo pacman -Syu --noconfirm
   prompt "Updates installed."
 else
   prompt "No Arch repo updates available."
