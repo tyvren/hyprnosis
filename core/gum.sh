@@ -3,8 +3,6 @@ install_gum() {
 }
 
 header() {
-  local text="$1"
-  echo
   gum style \
     --foreground 37 \
     --border double \
@@ -22,7 +20,6 @@ header() {
  ▒ ░▒░ ░▓██ ░▒░ ░▒ ░       ░▒ ░ ▒░░ ░░   ░ ▒░  ░ ▒ ▒░ ░ ░▒  ░ ░ ▒ ░░ ░▒  ░ ░
  ░  ░░ ░▒ ▒ ░░  ░░         ░░   ░    ░   ░ ░ ░ ░ ░ ▒  ░  ░  ░   ▒ ░░  ░  ░  
  ░  ░  ░░ ░                 ░              ░     ░ ░        ░   ░        ░  "
-  echo
 }
 
 spinner() {
