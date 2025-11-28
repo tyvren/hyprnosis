@@ -15,7 +15,7 @@ header() {
 }
 
 spin() {
-  gum spin --spinner dot --title "$1"
+  gum spin --spinner dot --title "$1" -- "${@:2}"
 }
 
 prompt() {
@@ -24,10 +24,10 @@ prompt() {
 
 header
 
-spin "Fetching updates for hyprnosis" -- git -C "$INSTALL_DIR" fetch origin
-spin "Resetting repo to main branch" -- git -C "$INSTALL_DIR" reset --hard origin/main
+spin "Fetching updates for hyprnosis" git -C "$INSTALL_DIR" fetch origin
+spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/main
 
-spin "Updating wallpapers" -- git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
 rm -rf /tmp/wallpapers/.git
 rm -rf /tmp/wallpapers/README.md
 cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
