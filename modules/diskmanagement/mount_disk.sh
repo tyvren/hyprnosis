@@ -32,7 +32,9 @@ prompt "fstab example: UUID=af8e4d25-b6e0-4bdb-9efd-58d671863f0b /mnt/games ext4
 fstab_input=$(input "Enter the file system UUID, MountPoint, FSType, defaults, 0 2")
 
 #Append to fstab
-echo "$fstab_input" | sudo tee -a /etc/fstab
+echo "UUID=$fstab_input" | sudo tee -a /etc/fstab
+
+sudo systemctl daemon-reload
 
 show_fstab=$(cat /etc/fstab)
 prompt "Fstab file updated"
