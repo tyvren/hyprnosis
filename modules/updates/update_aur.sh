@@ -13,7 +13,7 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
-aur_updates=$(yay -Qua 2>/dev/null)
+aur_updates=$(yay -Qua)
 
 header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
