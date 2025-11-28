@@ -24,5 +24,5 @@ actions = { isowriter = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/w
 
 [[entries]]
 text = "Mount disk"
-icon = " 󰋊 "
+icon = " 󱁋 "
 actions = { mount = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh" }
