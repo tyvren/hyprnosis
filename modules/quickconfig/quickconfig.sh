@@ -7,11 +7,6 @@ gum style \
   --align center --width 50 --margin "1 0" --padding "0 2" \
   'quickconfig - hyprland config utility'
 
-prompt() {
-  local text="$1"
-  gum style --foreground 69 "$1"
-}
-
 config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Waybar" "Exit")
 case "$config_choice" in
 "Autostart")

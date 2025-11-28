@@ -8,7 +8,6 @@ gum style \
   'Manage Hyprland Autostart'
 
 prompt() {
-  local text="$1"
   gum style --foreground 69 "$1"
 }
 

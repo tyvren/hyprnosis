@@ -13,8 +13,12 @@ for i in "${!connection_types[@]}"; do
   display_list+=("${connection_types[$i]} - ${model_names[$i]}")
 done
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Select the monitor to configure"
+header() {
+  gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
+    "$1"
+}
+
+header "Select the monitor to configure"
 monitor_choice=$(printf "%s\n" "${display_list[@]}" | gum choose --limit=1) || exit 0
 [[ -z "$monitor_choice" ]] && exit 0
 
@@ -25,28 +29,26 @@ monitor_info=$(echo "$monitors" | awk "/Monitor $selected_connection/,/^$/")
 modes=$(echo "$monitor_info" | grep "availableModes" | sed 's/^[[:space:]]*availableModes: //')
 mode_list=$(echo "$modes" | tr ' ' '\n')
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Select the resolution and refresh rate"
+clear
+header "Select the resolution and refresh rate"
 chosen_mode=$(echo "$mode_list" | gum choose --limit=1) || exit 0
 [[ -z "$chosen_mode" ]] && exit 0
-clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Select the monitor's position"
+clear
+header "Select the monitor's position"
 position=$(printf "auto\nauto-left\nauto-right\n" | gum choose --limit=1) || exit 0
 [[ -z "$position" ]] && exit 0
 clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Select the display scaling for hyprland"
+header "Select the display scaling for hyprland"
 chosen_scale=$(printf "1\n1.5\n2\n" | gum choose --limit=1) || exit 0
 [[ -z "$chosen_scale" ]] && exit 0
-clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Select the display scaling for GDK apps (Steam, Discord)- Requires a reboot to apply"
+clear
+header "Select the display scaling for GDK apps (Steam, Discord)- Requires a reboot to apply"
 chosen_gdkscale=$(printf "1\n2\n" | gum choose --limit=1) || exit 0
 [[ -z "$chosen_gdkscale" ]] && exit 0
+
 clear
 
 sed -i "/^monitor=${selected_connection}/d" "$config_path"

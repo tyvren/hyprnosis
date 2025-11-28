@@ -4,30 +4,30 @@ clear
 
 IDLE_CONFIG="$HOME/.config/hypr/hypridle.conf"
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Choose display dim time (minutes)"
+header() {
+  gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
+    "$1"
+}
+
+header "Choose display dim time (minutes)"
 chosen_dimtime=$(printf "5\n10\n15\n30\n" | gum choose --limit=1)
 clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Choose lock time (minutes)"
+header "Choose lock time (minutes)"
 chosen_locktime=$(printf "5\n10\n15\n30\n" | gum choose --limit=1)
 clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Choose display sleep time (minutes)"
+header "Choose display sleep time (minutes)"
 chosen_displaytime=$(printf "10\n15\n30\n" | gum choose --limit=1)
 clear
 
-gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-  "Enable computer sleep?"
+header "Enable computer sleep?"
 enable_sleep_choice=$(printf "Yes\nNo" | gum choose --limit=1)
 clear
 
 if [ "$enable_sleep_choice" = "Yes" ]; then
   enable_sleep=true
-  gum style --foreground 99 --border double --align center --margin "1 2" --padding "2 4" \
-    "Choose computer sleep time (minutes)"
+  header "Choose computer sleep time (minutes)"
   chosen_sleeptime=$(printf "15\n30\n45\n60\n" | gum choose --limit=1)
 else
   enable_sleep=false
