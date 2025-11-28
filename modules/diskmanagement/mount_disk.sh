@@ -24,7 +24,7 @@ disks=$(lsblk -f)
 prompt "$disks"
 
 #Create a mount point for the drive
-prompt "Create a new directory to mount the disk to your file system"
+prompt "Create a new directory to mount the disk"
 mount_point=$(input "Enter the name for your mount point directory: ex: games")
 sudo mkdir /mnt/"$mount_point"
 
@@ -42,3 +42,5 @@ prompt "$show_fstab"
 
 prompt "Mounting disks"
 sudo mount -a
+
+confirm "Process complete. Press yes to exit."
