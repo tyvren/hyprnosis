@@ -44,5 +44,5 @@ fi
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
 hyprctl reload
-systemctl --user restart hyprpaper.service waybar.service elephant.service walker.service
 pkill walker
+systemctl --user restart hyprpaper.service waybar.service elephant.service walker.service
