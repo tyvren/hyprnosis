@@ -20,4 +20,4 @@ actions = { services = "walker --provider menus:services" }
 [[entries]]
 text = "ISO Image Writer"
 icon = " 󱊟 "
-actions = { hyprconf = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh" }
+actions = { isowriter = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh" }
