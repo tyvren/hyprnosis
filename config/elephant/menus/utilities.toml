@@ -23,6 +23,6 @@ icon = " 󱊟 "
 actions = { isowriter = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh" }
 
 [[entries]]
-text = "Mount disk"
+text = "Mount Disk"
 icon = " 󱁋 "
 actions = { mount = "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh" }
