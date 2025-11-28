@@ -3,7 +3,6 @@
 INSTALL_DIR="$HOME/.config/hyprnosis"
 CONFIG_DIR="$HOME/.config/hyprnosis/config"
 LOCAL_CONFIG="$HOME/.config"
-THEME_DIR="$INSTALL_DIR/themes"
 
 clear
 
@@ -40,8 +39,8 @@ rm -r "$HOME/.config/walker"
 cp -r "$CONFIG_DIR/walker" "$LOCAL_CONFIG"
 cp -r "$CONFIG_DIR/elephant" "$LOCAL_CONFIG"
 
-prompt "Re-applying theme after updates"
-cp -r "$THEME_DIR/$current_theme" "$LOCAL_CONFIG"
+prompt "Re-applying theme to walker after updates"
+sed -i "s/^theme = \".*\"/theme = \"$current_theme\"/" ~/.config/walker/config.toml
 
 gum confirm "Update complete. Press enter to close."
 
