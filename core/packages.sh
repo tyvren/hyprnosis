@@ -39,6 +39,9 @@ development=(
 files_disk_management=(
   yazi
   thunar
+  thunar-archive-plugin
+  thunar-volman
+  tumbler
   7zip
   xarchiver
   dosfstools
