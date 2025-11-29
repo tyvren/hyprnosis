@@ -39,8 +39,10 @@ rm -r "$HOME/.config/walker"
 cp -r "$CONFIG_DIR/walker" "$LOCAL_CONFIG"
 cp -r "$CONFIG_DIR/elephant" "$LOCAL_CONFIG"
 
-prompt "Re-applying theme to walker after updates"
+prompt "Re-applying theme after updates"
 sed -i "s/^theme = \".*\"/theme = \"$current_theme\"/" ~/.config/walker/config.toml
+sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$current_theme/\"|" ~/.config/hyprnosis/modules/style/randomize_wallpaper.sh
+sed -i 's|\(local wall_dir = os.getenv("HOME") .. "/.config/hyprnosis/wallpapers/\)[^"]*|\1'"$current_theme"'|' ~/.config/elephant/menus/wallpapers.lua
 
 gum confirm "Update complete. Press enter to close."
 
