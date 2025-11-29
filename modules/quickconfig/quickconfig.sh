@@ -7,7 +7,7 @@ gum style \
   --align center --width 50 --margin "1 0" --padding "0 2" \
   'quickconfig - hyprland config utility'
 
-config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Waybar" "Exit")
+config_choice=$(gum choose "Autostart" "Default Apps" "Input" "Keybinds" "Monitors" "Windows and Workspaces" "Hyprland" "Hypridle" "Hyprlock" "Waybar" "Exit")
 case "$config_choice" in
 "Autostart")
   autostart_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
@@ -117,6 +117,18 @@ case "$config_choice" in
     ;;
   "Manual Config")
     nvim ~/.config/hypr/hypridle.conf
+    ;;
+  "Back ")
+    gum confirm "Press enter to return to menu." && exec "$0"
+    ;;
+  esac
+  ;;
+
+"Hyprlock")
+  hyprlock_choice=$(gum choose "Manual Config" "Back ")
+  case "$hyprlock_choice" in
+  "Manual Config")
+    nvim ~/.config/hypr/hyprlock.conf
     ;;
   "Back ")
     gum confirm "Press enter to return to menu." && exec "$0"
