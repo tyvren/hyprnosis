@@ -49,7 +49,7 @@ fstab_contents=$(</etc/fstab)
 if [[ $fstab_contents == *"$uuid"* ]]; then
   if confirm "Disk already exists in fstab, would you like to overwrite? Select No to cancel."; then
     prompt "Overwriting fstab entry."
-    sed -i "s|^UUID=$uuid .*|UUID=$uuid $chosen_mnt $fstype defaults 0 2|" /etc/fstab
+    sudo sed -i "s|^UUID=$uuid .*|UUID=$uuid $chosen_mnt $fstype defaults 0 2|" /etc/fstab
   else
     exit 0
   fi
