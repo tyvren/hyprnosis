@@ -13,6 +13,7 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
+sudo -v
 check_updates=$(checkupdates)
 
 header
