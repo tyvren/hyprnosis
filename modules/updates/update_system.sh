@@ -13,13 +13,13 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
-repo_updates=$(sudo pacman -Qu)
+check_updates=$(checkupdates)
 
 header
 gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
-if [[ "$repo_updates" ]]; then
-  prompt "$repo_updates"
+if [[ "$check_updates" ]]; then
+  prompt "$check_updates"
   gum spin --spinner dot --title "Updates found, installing..." -- sudo pacman -Syu --noconfirm
   prompt "Updates installed."
 else
