@@ -13,7 +13,6 @@ prompt() {
   gum style --foreground 69 "$1"
 }
 
-sudo -v
 check_updates=$(checkupdates)
 
 header
@@ -21,6 +20,7 @@ gum spin --spinner dot --title "Checking for updates..." -- sleep 2
 
 if [[ "$check_updates" ]]; then
   prompt "$check_updates"
+  sudo -v
   gum spin --spinner dot --title "Updates found, installing..." -- sudo pacman -Syu --noconfirm
   prompt "Updates installed."
 else
