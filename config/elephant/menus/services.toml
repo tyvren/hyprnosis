@@ -3,11 +3,6 @@ name_pretty = "Services"
 fixed_order = true
 
 [[entries]]
-text = "Restart Waybar"
-icon = " 󰜉 "
-actions = { waybar = "systemctl --user restart waybar.service" }
-
-[[entries]]
 text = "Restart Walker"
 icon = " 󰜉 "
 actions = { walker = "systemctl --user restart walker.service" }

@@ -68,7 +68,6 @@ enable_service "lm_sensors"
 enable_service "paccache.timer"
 
 log_step "Enabling user services"
-enable_user_service "waybar.service"
 enable_user_service "app-com.mitchellh.ghostty.service"
 enable_elephant_service
 enable_walker_service

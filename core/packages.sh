@@ -72,7 +72,7 @@ terminal_shell=(
 desktop_environment=(
   uwsm
   swaync
-  waybar
+  quickshell
   elephant
   elephant-desktopapplications
   elephant-calc
