@@ -14,13 +14,13 @@
 
 Check out the desktop environment themes in the wiki: https://github.com/tyvren/hyprnosis/wiki/themes
 
-**The full list of preinstalled packages can be found under /core/packages.sh**
+**The full list of pre-installed packages can be found under /core/packages.sh**
 
 ----------------------------------------------------------------------
 
 **User Interface**
-- Waybar - menu and status bar
-- Walker - hyprnosis GUI menu system and app launcher
+- Quickshell - status bar and sub-menus
+- Walker - hyprnosis menu system and app launcher
 
 ----------------------------------------------------------------------
 
