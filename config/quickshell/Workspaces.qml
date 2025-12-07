@@ -9,7 +9,7 @@ RowLayout {
     model: 9
 
     Rectangle {
-      width: 20
+      width: 30
       height: 30
       color: "transparent"
 

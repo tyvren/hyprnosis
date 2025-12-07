@@ -85,7 +85,7 @@ Item {
             MouseArea {
               anchors.fill: parent
               onClicked: {
-                powerOff.running = true
+                powerOff.startDetached()
               }
             }
           }
@@ -117,7 +117,7 @@ Item {
             MouseArea {
               anchors.fill: parent
               onClicked: {
-                restart.running = true
+                restart.startDetached()
               }
             }
           }
@@ -149,7 +149,7 @@ Item {
             MouseArea {
               anchors.fill: parent
               onClicked: {
-                lock.running = true
+                lock.startDetached()
               }
             }
           }
