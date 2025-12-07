@@ -40,7 +40,7 @@ Scope {
           Network {}
           Bluetooth {}
           Notifications {}
-          Logout {}
+          Power {}
         }
 
         Clock { anchors.centerIn: parent } 
