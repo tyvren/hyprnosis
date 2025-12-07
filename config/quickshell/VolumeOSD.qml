@@ -58,7 +58,7 @@ Scope {
 
 					IconImage {
             implicitSize: 30
-						source: Quickshell.iconPath("/home/username/.config/quickshell/Icons/volume.png", true)
+						source: Quickshell.iconPath("/usr/share/icons/Tela-circle-dracula/22/actions/audio-volume-high.svg", true)
 					}
 
 					Rectangle {
