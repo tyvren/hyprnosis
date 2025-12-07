@@ -45,16 +45,17 @@ Item {
     PanelWindow {
       anchors.top: true
       anchors.right: true
-			implicitWidth: 400
-      implicitHeight: 50
+			implicitWidth: 140
+      implicitHeight: 200
       color: "transparent"
 
       Rectangle {
 				anchors.fill: parent
-				radius: height / 2
+				radius: height / 10
         color: theme.colTransB
+        border.color: theme.colAccent
 
-        Row {
+        Column {
           anchors.centerIn: parent
           spacing: 20
 
