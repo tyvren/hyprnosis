@@ -64,7 +64,7 @@ Item {
 
             Process {
               id: powerOff
-              command: [ "systemctl poweroff" ]
+              command: [ "systemctl", "poweroff" ]
               }
 
             Rectangle {
@@ -96,7 +96,7 @@ Item {
 
             Process {
               id: restart
-              command: [ "systemctl reboot" ]
+              command: [ "systemctl", "reboot" ]
               }
 
             Rectangle {
@@ -117,7 +117,7 @@ Item {
             MouseArea {
               anchors.fill: parent
               onClicked: {
-                restart.startDetached()
+                restart.startDetached() 
               }
             }
           }
