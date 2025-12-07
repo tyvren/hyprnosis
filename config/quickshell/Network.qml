@@ -27,7 +27,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      openNetwork.running = true
+      openNetwork.startDetached()
     }
   }
 }

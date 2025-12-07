@@ -27,7 +27,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      openNotifications.running = true
+      openNotifications.startDetached()
     }
   }
 }

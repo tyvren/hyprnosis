@@ -27,7 +27,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      openBluetooth.running = true
+      openBluetooth.startDetached()
     }
   }
 }

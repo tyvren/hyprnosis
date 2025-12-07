@@ -27,7 +27,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      openMenu.running = true
+      openMenu.startDetached()
     }
   }
 }

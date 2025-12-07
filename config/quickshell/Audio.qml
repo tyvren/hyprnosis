@@ -27,7 +27,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      openAudio.running = true
+      openAudio.startDetached()
     }
   }
 }
