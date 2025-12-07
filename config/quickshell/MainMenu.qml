@@ -1,4 +1,3 @@
-// MainMenu.qml
 import QtQuick
 import Quickshell.Io
 

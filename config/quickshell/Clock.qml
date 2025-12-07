@@ -1,4 +1,3 @@
-// Clock.qml
 import QtQuick
 
 Text {

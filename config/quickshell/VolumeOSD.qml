@@ -7,7 +7,6 @@ import Quickshell.Widgets
 Scope {
 	id: root
 
-	// Bind the pipewire node so its volume will be tracked
 	PwObjectTracker {
 		objects: [ Pipewire.defaultAudioSink ]
 	}
@@ -29,28 +28,20 @@ Scope {
 		onTriggered: root.shouldShowOsd = false
 	}
 
-	// The OSD window will be created and destroyed based on shouldShowOsd.
-	// PanelWindow.visible could be set instead of using a loader, but using
-	// a loader will reduce the memory overhead when the window isn't open.
 	LazyLoader {
 		active: root.shouldShowOsd
 
 		PanelWindow {
-			// Since the panel's screen is unset, it will be picked by the compositor
-			// when the window is created. Most compositors pick the current active monitor.
 
-			anchors.top: true
-			margins.bottom: screen.height / 5
+      anchors.top: true
+      anchors.right: true
 			exclusiveZone: 0
-
 			implicitWidth: 300
       implicitHeight: 50
 
       property var theme: Theme {}
-
 			color: "transparent"
 
-			// An empty click mask prevents the window from blocking mouse events.
 			mask: Region {}
 
 			Rectangle {
@@ -67,11 +58,10 @@ Scope {
 
 					IconImage {
             implicitSize: 30
-						//source: Quickshell.iconPath("audio-volume-high-symbolic")
+						source: Quickshell.iconPath("/home/username/.config/quickshell/Icons/volume.png", true)
 					}
 
 					Rectangle {
-						// Stretches to fill all left-over space
 						Layout.fillWidth: true
 
 						implicitHeight: 10

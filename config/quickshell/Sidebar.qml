@@ -1,10 +1,11 @@
-// Sidebar.qml
 import Quickshell
 import QtQuick
 import Quickshell.Widgets
 
 PanelWindow {
-  property var theme: Theme {}
+  color: "transparent"
+  implicitWidth: 30
+  property var theme: Theme {} 
 
   anchors {
     top: true
@@ -13,7 +14,10 @@ PanelWindow {
     right: false
   }
 
-  implicitWidth: 30
-  color: theme.colBg
+  Rectangle {
+    anchors.fill: parent
 
+    radius: 10
+    color: theme.colBg
+  }
 }

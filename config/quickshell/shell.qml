@@ -1,7 +1,6 @@
-// shell.qml
 import Quickshell
 
 Scope {
   Bar {}
-  Volume{}
+  VolumeOSD{}
 }

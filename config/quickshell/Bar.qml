@@ -1,4 +1,3 @@
-// Bar.qml
 import Quickshell
 import QtQuick
 import "."
@@ -12,7 +11,7 @@ Scope {
       required property var modelData
       property var theme: Theme {}
       screen: modelData
-      color: theme.colBg
+      color: "transparent"
       implicitHeight: 30
 
       anchors {
@@ -20,26 +19,31 @@ Scope {
         left: true
         right: true
       }
+      Rectangle {
+        color: theme.colBg
+        anchors.fill: parent
+        radius: 5
 
-      Row {
-        anchors.left: parent.left
-        spacing: 10
+        Row {
+          anchors.left: parent.left
+          spacing: 10
 
-        MainMenu {}
-        Workspaces {}
+          MainMenu {}
+          Workspaces {}
+        }
+
+        Row {
+          anchors.right: parent.right
+          spacing: 10
+
+          Audio {}
+          Network {}
+          Bluetooth {}
+          Notifications {}
+        }
+
+        Clock { anchors.centerIn: parent } 
       }
-
-      Row {
-        anchors.right: parent.right
-        spacing: 10
-
-        Audio {}
-        Network {}
-        Bluetooth {}
-        Notifications {}
-      }
-
-      Clock { anchors.centerIn: parent } 
     }
   }
 }

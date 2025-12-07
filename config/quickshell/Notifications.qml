@@ -1,4 +1,3 @@
-// Notifications.qml
 import QtQuick
 import Quickshell.Io
 
