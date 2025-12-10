@@ -25,10 +25,6 @@ PanelWindow {
 
     function toggle(): void {
       capturemenu.visible = !capturemenu.visible
-      if (capturemenu.visible) {
-          capturemenu.forceActiveFocus()
-          search.forceActiveFocus()
-      }
     }
 
     function hide(): void {

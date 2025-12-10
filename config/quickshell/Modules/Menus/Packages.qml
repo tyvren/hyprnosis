@@ -26,10 +26,6 @@ PanelWindow {
 
     function toggle(): void {
       packagesmenu.visible = !packagesmenu.visible
-      if (packagesmenu.visible) {
-          packagesmenu.forceActiveFocus()
-          search.forceActiveFocus()
-      }
     }
 
     function hide(): void {
