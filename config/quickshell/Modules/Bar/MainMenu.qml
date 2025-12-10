@@ -1,3 +1,4 @@
+// MainMenu.qml
 import QtQuick
 import Quickshell.Io
 
@@ -8,12 +9,14 @@ Item {
 
   Process {
     id: openMenu
-    command: [ "walker", "--provider", "menus:hyprnosismenu" ]
+    command: [ "sh", "-c", "qs ipc call menu toggle" ]
     }
 
   Rectangle {
     anchors.fill: parent
-    color: "transparent"
+    anchors.margins: 2
+    color: "transparent" 
+    radius: 10
 
     Text {
       anchors.centerIn: parent

@@ -1,6 +1,6 @@
+// Audio.qml
 import QtQuick
 import Quickshell.Io
-
 
 Item {
   width: 30

@@ -23,6 +23,7 @@ Scope {
         color: theme.colBg
         anchors.fill: parent
         radius: 5
+        //border.color: theme.colHilight
 
         Row {
           anchors.left: parent.left

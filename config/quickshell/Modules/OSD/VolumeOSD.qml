@@ -33,12 +33,11 @@ Scope {
 		active: root.shouldShowOsd
 
 		PanelWindow {
-
       anchors.top: true
       anchors.right: true
 			exclusiveZone: 0
-			implicitWidth: 300
-      implicitHeight: 50
+			implicitWidth: screen.width / 12
+      implicitHeight: screen.height / 30
 
       property var theme: Theme {}
 			color: "transparent"
@@ -59,7 +58,7 @@ Scope {
 
 					IconImage {
             implicitSize: 30
-						source: Quickshell.iconPath("/usr/share/icons/Tela-circle-dracula/22/actions/audio-volume-high.svg", true)
+						source: Quickshell.iconPath("/usr/share/icons/Tela-circle-black/22/actions/audio-volume-high.svg", true)
 					}
 
 					Rectangle {

@@ -1,3 +1,4 @@
+// Clock.qml
 import QtQuick
 import qs.Services
 

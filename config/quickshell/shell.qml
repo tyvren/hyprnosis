@@ -1,8 +1,14 @@
 import Quickshell
 import qs.Modules.OSD
 import qs.Modules.Bar
+import qs.Modules.Menus
 
-Scope {
+ShellRoot {
   Bar {}
-  VolumeOSD{}
+  VolumeOSD {}
+  MainMenu {}
+  Packages {}
+  Updates {}
+  Utilities {}
+  Capture {}
 }

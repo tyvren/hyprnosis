@@ -1,3 +1,4 @@
+// Bluetooth.qml
 import QtQuick
 import Quickshell.Io
 
