@@ -5,6 +5,7 @@ QtObject {
     // Colors
     property color colBg: "#12161f"
     property color colHilight: "#feffff"
+    property color colSelect: "#1b2130"
     property color colAccent: "#90939A"
     property color colMuted: "#44475a"
     property color colTransB: "#80000000"
