@@ -9,7 +9,7 @@ Item {
 
   Process {
     id: openMenu
-    command: [ "sh", "-c", "qs ipc call menu toggle" ]
+    command: [ "sh", "-c", "qs ipc call mainmenu toggle" ]
     }
 
   Rectangle {

@@ -22,7 +22,7 @@ PanelWindow {
   } 
 
   IpcHandler {
-    target: "menu"
+    target: "mainmenu"
 
     function toggle(): void {
       mainmenu.visible = !mainmenu.visible
