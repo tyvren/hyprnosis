@@ -32,6 +32,9 @@ rm -rf /tmp/wallpapers/README.md
 cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
 rm -rf /tmp/wallpapers
 
+prompt "Updating Quickshell config"
+cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
+
 current_theme=$(grep '^theme = ' ~/.config/walker/config.toml | sed -E 's/theme = "([^"]+)".*/\1/')
 
 prompt "Updating elephant and walker configs"
