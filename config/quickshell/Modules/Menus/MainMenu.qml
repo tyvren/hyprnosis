@@ -10,9 +10,10 @@ import "../.."
 PanelWindow {
   id: mainmenu
   visible: false
+  focusable: true
   color: "transparent"
   WlrLayershell.layer: WlrLayer.Top
-  property var theme: Theme {}
+  property var theme: Theme {} 
 
   anchors {
     top: true
@@ -34,6 +35,8 @@ PanelWindow {
   }
 
   Rectangle {
+    id: menuroot
+    focus: true
     anchors.centerIn: parent
     width: 400
     height: 500
@@ -42,7 +45,10 @@ PanelWindow {
     border.width: 2
     border.color: theme.colAccent
 
+    Keys.onEscapePressed: mainmenu.visible = false
+
     ColumnLayout {
+      id: menulist
       anchors.centerIn: parent
       spacing: 8
       

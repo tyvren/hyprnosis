@@ -9,6 +9,7 @@ import "../.."
 PanelWindow {
   id: utilmenu
   visible: false
+  focusable: true
   color: "transparent"
   WlrLayershell.layer: WlrLayer.Top
   property var theme: Theme {}
@@ -33,6 +34,7 @@ PanelWindow {
   }
 
   Rectangle {
+    focus: true
     anchors.centerIn: parent
     width: 400
     height: 300
@@ -40,6 +42,8 @@ PanelWindow {
     color: theme.colBg
     border.width: 2
     border.color: theme.colAccent
+
+    Keys.onEscapePressed: utilmenu.visible = false
 
     ColumnLayout {
       anchors.centerIn: parent
