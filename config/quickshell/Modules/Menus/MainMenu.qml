@@ -49,10 +49,16 @@ PanelWindow {
 
     ColumnLayout {
       id: menulist
+      focus: true
       anchors.centerIn: parent
       spacing: 8
+
+      Keys.onUpPressed: list.menulist?.incrementCurrentIndex()
+      Keys.onDownPressed: list.menulist?.decrementCurrentIndex()
       
       Rectangle {
+        id: option1
+        focus: true
         width: 350
         height: 60
         radius: 10
@@ -61,11 +67,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: " Apps"
+          text: "Apps"
         }
 
         MouseArea {
@@ -93,11 +109,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: " Packages"
+          text: "Packages"
         }
 
         MouseArea {
@@ -125,11 +151,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: " Style"
+          text: "Style"
         }
 
         MouseArea {
@@ -157,11 +193,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: "󰹑"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: "󰹑 Capture"
+          text: "Capture"
         }
 
         MouseArea {
@@ -189,11 +235,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: " Update"
+          text: "Update"
         }
 
         MouseArea {
@@ -221,11 +277,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 28
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: "  Utilities"
+          text: "Utilities"
         }
 
         MouseArea {
@@ -246,3 +312,4 @@ PanelWindow {
     }
   }
 }
+

@@ -58,11 +58,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󰹑"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󰹑  Screenshot-Region"
+          text: "Screenshot-Region"
         }
 
         MouseArea {
@@ -90,11 +100,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󰹑"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󰹑  Screenshot-Window"
+          text: "Screenshot-Window"
         }
 
         MouseArea {
@@ -122,11 +142,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "  Record Screen"
+          text: "Record Screen"
         }
 
         MouseArea {
@@ -147,3 +177,4 @@ PanelWindow {
     }
   }
 }
+

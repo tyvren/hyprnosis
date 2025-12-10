@@ -58,11 +58,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: " Configure Hyprland"
+          text: "Configure Hyprland"
         }
 
         MouseArea {
@@ -90,11 +100,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󱊟"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󱊟 ISO Image Writer"
+          text: "ISO Image Writer"
         }
 
         MouseArea {
@@ -122,11 +142,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󱁋"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󱁋 Mount Disk"
+          text: "Mount Disk"
         }
 
         MouseArea {
@@ -147,3 +177,4 @@ PanelWindow {
     }
   }
 }
+

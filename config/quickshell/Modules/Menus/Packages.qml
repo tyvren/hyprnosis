@@ -59,11 +59,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󰣇"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󰣇 Install Arch Package"
+          text: "Install Arch Pkg"
         }
 
         MouseArea {
@@ -91,11 +101,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: " Install AUR Package"
+          text: "Install AUR Pkg"
         }
 
         MouseArea {
@@ -123,11 +143,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: "󱧙"
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: "󱧙 Uninstall Package"
+          text: "Uninstall Pkg"
         }
 
         MouseArea {
@@ -148,3 +178,4 @@ PanelWindow {
     }
   }
 }
+

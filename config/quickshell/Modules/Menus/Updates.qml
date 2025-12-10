@@ -58,11 +58,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: " Update System"
+          text: "Update System"
         }
 
         MouseArea {
@@ -90,11 +100,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: " Update AUR"
+          text: "Update AUR"
         }
 
         MouseArea {
@@ -122,11 +142,21 @@ PanelWindow {
         border.color: theme.colAccent
 
         Text {
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
+          color: theme.colAccent
+          font.family: theme.fontFamily
+          font.pixelSize: 24
+          text: ""
+        }
+
+        Text {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 24
-          text: " Update hyprnosis"
+          text: "Update hyprnosis"
         }
 
         MouseArea {
@@ -147,3 +177,4 @@ PanelWindow {
     }
   }
 }
+
