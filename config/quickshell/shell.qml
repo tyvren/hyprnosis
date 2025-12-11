@@ -11,4 +11,5 @@ ShellRoot {
   Updates {}
   Utilities {}
   Capture {}
+  Style {}
 }
