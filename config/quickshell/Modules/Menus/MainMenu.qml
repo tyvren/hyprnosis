@@ -180,7 +180,7 @@ PanelWindow {
 
         Process {
           id: button3
-          command: [ "walker", "--provider", "menus:style" ]
+          command: [ "sh", "-c", "qs ipc call stylemenu toggle" ]
         }
       }
 
