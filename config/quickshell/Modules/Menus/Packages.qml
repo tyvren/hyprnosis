@@ -64,7 +64,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: "󰣇"
         }
 
@@ -72,7 +72,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Install Arch Pkg"
         }
 
@@ -106,7 +106,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: ""
         }
 
@@ -114,7 +114,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Install AUR Pkg"
         }
 
@@ -148,7 +148,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: "󱧙"
         }
 
@@ -156,7 +156,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Uninstall Pkg"
         }
 

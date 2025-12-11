@@ -63,7 +63,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: "󰹑"
         }
 
@@ -71,7 +71,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Screenshot-Region"
         }
 
@@ -105,7 +105,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: "󰹑"
         }
 
@@ -113,7 +113,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Screenshot-Window"
         }
 
@@ -147,7 +147,7 @@ PanelWindow {
           anchors.leftMargin: 15
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 28
           text: ""
         }
 
@@ -155,7 +155,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           text: "Record Screen"
         }
 

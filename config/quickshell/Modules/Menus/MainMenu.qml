@@ -80,7 +80,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Apps"
         }
 
@@ -122,7 +122,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Packages"
         }
 
@@ -164,7 +164,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Style"
         }
 
@@ -206,7 +206,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Capture"
         }
 
@@ -248,7 +248,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Update"
         }
 
@@ -290,7 +290,7 @@ PanelWindow {
           anchors.centerIn: parent
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 28
+          font.pixelSize: 22
           text: "Utilities"
         }
 
