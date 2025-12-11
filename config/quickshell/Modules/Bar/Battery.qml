@@ -12,7 +12,7 @@ Item {
 
     Text {
       anchors.centerIn: parent
-      text: Math.round(Battery.percentage * 100) + "% "
+      text: Math.round(Battery.percentage * 100) + "%"
       font.family: theme.fontFamily
       font.pixelSize: theme.fontSize
       color: theme.colAccent
