@@ -64,7 +64,7 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
+          text: ""
         }
 
         Text {
@@ -72,7 +72,7 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 22
-          text: "Shutdown"
+          text: "Lock"
         }
 
         MouseArea {
@@ -87,7 +87,7 @@ PanelWindow {
 
         Process {
           id: button1
-          command: [ "systemctl", "poweroff" ]
+          command: [ "hyprlock" ]
         }
       }
 
@@ -148,7 +148,7 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
+          text: ""
         }
 
         Text {
@@ -156,7 +156,7 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 22
-          text: "Lock"
+          text: "Shutdown"
         }
 
         MouseArea {
@@ -171,7 +171,7 @@ PanelWindow {
 
         Process {
           id: button3
-          command: [ "hyprlock" ]
+          command: [ "systemctl", "poweroff" ]
         }
       }
     }
