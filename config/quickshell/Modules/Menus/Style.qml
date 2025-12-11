@@ -87,7 +87,7 @@ PanelWindow {
 
         Process {
           id: button1
-          command: [ "sh", "-c", "walker --provider menus:themes" ]
+          command: [ "walker", "--provider", "menus:themes" ]
         }
       }
 
@@ -129,7 +129,7 @@ PanelWindow {
 
         Process {
           id: button2
-          command: [ "sh", "-c", "walker --provider menus:wallpapers" ]
+          command: [ "walker", "--provider", "menus:wallpapers" ]
         }
       }
     }
