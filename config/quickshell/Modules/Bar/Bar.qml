@@ -37,6 +37,7 @@ Scope {
           anchors.right: parent.right
           spacing: 10
 
+          Battery {}
           Audio {}
           Network {}
           Bluetooth {}
