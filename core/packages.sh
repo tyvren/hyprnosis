@@ -26,6 +26,7 @@ system_utils=(
   openrgb
   plymouth
   pacman-contrib
+  upower
 )
 
 development=(
