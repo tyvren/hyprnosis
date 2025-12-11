@@ -7,7 +7,8 @@ Item {
 
   Rectangle {
     anchors.fill: parent
-    color: "transparent" 
+    color: "transparent"
+    visible: Battery.available
 
     Text {
       anchors.centerIn: parent
