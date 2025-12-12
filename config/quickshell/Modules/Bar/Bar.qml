@@ -24,11 +24,13 @@ Variants {
     } 
 
     Rectangle {
+      id: barcontent
       color: theme.colBg
       anchors.fill: parent
 
       Row {
         anchors.left: parent.left
+        anchors.margins: 10
         spacing: 10
 
         MainMenu {}
@@ -37,6 +39,7 @@ Variants {
 
       Row {
         anchors.right: parent.right
+        anchors.margins: 10
         spacing: 10
 
         Battery {}
