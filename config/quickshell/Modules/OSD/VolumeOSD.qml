@@ -56,9 +56,10 @@ Scope {
 						rightMargin: 15
 					}
 
-					IconImage {
-            implicitSize: 30
-						source: Quickshell.iconPath("/usr/share/icons/Tela-circle-black/22/actions/audio-volume-high.svg", true)
+          Text {
+            color: theme.colAccent
+            font.pixelSize: 25
+						text: ""
 					}
 
 					Rectangle {
