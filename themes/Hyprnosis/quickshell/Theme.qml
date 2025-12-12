@@ -2,7 +2,7 @@ import QtQuick
 
 QtObject {
     // Colors
-    property color colBg: "#80000000"
+    property color colBg: "#0c0c27"
     property color colText: "white"
     property color colHilight: "#517187"
     property color colSelect: "#80000060"
