@@ -1,8 +1,6 @@
-// Theme.qml
 import QtQuick
 
 QtObject {
-    // Colors
     property color colBg: "#3B3B3B"
     property color colHilight: "#626262"
     property color colSelect: "#626262"
@@ -10,7 +8,6 @@ QtObject {
     property color colMuted: "#44475a"
     property color colTransB: "#80000000"
 
-    // Font
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 14
 }

@@ -1,7 +1,6 @@
 import QtQuick
 
 QtObject {
-    // Colors
     property color colBg: "#0c0c27"
     property color colText: "white"
     property color colHilight: "#517187"
@@ -10,7 +9,6 @@ QtObject {
     property color colMuted: "#444b6a"
     property color colTransB: "#80000000"
 
-    // Font
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 14
 }
