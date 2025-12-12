@@ -1,51 +1,91 @@
 import Quickshell
 import QtQuick
+import Quickshell.Widgets
+import Quickshell.Io
+import Quickshell.Wayland
 import "../.."
 
-Scope {
+Variants {
+  model: Quickshell.screens
 
-  Variants {
-    model: Quickshell.screens
+  PanelWindow {
+    id: topbar
+    required property var modelData
+    property var theme: Theme {}
+    screen: modelData
+    color: "transparent"
+    implicitHeight: 30
+    WlrLayershell.layer: WlrLayer.Top
 
-    PanelWindow {
-      required property var modelData
-      property var theme: Theme {}
-      screen: modelData
-      color: "transparent"
-      implicitHeight: 30
+    anchors {
+      top: true
+      left: true
+      right: true
+    } 
 
-      anchors {
-        top: true
-        left: true
-        right: true
+    Rectangle {
+      color: theme.colBg
+      anchors.fill: parent
+
+      Row {
+        anchors.left: parent.left
+        spacing: 10
+
+        MainMenu {}
+        Workspaces {}
       }
-      Rectangle {
-        color: theme.colBg
-        anchors.fill: parent
-        radius: 5
-        //border.color: theme.colHilight
 
-        Row {
-          anchors.left: parent.left
-          spacing: 10
+      Row {
+        anchors.right: parent.right
+        spacing: 10
 
-          MainMenu {}
-          Workspaces {}
+        Battery {}
+        Audio {}
+        Network {}
+        Bluetooth {}
+        Notifications {}
+        Power {}
+      }
+
+      Clock { 
+        id: clock
+        anchors.centerIn: parent
+      }
+
+      MouseArea {
+        id: popuparea
+        hoverEnabled: true
+        anchors.centerIn: parent.center
+        onClicked: popuploader.item.visible = !popuploader.item.visible
+      }
+ 
+      LazyLoader {
+        id: popuploader
+        loading: true
+
+        component: PopupWindow {
+          id: popup
+          color: "transparent"
+          anchor.window: topbar
+          anchor.rect.x: parentWindow.width / 2 - width / 2
+          anchor.rect.y: parentWindow.height 
+
+          implicitWidth: 600
+          implicitHeight: 300
+
+          ClippingRectangle {
+            anchors.fill: parent
+            color: topbar.theme.colBg
+            bottomLeftRadius: 20
+            bottomRightRadius: 20
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: topbar.theme.colAccent
+            text: "Popup menu"
+          }
         }
-
-        Row {
-          anchors.right: parent.right
-          spacing: 10
-
-          Battery {}
-          Audio {}
-          Network {}
-          Bluetooth {}
-          Notifications {}
-          Power {}
-        }
-
-        Clock { anchors.centerIn: parent } 
       }
     }
   }
