@@ -24,9 +24,15 @@ Scope {
         });
     }
 
-    property int currentPreviewIndex: 0  // index currently highlighted/previewed in PathView
+    property int currentPreviewIndex: 0
+
+    onWallpaperDirChanged: {
+        wallProcess.workingDirectory = wallpaperDir;
+        wallProcess.running = true;
+    }
 
     Process {
+        id: wallProcess
         workingDirectory: root.wallpaperDir
         command: ["sh", "-c", `find -L "${root.wallpaperDir}" -type f ! -name ".*"`]
         running: true
@@ -133,12 +139,10 @@ Scope {
                                 hoverEnabled: true
 
                                 onEntered: {
-                                    // Move PathView selection on hover without changing wallpaper
                                     pathView.currentIndex = delegateItem.index;
                                 }
 
                                 onClicked: {
-                                    // Select wallpaper and close window
                                     Quickshell.execDetached({
                                         command: ["sh", "-c", `$HOME/.config/hyprnosis/modules/style/wallpaper_changer.sh ${delegateItem.modelData}`]
                                     });
@@ -200,6 +204,12 @@ Scope {
         function hide(): void {
             wallpaperWindow.visible = false;
         }
+
+        // Allow external updates to wallpaperDir (e.g., from theme changer)
+        function setWallpaperDir(newDir) {
+            root.wallpaperDir = newDir;
+        }
     }
 }
+
 
