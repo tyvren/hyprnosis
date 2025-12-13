@@ -13,13 +13,18 @@ PanelWindow {
   color: "transparent"
   WlrLayershell.layer: WlrLayer.Top
   property var theme: Theme {}
+  property int currentIndex: 0
 
   anchors {
     top: true
     bottom: true
     left: true
     right: true
-  } 
+  }
+
+  onVisibleChanged: {
+    if (visible) Qt.callLater(() => menuRoot.forceActiveFocus())
+  }
 
   IpcHandler {
     target: "utilmenu"
@@ -34,6 +39,7 @@ PanelWindow {
   }
 
   Rectangle {
+    id: menuRoot
     focus: true
     anchors.centerIn: parent
     width: 400
@@ -44,16 +50,31 @@ PanelWindow {
     border.color: theme.colAccent
 
     Keys.onEscapePressed: utilmenu.visible = false
+    Keys.onUpPressed: currentIndex = (currentIndex - 1 + buttonList.count) % buttonList.count
+    Keys.onDownPressed: currentIndex = (currentIndex + 1) % buttonList.count
+    Keys.onReturnPressed: buttonList.activate(currentIndex)
+    Keys.onEnterPressed: buttonList.activate(currentIndex)
 
     ColumnLayout {
+      id: buttonList
       anchors.centerIn: parent
       spacing: 8
-      
+      property int count: 3
+
+      function activate(index) {
+        switch(index) {
+          case 0: button1.startDetached(); break
+          case 1: button2.startDetached(); break
+          case 2: button3.startDetached(); break
+        }
+        utilmenu.visible = false
+      }
+
       Rectangle {
         width: 350
         height: 60
         radius: 10
-        color: button1area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -79,23 +100,18 @@ PanelWindow {
           id: button1area
           anchors.fill: parent
           hoverEnabled: true
-          onClicked: {
-            button1.startDetached()
-            utilmenu.visible = false
-          }
+          onEntered: currentIndex = 0
+          onClicked: { currentIndex = 0; button1.startDetached(); utilmenu.visible = false }
         }
 
-        Process {
-          id: button1
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh" ]
-        }
+        Process { id: button1; command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh"] }
       }
 
       Rectangle {
         width: 350
         height: 60
         radius: 10
-        color: button2area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -121,23 +137,18 @@ PanelWindow {
           id: button2area
           anchors.fill: parent
           hoverEnabled: true
-          onClicked: {
-            button2.startDetached()
-            utilmenu.visible = false
-          }
+          onEntered: currentIndex = 1
+          onClicked: { currentIndex = 1; button2.startDetached(); utilmenu.visible = false }
         }
 
-        Process {
-          id: button2
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh" ]
-        }
+        Process { id: button2; command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh"] }
       }
 
       Rectangle {
         width: 350
         height: 60
         radius: 10
-        color: button3area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -163,16 +174,11 @@ PanelWindow {
           id: button3area
           anchors.fill: parent
           hoverEnabled: true
-          onClicked: {
-            button3.startDetached()
-            utilmenu.visible = false
-          }
+          onEntered: currentIndex = 2
+          onClicked: { currentIndex = 2; button3.startDetached(); utilmenu.visible = false }
         }
 
-        Process {
-          id: button3
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh" ]
-        }
+        Process { id: button3; command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh"] }
       }
     }
   }

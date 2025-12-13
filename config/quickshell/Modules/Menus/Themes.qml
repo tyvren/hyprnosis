@@ -13,14 +13,22 @@ PanelWindow {
   focusable: true
   color: "transparent"
   WlrLayershell.layer: WlrLayer.Top
-  property var theme: Theme {} 
+  property var theme: Theme {}
+  property int currentIndex: 0
 
   anchors {
     top: true
     bottom: true
     left: true
     right: true
-  } 
+  }
+
+  onVisibleChanged: {
+    if (visible) {
+      currentIndex = 0
+      Qt.callLater(() => menuroot.forceActiveFocus())
+    }
+  }
 
   IpcHandler {
     target: "thememenu"
@@ -36,7 +44,6 @@ PanelWindow {
 
   Rectangle {
     id: menuroot
-    focus: true
     anchors.centerIn: parent
     width: 400
     height: 500
@@ -46,23 +53,34 @@ PanelWindow {
     border.color: theme.colAccent
 
     Keys.onEscapePressed: thememenu.visible = false
+    Keys.onUpPressed: currentIndex = (currentIndex - 1 + themelist.count) % themelist.count
+    Keys.onDownPressed: currentIndex = (currentIndex + 1) % themelist.count
+    Keys.onReturnPressed: themelist.activate(currentIndex)
+    Keys.onEnterPressed: themelist.activate(currentIndex)
 
     ColumnLayout {
       id: themelist
-      focus: true
       anchors.centerIn: parent
       spacing: 8
+      property int count: 6
 
-      Keys.onUpPressed: list.themelist?.incrementCurrentIndex()
-      Keys.onDownPressed: list.themelist?.decrementCurrentIndex()
-      
+      function activate(index) {
+        switch (index) {
+          case 0: button1.startDetached(); break
+          case 1: button2.startDetached(); break
+          case 2: button3.startDetached(); break
+          case 3: button4.startDetached(); break
+          case 4: button5.startDetached(); break
+          case 5: button6.startDetached(); break
+        }
+        thememenu.visible = false
+      }
+
       Rectangle {
-        id: option1
-        focus: true
         width: 350
         height: 60
         radius: 10
-        color: button1area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -73,7 +91,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -88,7 +105,9 @@ PanelWindow {
           id: button1area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 0
           onClicked: {
+            currentIndex = 0
             button1.startDetached()
             thememenu.visible = false
           }
@@ -104,7 +123,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button2area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -115,7 +134,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -130,9 +148,11 @@ PanelWindow {
           id: button2area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 1
           onClicked: {
+            currentIndex = 1
+            button2.startDetached()
             thememenu.visible = false
-            button2.startDetached() 
           }
         }
 
@@ -146,7 +166,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button3area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -157,7 +177,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -172,7 +191,9 @@ PanelWindow {
           id: button3area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 2
           onClicked: {
+            currentIndex = 2
             button3.startDetached()
             thememenu.visible = false
           }
@@ -188,7 +209,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button4area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 3 || button4area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -199,7 +220,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -214,7 +234,9 @@ PanelWindow {
           id: button4area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 3
           onClicked: {
+            currentIndex = 3
             button4.startDetached()
             thememenu.visible = false
           }
@@ -230,7 +252,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button5area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 4 || button5area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -241,7 +263,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -256,7 +277,9 @@ PanelWindow {
           id: button5area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 4
           onClicked: {
+            currentIndex = 4
             button5.startDetached()
             thememenu.visible = false
           }
@@ -272,7 +295,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button6area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 5 || button6area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -283,7 +306,6 @@ PanelWindow {
           color: theme.colAccent
           font.family: theme.fontFamily
           font.pixelSize: 28
-          text: ""
         }
 
         Text {
@@ -298,7 +320,9 @@ PanelWindow {
           id: button6area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 5
           onClicked: {
+            currentIndex = 5
             button6.startDetached()
             thememenu.visible = false
           }

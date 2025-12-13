@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import "../.."
 
 PanelWindow {
@@ -13,12 +14,20 @@ PanelWindow {
   color: "transparent"
   WlrLayershell.layer: WlrLayer.Top
   property var theme: Theme {}
+  property int currentIndex: 0
 
   anchors {
     top: true
     bottom: true
     left: true
     right: true
+  }
+
+  onVisibleChanged: {
+    if (visible) {
+      currentIndex = 0
+      Qt.callLater(() => menuroot.forceActiveFocus())
+    }
   }
 
   IpcHandler {
@@ -34,7 +43,7 @@ PanelWindow {
   }
 
   Rectangle {
-    focus: true
+    id: menuroot
     anchors.centerIn: parent
     width: 400
     height: 200
@@ -44,16 +53,30 @@ PanelWindow {
     border.color: theme.colAccent
 
     Keys.onEscapePressed: stylemenu.visible = false
+    Keys.onUpPressed: currentIndex = (currentIndex - 1 + menulist.count) % menulist.count
+    Keys.onDownPressed: currentIndex = (currentIndex + 1) % menulist.count
+    Keys.onReturnPressed: menulist.activate(currentIndex)
+    Keys.onEnterPressed: menulist.activate(currentIndex)
 
     ColumnLayout {
+      id: menulist
       anchors.centerIn: parent
       spacing: 8
+      property int count: 2
+
+      function activate(index) {
+        switch (index) {
+          case 0: button1.startDetached(); break
+          case 1: button2.startDetached(); break
+        }
+        stylemenu.visible = false
+      }
 
       Rectangle {
         width: 350
         height: 60
         radius: 10
-        color: button1area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -79,7 +102,9 @@ PanelWindow {
           id: button1area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 0
           onClicked: {
+            currentIndex = 0
             button1.startDetached()
             stylemenu.visible = false
           }
@@ -95,7 +120,7 @@ PanelWindow {
         width: 350
         height: 60
         radius: 10
-        color: button2area.containsMouse ? theme.colSelect : theme.colBg
+        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
         border.width: 2
         border.color: theme.colAccent
 
@@ -121,7 +146,9 @@ PanelWindow {
           id: button2area
           anchors.fill: parent
           hoverEnabled: true
+          onEntered: currentIndex = 1
           onClicked: {
+            currentIndex = 1
             button2.startDetached()
             stylemenu.visible = false
           }
