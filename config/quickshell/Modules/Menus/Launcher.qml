@@ -1,4 +1,4 @@
-import QtQuick.Controls.Basic
+import QtQuick.Controls
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
@@ -25,12 +25,26 @@ PanelWindow {
         right: true
     }
 
+    onVisibleChanged: {
+        if (visible) {
+            query = ""
+            Qt.callLater(() => searchField.forceActiveFocus())
+        } else {
+            query = ""
+            searchField.text = ""
+            listview.currentIndex = -1
+        }
+    }
+
     onQueryChanged: {
         if (query === "") {
             filteredApps = DesktopEntries.applications.values
         } else {
-            filteredApps = DesktopEntries.applications.values.filter(app => app.name.toLowerCase().includes(query.toLowerCase()))
+            filteredApps = DesktopEntries.applications.values.filter(app =>
+                app.name.toLowerCase().includes(query.toLowerCase())
+            )
         }
+        listview.currentIndex = filteredApps.length > 0 ? 0 : -1
     }
 
     IpcHandler {
@@ -38,7 +52,6 @@ PanelWindow {
 
         function toggle(): void {
             launcherMenu.visible = !launcherMenu.visible
-            if (launcherMenu.visible) launcherMenu.forceActiveFocus()
         }
 
         function hide(): void {
@@ -47,7 +60,6 @@ PanelWindow {
     }
 
     Rectangle {
-        focus: true
         anchors.centerIn: parent
         width: 400
         height: 500
@@ -70,6 +82,7 @@ PanelWindow {
                 color: theme.colSelect
 
                 TextField {
+                    id: searchField
                     anchors.fill: parent
                     placeholderText: "Search apps..."
                     color: theme.colAccent
@@ -77,22 +90,55 @@ PanelWindow {
                     font.pixelSize: 16
 
                     onTextChanged: launcherMenu.query = text
+
+                    Keys.onPressed: event => {
+                        if ((event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
+                            && listview.currentIndex >= 0) {
+                            const app = listview.model[listview.currentIndex]
+                            Quickshell.execDetached({
+                                command: ["sh", "-c", app.execute()]
+                            })
+                            launcherMenu.visible = false
+                            event.accepted = true
+                        }
+
+                        if (event.key === Qt.Key_Down) {
+                            listview.forceActiveFocus()
+                            event.accepted = true
+                        }
+                    }
                 }
             }
 
             ListView {
+                id: listview
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 model: launcherMenu.filteredApps
                 orientation: ListView.Vertical
                 spacing: 6
                 clip: true
+                keyNavigationEnabled: true
+
+                Keys.onPressed: event => {
+                    if ((event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
+                        && currentIndex >= 0) {
+                        const app = model[currentIndex]
+                        Quickshell.execDetached({
+                            command: ["sh", "-c", app.execute()]
+                        })
+                        launcherMenu.visible = false
+                        event.accepted = true
+                    }
+                }
 
                 delegate: Rectangle {
                     width: parent.width
                     height: 50
                     radius: 8
-                    color: mouseArea.containsMouse ? theme.colSelect : theme.colBg
+                    color: (ListView.isCurrentItem || mouseArea.containsMouse)
+                           ? theme.colSelect
+                           : theme.colBg
                     border.width: 2
                     border.color: theme.colAccent
 
@@ -111,7 +157,9 @@ PanelWindow {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {
-                           command: ["sh", "-c", modelData.execute()]
+                            Quickshell.execDetached({
+                                command: ["sh", "-c", modelData.execute()]
+                            })
                             launcherMenu.visible = false
                         }
                     }
@@ -120,4 +168,5 @@ PanelWindow {
         }
     }
 }
+
 
