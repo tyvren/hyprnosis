@@ -129,7 +129,7 @@ PanelWindow {
 
         Process {
           id: button2
-          command: [ "walker", "--provider", "menus:wallpapers" ]
+          command: [ "sh", "-c", "qs ipc call wallpapersmenu toggle" ]
         }
       }
     }

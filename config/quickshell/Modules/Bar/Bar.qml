@@ -58,7 +58,7 @@ Variants {
       MouseArea {
         id: popuparea
         hoverEnabled: true
-        anchors.centerIn: parent.center
+        anchors.fill: clock
         onClicked: popuploader.item.visible = !popuploader.item.visible
       }
  

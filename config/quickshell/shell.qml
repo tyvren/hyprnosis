@@ -14,4 +14,5 @@ ShellRoot {
   Utilities {}
   Capture {}
   Style {}
+  Wallpapers {}
 }
