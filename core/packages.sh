@@ -74,12 +74,6 @@ desktop_environment=(
   uwsm
   swaync
   quickshell
-  elephant
-  elephant-desktopapplications
-  elephant-calc
-  elephant-clipboard
-  elephant-menus
-  walker
 )
 
 themes_fonts_packages=(
