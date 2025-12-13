@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Mocha" 
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Mocha"
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
@@ -23,6 +23,8 @@ Scope {
             return filename.toLowerCase().includes(searchQuery.toLowerCase());
         });
     }
+
+    property int currentPreviewIndex: 0  // index currently highlighted/previewed in PathView
 
     Process {
         workingDirectory: root.wallpaperDir
@@ -44,7 +46,6 @@ Scope {
         color: "transparent"
         WlrLayershell.layer: WlrLayer.Top
         focusable: true
-
 
         Rectangle {
             anchors.fill: parent
@@ -70,8 +71,10 @@ Scope {
 
                     onTextChanged: {
                         root.searchQuery = text;
-                        if (pathView.count > 0)
+                        if (pathView.count > 0) {
                             pathView.currentIndex = 0;
+                            root.currentPreviewIndex = 0;
+                        }
                     }
 
                     Keys.onDownPressed: pathView.focus = true
@@ -90,8 +93,8 @@ Scope {
                         id: delegateItem
                         required property var modelData
                         required property int index
-                        width: 400
-                        height: 300
+                        width: 500
+                        height: 350
                         scale: PathView.scale
                         z: PathView.z
 
@@ -101,7 +104,7 @@ Scope {
                             color: theme.colBg
                             radius: 8
                             border.color: pathView.currentIndex === delegateItem.index ? theme.colAccent : "transparent"
-                            border.width: 3
+                            border.width: 2
 
                             Image {
                                 anchors.fill: parent
@@ -127,11 +130,19 @@ Scope {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onClicked: {
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    // Move PathView selection on hover without changing wallpaper
                                     pathView.currentIndex = delegateItem.index;
+                                }
+
+                                onClicked: {
+                                    // Select wallpaper and close window
                                     Quickshell.execDetached({
                                         command: ["sh", "-c", `$HOME/.config/hyprnosis/modules/style/wallpaper_changer.sh ${delegateItem.modelData}`]
                                     });
+                                    wallpaperWindow.visible = false;
                                 }
                             }
                         }
@@ -161,13 +172,14 @@ Scope {
                     Keys.onPressed: event => {
                         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                             Quickshell.execDetached({
-                               command: ["sh", "-c", `hyprctl hyprpaper wallpaper ${model[currentIndex]}`]
+                               command: ["sh", "-c", `$HOME/.config/hyprnosis/modules/style/wallpaper_changer.sh ${model[currentIndex]}`]
                             });
+                            wallpaperWindow.visible = false
                         }
-                        if (event.key === Qt.Key_Up) decrementCurrentIndex();
-                        if (event.key === Qt.Key_Down) incrementCurrentIndex();
-                        if (event.key === Qt.Key_Tab) searchField.focus = true;
-                        if (event.key === Qt.Key_Escape) wallpaperWindow.visible = false;
+                        if (event.key === Qt.Key_Up) decrementCurrentIndex()
+                        if (event.key === Qt.Key_Down) incrementCurrentIndex()
+                        if (event.key === Qt.Key_Tab) searchField.focus = true
+                        if (event.key === Qt.Key_Escape) wallpaperWindow.visible = false
                     }
                 }
             }
