@@ -26,7 +26,8 @@ else
   gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
 fi
 
-qs ipc call wallpapersmenu setWallpaperDir "$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME"
+sed -i -r "s|property string wallpaperDir: \".*\"|property string wallpaperDir: \"${HOME}/.config/hyprnosis/wallpapers/$SELECTED_THEME\"|" \
+  "$HOME/.config/quickshell/Modules/Menus/Wallpapers.qml"
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
 hyprctl reload

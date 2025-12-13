@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Mocha"
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Hyprnosis"
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
@@ -26,19 +26,19 @@ Scope {
 
     property int currentPreviewIndex: 0
 
+    // Re-scan wallpapers whenever wallpaperDir changes
     onWallpaperDirChanged: {
-        wallProcess.workingDirectory = wallpaperDir;
-        wallProcess.running = true;
+        scanWallpapers.start();
     }
 
     Process {
-        id: wallProcess
+        id: scanWallpapers
         workingDirectory: root.wallpaperDir
         command: ["sh", "-c", `find -L "${root.wallpaperDir}" -type f ! -name ".*"`]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                const wallList = text.trim().split('\n').filter(path => path.length > 0);
+                const wallList = text.trim().split('\n').filter(p => p.length > 0);
                 root.wallpaperList = wallList;
             }
         }
@@ -178,12 +178,12 @@ Scope {
                             Quickshell.execDetached({
                                command: ["sh", "-c", `$HOME/.config/hyprnosis/modules/style/wallpaper_changer.sh ${model[currentIndex]}`]
                             });
-                            wallpaperWindow.visible = false
+                            wallpaperWindow.visible = false;
                         }
-                        if (event.key === Qt.Key_Up) decrementCurrentIndex()
-                        if (event.key === Qt.Key_Down) incrementCurrentIndex()
-                        if (event.key === Qt.Key_Tab) searchField.focus = true
-                        if (event.key === Qt.Key_Escape) wallpaperWindow.visible = false
+                        if (event.key === Qt.Key_Up) decrementCurrentIndex();
+                        if (event.key === Qt.Key_Down) incrementCurrentIndex();
+                        if (event.key === Qt.Key_Tab) searchField.focus = true;
+                        if (event.key === Qt.Key_Escape) wallpaperWindow.visible = false;
                     }
                 }
             }
@@ -198,18 +198,14 @@ Scope {
             if (wallpaperWindow.visible) {
                 searchField.text = "";
                 pathView.currentIndex = 0;
+                root.currentPreviewIndex = 0;
+                scanWallpapers.start(); // re-scan to make sure the list reflects the current theme
             }
         }
 
         function hide(): void {
             wallpaperWindow.visible = false;
         }
-
-        // Allow external updates to wallpaperDir (e.g., from theme changer)
-        function setWallpaperDir(newDir) {
-            root.wallpaperDir = newDir;
-        }
     }
 }
-
 
