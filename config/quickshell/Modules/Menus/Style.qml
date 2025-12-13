@@ -87,7 +87,7 @@ PanelWindow {
 
         Process {
           id: button1
-          command: [ "walker", "--provider", "menus:themes" ]
+          command: [ "sh", "-c", "qs ipc call thememenu toggle" ]
         }
       }
 
