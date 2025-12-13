@@ -142,14 +142,30 @@ PanelWindow {
                     border.width: 2
                     border.color: theme.colAccent
 
-                    Text {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: 12
-                        text: modelData.name
-                        color: theme.colAccent
-                        font.family: theme.fontFamily
-                        font.pixelSize: 16
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: 8
+                        spacing: 12
+
+                        IconImage {
+                            id: appIcon
+                            implicitSize: 30
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: parent.left
+                            anchors.leftMargin: 5
+                            source: Quickshell.iconPath(modelData.icon, true) || ""
+                        }
+
+                        Text {
+                            id: appText
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: appIcon.right
+                            anchors.leftMargin: 20                            
+                            text: modelData.name
+                            color: theme.colAccent
+                            font.family: theme.fontFamily
+                            font.pixelSize: 16
+                        }
                     }
 
                     MouseArea {
@@ -168,5 +184,4 @@ PanelWindow {
         }
     }
 }
-
 
