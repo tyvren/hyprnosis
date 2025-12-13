@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/Pictures/wallpapers" 
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Mocha" 
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
@@ -26,7 +26,7 @@ Scope {
 
     Process {
         workingDirectory: root.wallpaperDir
-        command: ["sh", "-c", `find -L ${root.wallpaperDir} -type d -path */.* -prune -o -not -name .* -type f -print`]
+        command: ["sh", "-c", `find -L "${root.wallpaperDir}" -type f ! -name ".*"`]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -44,7 +44,7 @@ Scope {
         color: "transparent"
         WlrLayershell.layer: WlrLayer.Top
         focusable: true
-        exclusiveZone: 0
+
 
         Rectangle {
             anchors.fill: parent
@@ -175,7 +175,7 @@ Scope {
     }
 
     IpcHandler {
-        target: "wallpaper-menu"
+        target: "wallpapersmenu"
 
         function toggle(): void {
             wallpaperWindow.visible = !wallpaperWindow.visible;
