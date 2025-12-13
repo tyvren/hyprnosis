@@ -96,7 +96,7 @@ PanelWindow {
 
         Process {
           id: button1
-          command: [ "walker" ]
+          command: [ "sh", "-c", "qs ipc call launcher-menu toggle" ]
         }
       }
 
