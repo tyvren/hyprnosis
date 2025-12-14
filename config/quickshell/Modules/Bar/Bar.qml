@@ -54,13 +54,6 @@ Variants {
         id: clock
         anchors.centerIn: parent
       }
-
-      MouseArea {
-        id: popuparea
-        hoverEnabled: true
-        anchors.fill: clock
-        onClicked: popuploader.item.visible = !popuploader.item.visible
-      }
     }
   }
 }
