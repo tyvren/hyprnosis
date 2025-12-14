@@ -17,12 +17,7 @@ PanelWindow {
   property var theme: Theme {}
   property int currentIndex: 0
 
-  anchors {
-    top: true
-    bottom: true
-    left: true
-    right: true
-  }
+  anchors { top: true; bottom: true; left: true; right: true }
 
   onVisibleChanged: {
     if (visible) {
@@ -33,18 +28,11 @@ PanelWindow {
 
   IpcHandler {
     target: "stylemenu"
-
-    function toggle(): void {
-      stylemenu.visible = !stylemenu.visible
-    }
-
-    function hide(): void {
-      stylemenu.visible = false
-    }
+    function toggle(): void { stylemenu.visible = !stylemenu.visible }
+    function hide(): void { stylemenu.visible = false }
   }
 
   RectangularShadow {
-    id: menushadow
     anchors.centerIn: parent
     width: 400
     height: 200
@@ -83,91 +71,117 @@ PanelWindow {
         stylemenu.visible = false
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-          text: ""
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Theme"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button1area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 0
-          onClicked: {
-            currentIndex = 0
-            button1.startDetached()
-            stylemenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button1
-          command: [ "sh", "-c", "qs ipc call thememenu toggle" ]
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 28
+            text: ""
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Theme"
+          }
+
+          MouseArea {
+            id: button1area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 0
+            onClicked: {
+              currentIndex = 0
+              button1.startDetached()
+              stylemenu.visible = false
+            }
+          }
+
+          Process {
+            id: button1
+            command: [ "sh", "-c", "qs ipc call thememenu toggle" ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-          text: "󰸉"
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Wallpaper"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button2area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 1
-          onClicked: {
-            currentIndex = 1
-            button2.startDetached()
-            stylemenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button2
-          command: [ "sh", "-c", "qs ipc call wallpapersmenu toggle" ]
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 28
+            text: "󰸉"
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Wallpaper"
+          }
+
+          MouseArea {
+            id: button2area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 1
+            onClicked: {
+              currentIndex = 1
+              button2.startDetached()
+              stylemenu.visible = false
+            }
+          }
+
+          Process {
+            id: button2
+            command: [ "sh", "-c", "qs ipc call wallpapersmenu toggle" ]
+          }
         }
       }
     }

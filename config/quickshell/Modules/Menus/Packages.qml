@@ -17,12 +17,7 @@ PanelWindow {
   property var theme: Theme {}
   property int currentIndex: 0
 
-  anchors {
-    top: true
-    bottom: true
-    left: true
-    right: true
-  } 
+  anchors { top: true; bottom: true; left: true; right: true }
 
   onVisibleChanged: {
     if (visible) {
@@ -33,18 +28,11 @@ PanelWindow {
 
   IpcHandler {
     target: "packagesmenu"
-
-    function toggle(): void {
-      packagesmenu.visible = !packagesmenu.visible
-    }
-
-    function hide(): void {
-      packagesmenu.visible = false
-    }
+    function toggle(): void { packagesmenu.visible = !packagesmenu.visible }
+    function hide(): void { packagesmenu.visible = false }
   }
 
   RectangularShadow {
-    id: menushadow
     anchors.centerIn: parent
     width: 400
     height: 300
@@ -84,135 +72,174 @@ PanelWindow {
         packagesmenu.visible = false
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-          text: "󰣇"
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Install Arch Pkg"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button1area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 0
-          onClicked: {
-            currentIndex = 0
-            button1.startDetached()
-            packagesmenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button1
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh" ]
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 28
+            text: "󰣇"
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Install Arch Pkg"
+          }
+
+          MouseArea {
+            id: button1area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 0
+            onClicked: {
+              currentIndex = 0
+              button1.startDetached()
+              packagesmenu.visible = false
+            }
+          }
+
+          Process {
+            id: button1
+            command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh" ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-          text: ""
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Install AUR Pkg"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button2area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 1
-          onClicked: {
-            currentIndex = 1
-            button2.startDetached()
-            packagesmenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button2
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh" ]
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 28
+            text: ""
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Install AUR Pkg"
+          }
+
+          MouseArea {
+            id: button2area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 1
+            onClicked: {
+              currentIndex = 1
+              button2.startDetached()
+              packagesmenu.visible = false
+            }
+          }
+
+          Process {
+            id: button2
+            command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh" ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-          text: "󱧙"
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Uninstall Pkg"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button3area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 2
-          onClicked: {
-            currentIndex = 2
-            button3.startDetached()
-            packagesmenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button3
-          command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_uninstall.sh" ]
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 28
+            text: "󱧙"
+          }
+
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Uninstall Pkg"
+          }
+
+          MouseArea {
+            id: button3area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 2
+            onClicked: {
+              currentIndex = 2
+              button3.startDetached()
+              packagesmenu.visible = false
+            }
+          }
+
+          Process {
+            id: button3
+            command: [ "sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_uninstall.sh" ]
+          }
         }
       }
     }

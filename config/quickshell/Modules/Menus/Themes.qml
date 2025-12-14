@@ -87,261 +87,285 @@ PanelWindow {
         thememenu.visible = false
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Hyprnosis"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button1area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 0
-          onClicked: {
-            currentIndex = 0
-            button1.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button1
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Hyprnosis"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Hyprnosis"
+          }
+
+          MouseArea {
+            id: button1area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 0
+            onClicked: {
+              currentIndex = 0
+              button1.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button1
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Hyprnosis"' ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Catppuccin Mocha"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button2area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 1
-          onClicked: {
-            currentIndex = 1
-            button2.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button2
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Mocha"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Catppuccin Mocha"
+          }
+
+          MouseArea {
+            id: button2area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 1
+            onClicked: {
+              currentIndex = 1
+              button2.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button2
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Mocha"' ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Emberforge"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button3area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 2
-          onClicked: {
-            currentIndex = 2
-            button3.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button3
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Emberforge"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Emberforge"
+          }
+
+          MouseArea {
+            id: button3area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 2
+            onClicked: {
+              currentIndex = 2
+              button3.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button3
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Emberforge"' ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 3 || button4area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Dracula"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button4area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 3
-          onClicked: {
-            currentIndex = 3
-            button4.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 3 || button4area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button4
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Dracula"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Dracula"
+          }
+
+          MouseArea {
+            id: button4area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 3
+            onClicked: {
+              currentIndex = 3
+              button4.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button4
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Dracula"' ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 4 || button5area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Arcadia"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button5area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 4
-          onClicked: {
-            currentIndex = 4
-            button5.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 4 || button5area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button5
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Arcadia"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Arcadia"
+          }
+
+          MouseArea {
+            id: button5area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 4
+            onClicked: {
+              currentIndex = 4
+              button5.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button5
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Arcadia"' ]
+          }
         }
       }
 
-      Rectangle {
-        width: 350
-        height: 60
-        radius: 10
-        color: currentIndex === 5 || button6area.containsMouse ? theme.colSelect : theme.colBg
-        border.width: 2
-        border.color: theme.colAccent
+      Item {
+        implicitWidth: 350
+        implicitHeight: 60
 
-        Text {
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.left: parent.left
-          anchors.leftMargin: 15
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 28
-        }
-
-        Text {
+        RectangularShadow {
           anchors.centerIn: parent
-          color: theme.colAccent
-          font.family: theme.fontFamily
-          font.pixelSize: 22
-          text: "Eden"
+          width: 350
+          height: 60
+          blur: 5
+          spread: 1
+          radius: 10
         }
 
-        MouseArea {
-          id: button6area
+        Rectangle {
           anchors.fill: parent
-          hoverEnabled: true
-          onEntered: currentIndex = 5
-          onClicked: {
-            currentIndex = 5
-            button6.startDetached()
-            thememenu.visible = false
-          }
-        }
+          radius: 10
+          color: currentIndex === 5 || button6area.containsMouse ? theme.colSelect : theme.colBg
+          border.width: 2
+          border.color: theme.colAccent
 
-        Process {
-          id: button6
-          command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Eden"' ]
+          Text {
+            anchors.centerIn: parent
+            color: theme.colAccent
+            font.family: theme.fontFamily
+            font.pixelSize: 22
+            text: "Eden"
+          }
+
+          MouseArea {
+            id: button6area
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: currentIndex = 5
+            onClicked: {
+              currentIndex = 5
+              button6.startDetached()
+              thememenu.visible = false
+            }
+          }
+
+          Process {
+            id: button6
+            command: [ "sh", "-c", '~/.config/hyprnosis/modules/style/theme_changer.sh "Eden"' ]
+          }
         }
       }
     }
