@@ -61,35 +61,6 @@ Variants {
         anchors.fill: clock
         onClicked: popuploader.item.visible = !popuploader.item.visible
       }
- 
-      LazyLoader {
-        id: popuploader
-        loading: true
-
-        component: PopupWindow {
-          id: popup
-          color: "transparent"
-          anchor.window: topbar
-          anchor.rect.x: parentWindow.width / 2 - width / 2
-          anchor.rect.y: parentWindow.height 
-
-          implicitWidth: 600
-          implicitHeight: 300
-
-          ClippingRectangle {
-            anchors.fill: parent
-            color: topbar.theme.colBg
-            bottomLeftRadius: 20
-            bottomRightRadius: 20
-          }
-
-          Text {
-            anchors.centerIn: parent
-            color: topbar.theme.colAccent
-            text: "Popup menu"
-          }
-        }
-      }
     }
   }
 }
