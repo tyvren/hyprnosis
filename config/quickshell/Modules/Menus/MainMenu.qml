@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
@@ -40,6 +41,16 @@ PanelWindow {
     function hide(): void {
       mainmenu.visible = false
     }
+  }
+
+  RectangularShadow {
+    id:menushadow
+    anchors.centerIn: parent
+    width: 400
+    height: 500
+    blur: 50
+    spread: 5
+    radius: 10
   }
 
   Rectangle {
