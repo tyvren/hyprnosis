@@ -14,9 +14,7 @@ Variants {
     required property var modelData
     property var theme: Theme {}
     screen: modelData
-
     color: "transparent"
-    WlrLayershell.layer: WlrLayer.Bottom
 
     anchors {
       top: true
@@ -34,14 +32,12 @@ Variants {
       Rectangle {
         anchors.fill: parent
         color: theme.colBg
-
         layer.enabled: true
         layer.effect: MultiEffect {
           maskSource: mask
           maskEnabled: true
           maskInverted: true
           maskThresholdMin: 0.5
-          maskSpreadAtMin: 1
         }
       }
     }
@@ -56,15 +52,10 @@ Variants {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-
         anchors.leftMargin: 10
         anchors.rightMargin: 10
         anchors.bottomMargin: 10
-
-        y: 35
-
         height: parent.height - 10
-
         radius: 10
       }
     }

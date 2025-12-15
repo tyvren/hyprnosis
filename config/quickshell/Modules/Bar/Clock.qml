@@ -21,7 +21,7 @@ Item {
     anchors.fill: parent
     source: clock
     shadowEnabled: true
-    shadowBlur: 0.75
+    shadowBlur: 1
     shadowOpacity: 0.5
   }
 }

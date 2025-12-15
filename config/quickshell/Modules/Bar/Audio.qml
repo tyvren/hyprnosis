@@ -22,7 +22,7 @@ Item {
     anchors.fill: parent
     source: icon
     shadowEnabled: true
-    shadowBlur: 0.75
+    shadowBlur: 1
     shadowOpacity: 0.50 
   }
 
