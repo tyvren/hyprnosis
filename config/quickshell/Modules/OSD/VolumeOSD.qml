@@ -32,10 +32,13 @@ Scope {
 	LazyLoader {
 		active: root.shouldShowOsd
 
-		PanelWindow {
-      anchors.top: true
-      anchors.right: true
-			exclusiveZone: 0
+    PanelWindow {
+
+      anchors {
+        top: true
+        right: true
+      }
+
 			implicitWidth: screen.width / 12
       implicitHeight: screen.height / 30
 
@@ -44,45 +47,51 @@ Scope {
 
 			mask: Region {}
 
-			Rectangle {
-				anchors.fill: parent
-				radius: height / 2
-				color: theme.colTransB
+      Item {
+        anchors.fill: parent
+        anchors.topMargin: 5
+        anchors.rightMargin: 15
 
-				RowLayout {
-					anchors {
-						fill: parent
-						leftMargin: 10
-						rightMargin: 15
-					}
+			  Rectangle {
+          anchors.fill: parent
+				  radius: height / 2
+				  color: theme.colTransB
 
-          Text {
-            color: theme.colAccent
-            font.pixelSize: 25
-						text: ""
-					}
+				  RowLayout {
+					  anchors {
+						  fill: parent
+						  leftMargin: 10
+						  rightMargin: 15
+					  }
 
-					Rectangle {
-						Layout.fillWidth: true
+            Text {
+              color: theme.colHilight
+              font.pixelSize: 25
+						  text: ""
+					  }
 
-						implicitHeight: 10
-						radius: 20
-						color: theme.colBg 
+					  Rectangle {
+						  Layout.fillWidth: true
 
-            Rectangle {
-              color: theme.colAccent
+						  implicitHeight: 10
+						  radius: 20
+						  color: theme.colBg 
 
-							anchors {
-								left: parent.left
-								top: parent.top
-								bottom: parent.bottom
-							}
+              Rectangle {
+                color: theme.colHilight
 
-							implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-							radius: parent.radius
-						}
-					}
-				}
+							  anchors {
+								  left: parent.left
+								  top: parent.top
+								  bottom: parent.bottom
+							  }
+
+							  implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+							  radius: parent.radius
+						  }
+					  }
+          }
+        }
 			}
 		}
 	}
