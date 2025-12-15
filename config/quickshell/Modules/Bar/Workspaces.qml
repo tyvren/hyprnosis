@@ -20,7 +20,7 @@ RowLayout {
 
       Text {
         id: icon
-        text: "  "
+        text: "  "
         color: isActive ? theme.colHilight : (ws ? theme.colAccent : "transparent")
         font.family: theme.fontFamily
         font.pixelSize: theme.fontSize
