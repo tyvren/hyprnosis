@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick
+import QtQuick.Effects
 import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell.Wayland
@@ -15,44 +16,49 @@ Variants {
     screen: modelData
     color: "transparent"
     implicitHeight: 30
-    WlrLayershell.layer: WlrLayer.Top
 
     anchors {
       top: true
       left: true
       right: true
-    } 
+    }
 
-    Rectangle {
-      id: barcontent
-      color: theme.colBg
+    Item{
       anchors.fill: parent
 
-      Row {
-        anchors.left: parent.left
-        anchors.margins: 10
-        spacing: 10
+      Rectangle {
+        id: barcontent
+        color: theme.colBg
+        anchors.fill: parent
 
-        MainMenu {}
-        Workspaces {}
-      }
+        Row {
+          anchors.left: parent.left
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.margins: 10
+          spacing: 30
 
-      Row {
-        anchors.right: parent.right
-        anchors.margins: 10
-        spacing: 10
+          MainMenu {}
+          Workspaces {}
+        }
 
-        Battery {}
-        Audio {}
-        Network {}
-        Bluetooth {}
-        Notifications {}
-        Power {}
-      }
+        Row {
+          anchors.right: parent.right
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.margins: 10
+          spacing: 30
 
-      Clock { 
-        id: clock
-        anchors.centerIn: parent
+          Battery {}
+          Audio {}
+          Network {}
+          Bluetooth {}
+          Notifications {}
+          Power {}
+        }
+
+        Clock { 
+          id: clock
+          anchors.centerIn: parent
+        }
       }
     }
   }

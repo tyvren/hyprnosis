@@ -1,21 +1,30 @@
 import QtQuick
 import qs.Services
+import QtQuick.Effects
 
 Item {
-  width: 30
-  height: 30
+  id: batterybutton
+  implicitWidth: icon.implicitWidth
+  implicitHeight: icon.implicitHeight
+  anchors.verticalCenter: parent.verticalCenter
+  visible: Battery.available
 
-  Rectangle {
+  Text {
+    id: icon
+    text: Math.round(Battery.percentage * 100) + "%"
+    font.family: theme.fontFamily
+    font.pixelSize: theme.fontSize
+    color: theme.colAccent
+    layer.enabled: true
+  }
+
+  MultiEffect {
     anchors.fill: parent
-    color: "transparent"
-    visible: Battery.available
-
-    Text {
-      anchors.centerIn: parent
-      text: Math.round(Battery.percentage * 100) + "%"
-      font.family: theme.fontFamily
-      font.pixelSize: theme.fontSize
-      color: theme.colAccent
-    }
+    source: icon
+    shadowEnabled: true
+    shadowBlur: 0.75
+    shadowOpacity: 0.75
+    shadowVerticalOffset: 0
+    shadowHorizontalOffset: 1
   }
 }

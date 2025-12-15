@@ -1,33 +1,39 @@
-// Audio.qml
 import QtQuick
 import Quickshell.Io
+import QtQuick.Effects
 
 Item {
-  width: 30
-  height: 30
+  id: audiobutton
+  implicitWidth: icon.implicitWidth
+  implicitHeight: icon.implicitHeight
+  anchors.verticalCenter: parent.verticalCenter
+
+  Text {
+    id: icon
+    text: ""
+    font.family: theme.fontFamily
+    font.pixelSize: theme.fontSize
+    color: theme.colAccent
+    layer.enabled: true
+  }
+
+  MultiEffect {
+    anchors.fill: parent
+    source: icon
+    shadowEnabled: true
+    shadowBlur: 0.75
+    shadowOpacity: 0.75 
+    shadowVerticalOffset: 0
+    shadowHorizontalOffset: 1
+  }
 
   Process {
     id: openAudio
     command: [ "pavucontrol" ]
-    }
-
-  Rectangle {
-    anchors.fill: parent
-    color: "transparent"
-
-    Text {
-      anchors.centerIn: parent
-      text: "   "
-      font.family: theme.fontFamily
-      font.pixelSize: theme.fontSize
-      color: theme.colAccent
-    }
   }
 
   MouseArea {
     anchors.fill: parent
-    onClicked: {
-      openAudio.startDetached()
-    }
+    onClicked: openAudio.startDetached()
   }
 }

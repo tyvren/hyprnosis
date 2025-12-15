@@ -1,35 +1,40 @@
 import QtQuick
 import Quickshell.Io
-
+import QtQuick.Effects
 
 Item {
-  width: 30
-  height: 30
+  id: menubutton
+  implicitWidth: icon.implicitWidth
+  implicitHeight: icon.implicitHeight
+  anchors.verticalCenter: parent.verticalCenter
+
+  Text {
+    id: icon
+    text: ""
+    font.family: theme.fontFamily
+    font.pixelSize: theme.fontSize
+    color: theme.colAccent
+    layer.enabled: true
+    visible: false
+  }
+
+  MultiEffect {
+    anchors.fill: parent
+    source: icon
+    shadowEnabled: true
+    shadowBlur: 0.75
+    shadowOpacity: 0.75 
+    shadowVerticalOffset: 0
+    shadowHorizontalOffset: 1
+  }
 
   Process {
     id: openMenu
     command: [ "sh", "-c", "qs ipc call mainmenu toggle" ]
-    }
-
-  Rectangle {
-    anchors.fill: parent
-    anchors.margins: 2
-    color: "transparent" 
-    radius: 10
-
-    Text {
-      anchors.centerIn: parent
-      text: "  "
-      font.family: theme.fontFamily
-      font.pixelSize: theme.fontSize
-      color: theme.colAccent
-    }
   }
 
   MouseArea {
     anchors.fill: parent
-    onClicked: {
-      openMenu.startDetached()
-    }
+    onClicked: openMenu.startDetached()
   }
 }
