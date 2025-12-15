@@ -4,7 +4,6 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
-import Quickshell.Wayland
 import Quickshell.Hyprland
 import "../.."
 
@@ -12,8 +11,7 @@ PanelWindow {
   id: packagesmenu
   visible: false
   focusable: true
-  color: "transparent"
-  WlrLayershell.layer: WlrLayer.Top
+  color: "transparent" 
   property var theme: Theme {}
   property int currentIndex: 0
 

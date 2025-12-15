@@ -5,7 +5,6 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
-import Quickshell.Wayland
 import Quickshell.Hyprland
 import "../.."
 
@@ -14,7 +13,6 @@ PanelWindow {
     visible: false
     focusable: true
     color: "transparent"
-    WlrLayershell.layer: WlrLayer.Top
     property var theme: Theme {}
     property string query: ""
     property var filteredApps: DesktopEntries.applications.values
