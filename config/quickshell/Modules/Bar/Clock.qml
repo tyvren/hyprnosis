@@ -22,8 +22,6 @@ Item {
     source: clock
     shadowEnabled: true
     shadowBlur: 0.75
-    shadowOpacity: 0.75
-    shadowVerticalOffset: 0
-    shadowHorizontalOffset: 1
+    shadowOpacity: 0.5
   }
 }

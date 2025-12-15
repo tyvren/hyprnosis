@@ -25,6 +25,7 @@ RowLayout {
         font.family: theme.fontFamily
         font.pixelSize: theme.fontSize
         layer.enabled: true
+        visible: false 
       }
 
       MultiEffect {
@@ -32,9 +33,7 @@ RowLayout {
         source: icon
         shadowEnabled: true
         shadowBlur: 0.75
-        shadowOpacity: 0.75
-        shadowVerticalOffset: 0
-        shadowHorizontalOffset: 1
+        shadowOpacity: 0.50
       }
 
       MouseArea {
