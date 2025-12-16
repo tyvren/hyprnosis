@@ -62,7 +62,7 @@ PanelWindow {
         id: menushadow
         cached: true
         anchors.centerIn: parent
-        width: 400
+        width: 450
         height: 500
         blur: 50
         spread: 5
@@ -71,7 +71,7 @@ PanelWindow {
 
     Rectangle {
         anchors.centerIn: parent
-        width: 400
+        width: 450
         height: 500
         radius: 10
         color: theme.colBg
@@ -143,7 +143,7 @@ PanelWindow {
                 }
 
                 delegate: Rectangle {
-                    width: parent.width
+                    width: 425
                     height: 50
                     radius: 8
                     color: (ListView.isCurrentItem || mouseArea.containsMouse)
