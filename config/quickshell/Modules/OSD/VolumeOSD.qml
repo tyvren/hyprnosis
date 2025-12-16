@@ -33,28 +33,19 @@ Scope {
 		active: root.shouldShowOsd
 
     PanelWindow {
-
-      anchors {
-        top: true
-        right: true
-      }
-
+      anchors.top: true; anchors.right: true;
 			implicitWidth: screen.width / 12
-      implicitHeight: screen.height / 30
-
+      implicitHeight: screen.height / 24
       property var theme: Theme {}
 			color: "transparent"
-
 			mask: Region {}
 
       Item {
         anchors.fill: parent
-        anchors.topMargin: 5
-        anchors.rightMargin: 15
 
 			  Rectangle {
           anchors.fill: parent
-				  radius: height / 2
+				  radius: 15
 				  color: theme.colTransB
 
 				  RowLayout {

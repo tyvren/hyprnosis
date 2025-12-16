@@ -60,10 +60,10 @@ Variants {
         anchors.centerIn: shell
         width: shell.width
         height: shell.height
-        blur: 30
-        spread: -30
-        radius: 10
-        y: 5
+        blur: 25
+        spread: -20
+        radius: 15
+        y: 10
       }
 
       Rectangle {
