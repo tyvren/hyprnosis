@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Eden"
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Hyprnosis"
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
@@ -45,8 +45,8 @@ Scope {
 
     PanelWindow {
         id: wallpaperWindow
-        width: 800
-        height: 600
+        implicitWidth: 800
+        implicitHeight: 600
         visible: false
         color: "transparent"
         WlrLayershell.layer: WlrLayer.Top
@@ -98,8 +98,8 @@ Scope {
                         id: delegateItem
                         required property var modelData
                         required property int index
-                        width: 500
-                        height: 350
+                        implicitWidth: 500
+                        implicitHeight: 350
                         scale: PathView.scale
                         z: PathView.z
 
