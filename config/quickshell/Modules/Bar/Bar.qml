@@ -56,6 +56,7 @@ Variants {
       }
 
       RectangularShadow {
+        cached: true
         anchors.centerIn: shell
         width: shell.width
         height: shell.height

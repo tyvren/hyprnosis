@@ -43,6 +43,7 @@ PanelWindow {
 
   RectangularShadow {
     id: menushadow
+    cached: true
     anchors.centerIn: parent
     width: 400
     height: 500

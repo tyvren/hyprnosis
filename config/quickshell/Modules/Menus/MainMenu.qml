@@ -114,6 +114,7 @@ PanelWindow {
         implicitWidth: 350
         implicitHeight: 60
         RectangularShadow {
+          cached: true
           anchors.centerIn: parent
           width: 350
           height: 60

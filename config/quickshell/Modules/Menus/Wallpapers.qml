@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Hyprnosis"
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Eden"
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
@@ -26,7 +26,6 @@ Scope {
 
     property int currentPreviewIndex: 0
 
-    // Re-scan wallpapers whenever wallpaperDir changes
     onWallpaperDirChanged: {
         scanWallpapers.start();
     }
@@ -199,7 +198,7 @@ Scope {
                 searchField.text = "";
                 pathView.currentIndex = 0;
                 root.currentPreviewIndex = 0;
-                scanWallpapers.start(); // re-scan to make sure the list reflects the current theme
+                scanWallpapers.start();
             }
         }
 
