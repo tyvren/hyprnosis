@@ -10,31 +10,73 @@ Variants {
   model: Quickshell.screens
 
   PanelWindow {
-    id: topbar
+    id: shell
     required property var modelData
     property var theme: Theme {}
     screen: modelData
     color: "transparent"
-    implicitHeight: 30
+
+    mask: Region { item: barcontent }
 
     anchors {
       top: true
       left: true
       right: true
+      bottom: true
     }
 
-    Item{
+    Item {
+      id: mask
       anchors.fill: parent
+      visible: false
+      enabled: false
+      layer.enabled: true
+
+      Rectangle {
+        anchors.fill: parent
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        anchors.topMargin: 30
+        anchors.bottomMargin: 10
+        radius: 15
+      }
+    }
+
+    Rectangle {
+      id: barwrap
+      anchors.fill: parent
+      color: theme.colBg
+
+      layer.enabled: true
+      layer.effect: MultiEffect {
+        maskSource: mask
+        maskEnabled: true
+        maskInverted: true
+        maskThresholdMin: 0.5
+      }
+
+      RectangularShadow {
+        anchors.centerIn: shell
+        width: shell.width
+        height: shell.height
+        blur: 30
+        spread: -30
+        radius: 10
+        y: 5
+      }
 
       Rectangle {
         id: barcontent
-        color: theme.colBg
-        anchors.fill: parent
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 30
+        color: "transparent"
 
         Row {
           anchors.left: parent.left
           anchors.verticalCenter: parent.verticalCenter
-          anchors.margins: 10
+          anchors.leftMargin: 10
           spacing: 30
 
           MainMenu {}
@@ -44,7 +86,7 @@ Variants {
         Row {
           anchors.right: parent.right
           anchors.verticalCenter: parent.verticalCenter
-          anchors.margins: 10
+          anchors.rightMargin: 10
           spacing: 30
 
           Battery {}
@@ -55,8 +97,7 @@ Variants {
           Power {}
         }
 
-        Clock { 
-          id: clock
+        Clock {
           anchors.centerIn: parent
         }
       }
