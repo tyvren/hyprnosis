@@ -36,6 +36,7 @@ Variants {
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 10
+        anchors.topMargin: 30
         anchors.bottomMargin: 10
         radius: 15
       }
@@ -64,17 +65,6 @@ Variants {
         radius: 15
         y: 10
       }
-    }
-
-    PanelWindow {
-      id: bararea
-      color: "transparent"
-      anchors {
-        top: true
-        left: true
-        right: true
-      }
-      implicitHeight: 30
 
       Rectangle {
         id: barcontent
@@ -82,7 +72,7 @@ Variants {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 30
-        color: theme.colBg
+        color: "transparent"
 
         Row {
           anchors.left: parent.left
