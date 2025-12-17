@@ -36,7 +36,7 @@ Variants {
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 10
-        anchors.topMargin: 30
+        anchors.topMargin: 10
         anchors.bottomMargin: 10
         radius: 15
       }
@@ -53,18 +53,27 @@ Variants {
         maskEnabled: true
         maskInverted: true
         maskThresholdMin: 0.5
-      }
+    }
 
-      RectangularShadow {
-        cached: true
-        anchors.centerIn: shell
-        width: shell.width
-        height: shell.height
-        blur: 25
-        spread: -20
-        radius: 15
-        y: 10
+    RectangularShadow {
+      cached: true
+      anchors.centerIn: parent
+      width: parent.width
+      height: parent.height
+      blur: 10
+      spread: -10
+      radius: 15
+      color: theme.colAccent
       }
+    }
+
+    PanelWindow {
+      id: topBar
+      color: theme.colBg
+      anchors.top: true
+      anchors.left: true
+      anchors.right: true
+      implicitHeight: 30
 
       Rectangle {
         id: barcontent
@@ -102,6 +111,15 @@ Variants {
           anchors.centerIn: parent
         }
       }
+    }
+
+    PanelWindow {
+      id: bottomBar
+      color: theme.colBg
+      anchors.bottom: true
+      anchors.left: true
+      anchors.right: true
+      implicitHeight: 5
     }
   }
 }
