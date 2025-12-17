@@ -73,14 +73,15 @@ Variants {
       anchors.top: true
       anchors.left: true
       anchors.right: true
-      implicitHeight: 30
+      implicitHeight: 25
 
       Rectangle {
         id: barcontent
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 30
+        anchors.topMargin: 2
+        height: 25
         color: "transparent"
 
         Row {
