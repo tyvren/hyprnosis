@@ -31,13 +31,13 @@ PanelWindow {
   }
 
   RectangularShadow {
-    cached: true
     anchors.centerIn: parent
     width: 400
     height: 200
-    blur: 50
-    spread: 5
+    blur: 10
+    spread: 0
     radius: 10
+    color: theme.colAccent
   }
 
   Rectangle {
@@ -47,8 +47,8 @@ PanelWindow {
     height: 200
     radius: 10
     color: theme.colBg
-    border.width: 2
-    border.color: theme.colAccent
+    //border.width: 2
+    //border.color: theme.colAccent
 
     Keys.onEscapePressed: stylemenu.visible = false
     Keys.onUpPressed: currentIndex = (currentIndex - 1 + menulist.count) % menulist.count
