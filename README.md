@@ -19,8 +19,7 @@ Check out the desktop environment themes in the wiki: https://github.com/tyvren/
 ----------------------------------------------------------------------
 
 **User Interface**
-- Quickshell - status bar and sub-menus
-- Walker - hyprnosis menu system and app launcher
+- Quickshell
 
 ----------------------------------------------------------------------
 

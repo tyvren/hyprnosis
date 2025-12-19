@@ -6,7 +6,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Hyprland
-import "../.."
+import qs
 
 PanelWindow {
     id: launcherMenu

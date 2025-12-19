@@ -11,7 +11,7 @@ import "../.."
 Scope {
     id: root
 
-    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Hyprnosis"
+    property string wallpaperDir: "/home/tyvren/.config/hyprnosis/wallpapers/Mocha"
     property string searchQuery: ""
     property var theme: Theme {}
     property var wallpaperList: []
