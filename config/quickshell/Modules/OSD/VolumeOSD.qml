@@ -6,78 +6,78 @@ import Quickshell.Widgets
 import qs
 
 Scope {
-    id: root
+  id: root
 
-    PwObjectTracker {
-        objects: [ Pipewire.defaultAudioSink ]
+  PwObjectTracker {
+    objects: [ Pipewire.defaultAudioSink ]
+  }
+
+  Connections {
+    target: Pipewire.defaultAudioSink?.audio
+
+    function onVolumeChanged() {
+      root.shouldShowOsd = true
+      hideTimer.restart()
     }
+  }
 
-    Connections {
-        target: Pipewire.defaultAudioSink?.audio
+  property bool shouldShowOsd: false
 
-        function onVolumeChanged() {
-            root.shouldShowOsd = true
-            hideTimer.restart()
-        }
-    }
+  Timer {
+    id: hideTimer
+    interval: 1000
+    onTriggered: root.shouldShowOsd = false
+  }
 
-    property bool shouldShowOsd: false
+  LazyLoader {
+    active: root.shouldShowOsd
 
-    Timer {
-        id: hideTimer
-        interval: 1000
-        onTriggered: root.shouldShowOsd = false
-    }
+    PanelWindow {
+      anchors.top: true
+      anchors.right: true
+      implicitWidth: screen.width / 12
+      implicitHeight: screen.height / 24
+      property var theme: Theme {}
+      color: "transparent"
+      mask: Region {}
 
-    LazyLoader {
-        active: root.shouldShowOsd
+      Item {
+        anchors.fill: parent
 
-        PanelWindow {
-            anchors.top: true
-            anchors.right: true
-            implicitWidth: screen.width / 12
-            implicitHeight: screen.height / 24
-            property var theme: Theme {}
-            color: "transparent"
-            mask: Region {}
+        Rectangle {
+          anchors.fill: parent
+          radius: 15
+          color: theme.colTransB
 
-            Item {
-                anchors.fill: parent
+          RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: 10
+            anchors.rightMargin: 15
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: 15
-                    color: theme.colTransB
-
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: 10
-                        anchors.rightMargin: 15
-
-                        Text {
-                            color: theme.colHilight
-                            font.pixelSize: 25
-                            text: ""
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            implicitHeight: 10
-                            radius: 20
-                            color: theme.colBg
-
-                            Rectangle {
-                                color: theme.colHilight
-                                anchors.left: parent.left
-                                anchors.top: parent.top
-                                anchors.bottom: parent.bottom
-                                implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-                                radius: parent.radius
-                            }
-                        }
-                    }
-                }
+            Text {
+              color: theme.colHilight
+              font.pixelSize: 25
+              text: ""
             }
+
+            Rectangle {
+              Layout.fillWidth: true
+              implicitHeight: 10
+              radius: 20
+              color: theme.colBg
+
+              Rectangle {
+                color: theme.colHilight
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+                radius: parent.radius
+              }
+            }
+          }
         }
+      }
     }
+  }
 }
