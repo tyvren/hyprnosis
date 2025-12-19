@@ -78,7 +78,7 @@ Item {
           target: menuroot
           property: "width"
           duration: 250
-          easing.type: Easing.InOutQuad
+          easing.type: Easing.OutQuad
           easing.amplitude: 1.0
           easing.period: 2.0
         }
@@ -88,7 +88,7 @@ Item {
           target: menuroot
           property: "height"
           duration: 250
-          easing.type: Easing.InOutQuad
+          easing.type: Easing.OutQuad
           easing.amplitude: 1.0
           easing.period: 2.0
         }
