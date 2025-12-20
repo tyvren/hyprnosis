@@ -35,6 +35,8 @@ Scope {
     PanelWindow {
       anchors.top: true
       anchors.right: true
+      margins.top: 10
+      margins.right: 10
       implicitWidth: screen.width / 12
       implicitHeight: screen.height / 24
       property var theme: Theme {}
@@ -43,7 +45,7 @@ Scope {
 
       Item {
         anchors.fill: parent
-
+      
         Rectangle {
           anchors.fill: parent
           radius: 15
