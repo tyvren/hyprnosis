@@ -8,7 +8,6 @@ ShellRoot {
   VolumeOSD {}
   MainMenu {}
   Packages {}
-  Power {}
   Updates {}
   Utilities {}
   Capture {}
