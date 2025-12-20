@@ -45,8 +45,8 @@ Item {
       id: powermenu
       visible: false
       focusable: true
-      width: 400
-      height: 300
+      implicitWidth: 200
+      implicitHeight: 175
       color: "transparent"
       property var theme: Theme {}
       property int currentIndex: 0
@@ -115,13 +115,13 @@ Item {
           }
 
           Item {
-            implicitWidth: 350
-            implicitHeight: 60
+            implicitWidth: 150
+            implicitHeight: 45
 
             RectangularShadow {
               anchors.centerIn: parent
-              implicitWidth: 350
-              implicitHeight: 60
+              implicitWidth: 150
+              implicitHeight: 45
               blur: 5
               spread: 1
               radius: 10
@@ -136,20 +136,11 @@ Item {
 
               Text {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                color: theme.colAccent
-                font.family: theme.fontFamily
-                font.pixelSize: 28
-                text: ""
-              }
-
-              Text {
                 anchors.centerIn: parent
                 color: theme.colAccent
                 font.family: theme.fontFamily
                 font.pixelSize: 22
-                text: "Lock"
+                text: ""
               }
 
               MouseArea {
@@ -169,13 +160,13 @@ Item {
           }
 
           Item {
-            implicitWidth: 350
-            implicitHeight: 60
+            implicitWidth: 150
+            implicitHeight: 45
 
             RectangularShadow {
               anchors.centerIn: parent
-              implicitWidth: 350
-              implicitHeight: 60
+              implicitWidth: 150
+              implicitHeight: 45
               blur: 5
               spread: 0
               radius: 10
@@ -190,20 +181,11 @@ Item {
 
               Text {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                color: theme.colAccent
-                font.family: theme.fontFamily
-                font.pixelSize: 28
-                text: ""
-              }
-
-              Text {
                 anchors.centerIn: parent
                 color: theme.colAccent
                 font.family: theme.fontFamily
                 font.pixelSize: 22
-                text: "Restart"
+                text: ""
               }
 
               MouseArea {
@@ -223,13 +205,13 @@ Item {
           }
 
           Item {
-            implicitWidth: 350
-            implicitHeight: 60
+            implicitWidth: 150
+            implicitHeight: 45
 
             RectangularShadow {
               anchors.centerIn: parent
-              implicitWidth: 350
-              implicitHeight: 60
+              implicitWidth: 150
+              implicitHeight: 45
               blur: 5
               spread: 1
               radius: 10
@@ -244,20 +226,11 @@ Item {
 
               Text {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                color: theme.colAccent
-                font.family: theme.fontFamily
-                font.pixelSize: 28
-                text: ""
-              }
-
-              Text {
                 anchors.centerIn: parent
                 color: theme.colAccent
                 font.family: theme.fontFamily
                 font.pixelSize: 22
-                text: "Shutdown"
+                text: ""
               }
 
               MouseArea {
