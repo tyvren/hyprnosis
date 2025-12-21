@@ -115,8 +115,22 @@ Variants {
           Power {}
         }
 
+        Calendar {
+          id: calendar
+          visible: false
+        }
+
         Clock {
+          id: clock
           anchors.centerIn: parent
+
+          MouseArea {
+            id: clockarea
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: calendar.visible = true
+            onExited: calendar.visible = false
+          }
         }
       }
     }
