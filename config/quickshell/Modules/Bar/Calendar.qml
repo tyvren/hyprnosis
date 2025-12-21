@@ -42,8 +42,9 @@ PopupWindow {
 
       MonthGrid {
         id: grid
-        month: Calendar.December
-        year: 2025
+        readonly property date today: new Date()
+        month: today.getMonth()
+        year: today.getFullYear()
         locale: Qt.locale("en_US")
         Layout.fillWidth: true
         Layout.fillHeight: true
