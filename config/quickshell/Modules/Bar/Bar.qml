@@ -57,6 +57,7 @@ Variants {
         maskSource: desktopmask
         maskEnabled: true
         maskInverted: true
+        maskSpreadAtMin: 1
         maskThresholdMin: 0.5
       }
 
