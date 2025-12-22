@@ -4,7 +4,7 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import QtQuick.Effects
 
-RowLayout {
+ColumnLayout {
   Repeater {
     model: 9
 
@@ -18,8 +18,8 @@ RowLayout {
 
       Text {
         id: icon
-        text: "  "
-        color: isActive ? theme.colHilight : (ws ? theme.colAccent : "transparent")
+        text: ""
+        color: isActive ? theme.colAccent : (ws ? theme.colMuted : "transparent")
         font.family: theme.fontFamily
         font.pixelSize: theme.fontSize
         layer.enabled: true

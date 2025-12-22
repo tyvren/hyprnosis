@@ -16,7 +16,7 @@ Item {
 
   Text {
     id: icon
-    text: ""
+    text: " Power Menu"
     font.family: theme.fontFamily
     font.pixelSize: theme.fontSize
     color: theme.colAccent

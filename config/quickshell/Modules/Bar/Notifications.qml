@@ -6,7 +6,6 @@ Item {
   id: notificationsbutton
   implicitWidth: icon.implicitWidth
   implicitHeight: icon.implicitHeight
-  anchors.verticalCenter: parent.verticalCenter
 
   Text {
     id: icon

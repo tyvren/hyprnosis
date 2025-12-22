@@ -10,7 +10,7 @@ Item {
 
   Text {
     id: icon
-    text: ""
+    text: " Main Menu"
     font.family: theme.fontFamily
     font.pixelSize: theme.fontSize
     color: theme.colAccent

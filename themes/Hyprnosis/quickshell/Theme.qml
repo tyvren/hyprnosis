@@ -8,7 +8,8 @@ QtObject {
     property color colAccent: "#01A2FC"
     property color colMuted: "#444b6a"
     property color colTransB: "#80000000"
-
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 14
+    property string wallpaperPath: "/home/tyvren/.config/hyprnosis/wallpapers/Hyprnosis/hyprnosis.jpg"
+    property string logoPath: "Assets/spiral_hyprnosis.png" 
 }
