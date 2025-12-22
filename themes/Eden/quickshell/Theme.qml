@@ -10,6 +10,6 @@ QtObject {
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int fontSize: 14
     property string wallpaperPath: "~/.config/hyprnosis/wallpapers/Eden/eden.jpg"
-    property string logoPath: "Assets/spiral_eden.png"
+    property string logoPath: "../../Assets/spiral_eden.png"
 }
 
