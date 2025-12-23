@@ -253,8 +253,104 @@ Variants {
           visible: barShapePath.menuOpen
           clip: true
 
+          Rectangle {
+            anchors.fill: parent
+            color: "transparent"
+
+            RowLayout {
+              anchors.top: parent.top
+              anchors.left: parent.left
+              anchors.topMargin: 40
+              anchors.leftMargin: 70
+              spacing: 8
+
+              Rectangle {
+                id: lockButton
+                width: 50
+                height: 50
+                radius: 15
+                color: "transparent"
+                border.color: theme.colAccent
+                border.width: 2
+                opacity: menuContainer.visible ? 1.0 : 0.0
+                Behavior on opacity { NumberAnimation { duration: 1500 } }
+
+                Text {
+                  anchors.centerIn: parent
+                  text: ""
+                  font.family: theme.fontFamily
+                  font.pixelSize: 22
+                  color: theme.colAccent
+                }
+
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: lockProcess.startDetached()
+                }
+
+                Process { id: lockProcess; command: ["hyprlock"] }
+              }
+
+              Rectangle {
+                id: restartButton
+                width: 50
+                height: 50
+                radius: 15
+                color: "transparent"
+                border.color: theme.colAccent
+                border.width: 2
+                opacity: menuContainer.visible ? 1.0 : 0.0
+                Behavior on opacity { NumberAnimation { duration: 1500 } }
+
+                Text {
+                  anchors.centerIn: parent
+                  text: ""
+                  font.family: theme.fontFamily
+                  font.pixelSize: 22
+                  color: theme.colAccent
+                }
+
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: restartProcess.startDetached()
+                }
+
+                Process { id: restartProcess; command: ["systemctl", "reboot"] }
+              }
+
+              Rectangle {
+                id: shutdownButton
+                width: 50
+                height: 50
+                radius: 15
+                color: "transparent"
+                border.color: theme.colAccent
+                border.width: 2
+                opacity: menuContainer.visible ? 1.0 : 0.0
+                Behavior on opacity { NumberAnimation { duration: 1500 } }
+
+                Text {
+                  anchors.centerIn: parent
+                  text: ""
+                  font.family: theme.fontFamily
+                  font.pixelSize: 22
+                  color: theme.colAccent
+                }
+
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: shutdownProcess.startDetached()
+                }
+
+                Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
+              }
+            }
+          }
+
           ColumnLayout {
-            anchors.centerIn: parent
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.leftMargin: 70
             spacing: 8
 
             Rectangle {
@@ -268,18 +364,14 @@ Variants {
               opacity: menuContainer.visible ? 1.0 : 0.0
 
               Behavior on opacity {
-                NumberAnimation {
-                  duration: 1000
-                }
+                NumberAnimation { duration: 1000 }
               }
 
-              MainMenu {
-                anchors.centerIn: parent
-              }
+              MainMenu { anchors.centerIn: parent }
             }
 
             Rectangle {
-              id: powerMenuButton
+              id: newButton
               width: 120
               height: 50
               radius: 15
@@ -289,14 +381,10 @@ Variants {
               opacity: menuContainer.visible ? 1.0 : 0.0
 
               Behavior on opacity {
-                NumberAnimation {
-                  duration: 1000
-                }
+                NumberAnimation { duration: 1000 }
               }
 
-              Power {
-                anchors.centerIn: parent
-              }
+              //Power { anchors.centerIn: parent }
             }
           }
         }
