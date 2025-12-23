@@ -396,9 +396,8 @@ Variants {
         Workspaces {
           id: workspacesButton
           anchors.left: parent.left
-          anchors.bottom: parent.bottom
+          anchors.verticalCenter: parent.verticalCenter
           anchors.leftMargin: 5
-          anchors.bottomMargin: 500
         }
 
         Calendar {
