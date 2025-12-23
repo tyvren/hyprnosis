@@ -226,9 +226,12 @@ Variants {
           fillMode: Image.PreserveAspectCrop
           property bool beingHovered: false
 
+          Process { id: openMenu; command: ["sh", "-c", "qs ipc call mainmenu toggle"] }
+
           MouseArea {
             hoverEnabled: true
             anchors.fill: parent
+            onClicked: openMenu.startDetached()
             onExited: parent.beingHovered = false
             onEntered: {
               parent.beingHovered = true
@@ -273,7 +276,7 @@ Variants {
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
-                Behavior on opacity { NumberAnimation { duration: 1500 } }
+                Behavior on opacity { NumberAnimation { duration: 1000 } }
 
                 Text {
                   anchors.centerIn: parent
@@ -300,7 +303,7 @@ Variants {
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
-                Behavior on opacity { NumberAnimation { duration: 1500 } }
+                Behavior on opacity { NumberAnimation { duration: 1000 } }
 
                 Text {
                   anchors.centerIn: parent
@@ -327,7 +330,7 @@ Variants {
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
-                Behavior on opacity { NumberAnimation { duration: 1500 } }
+                Behavior on opacity { NumberAnimation { duration: 1000 } }
 
                 Text {
                   anchors.centerIn: parent
@@ -354,37 +357,33 @@ Variants {
             spacing: 8
 
             Rectangle {
-              id: mainMenuButton
+              id: newButton1
               width: 120
               height: 50
               radius: 15
               color: "transparent"
-              border.color: theme.colAccent
-              border.width: 2
+              //border.color: theme.colAccent
+              //border.width: 2
               opacity: menuContainer.visible ? 1.0 : 0.0
 
               Behavior on opacity {
                 NumberAnimation { duration: 1000 }
               }
-
-              MainMenu { anchors.centerIn: parent }
             }
 
             Rectangle {
-              id: newButton
+              id: newButton2
               width: 120
               height: 50
               radius: 15
               color: "transparent"
-              border.color: theme.colAccent
-              border.width: 2
+              //border.color: theme.colAccent
+              //border.width: 2
               opacity: menuContainer.visible ? 1.0 : 0.0
 
               Behavior on opacity {
                 NumberAnimation { duration: 1000 }
               }
-
-              //Power { anchors.centerIn: parent }
             }
           }
         }
