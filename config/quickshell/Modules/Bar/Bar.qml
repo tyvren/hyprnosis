@@ -220,9 +220,9 @@ Variants {
           width: 40
           height: 40
           source: theme.logoPath
-          smooth: true
+          mipmap: true
           asynchronous: true
-          fillMode: Image.PreserveAspectCrop
+          fillMode: Image.PreserveAspectFit
           property bool beingHovered: false
 
           Process { id: openMenu; command: ["sh", "-c", "qs ipc call mainmenu toggle"] }
@@ -248,8 +248,8 @@ Variants {
 
         Item {
           id: menuContainer
-          anchors.left: verticalBarSpacer.right
           anchors.top: horizontalBarSpacer.bottom
+          anchors.left: verticalBarSpacer.right
           width: menuHorizontalExpand.relativeX
           height: Math.min(menuHorizontalExpand.relativeX, 420)
           visible: barShapePath.menuOpen
@@ -257,7 +257,7 @@ Variants {
 
           Rectangle {
             anchors.fill: parent
-            color: "transparent"
+            color: "transparent" 
 
             RowLayout {
               anchors.top: parent.top

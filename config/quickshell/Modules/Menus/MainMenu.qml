@@ -61,9 +61,9 @@ PanelWindow {
       width: 500
       height: 500
       source: theme.logoPath
-      smooth: true
+      mipmap: true
       asynchronous: true
-      fillMode: Image.PreserveAspectCrop
+      fillMode: Image.PreserveAspectFit
       opacity: 0.7
     }
 
