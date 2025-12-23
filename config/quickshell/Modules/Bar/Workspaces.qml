@@ -5,6 +5,8 @@ import Quickshell.Wayland
 import QtQuick.Effects
 
 ColumnLayout {
+  spacing: 15
+
   Repeater {
     model: 9
 
@@ -19,11 +21,24 @@ ColumnLayout {
       Text {
         id: icon
         text: ""
-        color: isActive ? theme.colAccent : (ws ? theme.colMuted : "transparent")
+        color: isActive ? "transparent" : (ws ? theme.colMuted : "transparent")
         font.family: theme.fontFamily
         font.pixelSize: theme.fontSize
         layer.enabled: true
         visible: false
+      }
+
+      Image {
+          id: workspaceLogo
+          width: 25
+          height: 25
+          x: -5
+          source: theme.logoPath
+          mipmap: true
+          asynchronous: true
+          fillMode: Image.PreserveAspectFit
+          layer.enabled: true
+          visible: isActive
       }
 
       MultiEffect {
