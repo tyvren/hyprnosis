@@ -23,6 +23,7 @@ PopupWindow {
     radius: 20
     color: theme.colBg
     border.color: theme.colAccent
+    border.width: 2
     opacity: root.visible ? 1.0 : 0.0
 
     Behavior on opacity {

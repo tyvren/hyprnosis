@@ -271,7 +271,7 @@ Variants {
                 width: 50
                 height: 50
                 radius: 15
-                color: "transparent"
+                color: lockButtonArea.containsMouse ? theme.colSelect : theme.colBg
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
@@ -286,7 +286,9 @@ Variants {
                 }
 
                 MouseArea {
+                  id: lockButtonArea
                   anchors.fill: parent
+                  hoverEnabled: true
                   onClicked: lockProcess.startDetached()
                 }
 
@@ -298,7 +300,7 @@ Variants {
                 width: 50
                 height: 50
                 radius: 15
-                color: "transparent"
+                color: restartButtonArea.containsMouse ? theme.colSelect : theme.colBg
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
@@ -313,7 +315,9 @@ Variants {
                 }
 
                 MouseArea {
+                  id: restartButtonArea
                   anchors.fill: parent
+                  hoverEnabled: true
                   onClicked: restartProcess.startDetached()
                 }
 
@@ -325,7 +329,7 @@ Variants {
                 width: 50
                 height: 50
                 radius: 15
-                color: "transparent"
+                color: shutdownButtonArea.containsMouse ? theme.colSelect : theme.colBg
                 border.color: theme.colAccent
                 border.width: 2
                 opacity: menuContainer.visible ? 1.0 : 0.0
@@ -340,7 +344,9 @@ Variants {
                 }
 
                 MouseArea {
+                  id: shutdownButtonArea
                   anchors.fill: parent
+                  hoverEnabled: true
                   onClicked: shutdownProcess.startDetached()
                 }
 
