@@ -6,7 +6,6 @@ Item {
   id: batterybutton
   implicitWidth: icon.implicitWidth
   implicitHeight: icon.implicitHeight
-  anchors.verticalCenter: parent.verticalCenter
   visible: Battery.available
 
   Text {
