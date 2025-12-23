@@ -10,7 +10,6 @@ import qs
 
 Variants {
   model: Quickshell.screens
-
   delegate: Component {
     Item {
       id: root
@@ -395,11 +394,24 @@ Variants {
           anchors.leftMargin: 5
         }
 
+        Calendar {
+          id: calendar
+          visible: false
+        }
+
         Clock {
           id: clockButton
           anchors.top: parent.top
           anchors.horizontalCenter: parent.horizontalCenter
           anchors.topMargin: 5
+
+          MouseArea {
+            id: clockarea
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: calendar.visible = true
+            onExited: calendar.visible = false
+          }
         }
 
         Battery {

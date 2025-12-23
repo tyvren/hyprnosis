@@ -8,11 +8,11 @@ import QtQuick.Effects
 
 PopupWindow {
   id: root
-  implicitWidth: 500
+  implicitWidth: 400
   implicitHeight: 300
-  anchor.window: shell
-  anchor.rect.x: shell.width / 2 - width / 2
-  anchor.rect.y: 20
+  anchor.window: barLayer
+  anchor.rect.x: barLayer.width / 2 - width / 2
+  anchor.rect.y: 40
   color: "transparent"
 
   property var theme: Theme {}
@@ -20,7 +20,7 @@ PopupWindow {
   Rectangle {
     id: container
     anchors.fill: parent
-    radius: 15
+    radius: 20
     color: theme.colBg
     border.color: theme.colAccent
     opacity: root.visible ? 1.0 : 0.0
@@ -43,7 +43,7 @@ PopupWindow {
           verticalAlignment: Text.AlignVCenter
           text: model.shortName
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           color: theme.colAccent
         }
       }
@@ -62,7 +62,7 @@ PopupWindow {
           verticalAlignment: Text.AlignVCenter
           text: model.day
           font.family: theme.fontFamily
-          font.pixelSize: 24
+          font.pixelSize: 22
           color: model.today ? theme.colHilight : model.month === grid.month
               ? theme.colAccent : "transparent"
         }
