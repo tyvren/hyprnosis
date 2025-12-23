@@ -65,7 +65,7 @@ PanelWindow {
     blur: 10
     spread: 0
     radius: 10
-    color: theme.colAccent
+    color: "transparent"
   }
 
   Rectangle {
@@ -73,9 +73,21 @@ PanelWindow {
     width: 450
     height: 500
     radius: 10
-    color: theme.colBg
+    color: "transparent"
     //border.width: 2
     //border.color: theme.colAccent
+    
+    Image {
+      id: logoImage
+      anchors.centerIn: parent
+      width: 500
+      height: 500
+      source: theme.logoPath
+      smooth: true
+      asynchronous: true
+      fillMode: Image.PreserveAspectCrop
+      opacity: 0.7
+    }
 
     Keys.onEscapePressed: launcherMenu.visible = false
 
@@ -85,7 +97,8 @@ PanelWindow {
       spacing: 12
 
       Rectangle {
-        width: parent.width
+        Layout.alignment: Qt.AlignHCenter
+        width: 325
         height: 40
         radius: 8
         color: theme.colSelect
@@ -142,14 +155,16 @@ PanelWindow {
         }
 
         delegate: Rectangle {
-          width: 425
+          width: 325
           height: 50
-          radius: 8
+          radius: 10
           color: (ListView.isCurrentItem || mouseArea.containsMouse)
                  ? theme.colSelect
                  : theme.colBg
           border.width: 2
           border.color: theme.colAccent
+          clip: true
+          anchors.horizontalCenter: parent.horizontalCenter
 
           IconImage {
             id: appIcon

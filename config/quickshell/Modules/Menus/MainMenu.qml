@@ -42,7 +42,7 @@ PanelWindow {
     blur: 10
     spread: 0
     radius: 10
-    color: theme.colAccent
+    color: "transparent"
   }
 
   Rectangle {
@@ -51,9 +51,21 @@ PanelWindow {
     width: 400
     height: 500
     radius: 10
-    color: theme.colBg
+    color: "transparent"
     //border.width: 2
     //border.color: theme.colAccent
+    
+    Image {
+      id: logoImage
+      anchors.centerIn: parent
+      width: 500
+      height: 500
+      source: theme.logoPath
+      smooth: true
+      asynchronous: true
+      fillMode: Image.PreserveAspectCrop
+      opacity: 0.7
+    }
 
     Keys.onEscapePressed: mainmenu.visible = false
     Keys.onUpPressed: currentIndex = (currentIndex - 1 + menulist.count) % menulist.count
@@ -73,11 +85,11 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -117,12 +129,12 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           cached: true
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -162,11 +174,11 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -206,11 +218,11 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -250,11 +262,11 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -294,11 +306,11 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1

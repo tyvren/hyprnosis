@@ -47,7 +47,7 @@ PanelWindow {
     blur: 10
     spread: 0
     radius: 10
-    color: theme.colAccent
+    color: "transparent" 
   }
 
   Rectangle {
@@ -56,9 +56,21 @@ PanelWindow {
     width: 400
     height: 300
     radius: 10
-    color: theme.colBg
+    color: "transparent" 
     //border.width: 2
     //border.color: theme.colAccent
+    
+    Image {
+      id: logoImage
+      anchors.centerIn: parent
+      width: 500
+      height: 500
+      source: theme.logoPath
+      smooth: true
+      asynchronous: true
+      fillMode: Image.PreserveAspectCrop
+      opacity: 0.7
+    }
 
     Keys.onEscapePressed: capturemenu.visible = false
     Keys.onUpPressed: currentIndex = (currentIndex - 1 + menulist.count) % menulist.count
@@ -82,12 +94,12 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -116,7 +128,7 @@ PanelWindow {
             color: theme.colAccent
             font.family: theme.fontFamily
             font.pixelSize: 22
-            text: "Screenshot-Region"
+            text: "Region"
           }
 
           MouseArea {
@@ -139,12 +151,12 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -173,7 +185,7 @@ PanelWindow {
             color: theme.colAccent
             font.family: theme.fontFamily
             font.pixelSize: 22
-            text: "Screenshot-Window"
+            text: "Window"
           }
 
           MouseArea {
@@ -196,12 +208,12 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 350
+        implicitWidth: 250
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 350
+          width: 250
           height: 60
           blur: 5
           spread: 1
@@ -230,7 +242,7 @@ PanelWindow {
             color: theme.colAccent
             font.family: theme.fontFamily
             font.pixelSize: 22
-            text: "Record Screen"
+            text: "Record"
           }
 
           MouseArea {
