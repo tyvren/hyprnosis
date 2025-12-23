@@ -402,6 +402,14 @@ Variants {
           anchors.topMargin: 5
         }
 
+        Battery {
+          id: batteryIcon
+          anchors.top: parent.top
+          anchors.right: parent.right
+          anchors.rightMargin: 160
+          anchors.topMargin: 5
+        }
+
         Audio {
           id: audioButton
           anchors.top: parent.top
