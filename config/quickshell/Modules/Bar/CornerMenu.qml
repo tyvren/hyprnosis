@@ -10,13 +10,13 @@ Item {
 
   Rectangle {
     anchors.fill: parent
-    color: "transparent" 
+    color: "transparent"
 
     RowLayout {
       anchors.top: parent.top
       anchors.left: parent.left
       anchors.topMargin: 40
-      anchors.leftMargin: 70
+      anchors.leftMargin: 50
       spacing: 8
 
       Rectangle {
@@ -111,8 +111,13 @@ Item {
   ColumnLayout {
     anchors.bottom: parent.bottom
     anchors.left: parent.left
-    anchors.leftMargin: 70
+    anchors.leftMargin: 50
     spacing: 8
+
+    Media {
+      id: mediaWidget
+      anchors.bottom: parent.bottom
+    }
 
     Rectangle {
       id: newButton1
