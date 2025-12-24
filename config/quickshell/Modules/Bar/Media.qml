@@ -27,18 +27,16 @@ Rectangle {
       anchors.topMargin: 10
       anchors.horizontalCenter: playerBox.horizontalCenter
       color: "transparent"
-      border.color: theme.colAccent
-      border.width: 2
-      radius: 20
+      clip: true
 
       Text {
         id: trackTitleText
-        anchors.fill: trackTitleBox
+        anchors.centerIn: trackTitleBox
         color: theme.colAccent
-        font.pixelSize: 12
+        font.pointSize: 10
         font.family: theme.fontFamily
         text: Players.active ? Players.active.trackTitle : ""
-        elide: Text.ElideRight
+       
       }
     }
 
@@ -74,9 +72,9 @@ Rectangle {
       Text {
         id: previousTrack
         color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pixelSize: 30
+        font.pointSize: 25
         font.family: theme.fontFamily
-        text: "󰙣"
+        text: "󰙤"
 
         MouseArea {
           id: prevTrackArea
@@ -89,9 +87,9 @@ Rectangle {
       Text {
         id: playPause
         color: playpauseArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pixelSize: 30
+        font.pointSize: 25
         font.family: theme.fontFamily
-        text: Players.active && Players.active.isPlaying ? "" : ""
+        text: Players.active && Players.active.isPlaying ? "" : ""
 
         MouseArea {
           id: playpauseArea
@@ -103,10 +101,10 @@ Rectangle {
 
       Text {
         id: nextTrack
-        color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pixelSize: 30
+        color: nextTrackArea.containsMouse ? theme.colHilight : theme.colAccent
+        font.pointSize: 25
         font.family: theme.fontFamily
-        text: "󰙡"
+        text: "󰙢"
 
         MouseArea {
           id: nextTrackArea

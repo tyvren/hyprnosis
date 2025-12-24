@@ -16,7 +16,7 @@ Item {
       anchors.top: parent.top
       anchors.left: parent.left
       anchors.topMargin: 40
-      anchors.leftMargin: 50
+      anchors.leftMargin: 75
       spacing: 8
 
       Rectangle {
