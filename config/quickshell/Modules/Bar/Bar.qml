@@ -250,10 +250,11 @@ Variants {
           id: menuContainer
           anchors.top: horizontalBarSpacer.bottom
           anchors.left: verticalBarSpacer.right
+          x: 40
+          y: -10
           width: menuHorizontalExpand.relativeX
           height: Math.min(menuHorizontalExpand.relativeX, 420)
           visible: barShapePath.menuOpen
-          clip: true
         }
        
         Workspaces {

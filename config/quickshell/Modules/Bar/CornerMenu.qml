@@ -117,6 +117,8 @@ Item {
     Media {
       id: mediaWidget
       anchors.bottom: parent.bottom
+      opacity: menuContainer.visible ? 1.0 : 0.0
+      Behavior on opacity { NumberAnimation { duration: 1000 } }
     }
 
     Rectangle {
