@@ -13,36 +13,39 @@ Rectangle {
   color: "transparent"
   property var theme: Theme {}
 
-  Image {
-    id: backgroundImage
-    anchors.fill: root
-    mipmap: true
-    asynchronous: true
-    fillMode: Image.PreserveAspectCrop
-    source: Players.active?.trackArtUrl ?? "" 
-  }
-
   Rectangle {
     id: playerBox
     anchors.fill: parent
     color: "transparent"
+    border.color: theme.colAccent
+    border.width: 2
+    radius: 20
+
+    Image {
+      id: backgroundImage
+      anchors.fill: playerBox
+      anchors.margins: 10
+      mipmap: true
+      asynchronous: true
+      fillMode: Image.PreserveAspectCrop
+      source: Players.active?.trackArtUrl ?? "" 
+    }
 
     Rectangle {
       id: trackTitleBox
       width: 200
       height: 20
       anchors.top: playerBox.top
-      anchors.topMargin: 10
+      anchors.topMargin: 15
       anchors.horizontalCenter: playerBox.horizontalCenter
       color: "transparent"
-      clip: true
-      visible: false
+      clip: true 
 
       Text {
         id: trackTitleText
         anchors.centerIn: trackTitleBox
         color: theme.colAccent
-        font.pointSize: 10
+        font.pointSize: 11
         font.family: theme.fontFamily
         font.bold: true
         text: Players.active ? Players.active.trackTitle : ""
