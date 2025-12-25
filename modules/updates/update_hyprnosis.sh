@@ -29,8 +29,7 @@ spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/m
 prompt "Updating Quickshell config"
 cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
 
-wall_update_choice=$(gum confirm "Update hyprnosis wallpapers?")
-if $wall_update_choice; then
+if gum confirm "Update hyprnosis wallpapers?"; then
   spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
   rm -rf /tmp/wallpapers/.git
   rm -rf /tmp/wallpapers/README.md
