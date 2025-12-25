@@ -87,21 +87,21 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
 
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
@@ -112,14 +112,14 @@ PanelWindow {
             anchors.leftMargin: 15
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: ""
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 22
+            font.pointSize: 14
             text: "System"
           }
 
@@ -142,21 +142,21 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
 
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
@@ -167,14 +167,14 @@ PanelWindow {
             anchors.leftMargin: 15
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: ""
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 22
+            font.pointSize: 14
             text: "AUR"
           }
 
@@ -197,21 +197,21 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
 
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
 
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
@@ -222,14 +222,14 @@ PanelWindow {
             anchors.leftMargin: 15
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: ""
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 22
+            font.pointSize: 14
             text: "hyprnosis"
           }
 

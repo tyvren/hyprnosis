@@ -89,37 +89,37 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.leftMargin: 10
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: "󰣇"
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 20
-            text: "Install Arch Pkg"
+            font.pointSize: 14
+            text: "Install ArchPkg"
           }
           MouseArea {
             id: button1area
@@ -140,37 +140,37 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.leftMargin: 10
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: ""
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 20
-            text: "Install AUR Pkg"
+            font.pointSize: 14
+            text: "Install AURPkg"
           }
           MouseArea {
             id: button2area
@@ -191,36 +191,36 @@ PanelWindow {
       }
 
       Item {
-        implicitWidth: 250
+        implicitWidth: 225
         implicitHeight: 60
         RectangularShadow {
           anchors.centerIn: parent
-          width: 250
+          width: 225
           height: 60
           blur: 5
           spread: 1
-          radius: 10
+          radius: 50
         }
         Rectangle {
           anchors.fill: parent
-          radius: 10
+          radius: 50
           color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
           border.width: 2
           border.color: theme.colAccent
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.leftMargin: 10
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 28
+            font.pointSize: 18
             text: "󱧙"
           }
           Text {
             anchors.centerIn: parent
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 20
+            font.pointSize: 14
             text: "Uninstall Pkg"
           }
           MouseArea {

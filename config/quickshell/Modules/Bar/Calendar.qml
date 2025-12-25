@@ -8,8 +8,8 @@ import QtQuick.Effects
 
 PopupWindow {
   id: root
-  implicitWidth: 400
-  implicitHeight: 300
+  implicitWidth: 350
+  implicitHeight: 225
   anchor.window: barLayer
   anchor.rect.x: barLayer.width / 2 - width / 2
   anchor.rect.y: 40
@@ -34,7 +34,8 @@ PopupWindow {
 
     GridLayout {
       columns: 1
-      anchors.centerIn: parent
+      anchors.fill: parent
+      anchors.margins: 15
 
       DayOfWeekRow {
         locale: grid.locale
@@ -44,7 +45,7 @@ PopupWindow {
           verticalAlignment: Text.AlignVCenter
           text: model.shortName
           font.family: theme.fontFamily
-          font.pixelSize: 22
+          font.pointSize: 16
           color: theme.colAccent
         }
       }
@@ -63,7 +64,7 @@ PopupWindow {
           verticalAlignment: Text.AlignVCenter
           text: model.day
           font.family: theme.fontFamily
-          font.pixelSize: 22
+          font.pointSize: 16
           color: model.today ? theme.colHilight : model.month === grid.month
               ? theme.colAccent : "transparent"
         }

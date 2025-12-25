@@ -99,9 +99,8 @@ PanelWindow {
       Rectangle {
         Layout.alignment: Qt.AlignHCenter
         width: 325
-        height: 40
-        radius: 8
-        color: theme.colSelect
+        height: 30
+        radius: 50
 
         TextField {
           id: searchField
@@ -109,7 +108,7 @@ PanelWindow {
           placeholderText: "Search apps..."
           color: theme.colAccent
           font.family: theme.fontFamily
-          font.pixelSize: 16
+          font.pointSize: 14
 
           onTextChanged: launcherMenu.query = text
 
@@ -156,8 +155,8 @@ PanelWindow {
 
         delegate: Rectangle {
           width: 325
-          height: 50
-          radius: 10
+          height: 60
+          radius: 50
           color: (ListView.isCurrentItem || mouseArea.containsMouse)
                  ? theme.colSelect
                  : theme.colBg
@@ -181,7 +180,7 @@ PanelWindow {
             text: modelData.name
             color: theme.colAccent
             font.family: theme.fontFamily
-            font.pixelSize: 18
+            font.pointSize: 14
           }
 
           MouseArea {
