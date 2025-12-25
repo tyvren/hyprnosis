@@ -12,6 +12,7 @@ Item {
     text: Time.time
     font.family: theme.fontFamily
     font.pixelSize: theme.fontSize
+    font.bold: true
     color: theme.colAccent
     layer.enabled: true
     visible: false
