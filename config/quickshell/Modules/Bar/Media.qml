@@ -1,4 +1,5 @@
 import Quickshell
+import QtQuick.Effects
 import QtQuick
 import QtQuick.Layouts
 import qs
@@ -8,16 +9,23 @@ Rectangle {
   id: root
   width: 220
   height: 200
+  radius: 20
   color: "transparent"
   property var theme: Theme {}
+
+  Image {
+    id: backgroundImage
+    anchors.fill: root
+    mipmap: true
+    asynchronous: true
+    fillMode: Image.PreserveAspectCrop
+    source: Players.active?.trackArtUrl ?? "" 
+  }
 
   Rectangle {
     id: playerBox
     anchors.fill: parent
     color: "transparent"
-    border.color: theme.colAccent
-    border.width: 2
-    radius: 20
 
     Rectangle {
       id: trackTitleBox
@@ -28,6 +36,7 @@ Rectangle {
       anchors.horizontalCenter: playerBox.horizontalCenter
       color: "transparent"
       clip: true
+      visible: false
 
       Text {
         id: trackTitleText
@@ -35,44 +44,24 @@ Rectangle {
         color: theme.colAccent
         font.pointSize: 10
         font.family: theme.fontFamily
+        font.bold: true
         text: Players.active ? Players.active.trackTitle : ""
-       
-      }
-    }
-
-    Rectangle {
-      id: trackImageBox
-      width: 200
-      height: 125
-      anchors.top: playerBox.top
-      anchors.horizontalCenter: playerBox.horizontalCenter
-      anchors.topMargin: 30
-      color: "transparent"
-
-      Image {
-        id: albumArt
-        anchors.centerIn: trackImageBox
-        width: 120
-        height: 120
-        mipmap: true
-        asynchronous: true
-        fillMode: Image.PreserveAspectFit
-        source: Players.active?.trackArtUrl ?? ""
-        visible: source !== ""
+        elide: Text.ElideRight
+        maximumLineCount: 10
       }
     }
 
     RowLayout {
       id: playerControls
-      anchors.bottom: playerBox.bottom
+      anchors.centerIn: parent
       anchors.horizontalCenter: playerBox.horizontalCenter
-      anchors.bottomMargin: 5
-      spacing: 8
+      anchors.bottomMargin: 15
+      spacing: 20
 
       Text {
         id: previousTrack
         color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 25
+        font.pointSize: 40
         font.family: theme.fontFamily
         text: "󰙤"
 
@@ -87,7 +76,7 @@ Rectangle {
       Text {
         id: playPause
         color: playpauseArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 25
+        font.pointSize: 40
         font.family: theme.fontFamily
         text: Players.active && Players.active.isPlaying ? "" : ""
 
@@ -102,7 +91,7 @@ Rectangle {
       Text {
         id: nextTrack
         color: nextTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 25
+        font.pointSize: 40
         font.family: theme.fontFamily
         text: "󰙢"
 
