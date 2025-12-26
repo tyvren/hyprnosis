@@ -5,103 +5,116 @@ import QtQuick.Layouts
 import qs
 import qs.Services
 
-Rectangle {
+Item {
   id: root
   width: 220
   height: 200
+
+  RectangularShadow {
+  anchors.centerIn: parent
+  width: 220
+  height: 200
+  blur: 5
+  spread: 1
   radius: 20
-  color: "transparent"
-  property var theme: Theme {}
+  }
 
   Rectangle {
-    id: playerBox
+    id: playerMain
     anchors.fill: parent
-    color: "transparent"
-    border.color: theme.colAccent
-    border.width: 2
+    color: theme.colBg
     radius: 20
 
-    Image {
-      id: backgroundImage
-      anchors.fill: playerBox
-      anchors.margins: 20
-      mipmap: true
-      asynchronous: true
-      cache: true
-      fillMode: Image.PreserveAspectCrop
-      source: Players.active?.trackArtUrl ?? "" 
-    }
-
     Rectangle {
-      id: trackTitleBox
-      width: 200
-      height: 20
-      anchors.top: playerBox.top
-      anchors.topMargin: 1
-      anchors.horizontalCenter: playerBox.horizontalCenter
+      id: playerBox
+      anchors.fill: parent
       color: "transparent"
-      clip: true 
+      border.color: theme.colAccent
+      border.width: 2
+      radius: 20
 
-      Text {
-        id: trackTitleText
-        anchors.centerIn: trackTitleBox
-        color: theme.colAccent
-        font.pointSize: 11
-        font.family: theme.fontFamily
-        text: Players.active ? Players.active.trackTitle : ""
-        elide: Text.ElideRight
-        maximumLineCount: 10
+      Image {
+        id: backgroundImage
+        anchors.fill: playerBox
+        anchors.margins: 20
+        mipmap: true
+        asynchronous: true
+        cache: true
+        fillMode: Image.PreserveAspectCrop
+        source: Players.active?.trackArtUrl ?? "" 
       }
-    }
 
-    RowLayout {
-      id: playerControls
-      anchors.centerIn: parent
-      anchors.horizontalCenter: playerBox.horizontalCenter
-      spacing: 20
+      Rectangle {
+        id: trackTitleBox
+        width: 200
+        height: 20
+        anchors.top: playerBox.top
+        anchors.topMargin: 1
+        anchors.horizontalCenter: playerBox.horizontalCenter
+        color: "transparent"
+        clip: true 
 
-      Text {
-        id: previousTrack
-        color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 40
-        font.family: theme.fontFamily
-        text: "󰙤"
-
-        MouseArea {
-          id: prevTrackArea
-          anchors.fill: parent
-          hoverEnabled: true
-          onClicked: Players.active?.previous()
+        Text {
+          id: trackTitleText
+          anchors.centerIn: trackTitleBox
+          color: theme.colAccent
+          font.pointSize: 11
+          font.family: theme.fontFamily
+          text: Players.active ? Players.active.trackTitle : ""
+          elide: Text.ElideRight
+          maximumLineCount: 10
         }
       }
 
-      Text {
-        id: playPause
-        color: playpauseArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 40
-        font.family: theme.fontFamily
-        text: Players.active && Players.active.isPlaying ? "" : ""
+      RowLayout {
+        id: playerControls
+        anchors.centerIn: parent
+        anchors.horizontalCenter: playerBox.horizontalCenter
+        spacing: 20
 
-        MouseArea {
-          id: playpauseArea
-          anchors.fill: parent
-          hoverEnabled: true
-          onClicked: Players.active?.togglePlaying()
+        Text {
+          id: previousTrack
+          color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
+          font.pointSize: 40
+          font.family: theme.fontFamily
+          text: "󰙤"
+
+          MouseArea {
+            id: prevTrackArea
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: Players.active?.previous()
+          }
         }
-      }
 
-      Text {
-        id: nextTrack
-        color: nextTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-        font.pointSize: 40
-        font.family: theme.fontFamily
-        text: "󰙢"
+        Text {
+          id: playPause
+          color: playpauseArea.containsMouse ? theme.colHilight : theme.colAccent
+          font.pointSize: 40
+          font.family: theme.fontFamily
+          text: Players.active && Players.active.isPlaying ? "" : ""
 
-        MouseArea {
-          id: nextTrackArea
-          anchors.fill: parent
-          hoverEnabled: true
-          onClicked: Players.active?.next()
+          MouseArea {
+            id: playpauseArea
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: Players.active?.togglePlaying()
+          }
+        }
+
+        Text {
+          id: nextTrack
+          color: nextTrackArea.containsMouse ? theme.colHilight : theme.colAccent
+          font.pointSize: 40
+          font.family: theme.fontFamily
+          text: "󰙢"
+
+          MouseArea {
+            id: nextTrackArea
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: Players.active?.next()
+          }
         }
       }
     }
