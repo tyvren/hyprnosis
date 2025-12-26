@@ -16,7 +16,7 @@ Item {
       anchors.top: parent.top
       anchors.left: parent.left
       anchors.topMargin: 40
-      anchors.leftMargin: 75
+      anchors.leftMargin: 85
       spacing: 8
 
       Rectangle {
@@ -32,9 +32,9 @@ Item {
 
         Text {
           anchors.centerIn: parent
-          text: ""
+          text: ""
           font.family: theme.fontFamily
-          font.pixelSize: 22
+          font.pointSize: 16
           color: theme.colAccent
         }
 
@@ -63,7 +63,7 @@ Item {
           anchors.centerIn: parent
           text: ""
           font.family: theme.fontFamily
-          font.pixelSize: 22
+          font.pointSize: 16
           color: theme.colAccent
         }
 
@@ -92,7 +92,7 @@ Item {
           anchors.centerIn: parent
           text: ""
           font.family: theme.fontFamily
-          font.pixelSize: 22
+          font.pointSize: 16
           color: theme.colAccent
         }
 
@@ -108,47 +108,70 @@ Item {
     }
   }
 
+  Media {
+    id: mediaWidget
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.leftMargin: 60
+    opacity: menuContainer.visible ? 1.0 : 0.0
+    Behavior on opacity { NumberAnimation { duration: 1000 } }
+  }
+
   ColumnLayout {
     anchors.bottom: parent.bottom
     anchors.left: parent.left
-    anchors.leftMargin: 50
+    anchors.leftMargin: 0
+    anchors.bottomMargin: 15
     spacing: 8
-
-    Media {
-      id: mediaWidget
-      anchors.bottom: parent.bottom
-      opacity: menuContainer.visible ? 1.0 : 0.0
-      Behavior on opacity { NumberAnimation { duration: 1000 } }
+    opacity: menuContainer.visible ? 1.0 : 0.0
+    Behavior on opacity {
+      NumberAnimation { duration: 1000 }
     }
+    visible: false
 
     Rectangle {
-      id: newButton1
-      width: 120
+      id: settingsButton
+      width: 50
       height: 50
-      radius: 15
-      color: "transparent"
-      //border.color: theme.colAccent
-      //border.width: 2
-      opacity: menuContainer.visible ? 1.0 : 0.0
+      radius: 50
+      color: settingsButtonArea.containsMouse ? theme.colSelect : theme.colBg
+      border.color: theme.colAccent
+      border.width: 2
 
-      Behavior on opacity {
-        NumberAnimation { duration: 1000 }
+      Text {
+        anchors.centerIn: parent
+        text: ""
+        font.family: theme.fontFamily
+        font.pointSize: 16
+        color: theme.colAccent
+      }
+
+      MouseArea {
+        id: settingsButtonArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: settingsProcess.startDetached()
       }
     }
 
     Rectangle {
       id: newButton2
-      width: 120
+      width: 50
       height: 50
-      radius: 15
+      radius: 50
       color: "transparent"
-      //border.color: theme.colAccent
-      //border.width: 2
-      opacity: menuContainer.visible ? 1.0 : 0.0
+      border.color: theme.colAccent
+      border.width: 2
+    }
 
-      Behavior on opacity {
-        NumberAnimation { duration: 1000 }
-      }
+    Rectangle {
+      id: newButton3
+      width: 50
+      height: 50
+      radius: 50
+      color: "transparent"
+      border.color: theme.colAccent
+      border.width: 2
     }
   }
 }

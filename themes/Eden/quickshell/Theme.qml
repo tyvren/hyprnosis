@@ -3,7 +3,7 @@ import QtQuick
 QtObject {
     property color colBg: "#D1CDC2"
     property color colHilight: "#feffff"
-    property color colSelect: "#797D86"
+    property color colSelect: "#E0DED6"
     property color colAccent: "#0D0D0D"
     property color colMuted: "#44475a"
     property color colTransB: "#80000000"

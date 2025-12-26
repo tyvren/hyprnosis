@@ -24,9 +24,10 @@ Rectangle {
     Image {
       id: backgroundImage
       anchors.fill: playerBox
-      anchors.margins: 10
+      anchors.margins: 20
       mipmap: true
       asynchronous: true
+      cache: true
       fillMode: Image.PreserveAspectCrop
       source: Players.active?.trackArtUrl ?? "" 
     }
@@ -36,7 +37,7 @@ Rectangle {
       width: 200
       height: 20
       anchors.top: playerBox.top
-      anchors.topMargin: 15
+      anchors.topMargin: 1
       anchors.horizontalCenter: playerBox.horizontalCenter
       color: "transparent"
       clip: true 
@@ -47,7 +48,6 @@ Rectangle {
         color: theme.colAccent
         font.pointSize: 11
         font.family: theme.fontFamily
-        font.bold: true
         text: Players.active ? Players.active.trackTitle : ""
         elide: Text.ElideRight
         maximumLineCount: 10
@@ -58,7 +58,6 @@ Rectangle {
       id: playerControls
       anchors.centerIn: parent
       anchors.horizontalCenter: playerBox.horizontalCenter
-      anchors.bottomMargin: 15
       spacing: 20
 
       Text {
