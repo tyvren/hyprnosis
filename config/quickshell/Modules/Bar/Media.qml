@@ -18,6 +18,7 @@ Item {
   blur: 5
   spread: 1
   radius: 20
+  color: theme.colAccent
   }
 
   Rectangle {
@@ -56,7 +57,8 @@ Item {
         anchors.top: playerBox.top
         anchors.topMargin: 1
         anchors.horizontalCenter: playerBox.horizontalCenter
-        color: "transparent"
+        color: theme.colTransB
+        radius: 20
         clip: true 
 
         Text {

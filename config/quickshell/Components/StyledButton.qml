@@ -18,6 +18,7 @@ Item {
     blur: 5
     spread: 1
     radius: size
+    color: theme.colAccent
   }
 
   Rectangle {
