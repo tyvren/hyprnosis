@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Widgets
 import QtQuick.Effects
 import QtQuick
 import QtQuick.Layouts
@@ -22,8 +23,23 @@ Item {
   Rectangle {
     id: playerMain
     anchors.fill: parent
-    color: theme.colBg
-    radius: 20
+    color: "transparent"
+
+    ClippingRectangle {
+      id: imageContainer
+      anchors.fill: playerMain
+      radius: 20
+
+      Image {
+        id: backgroundImage
+        anchors.fill: parent
+        mipmap: true
+        asynchronous: true
+        cache: true
+        fillMode: Image.PreserveAspectCrop
+        source: Players.active?.trackArtUrl ?? "" 
+      }
+    }
 
     Rectangle {
       id: playerBox
@@ -32,17 +48,6 @@ Item {
       border.color: theme.colAccent
       border.width: 2
       radius: 20
-
-      Image {
-        id: backgroundImage
-        anchors.fill: playerBox
-        anchors.margins: 20
-        mipmap: true
-        asynchronous: true
-        cache: true
-        fillMode: Image.PreserveAspectCrop
-        source: Players.active?.trackArtUrl ?? "" 
-      }
 
       Rectangle {
         id: trackTitleBox
