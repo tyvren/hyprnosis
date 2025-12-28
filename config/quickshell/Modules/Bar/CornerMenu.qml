@@ -2,7 +2,7 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Io
 import qs
-import qs.Widgets
+import qs.Components
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
