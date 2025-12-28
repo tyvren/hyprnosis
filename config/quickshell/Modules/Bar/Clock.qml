@@ -14,15 +14,5 @@ Item {
     font.pixelSize: theme.fontSize
     font.bold: true
     color: theme.colAccent
-    layer.enabled: true
-    visible: false
-  }
-
-  MultiEffect {
-    anchors.fill: parent
-    source: clock
-    shadowEnabled: true
-    shadowBlur: 1
-    shadowOpacity: 0.5
   }
 }
