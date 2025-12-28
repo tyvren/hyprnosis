@@ -133,15 +133,18 @@ Variants {
           ShapePath {
             id: barShapePath
             property bool menuOpen: false
+
             strokeColor: theme.colAccent
             fillColor: theme.colBg
             strokeWidth: 2
+
             startX: verticalBarSpacer.width
             startY: 0
 
             PathLine {
               relativeX: 0
-              relativeY: -(verticalBarSpacer.height - horizontalBarSpacer.height) 
+              relativeY: -(verticalBarSpacer.height - horizontalBarSpacer.height)
+                         - 3
                          + 30
                          + (-menuTopArc.relativeY)
                          + (-menuVerticalDrop.relativeY)
@@ -196,11 +199,17 @@ Variants {
 
             PathLine {
               relativeX: barLayer.width
+                         - 30
+                         - menuTopArc.relativeX
+                         - menuBottomArc.relativeX
+                         - menuHorizontalExpand.relativeX
+                         + 20
               relativeY: 0
             }
 
             PathLine { relativeX: 0; relativeY: -horizontalBarSpacer.height - 3 }
             PathLine { relativeX: -barLayer.width * 2; relativeY: 0 }
+            PathLine { relativeX: 0; relativeY: barLayer.height + 3 }
           }
         }
 
@@ -236,7 +245,7 @@ Variants {
             }
           }
         }
- 
+
         CornerMenu {
           id: menuContainer
           anchors.top: horizontalBarSpacer.bottom
