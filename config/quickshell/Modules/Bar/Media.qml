@@ -1,7 +1,8 @@
 import Quickshell
 import Quickshell.Widgets
-import QtQuick.Effects
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
 import qs
 import qs.Services
@@ -13,13 +14,13 @@ Item {
   height: 200
 
   RectangularShadow {
-  anchors.centerIn: parent
-  width: 220
-  height: 200
-  blur: 5
-  spread: 1
-  radius: 20
-  color: theme.colAccent
+    anchors.centerIn: parent
+    width: 220
+    height: 200
+    blur: 5
+    spread: 1
+    radius: 20
+    color: theme.colAccent
   }
 
   Rectangle {
@@ -39,7 +40,7 @@ Item {
         asynchronous: true
         cache: true
         fillMode: Image.PreserveAspectCrop
-        source: Players.active?.trackArtUrl ?? "" 
+        source: Players.active?.trackArtUrl ?? ""
       }
     }
 
@@ -60,7 +61,7 @@ Item {
         anchors.horizontalCenter: playerBox.horizontalCenter
         color: theme.colBg
         radius: 20
-        clip: true 
+        clip: true
 
         Text {
           id: trackTitleText
@@ -72,10 +73,9 @@ Item {
           font.family: theme.fontFamily
           text: Players.active ? Players.active.trackTitle : ""
           elide: Text.ElideRight
-          maximumLineCount: 10
+          maximumLineCount: 1
         }
       }
-
 
       RowLayout {
         id: playerControls
