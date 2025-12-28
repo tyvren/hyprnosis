@@ -32,6 +32,7 @@ Item {
       id: imageContainer
       anchors.fill: playerMain
       radius: 20
+      color: "transparent"
 
       Image {
         id: backgroundImage
