@@ -85,7 +85,7 @@ Item {
 
         StyledButton {
           id: previousTrack
-          text: "󰼨"
+          text: "󰒮"
           opacity: menuContainer.visible ? 1.0 : 0.0
           Behavior on opacity { NumberAnimation { duration: 1000 } }
           onClicked: Players.active?.previous()
@@ -101,7 +101,7 @@ Item {
 
         StyledButton {
           id: nextTrack
-          text: "󰼧"
+          text: "󰒭"
           opacity: menuContainer.visible ? 1.0 : 0.0
           Behavior on opacity { NumberAnimation { duration: 1000 } }
           onClicked: Players.active?.next()
