@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs
 import qs.Services
+import qs.Components
 
 Item {
   id: root
@@ -55,15 +56,17 @@ Item {
         width: 200
         height: 20
         anchors.top: playerBox.top
-        anchors.topMargin: 1
+        anchors.topMargin: 5
         anchors.horizontalCenter: playerBox.horizontalCenter
-        color: theme.colTransB
+        color: theme.colBg
         radius: 20
         clip: true 
 
         Text {
           id: trackTitleText
-          anchors.centerIn: trackTitleBox
+          anchors.left: trackTitleBox.left
+          anchors.verticalCenter: trackTitleBox.verticalCenter
+          anchors.leftMargin: 5
           color: theme.colAccent
           font.pointSize: 11
           font.family: theme.fontFamily
@@ -73,55 +76,35 @@ Item {
         }
       }
 
+
       RowLayout {
         id: playerControls
         anchors.centerIn: parent
         anchors.horizontalCenter: playerBox.horizontalCenter
-        spacing: 20
+        spacing: 10
 
-        Text {
+        StyledButton {
           id: previousTrack
-          color: prevTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-          font.pointSize: 40
-          font.family: theme.fontFamily
-          text: "󰙤"
-
-          MouseArea {
-            id: prevTrackArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onClicked: Players.active?.previous()
-          }
+          text: "󰼨"
+          opacity: menuContainer.visible ? 1.0 : 0.0
+          Behavior on opacity { NumberAnimation { duration: 1000 } }
+          onClicked: Players.active?.previous()
         }
 
-        Text {
+        StyledButton {
           id: playPause
-          color: playpauseArea.containsMouse ? theme.colHilight : theme.colAccent
-          font.pointSize: 40
-          font.family: theme.fontFamily
-          text: Players.active && Players.active.isPlaying ? "" : ""
-
-          MouseArea {
-            id: playpauseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onClicked: Players.active?.togglePlaying()
-          }
+          text: Players.active && Players.active.isPlaying ? "" : ""
+          opacity: menuContainer.visible ? 1.0 : 0.0
+          Behavior on opacity { NumberAnimation { duration: 1000 } }
+          onClicked: Players.active?.togglePlaying()
         }
 
-        Text {
+        StyledButton {
           id: nextTrack
-          color: nextTrackArea.containsMouse ? theme.colHilight : theme.colAccent
-          font.pointSize: 40
-          font.family: theme.fontFamily
-          text: "󰙢"
-
-          MouseArea {
-            id: nextTrackArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onClicked: Players.active?.next()
-          }
+          text: "󰼧"
+          opacity: menuContainer.visible ? 1.0 : 0.0
+          Behavior on opacity { NumberAnimation { duration: 1000 } }
+          onClicked: Players.active?.next()
         }
       }
     }
