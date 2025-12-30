@@ -56,10 +56,12 @@ Variants {
         }
 
         RectangularShadow {
+          id: leftBarShadow
           anchors.fill: leftBarContent
-          blur: 5
+          anchors.leftMargin: 5
+          blur: 2
           spread: 2
-          radius: 50
+          radius: 20
           color: theme.colAccent
         }
 
@@ -155,10 +157,12 @@ Variants {
         }
 
         RectangularShadow {
+          id: rightBarShadow
           anchors.fill: rightBarContent
-          blur: 5
+          anchors.rightMargin: 5
+          blur: 2
           spread: 2
-          radius: 50
+          radius: 20
           color: theme.colAccent
         }
 
