@@ -8,7 +8,7 @@ ColumnLayout {
   spacing: 15
 
   Repeater {
-    model: 9
+    model: 6
 
     Item {
       id: wsbutton

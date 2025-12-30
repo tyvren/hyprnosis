@@ -1,11 +1,10 @@
 import Quickshell
 import QtQuick
-import QtQuick.Shapes
+import QtQuick.Effects
 import QtQuick.Layouts
-import Quickshell.Hyprland
-import Quickshell.Wayland
 import Quickshell.Widgets
 import Quickshell.Io
+import Quickshell.Wayland
 import qs
 
 Variants {
@@ -17,311 +16,184 @@ Variants {
       property var theme: Theme {}
 
       PanelWindow {
-        screen: modelData
-        aboveWindows: false
-        exclusionMode: ExclusionMode.Ignore
-        anchors.right: true
-        anchors.left: true
-        anchors.top: true
-        anchors.bottom: true
+        id: backgroundLayer
         color: "transparent"
-      }
-
-      PanelWindow {
-        id: wallpaperLayer
-        screen: modelData
-        aboveWindows: false
-        exclusionMode: ExclusionMode.Ignore
-        anchors.right: true
-        anchors.left: true
-        anchors.top: true
-        anchors.bottom: true
-        color: "transparent"
-      }
-
-      PanelWindow {
-        id: verticalBarSpacer
-        screen: modelData
-        anchors.left: true
-        anchors.top: true
-        anchors.bottom: true
-        implicitWidth: 25
-        color: "transparent"
-      }
-
-      PanelWindow {
-        id: horizontalBarSpacer
-        screen: modelData
-        anchors.left: true
-        anchors.top: true
-        anchors.right: true
-        implicitHeight: 30
-        color: "transparent"
-      }
-
-      PanelWindow {
-        id: backgroundInteractionRegion
+        anchors {
+          top: true
+          bottom: true
+          left: true
+          right: true
+        }
         screen: modelData
         exclusionMode: ExclusionMode.Ignore
-        anchors.right: true
-        anchors.left: true
-        anchors.top: true
-        anchors.bottom: true
-        margins.top: horizontalBarSpacer.height
-        margins.left: verticalBarSpacer.width
-        color: "transparent"
-
-        MouseArea {
-          hoverEnabled: true
-          anchors.fill: parent
-          onEntered: {
-            barShapePath.menuOpen = false
-          }
-        }
-
-        mask: Region {
-          intersection: barShapePath.menuOpen
-            ? Intersection.Subtract
-            : Intersection.Combine
-
-          Region {
-            height: -menuVerticalDrop.relativeY
-                    + (-menuTopArc.radiusY)
-                    + (-menuBottomArc.radiusY)
-            width: menuHorizontalExpand.relativeX
-                   + menuTopArc.radiusX
-                   + menuBottomArc.radiusX
-          }
-        }
-      }
-
-      PanelWindow {
-        id: barLayer
-        screen: modelData
-        focusable: barShapePath.menuOpen
-        exclusionMode: ExclusionMode.Ignore
-        anchors.left: true
-        anchors.top: true
-        anchors.right: true
-        anchors.bottom: true
-        color: "transparent"
-
-        mask: Region {
-          Region {
-            height: horizontalBarSpacer.height
-            width: barLayer.width
-          }
-          Region {
-            height: barLayer.height
-            width: verticalBarSpacer.width
-          }
-          Region {
-            item: menuContainer
-          }
-        }
-
-        Shape {
-          id: barShape
-          asynchronous: true
-          antialiasing: true
-          smooth: true
-          preferredRendererType: Shape.CurveRenderer
-          anchors.left: parent.left
-          anchors.bottom: parent.bottom
-          anchors.bottomMargin: -3
-
-          ShapePath {
-            id: barShapePath
-            property bool menuOpen: false
-
-            strokeColor: theme.colAccent
-            fillColor: theme.colBg
-            strokeWidth: 2
-
-            startX: verticalBarSpacer.width
-            startY: 0
-
-            PathLine {
-              relativeX: 0
-              relativeY: -(verticalBarSpacer.height - horizontalBarSpacer.height)
-                         - 3
-                         + 30
-                         + (-menuTopArc.relativeY)
-                         + (-menuVerticalDrop.relativeY)
-                         + (-menuBottomArc.relativeY)
-            }
-
-            PathArc {
-              relativeX: 30
-              relativeY: -relativeX
-              radiusX: 30
-              radiusY: radiusX
-            }
-
-            PathLine {
-              id: menuHorizontalExpand
-              relativeX: barShapePath.menuOpen ? 300 : 0
-              relativeY: 0
-
-              Behavior on relativeX {
-                NumberAnimation {
-                  alwaysRunToEnd: false
-                  duration: menuHorizontalExpand.relativeX > 0 ? 400 : 500
-                  easing.type: menuHorizontalExpand.relativeX > 0
-                    ? Easing.InOutCubic
-                    : Easing.OutQuad
-                }
-              }
-            }
-
-            PathArc {
-              id: menuTopArc
-              direction: PathArc.Counterclockwise
-              relativeX: Math.min(menuHorizontalExpand.relativeX, 30)
-              relativeY: -relativeX
-              radiusX: -relativeY
-              radiusY: -radiusX
-            }
-
-            PathLine {
-              id: menuVerticalDrop
-              relativeX: 0
-              relativeY: Math.min(menuHorizontalExpand.relativeX, 220) * -1
-            }
-
-            PathArc {
-              id: menuBottomArc
-              relativeX: menuTopArc.relativeX
-              relativeY: -relativeX
-              radiusX: -relativeY
-              radiusY: -radiusX
-            }
-
-            PathLine {
-              relativeX: barLayer.width
-                         - 30
-                         - menuTopArc.relativeX
-                         - menuBottomArc.relativeX
-                         - menuHorizontalExpand.relativeX
-                         + 20
-              relativeY: 0
-            }
-
-            PathLine { relativeX: 0; relativeY: -horizontalBarSpacer.height - 3 }
-            PathLine { relativeX: -barLayer.width * 2; relativeY: 0 }
-            PathLine { relativeX: 0; relativeY: barLayer.height + 3 }
-          }
-        }
+        WlrLayershell.layer: WlrLayer.Bottom
 
         Image {
-          id: barLogo
-          y: 0
-          x: 0
-          width: 40
-          height: 40
-          source: theme.logoPath
+          id: wallpaper
+          anchors.fill: parent
+          source: theme.wallpaperPath
           mipmap: true
           asynchronous: true
-          fillMode: Image.PreserveAspectFit
-          property bool beingHovered: false
+          fillMode: Image.PreserveAspectCrop
+        }
+      }
 
-          Process { id: openMenu; command: ["sh", "-c", "qs ipc call mainmenu toggle"] }
+      PanelWindow {
+        id: leftBar
+        color: "transparent"
+        implicitWidth: 30
+        anchors {
+          left: true
+          top: true
+          bottom: true
+        }
+
+        BarMenu {
+          id: barMenu
+          anchor.window: leftBar
+          anchor.rect.x: parentWindow.width
+          anchor.rect.y: parentWindow.height / 2 - height / 2
+        }
+
+        RectangularShadow {
+          anchors.fill: leftBarContent
+          blur: 5
+          spread: 2
+          radius: 50
+          color: theme.colAccent
+        }
+
+        Rectangle {
+          id: leftBarContent
+          color: theme.colBg
+          anchors.fill: parent
+          anchors.rightMargin: 2
+          topRightRadius: 15
+          bottomRightRadius: 15
+        }
+
+        Rectangle {
+          id: iconArea
+          color: theme.colBg
+          border.color: theme.colAccent
+          anchors.centerIn: parent
+          width: 50
+          height: 50
+          radius: 50
+
+          RotationAnimation on rotation {
+            id: spinAnim
+            running: false
+            loops: 2
+            from: 0
+            to: 360
+            duration: 2000
+          }
+
+          ScaleAnimator {
+            id: logoGrow
+            target: logo
+            from: 1
+            to: 2
+            duration: 500
+          }
+
+          ScaleAnimator {
+            id: logoShrink
+            target: logo
+            from: 2
+            to: 1
+            duration: 500
+          }
+
+          Image {
+            id: logo
+            anchors.fill: iconArea
+            source: theme.logoPath
+            mipmap: true
+            asynchronous: true
+            fillMode: Image.PreserveAspectFit
+          }
 
           MouseArea {
+            id: iconAreaMouse
+            anchors.fill: iconArea
             hoverEnabled: true
-            anchors.fill: parent
-            onClicked: openMenu.startDetached()
-            onExited: parent.beingHovered = false
-            onEntered: {
-              parent.beingHovered = true
-              openMenuTimer.start()
+            onEntered: { 
+              barMenu.visible = true
+              spinAnim.start()
             }
-
-            Timer {
-              id: openMenuTimer
-              interval: 300
-              running: false
-              onTriggered: barShapePath.menuOpen = true
+            onClicked: {
+              barMenu.visible = false
+              spinAnim.start()
             }
           }
         }
+      }      
 
-        CornerMenu {
-          id: menuContainer
-          anchors.top: horizontalBarSpacer.bottom
-          anchors.left: verticalBarSpacer.right
-          x: 40
-          y: -10
-          width: menuHorizontalExpand.relativeX
-          height: Math.min(menuHorizontalExpand.relativeX, 420)
-          visible: barShapePath.menuOpen
-        }
-       
-        Workspaces {
-          id: workspacesButton
-          anchors.left: parent.left
-          anchors.verticalCenter: parent.verticalCenter
-          anchors.leftMargin: 5
+      PanelWindow {
+        id: rightBar
+        color: "transparent"
+        implicitWidth: 30
+        anchors {
+          right: true
+          top: true
+          bottom: true
         }
 
-        Calendar {
-          id: calendar
-          visible: false
+        RectangularShadow {
+          anchors.fill: rightBarContent
+          blur: 5
+          spread: 2
+          radius: 50
+          color: theme.colAccent
         }
 
-        Clock {
-          id: clockButton
-          anchors.top: parent.top
-          anchors.horizontalCenter: parent.horizontalCenter
-          anchors.topMargin: 5
+        Rectangle {
+          id: rightBarContent
+          color: theme.colBg
+          anchors.fill: parent
+          anchors.leftMargin: 2
+          topLeftRadius: 20
+          bottomLeftRadius: 20
 
-          MouseArea {
-            id: clockarea
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: calendar.visible = true
-            onExited: calendar.visible = false
+          Clock {
+            id: clockButton
+            anchors.top: rightBarContent.top
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.topMargin: 15
           }
-        }
 
-        Battery {
-          id: batteryIcon
-          anchors.top: parent.top
-          anchors.right: parent.right
-          anchors.rightMargin: 160
-          anchors.topMargin: 5
-        }
+          Workspaces {
+            id: workspacesButton
+            anchors.centerIn: parent
+          }
 
-        Audio {
-          id: audioButton
-          anchors.top: parent.top
-          anchors.right: parent.right
-          anchors.rightMargin: 125
-          anchors.topMargin: 5
-        }
-
-        Bluetooth {
-          id: bluetoothButton
-          anchors.top: parent.top
-          anchors.right: parent.right
-          anchors.rightMargin: 90
-          anchors.topMargin: 5
-        }
-
-        Network {
-          id: networkButton
-          anchors.top: parent.top
-          anchors.right: parent.right
-          anchors.rightMargin: 45
-          anchors.topMargin: 5
-        }
-
-        Notifications {
-          id: notificationsButton
-          anchors.top: parent.top
-          anchors.right: parent.right
-          anchors.rightMargin: 10
-          anchors.topMargin: 5
+          Battery {
+            anchors.bottom: rightBarContent.bottom
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.bottomMargin: 135
+          }
+          Audio {
+            anchors.bottom: rightBarContent.bottom
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.bottomMargin: 105
+          }
+          Bluetooth {
+            anchors.bottom: rightBarContent.bottom
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.bottomMargin: 75
+          }
+          Network {
+            anchors.bottom: rightBarContent.bottom
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.bottomMargin: 45
+          }
+          Notifications {
+            anchors.bottom: rightBarContent.bottom
+            anchors.horizontalCenter: rightBarContent.horizontalCenter
+            anchors.bottomMargin: 15
+          } 
         }
       }
     }

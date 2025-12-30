@@ -11,12 +11,11 @@ Item {
   id: powerbutton
   implicitWidth: icon.implicitWidth
   implicitHeight: icon.implicitHeight
-  anchors.verticalCenter: parent.verticalCenter
   property var theme: Theme {}
 
   Text {
     id: icon
-    text: " Power Menu"
+    text: ""
     font.family: theme.fontFamily
     font.pixelSize: theme.fontSize
     color: theme.colAccent
