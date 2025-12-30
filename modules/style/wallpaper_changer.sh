@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 clear
 
-HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
+#HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 QUICKSHELL_CONF="$HOME/.config/quickshell/Theme.qml"
 WALLPAPER_PATH="$1"

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 THEME_DIR="$HOME/.config/hyprnosis/themes"
+WALLPAPER_DIR="$HOME/.config/hyprnosis/wallpapers"
+QUICKSHELL_CONF="$HOME/.config/quickshell/Theme.qml"
 
 if [[ -z "$1" ]]; then
   echo "Usage: $0 <theme_name>"
@@ -9,14 +11,23 @@ fi
 
 SELECTED_THEME="$1"
 THEME_PATH="$THEME_DIR/$SELECTED_THEME"
+WALL_PATH="$WALLPAPER_DIR/$SELECTED_THEME"
 
 if [[ ! -d "$THEME_PATH" ]]; then
   echo "Theme '$SELECTED_THEME' does not exist in $THEME_DIR"
   exit 1
 fi
 
-cp -r "$THEME_PATH/"* "$HOME/.config/"
+shopt -s nullglob
+WALLPAPERS=("$WALL_PATH"/*.png "$WALL_PATH"/*.jpg)
+if ((${#WALLPAPERS[@]} == 0)); then
+  echo "No wallpapers found in $WALL_PATH"
+  exit 1
+fi
+WALL_PATH="${WALLPAPERS[0]}"
 
+cp -r "$THEME_PATH/"* "$HOME/.config/"
+sed -i -r "s|property string wallpaperPath: \".*\"|property string wallpaperPath: \"${WALL_PATH}\"|" "$QUICKSHELL_CONF"
 sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" "$HOME/.config/hyprnosis/modules/style/randomize_wallpaper.sh"
 
 if [ "$SELECTED_THEME" = "Dracula" ]; then
@@ -26,10 +37,4 @@ else
   gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
 fi
 
-sed -i -r "s|property string wallpaperDir: \".*\"|property string wallpaperDir: \"${HOME}/.config/hyprnosis/wallpapers/$SELECTED_THEME\"|" \
-  "$HOME/.config/quickshell/Modules/Menus/Wallpapers.qml"
-
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
-hyprctl reload
-killall hyprpaper 2>/dev/null || true
-systemctl --user restart hyprpaper.service
