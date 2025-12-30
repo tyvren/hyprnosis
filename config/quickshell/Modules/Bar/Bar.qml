@@ -87,6 +87,7 @@ Variants {
           id: iconArea
           color: theme.colBg
           border.color: theme.colAccent
+          border.width: 2
           anchors.verticalCenter: parent.verticalCenter
           x: -32
           width: 60
@@ -178,7 +179,8 @@ Variants {
 
           Workspaces {
             id: workspacesButton
-            anchors.centerIn: parent
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: parent.height / 2 - 65
           }
 
           Battery {
