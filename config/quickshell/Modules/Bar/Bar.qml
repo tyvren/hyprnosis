@@ -72,14 +72,25 @@ Variants {
           bottomRightRadius: 15
         }
 
+        RectangularShadow {
+          id: iconAreaShadow
+          anchors.fill: iconArea
+          color: theme.colAccent
+          height: parent.height
+          width: parent.width
+          radius: 50
+          blur: 5
+          spread: 1
+        }
+
         Rectangle {
           id: iconArea
           color: theme.colBg
           border.color: theme.colAccent
           anchors.verticalCenter: parent.verticalCenter
-          x: -25
-          width: 50
-          height: 50
+          x: -32
+          width: 60
+          height: 60
           radius: 50
 
           RotationAnimation on rotation {
