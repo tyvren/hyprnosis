@@ -88,7 +88,6 @@ themes_fonts_packages=(
 
 hypr_packages=(
   hyprland
-  hyprpaper
   hyprshot
   hyprlock
   hypridle
