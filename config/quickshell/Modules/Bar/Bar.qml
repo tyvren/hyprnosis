@@ -76,7 +76,8 @@ Variants {
           id: iconArea
           color: theme.colBg
           border.color: theme.colAccent
-          anchors.centerIn: parent
+          anchors.verticalCenter: parent.verticalCenter
+          x: -25
           width: 50
           height: 50
           radius: 50

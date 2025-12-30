@@ -84,7 +84,7 @@ PopupWindow {
       anchors.top: parent.top
       anchors.topMargin: 80
       anchors.left: parent.left
-      anchors.leftMargin: 5
+      anchors.leftMargin: 10
       text: ""
       onClicked: lockProcess.startDetached()
     }
@@ -100,10 +100,10 @@ PopupWindow {
 
     StyledButton {
       id: restartButton
-      anchors.left: parent.left
-      anchors.leftMargin: 5
       anchors.bottom: parent.bottom
       anchors.bottomMargin: 80
+      anchors.left: parent.left
+      anchors.leftMargin: 10
       text: ""
       onClicked: restartProcess.startDetached()
     }
