@@ -27,8 +27,11 @@ fi
 WALL_PATH="${WALLPAPERS[0]}"
 
 cp -r "$THEME_PATH/"* "$HOME/.config/"
+
 sed -i -r "s|property string wallpaperPath: \".*\"|property string wallpaperPath: \"${WALL_PATH}\"|" "$QUICKSHELL_CONF"
-sed -i -r "s|WALLPAPER_DIR=.*|WALLPAPER_DIR=\"$HOME/.config/hyprnosis/wallpapers/$SELECTED_THEME/\"|" "$HOME/.config/hyprnosis/modules/style/randomize_wallpaper.sh"
+
+sed -i -r "s|property string wallpaperDir: \".*\"|property string wallpaperDir: \"${HOME}/.config/hyprnosis/wallpapers/$SELECTED_THEME\"|" \
+  "$HOME/.config/quickshell/Modules/Menus/Wallpapers.qml"
 
 if [ "$SELECTED_THEME" = "Dracula" ]; then
   gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
