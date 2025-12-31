@@ -13,99 +13,132 @@ PopupWindow {
   width: 220
   height: 200
 
-  RectangularShadow {
-    anchors.centerIn: parent
-    width: 220
-    height: 200
-    blur: 5
-    spread: 1
-    radius: 20
-    color: theme.colAccent
-  }
-
-  Rectangle {
-    id: playerMain
+  Item {
+    id:playerContainer
     anchors.fill: parent
-    color: "transparent"
 
-    ClippingRectangle {
-      id: imageContainer
-      anchors.fill: playerMain
-      radius: 20
-      color: "transparent"
+    state: root.visible ? "open" : "closed"
 
-      Image {
-        id: backgroundImage
-        anchors.fill: parent
-        mipmap: true
-        asynchronous: true
-        cache: true
-        fillMode: Image.PreserveAspectCrop
-        source: Players.active?.trackArtUrl ?? ""
+    states:
+      State {
+        name: "closed"
+        PropertyChanges { 
+          target: playerContainer
+          opacity: 0
+        }
+      }
+      State {
+        name: "open"
+        PropertyChanges {
+          target: playerContainer
+          opacity: 1
+        }
+      }
+
+    transitions: Transition {
+      from: "closed"
+      to: "open"
+      NumberAnimation {
+        properties: "opacity"
+        duration: 1000
+        easing.type: Easing.InOutCubic
       }
     }
 
+    RectangularShadow {
+      anchors.centerIn: parent
+      width: 220
+      height: 200
+      blur: 5
+      spread: 1
+      radius: 20
+      color: theme.colAccent
+    }
+
     Rectangle {
-      id: playerBox
+      id: playerMain
       anchors.fill: parent
       color: "transparent"
-      border.color: theme.colAccent
-      border.width: 2
-      radius: 20
 
-      Rectangle {
-        id: trackTitleBox
-        width: 200
-        height: 20
-        anchors.top: playerBox.top
-        anchors.topMargin: 5
-        anchors.horizontalCenter: playerBox.horizontalCenter
-        color: theme.colBg
+      ClippingRectangle {
+        id: imageContainer
+        anchors.fill: playerMain
         radius: 20
-        clip: true
+        color: "transparent"
 
-        Text {
-          id: trackTitleText
-          anchors.left: trackTitleBox.left
-          anchors.verticalCenter: trackTitleBox.verticalCenter
-          anchors.leftMargin: 5
-          color: theme.colAccent
-          font.pointSize: 11
-          font.family: theme.fontFamily
-          text: Players.active ? Players.active.trackTitle : ""
-          elide: Text.ElideRight
-          maximumLineCount: 1
+        Image {
+          id: backgroundImage
+          anchors.fill: parent
+          mipmap: true
+          asynchronous: true
+          cache: true
+          fillMode: Image.PreserveAspectCrop
+          source: Players.active?.trackArtUrl ?? ""
         }
       }
 
-      RowLayout {
-        id: playerControls
-        anchors.centerIn: parent
-        anchors.horizontalCenter: playerBox.horizontalCenter
-        spacing: 10
+      Rectangle {
+        id: playerBox
+        anchors.fill: parent
+        color: "transparent"
+        border.color: theme.colAccent
+        border.width: 2
+        radius: 20
 
-        StyledButton {
-          id: previousTrack
-          text: "󰒮"
-          opacity: menuContainer.visible ? 1.0 : 0.0
-          Behavior on opacity { NumberAnimation { duration: 1000 } }
-          onClicked: Players.active?.previous()
+        Rectangle {
+          id: trackTitleBox
+          width: 200
+          height: 20
+          anchors.top: playerBox.top
+          anchors.topMargin: 5
+          anchors.horizontalCenter: playerBox.horizontalCenter
+          color: theme.colBg
+          radius: 20
+          clip: true
+
+          Text {
+            id: trackTitleText
+            anchors.left: trackTitleBox.left
+            anchors.verticalCenter: trackTitleBox.verticalCenter
+            anchors.leftMargin: 5
+            color: theme.colAccent
+            font.pointSize: 11
+            font.family: theme.fontFamily
+            text: Players.active ? Players.active.trackTitle : ""
+            elide: Text.ElideRight
+            maximumLineCount: 1
+          }
         }
 
-        StyledButton {
-          id: playPause
-          text: Players.active && Players.active.isPlaying ? "" : ""
-          opacity: menuContainer.visible ? 1.0 : 0.0
-          Behavior on opacity { NumberAnimation { duration: 1000 } }
-          onClicked: Players.active?.togglePlaying()
-        }
+        RowLayout {
+          id: playerControls
+          anchors.centerIn: parent
+          anchors.horizontalCenter: playerBox.horizontalCenter
+          spacing: 10
 
-        StyledButton {
-          id: nextTrack
-          text: "󰒭"
-          opacity: menuContainer.visible ? 1.0 : 0.0
-          Behavior on opacity { NumberAnimation { duration: 1000 } }
-          onClicked: Players.active?.next()
+          StyledButton {
+            id: previousTrack
+            text: "󰒮"
+            opacity: menuContainer.visible ? 1.0 : 0.0
+            Behavior on opacity { NumberAnimation { duration: 1000 } }
+            onClicked: Players.active?.previous()
+          }
+
+          StyledButton {
+            id: playPause
+            text: Players.active && Players.active.isPlaying ? "" : ""
+            opacity: menuContainer.visible ? 1.0 : 0.0
+            Behavior on opacity { NumberAnimation { duration: 1000 } }
+            onClicked: Players.active?.togglePlaying()
+          }
+
+          StyledButton {
+            id: nextTrack
+            text: "󰒭"
+            opacity: menuContainer.visible ? 1.0 : 0.0
+            Behavior on opacity { NumberAnimation { duration: 1000 } }
+            onClicked: Players.active?.next()
+          }
         }
       }
     }

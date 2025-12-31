@@ -59,7 +59,7 @@ Variants {
           id: mediaPlayer
           anchor.window: leftBar
           anchor.rect.x: parentWindow.width
-          anchor.rect.y: parentWindow.top
+          anchor.rect.y: parentWindow.height / 6
           color: "transparent"
         }
 
@@ -107,10 +107,10 @@ Variants {
           RotationAnimation on rotation {
             id: spinAnim
             running: false
-            loops: 2
+            loops: 1
             from: 0
             to: 360
-            duration: 2000
+            duration: 4000
           }
 
           ScaleAnimator {
