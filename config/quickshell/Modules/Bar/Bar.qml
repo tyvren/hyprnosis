@@ -55,6 +55,14 @@ Variants {
           anchor.rect.y: parentWindow.height / 2 - height / 2
         }
 
+        Media {
+          id: mediaPlayer
+          anchor.window: leftBar
+          anchor.rect.x: parentWindow.width
+          anchor.rect.y: parentWindow.top
+          color: "transparent"
+        }
+
         RectangularShadow {
           id: leftBarShadow
           anchors.fill: leftBarContent
@@ -136,15 +144,17 @@ Variants {
             hoverEnabled: true
             onEntered: { 
               barMenu.visible = true
+              mediaPlayer.visible = true
               spinAnim.start()
             }
             onClicked: {
               barMenu.visible = false
+              mediaPlayer.visible = false
               spinAnim.start()
             }
           }
         }
-      }      
+      }
 
       PanelWindow {
         id: rightBar
