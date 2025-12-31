@@ -8,7 +8,7 @@ import qs
 import qs.Services
 import qs.Components
 
-Item {
+PopupWindow {
   id: root
   width: 220
   height: 200
