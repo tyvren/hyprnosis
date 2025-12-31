@@ -40,7 +40,7 @@ PopupWindow {
       to: "open"
       NumberAnimation {
         properties: "opacity"
-        duration: 1000
+        duration: 1500
         easing.type: Easing.InOutCubic
       }
     }

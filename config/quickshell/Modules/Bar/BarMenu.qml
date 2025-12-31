@@ -4,18 +4,49 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 
 PopupWindow {
+  id: menuRoot
   width: 200
   height: 350
   color: "transparent"
 
   Rectangle {
+    id: menuContainer
     anchors.fill: parent
     color: "transparent"
     topRightRadius: 300
     bottomRightRadius: 300
+
+    state: menuRoot.visible ? "open" : "closed"
+
+    states:
+      State {
+        name: "closed"
+        PropertyChanges { 
+          target: menuContainer
+          opacity: 0
+        }
+      }
+      State {
+        name: "open"
+        PropertyChanges {
+          target: menuContainer
+          opacity: 1
+        }
+      }
+
+    transitions: Transition {
+      from: "closed"
+      to: "open"
+      NumberAnimation {
+        properties: "opacity"
+        duration: 1000
+        easing.type: Easing.InOutCubic
+      }
+    }
 
     StyledButton {
       id: lockButton
