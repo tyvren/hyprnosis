@@ -104,12 +104,12 @@ PanelWindow {
         from: "closed"
         to: "open"
         SequentialAnimation {
-          NumberAnimation {
-            properties: "scale"
-            duration: 500
-          }
           ScriptAction {
             script: infiniteSpinAnim.start()
+          }
+          NumberAnimation {
+            properties: "scale"
+            duration: 300
           }
         }
       },
@@ -125,7 +125,7 @@ PanelWindow {
           }
           NumberAnimation {
             properties: "scale"
-            duration: 500
+            duration: 300
           }
         }
       }
