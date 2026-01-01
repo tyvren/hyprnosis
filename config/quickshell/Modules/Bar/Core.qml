@@ -5,17 +5,15 @@ import Quickshell.Io
 import QtQuick
 import QtQuick.Effects
 
-
 PanelWindow {
   id: core
   property bool open: false
   anchors {
-    top: true
-    bottom: true
     left: true
   }
   color: "transparent"
-  implicitWidth: 140
+  implicitWidth: 110
+  implicitHeight: 240
   exclusionMode: ExclusionMode.Ignore
 
   RectangularShadow {
@@ -74,13 +72,10 @@ PanelWindow {
       hoverEnabled: true
       onEntered: {
         mediaPlayer.visible = true
-        infiniteSpinAnim.start()
         core.open = true
       }
       onClicked: {
         mediaPlayer.visible = false
-        infiniteSpinAnim.stop()
-        spinAnim.start()
         core.open = false
       }
     }
@@ -108,17 +103,30 @@ PanelWindow {
       Transition {
         from: "closed"
         to: "open"
-        NumberAnimation {
-          properties: "scale"
-          duration: 500
+        SequentialAnimation {
+          NumberAnimation {
+            properties: "scale"
+            duration: 500
+          }
+          ScriptAction {
+            script: infiniteSpinAnim.start()
+          }
         }
       },
       Transition {
         from: "open"
         to: "closed"
-        NumberAnimation {
-          properties: "scale"
-          duration: 500
+        SequentialAnimation {
+          ScriptAction {
+            script: {
+              infiniteSpinAnim.stop()
+              spinAnim.start()
+            }
+          }
+          NumberAnimation {
+            properties: "scale"
+            duration: 500
+          }
         }
       }
     ]
@@ -135,9 +143,7 @@ PanelWindow {
     visible: core.open
     opacity: core.open ? 1 : 0
     Behavior on opacity {
-      NumberAnimation {
-        duration: 1000
-      }
+      NumberAnimation { duration: 1000 }
     }
   }
 
@@ -151,9 +157,7 @@ PanelWindow {
     visible: core.open
     opacity: core.open ? 1 : 0
     Behavior on opacity {
-      NumberAnimation {
-        duration: 1000
-      }
+      NumberAnimation { duration: 1000 }
     }
   }
 
@@ -168,9 +172,7 @@ PanelWindow {
     visible: core.open
     opacity: core.open ? 1 : 0
     Behavior on opacity {
-      NumberAnimation {
-        duration: 1000
-      }
+      NumberAnimation { duration: 1000 }
     }
   }
 
