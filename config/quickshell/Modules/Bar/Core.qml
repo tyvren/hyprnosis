@@ -110,6 +110,7 @@ PanelWindow {
           NumberAnimation {
             properties: "scale"
             duration: 300
+            easing.type: Easing.OutCubic
           }
         }
       },
@@ -125,7 +126,8 @@ PanelWindow {
           }
           NumberAnimation {
             properties: "scale"
-            duration: 300
+            duration: 400
+            easing.type: Easing.OutCubic
           }
         }
       }
