@@ -45,7 +45,7 @@ PanelWindow {
       loops: 1
       from: 0
       to: 360
-      duration: 5000
+      duration: 6000
     }
 
     RotationAnimation on rotation {
@@ -54,7 +54,7 @@ PanelWindow {
       loops: Animation.Infinite
       from: 0
       to: 360
-      duration: 5000
+      duration: 6000
     }
 
     Image {
