@@ -136,7 +136,7 @@ PanelWindow {
     opacity: core.open ? 1 : 0
     Behavior on opacity {
       NumberAnimation {
-        duration: 2000
+        duration: 1000
       }
     }
   }
