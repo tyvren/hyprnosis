@@ -10,12 +10,13 @@ import qs.Components
 
 PopupWindow {
   id: root
-  width: 220
-  height: 200
+  implicitWidth: 220
+  implicitHeight: 200
 
   Item {
     id:playerContainer
-    anchors.fill: parent
+    width: 220
+    height: 200
 
     state: root.visible ? "open" : "closed"
 
@@ -35,21 +36,22 @@ PopupWindow {
         }
       }
 
-    transitions: Transition {
-      from: "closed"
-      to: "open"
-      NumberAnimation {
-        properties: "opacity"
-        duration: 1500
-        easing.type: Easing.InOutCubic
+    transitions: 
+      Transition {
+        from: "closed"
+        to: "open"
+        NumberAnimation {
+          properties: "opacity"
+          duration: 1000
+          easing.type: Easing.InOutCubic
+        } 
       }
-    }
 
     RectangularShadow {
       anchors.centerIn: parent
       width: 220
       height: 200
-      blur: 5
+      blur: 2
       spread: 1
       radius: 20
       color: theme.colAccent
@@ -119,24 +121,18 @@ PopupWindow {
           StyledButton {
             id: previousTrack
             text: "󰒮"
-            opacity: menuContainer.visible ? 1.0 : 0.0
-            Behavior on opacity { NumberAnimation { duration: 1000 } }
             onClicked: Players.active?.previous()
           }
 
           StyledButton {
             id: playPause
             text: Players.active && Players.active.isPlaying ? "" : ""
-            opacity: menuContainer.visible ? 1.0 : 0.0
-            Behavior on opacity { NumberAnimation { duration: 1000 } }
             onClicked: Players.active?.togglePlaying()
           }
 
           StyledButton {
             id: nextTrack
             text: "󰒭"
-            opacity: menuContainer.visible ? 1.0 : 0.0
-            Behavior on opacity { NumberAnimation { duration: 1000 } }
             onClicked: Players.active?.next()
           }
         }
