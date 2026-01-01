@@ -6,6 +6,7 @@ import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell.Wayland
 import qs
+import qs.Components
 
 Variants {
   model: Quickshell.screens
@@ -48,13 +49,6 @@ Variants {
           bottom: true
         }
 
-        BarMenu {
-          id: barMenu
-          anchor.window: leftBar
-          anchor.rect.x: parentWindow.width
-          anchor.rect.y: parentWindow.height / 2 - height / 2
-        }
-
         Media {
           id: mediaPlayer
           anchor.window: leftBar
@@ -80,79 +74,6 @@ Variants {
           anchors.rightMargin: 2
           topRightRadius: 15
           bottomRightRadius: 15
-        }
-
-        RectangularShadow {
-          id: iconAreaShadow
-          anchors.fill: iconArea
-          color: theme.colAccent
-          height: parent.height
-          width: parent.width
-          radius: 50
-          blur: 5
-          spread: 1
-        }
-
-        Rectangle {
-          id: iconArea
-          color: theme.colBg
-          border.color: theme.colAccent
-          border.width: 2
-          anchors.verticalCenter: parent.verticalCenter
-          x: -32
-          width: 60
-          height: 60
-          radius: 50
-
-          RotationAnimation on rotation {
-            id: spinAnim
-            running: false
-            loops: 1
-            from: 0
-            to: 360
-            duration: 4000
-          }
-
-          ScaleAnimator {
-            id: logoGrow
-            target: logo
-            from: 1
-            to: 2
-            duration: 500
-          }
-
-          ScaleAnimator {
-            id: logoShrink
-            target: logo
-            from: 2
-            to: 1
-            duration: 500
-          }
-
-          Image {
-            id: logo
-            anchors.fill: iconArea
-            source: theme.logoPath
-            mipmap: true
-            asynchronous: true
-            fillMode: Image.PreserveAspectFit
-          }
-
-          MouseArea {
-            id: iconAreaMouse
-            anchors.fill: iconArea
-            hoverEnabled: true
-            onEntered: { 
-              barMenu.visible = true
-              mediaPlayer.visible = true
-              spinAnim.start()
-            }
-            onClicked: {
-              barMenu.visible = false
-              mediaPlayer.visible = false
-              spinAnim.start()
-            }
-          }
         }
       }
 
@@ -224,6 +145,8 @@ Variants {
           } 
         }
       }
+
+      Core {}
     }
   }
 }
