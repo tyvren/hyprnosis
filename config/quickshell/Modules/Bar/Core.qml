@@ -146,7 +146,6 @@ PanelWindow {
   Loader {
     id: buttonLoader
     active: core.showButtons
-    anchors.centerIn: coreArea 
     sourceComponent: Component {
       Item {
         id: buttons
@@ -155,8 +154,10 @@ PanelWindow {
 
         StyledButton {
           id: appsButton
-          x: 15
-          y: -105
+          anchors.top: parent.top
+          anchors.topMargin: 15
+          anchors.left: parent.left
+          anchors.leftMargin: 2
           text: ""
           onClicked: appsProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -167,8 +168,10 @@ PanelWindow {
 
         StyledButton {
           id: lockButton
-          x: 54
-          y: -72
+          anchors.top: parent.top
+          anchors.topMargin: 48
+          anchors.left: parent.left
+          anchors.leftMargin: 40
           text: ""
           onClicked: lockProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -179,8 +182,10 @@ PanelWindow {
 
         StyledButton {
           id: shutdownButton
-          x: 68
-          y: -23
+          anchors.top: parent.top
+          anchors.topMargin: 96
+          anchors.left: parent.left
+          anchors.leftMargin: 57
           text: ""
           onClicked: shutdownProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -191,8 +196,10 @@ PanelWindow {
 
         StyledButton {
           id: restartButton
-          x: 54
-          y: 25
+          anchors.top: parent.top
+          anchors.topMargin: 145
+          anchors.left: parent.left
+          anchors.leftMargin: 40
           text: ""
           onClicked: restartProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -203,10 +210,16 @@ PanelWindow {
 
         StyledButton {
           id: settingsButton
-          x: 15
-          y: 60
+          anchors.top: parent.top
+          anchors.topMargin: 180
+          anchors.left: parent.left
+          anchors.leftMargin: 2
           text: "󰍜"
-          onClicked: settingsProcess.startDetached()
+          onClicked: {
+            core.open = false
+            mediaPlayer.visible = false
+            settingsProcess.startDetached()
+          }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
             NumberAnimation { duration: 250 }
