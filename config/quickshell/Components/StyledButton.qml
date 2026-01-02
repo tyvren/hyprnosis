@@ -6,7 +6,7 @@ import QtQuick.Effects
 Item {
   id: root
   property string text: ""
-  property int size: 50
+  property int size: 45
   signal clicked()
   implicitWidth: size
   implicitHeight: size

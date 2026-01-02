@@ -154,9 +154,21 @@ PanelWindow {
         Component.onCompleted: ready = true
 
         StyledButton {
+          id: appsButton
+          x: 15
+          y: -105
+          text: ""
+          onClicked: appsProcess.startDetached()
+          opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
+          Behavior on opacity {
+            NumberAnimation { duration: 250 }
+          }
+        }
+
+        StyledButton {
           id: lockButton
-          x: 50
-          y: -75
+          x: 54
+          y: -72
           text: ""
           onClicked: lockProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -167,8 +179,8 @@ PanelWindow {
 
         StyledButton {
           id: shutdownButton
-          x: 65
-          y: -25
+          x: 68
+          y: -23
           text: ""
           onClicked: shutdownProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
@@ -179,7 +191,7 @@ PanelWindow {
 
         StyledButton {
           id: restartButton
-          x: 50
+          x: 54
           y: 25
           text: ""
           onClicked: restartProcess.startDetached()
@@ -189,9 +201,23 @@ PanelWindow {
           }
         }
 
+        StyledButton {
+          id: settingsButton
+          x: 15
+          y: 60
+          text: "󰍜"
+          onClicked: settingsProcess.startDetached()
+          opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
+          Behavior on opacity {
+            NumberAnimation { duration: 250 }
+          }
+        }
+      
+        Process { id: appsProcess; command: ["sh", "-c", "qs ipc call launcher-menu toggle"]}
         Process { id: lockProcess; command: ["hyprlock"] }
         Process { id: restartProcess; command: ["systemctl", "reboot"] }
         Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
+        Process { id: settingsProcess; command: ["sh", "-c", "qs ipc call mainmenu toggle"]}
       }
     }
   }
