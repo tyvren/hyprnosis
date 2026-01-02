@@ -72,12 +72,12 @@ PanelWindow {
       anchors.fill: coreArea
       hoverEnabled: true
       onEntered: {
-        core.open = true
-        mediaPlayer.visible = true
+        if (!core.open) {
+          spinAnim.start()
+        }
       }
       onClicked: {
-        core.open = false
-        mediaPlayer.visible = false
+        core.open = !core.open
       }
     }
 
@@ -112,12 +112,13 @@ PanelWindow {
           }
           NumberAnimation {
             properties: "scale"
-            duration: 300
+            duration: 400
             easing.type: Easing.OutCubic
           }
           ScriptAction {
             script: {
               core.showButtons = true
+              mediaPlayer.visible = true
             }
           }
         }
@@ -137,6 +138,11 @@ PanelWindow {
             properties: "scale"
             duration: 400
             easing.type: Easing.OutCubic
+          }
+          ScriptAction {
+            script: { 
+              mediaPlayer.visible = false
+            }
           }
         }
       }
@@ -159,7 +165,10 @@ PanelWindow {
           anchors.left: parent.left
           anchors.leftMargin: 2
           text: ""
-          onClicked: appsProcess.startDetached()
+          onClicked: {
+            core.open = false
+            appsProcess.startDetached()
+          }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
             NumberAnimation { duration: 250 }
@@ -173,7 +182,10 @@ PanelWindow {
           anchors.left: parent.left
           anchors.leftMargin: 40
           text: ""
-          onClicked: lockProcess.startDetached()
+          onClicked: {
+            core.open = false
+            lockProcess.startDetached()
+          }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
             NumberAnimation { duration: 250 }
@@ -185,9 +197,12 @@ PanelWindow {
           anchors.top: parent.top
           anchors.topMargin: 96
           anchors.left: parent.left
-          anchors.leftMargin: 57
+          anchors.leftMargin: 56
           text: ""
-          onClicked: shutdownProcess.startDetached()
+          onClicked: {
+            core.open = false
+            shutdownProcess.startDetached()
+          }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
             NumberAnimation { duration: 250 }
@@ -201,7 +216,10 @@ PanelWindow {
           anchors.left: parent.left
           anchors.leftMargin: 40
           text: ""
-          onClicked: restartProcess.startDetached()
+          onClicked: { 
+            core.open = false
+            restartProcess.startDetached()
+          }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
             NumberAnimation { duration: 250 }
@@ -217,7 +235,6 @@ PanelWindow {
           text: "󰍜"
           onClicked: {
             core.open = false
-            mediaPlayer.visible = false
             settingsProcess.startDetached()
           }
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
