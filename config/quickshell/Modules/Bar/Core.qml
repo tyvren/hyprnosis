@@ -73,9 +73,11 @@ PanelWindow {
       hoverEnabled: true
       onEntered: {
         core.open = true
+        mediaPlayer.visible = true
       }
       onClicked: {
         core.open = false
+        mediaPlayer.visible = false
       }
     }
 
@@ -159,7 +161,7 @@ PanelWindow {
           onClicked: lockProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
-            NumberAnimation { duration: 500 }
+            NumberAnimation { duration: 250 }
           }
         }
 
@@ -171,7 +173,7 @@ PanelWindow {
           onClicked: shutdownProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
-            NumberAnimation { duration: 500 }
+            NumberAnimation { duration: 250 }
           }
         }
 
@@ -183,7 +185,7 @@ PanelWindow {
           onClicked: restartProcess.startDetached()
           opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
           Behavior on opacity {
-            NumberAnimation { duration: 500 }
+            NumberAnimation { duration: 250 }
           }
         }
 
