@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
+import QtQuick.Shapes
 import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell.Wayland
@@ -57,23 +58,56 @@ Variants {
           color: "transparent"
         }
 
-        RectangularShadow {
-          id: leftBarShadow
-          anchors.fill: leftBarContent
-          anchors.leftMargin: 5
-          blur: 2
-          spread: 2
-          radius: 20
-          color: theme.colAccent
+        Shape {
+          id: leftBarShape
+          anchors.fill: parent
+          layer.enabled: true
+          layer.samples: 5
+
+          ShapePath {
+            strokeWidth: 2
+            strokeColor: "transparent"
+            fillColor: theme.colBg
+
+            startX: 0
+            startY: 0
+
+            PathCubic {
+              x: 28
+              y: 50
+              control1X: 5
+              control1Y: 30
+              control2X: 28
+              control2Y: 35
+            }
+            PathLine {
+              x: 28
+              y: leftBar.height - 50
+            }
+            PathCubic {
+              x: 0
+              y: leftBar.height
+              control1X: 28
+              control1Y: leftBar.height - 35
+              control2X: 5
+              control2Y: leftBar.height - 30
+            }
+            PathLine {
+              x: 0
+              y: 0
+            }
+          }
         }
 
-        Rectangle {
-          id: leftBarContent
-          color: theme.colBg
-          anchors.fill: parent
-          anchors.rightMargin: 2
-          topRightRadius: 15
-          bottomRightRadius: 15
+        MultiEffect {
+          id: leftBarShadow
+          anchors.fill: leftBarShape
+          source: leftBarShape
+          shadowEnabled: true
+          shadowColor: theme.colAccent
+          shadowBlur: 0.2
+          shadowHorizontalOffset: 1
+          shadowVerticalOffset: 0
         }
       }
 
@@ -87,29 +121,67 @@ Variants {
           bottom: true
         }
 
-        RectangularShadow {
-          id: rightBarShadow
-          anchors.fill: rightBarContent
-          anchors.rightMargin: 5
-          blur: 2
-          spread: 2
-          radius: 20
-          color: theme.colAccent
+        Shape {
+          id: rightBarShape
+          anchors.fill: parent
+          layer.enabled: true
+          layer.samples: 5
+
+          ShapePath {
+            strokeWidth: 2
+            strokeColor: "transparent"
+            fillColor: theme.colBg
+
+            startX: rightBar.width
+            startY: 0
+
+            PathCubic {
+              x: rightBar.width - 28
+              y: 50
+              control1X: rightBar.width - 5
+              control1Y: 30
+              control2X: rightBar.width - 28
+              control2Y: 35
+            }
+            PathLine {
+              x: rightBar.width - 28
+              y: rightBar.height - 50
+            }
+            PathCubic {
+              x: rightBar.width
+              y: rightBar.height
+              control1X: rightBar.width - 28
+              control1Y: rightBar.height - 35
+              control2X: rightBar.width - 5
+              control2Y: rightBar.height - 30
+            }
+            PathLine {
+              x: rightBar.width
+              y: 0
+            }
+          }
         }
 
-        Rectangle {
+        MultiEffect {
+          id: rightBarShadow
+          anchors.fill: rightBarShape
+          source: rightBarShape
+          shadowEnabled: true
+          shadowColor: theme.colAccent
+          shadowBlur: 0.2
+          shadowHorizontalOffset: -1
+          shadowVerticalOffset: 0
+        }
+
+        Item {
           id: rightBarContent
-          color: theme.colBg
           anchors.fill: parent
-          anchors.leftMargin: 2
-          topLeftRadius: 20
-          bottomLeftRadius: 20
 
           Clock {
             id: clockButton
-            anchors.top: rightBarContent.top
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.topMargin: 15
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 40
           }
 
           Workspaces {
@@ -119,29 +191,29 @@ Variants {
           }
 
           Battery {
-            anchors.bottom: rightBarContent.bottom
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.bottomMargin: 135
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 160
           }
           Audio {
-            anchors.bottom: rightBarContent.bottom
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.bottomMargin: 105
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 130
           }
           Bluetooth {
-            anchors.bottom: rightBarContent.bottom
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.bottomMargin: 75
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 100
           }
           Network {
-            anchors.bottom: rightBarContent.bottom
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.bottomMargin: 45
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 70
           }
           Notifications {
-            anchors.bottom: rightBarContent.bottom
-            anchors.horizontalCenter: rightBarContent.horizontalCenter
-            anchors.bottomMargin: 15
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 40
           } 
         }
       }
