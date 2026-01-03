@@ -181,7 +181,7 @@ Variants {
             id: clockButton
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: 40
+            anchors.topMargin: 50
           }
 
           Workspaces {
@@ -193,27 +193,27 @@ Variants {
           Battery {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 160
+            anchors.bottomMargin: 170
           }
           Audio {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 130
+            anchors.bottomMargin: 140
           }
           Bluetooth {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 100
+            anchors.bottomMargin: 110
           }
           Network {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 70
+            anchors.bottomMargin: 80
           }
           Notifications {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 40
+            anchors.bottomMargin: 50
           } 
         }
       }
