@@ -33,11 +33,47 @@ sed -i -r "s|property string wallpaperPath: \".*\"|property string wallpaperPath
 sed -i -r "s|property string wallpaperDir: \".*\"|property string wallpaperDir: \"${HOME}/.config/hyprnosis/wallpapers/$SELECTED_THEME\"|" \
   "$HOME/.config/quickshell/Modules/Menus/Wallpapers.qml"
 
-if [ "$SELECTED_THEME" = "Dracula" ]; then
-  gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
-  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
-else
-  gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black'
-fi
+case "$SELECTED_THEME" in
+"Hyprnosis")
+  GTK="catppuccin-mocha-sapphire-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-sapphire-cursors"
+  ;;
+"Mocha")
+  GTK="catppuccin-mocha-lavender-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-lavender-cursors"
+  ;;
+"Emberforge")
+  GTK="catppuccin-mocha-orange-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-orange-cursors"
+  ;;
+"Dracula")
+  GTK="Dracula"
+  ICONS="Tela-circle-dracula"
+  CURSOR="catppuccin-mocha-green-cursors"
+  ;;
+"Arcadia")
+  GTK="catppuccin-mocha-pink-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-pink-cursors"
+  ;;
+"Eden")
+  GTK="catppuccin-mocha-green-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-dark-cursors"
+  ;;
+*)
+  GTK="catppuccin-mocha-blue-standard+default"
+  ICONS="Tela-circle-black"
+  CURSOR="catppuccin-mocha-dark-cursors"
+  ;;
+esac
+
+gsettings set org.gnome.desktop.interface gtk-theme "$GTK"
+gsettings set org.gnome.desktop.interface icon-theme "$ICONS"
+gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR"
+hyprctl setcursor "$CURSOR" 24
 
 notify-send "Theme Changed" "Theme '$SELECTED_THEME' applied."
