@@ -72,14 +72,17 @@ PopupWindow {
       }
     ]
 
-    RectangularShadow {
-      anchors.centerIn: parent
-      width: playerContainer.width
-      height: playerContainer.height
-      blur: 2
-      spread: 1
-      radius: 20
-      color: theme.colAccent
+    MultiEffect {
+      id: mediaShadow
+      anchors.fill: playerMain
+      source: playerMain
+      shadowEnabled: true
+      shadowColor: theme.colAccent
+      shadowBlur: 0.2
+      shadowOpacity: 1
+      shadowHorizontalOffset: -1
+      shadowVerticalOffset: 0
+      opacity: playerContainer.opacity
     }
 
     Rectangle {
@@ -90,6 +93,9 @@ PopupWindow {
       ClippingRectangle {
         id: imageContainer
         anchors.fill: playerMain
+        anchors.topMargin: 5
+        anchors.bottomMargin: 5
+        anchors.rightMargin: 5
         topRightRadius: 15
         bottomRightRadius: 15
         color: "transparent"
