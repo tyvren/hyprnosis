@@ -12,45 +12,70 @@ PopupWindow {
   id: root
   implicitWidth: 220
   implicitHeight: 200
+  property bool open: false
+  property bool showContent: false
+
+  onVisibleChanged: {
+    if (visible) open = true
+  }
 
   Item {
-    id:playerContainer
-    width: 220
+    id: playerContainer
+    width: 0
     height: 200
+    state: root.open ? "open" : "closed"
 
-    state: root.visible ? "open" : "closed"
-
-    states:
+    states: [
       State {
         name: "closed"
         PropertyChanges { 
           target: playerContainer
           opacity: 0
+          width: 0
         }
-      }
+      },
       State {
         name: "open"
         PropertyChanges {
           target: playerContainer
           opacity: 1
+          width: 220
         }
       }
+    ]
 
-    transitions: 
+    transitions: [
       Transition {
         from: "closed"
         to: "open"
-        NumberAnimation {
-          properties: "opacity"
-          duration: 1000
-          easing.type: Easing.InOutCubic
-        } 
+        SequentialAnimation {
+          NumberAnimation {
+            properties: "opacity, width"
+            duration: 1000
+            easing.type: Easing.InOutCubic
+          } 
+          ScriptAction { script: root.showContent = true }
+        }
+      },
+      Transition {
+        from: "open"
+        to: "closed"
+        SequentialAnimation {
+          ScriptAction { script: root.showContent = false }
+          NumberAnimation {
+            properties: "opacity, width"
+            duration: 1000
+            easing.type: Easing.InOutCubic
+          }
+          ScriptAction { script: root.visible = false }
+        }
       }
+    ]
 
     RectangularShadow {
       anchors.centerIn: parent
-      width: 220
-      height: 200
+      width: playerContainer.width
+      height: playerContainer.height
       blur: 2
       spread: 1
       radius: 20
@@ -65,7 +90,8 @@ PopupWindow {
       ClippingRectangle {
         id: imageContainer
         anchors.fill: playerMain
-        radius: 20
+        topRightRadius: 15
+        bottomRightRadius: 15
         color: "transparent"
 
         Image {
@@ -79,62 +105,74 @@ PopupWindow {
         }
       }
 
-      Rectangle {
-        id: playerBox
+      Loader {
+        id: playerLoader
         anchors.fill: parent
-        color: "transparent"
-        border.color: theme.colAccent
-        border.width: 2
+        active: root.showContent
+        sourceComponent: playerContents
+      }
+    }
+  }
+
+  Component {
+    id: playerContents
+
+    Rectangle {
+      id: playerBox
+      anchors.fill: parent
+      color: "transparent"
+      topRightRadius: 15
+      bottomRightRadius: 15
+      opacity: 0
+      Component.onCompleted: opacity = 1
+      Behavior on opacity { NumberAnimation { duration: 250 } }
+
+      Rectangle {
+        id: trackTitleBox
+        width: 200
+        height: 20
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: theme.colBg
         radius: 20
+        clip: true
 
-        Rectangle {
-          id: trackTitleBox
-          width: 200
-          height: 20
-          anchors.top: playerBox.top
-          anchors.topMargin: 5
-          anchors.horizontalCenter: playerBox.horizontalCenter
-          color: theme.colBg
-          radius: 20
-          clip: true
+        Text {
+          id: trackTitleText
+          anchors.left: parent.left
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.leftMargin: 5
+          color: theme.colAccent
+          font.pointSize: 11
+          font.family: theme.fontFamily
+          text: Players.active ? Players.active.trackTitle : ""
+          elide: Text.ElideRight
+          maximumLineCount: 1
+        }
+      }
 
-          Text {
-            id: trackTitleText
-            anchors.left: trackTitleBox.left
-            anchors.verticalCenter: trackTitleBox.verticalCenter
-            anchors.leftMargin: 5
-            color: theme.colAccent
-            font.pointSize: 11
-            font.family: theme.fontFamily
-            text: Players.active ? Players.active.trackTitle : ""
-            elide: Text.ElideRight
-            maximumLineCount: 1
-          }
+      RowLayout {
+        id: playerControls
+        anchors.centerIn: parent
+        spacing: 10
+
+        StyledButton {
+          id: previousTrack
+          text: "󰒮"
+          onClicked: Players.active?.previous()
         }
 
-        RowLayout {
-          id: playerControls
-          anchors.centerIn: parent
-          anchors.horizontalCenter: playerBox.horizontalCenter
-          spacing: 10
+        StyledButton {
+          id: playPause
+          text: Players.active && Players.active.isPlaying ? "" : ""
+          onClicked: Players.active?.togglePlaying()
+        }
 
-          StyledButton {
-            id: previousTrack
-            text: "󰒮"
-            onClicked: Players.active?.previous()
-          }
-
-          StyledButton {
-            id: playPause
-            text: Players.active && Players.active.isPlaying ? "" : ""
-            onClicked: Players.active?.togglePlaying()
-          }
-
-          StyledButton {
-            id: nextTrack
-            text: "󰒭"
-            onClicked: Players.active?.next()
-          }
+        StyledButton {
+          id: nextTrack
+          text: "󰒭"
+          onClicked: Players.active?.next()
         }
       }
     }

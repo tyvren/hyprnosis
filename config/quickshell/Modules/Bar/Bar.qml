@@ -53,8 +53,8 @@ Variants {
         Media {
           id: mediaPlayer
           anchor.window: leftBar
-          anchor.rect.x: parentWindow.width
-          anchor.rect.y: parentWindow.height / 6
+          anchor.rect.x: leftBar.width
+          anchor.rect.y: leftBar.height / 6
           color: "transparent"
         }
 

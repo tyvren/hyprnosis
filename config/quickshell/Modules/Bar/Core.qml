@@ -119,6 +119,7 @@ PanelWindow {
             script: {
               core.showButtons = true
               mediaPlayer.visible = true
+              mediaPlayer.open = true
             }
           }
         }
@@ -132,17 +133,13 @@ PanelWindow {
               infiniteSpinAnim.stop()
               spinAnim.start()
               core.showButtons = false
+              mediaPlayer.open = false
             }
           }
           NumberAnimation {
             properties: "scale"
             duration: 400
             easing.type: Easing.OutCubic
-          }
-          ScriptAction {
-            script: { 
-              mediaPlayer.visible = false
-            }
           }
         }
       }
