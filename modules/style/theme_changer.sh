@@ -2,6 +2,7 @@
 
 THEME_DIR="$HOME/.config/hyprnosis/themes"
 WALLPAPER_DIR="$HOME/.config/hyprnosis/wallpapers"
+HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 QUICKSHELL_CONF="$HOME/.config/quickshell/Theme.qml"
 
 if [[ -z "$1" ]]; then
@@ -27,6 +28,8 @@ fi
 WALL_PATH="${WALLPAPERS[0]}"
 
 cp -r "$THEME_PATH/"* "$HOME/.config/"
+
+sed -i "/background {/,/}/{s|^\s*path = .*|  path = $WALLPAPER_PATH|}" "$HYPRLOCK_CONF"
 
 sed -i -r "s|property string wallpaperPath: \".*\"|property string wallpaperPath: \"${WALL_PATH}\"|" "$QUICKSHELL_CONF"
 
