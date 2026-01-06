@@ -244,7 +244,7 @@ PanelWindow {
         Process { id: lockProcess; command: ["hyprlock"] }
         Process { id: restartProcess; command: ["systemctl", "reboot"] }
         Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
-        Process { id: settingsProcess; command: ["sh", "-c", "qs ipc call mainmenu toggle"]}
+        Process { id: settingsProcess; command: ["sh", "-c", "qs ipc call settingsmenu toggle"]}
       }
     }
   }

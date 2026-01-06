@@ -48,12 +48,12 @@ Variants {
           left: true
           top: true
           bottom: true
-        }
+        } 
 
         Media {
           id: mediaPlayer
           anchor.window: leftBar
-          anchor.rect.x: leftBar.width
+          anchor.rect.x: leftBar.width - 2
           anchor.rect.y: leftBar.height / 10
           color: "transparent"
         }
@@ -217,7 +217,6 @@ Variants {
           } 
         }
       }
-
       Core {}
     }
   }
