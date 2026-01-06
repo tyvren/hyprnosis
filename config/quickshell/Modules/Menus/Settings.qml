@@ -195,7 +195,6 @@ PanelWindow {
                   onClicked: {
                     themeRunner.selectedTheme = modelData.themeId
                     themeRunner.startDetached()
-                    settingsmenu.visible = false
                   }
                 }
               }
