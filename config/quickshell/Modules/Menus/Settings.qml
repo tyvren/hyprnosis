@@ -1,32 +1,20 @@
 import qs
+import qs.Components
 import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 
-PanelWindow {
+Window {
   id: settingsmenu
   visible: false
-  focusable: true
   color: "transparent"
-  implicitWidth: 600
-  implicitHeight: 800
+  width: 900
+  height: 600
 
   property var theme: Theme {}
   property int activeIndex: 0
-
-  anchors {
-    bottom: true
-    right: true
-  }
-
-  onVisibleChanged: {
-    if (visible) {
-      currentIndex = 0
-      Qt.callLater(() => menuroot.forceActiveFocus())
-    }
-  }
 
   IpcHandler {
     target: "settingsmenu"
@@ -42,13 +30,9 @@ PanelWindow {
     command: [ "sh", "-c", `~/.config/hyprnosis/modules/style/theme_changer.sh "${selectedTheme}"` ]
   }
 
-  RectangularShadow {
+  WindowShadow {
     id: windowShadow
     anchors.fill: menuWindow
-    blur: 5
-    spread: 1
-    radius: 20
-    color: theme.colAccent
   }
 
   Rectangle {
@@ -65,9 +49,15 @@ PanelWindow {
       width: parent.width - 30
       height: parent.height - 30
 
+      WidgetShadow {
+        id: sidePaneShadow
+        anchors.fill: sidePane
+      }
+
       Rectangle {
         id: sidePane
-        color: theme.colTransB
+        color: theme.colBg
+        border.color: theme.colAccent
         Layout.preferredWidth: 180
         Layout.fillHeight: true
         radius: 10
@@ -80,13 +70,18 @@ PanelWindow {
           Repeater {
             model: ["General", "Display", "Theme"]
 
+            WidgetShadow {
+              id: sideButtonShadow
+              anchors.fill: sideButton
+            }
+
             Rectangle {
+              id: sideButton
               Layout.fillWidth: true
               Layout.preferredHeight: 45
-              radius: 8
-              color: settingsmenu.activeIndex === index ? theme.colMuted : "transparent"
+              radius: 10
+              color: settingsmenu.activeIndex === index ? theme.colHilight : "transparent"
               border.color: theme.colAccent
-              border.width: 2
 
               Text {
                 anchors.centerIn: parent
@@ -105,9 +100,15 @@ PanelWindow {
         }
       }
 
+      WidgetShadow {
+        id: contentPaneShadow
+        anchors.fill: contentPane
+      }
+
       Rectangle {
         id: contentPane
-        color: theme.colTransB
+        color: theme.colBg
+        border.color: theme.colAccent
         Layout.fillWidth: true
         Layout.fillHeight: true
         radius: 10
@@ -139,7 +140,7 @@ PanelWindow {
             spacing: 10
 
             Text {
-              text: "Theme Options"
+              text: "Themes"
               color: theme.colAccent
               font.pointSize: 16
               Layout.bottomMargin: 5
@@ -154,12 +155,18 @@ PanelWindow {
                 { name: "Arcadia",   themeId: "Arcadia",   bg: "#403E44", acc: "#B3A3AD", hlt: "#AC4262" },
                 { name: "Eden",      themeId: "Eden",      bg: "#D1CDC2", acc: "#0D0D0D", hlt: "#feffff" } 
               ]
+
+              WidgetShadow {
+                id: themeButtonShadow
+                anchors.fill: themeButtons
+              }
               
               Rectangle {
+                id: themeButtons
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 radius: 10
-                color: themeArea.containsMouse ? theme.colMuted : "transparent"
+                color: themeArea.containsMouse ? theme.colHilight : "transparent"
                 border.color: theme.colAccent
                 border.width: 1
 
@@ -172,11 +179,15 @@ PanelWindow {
                   
                   Repeater {
                     model: [ modelData.bg, modelData.acc, modelData.hlt ]
+
                     Rectangle {
-                      width: 12; height: 12; radius: 6
+                      id: colorDot
+                      width: 15
+                      height: 15
+                      radius: 6
                       color: modelData
                       border.color: "white"
-                      border.width: 0.5
+                      border.width: 1
                     }
                   }
                 }
