@@ -15,4 +15,5 @@ ShellRoot {
   Themes {}
   Wallpapers {}
   Launcher {}
+  Settings {}
 }
