@@ -14,7 +14,12 @@ PanelWindow {
   color: "transparent"
   property int currentIndex: 0
 
-  anchors { top: true; bottom: true; left: true; right: true }
+  anchors {
+    top: true
+    bottom: true
+    left: true
+    right: true
+  }
 
   onVisibleChanged: {
     if (visible) {
