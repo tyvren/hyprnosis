@@ -9,27 +9,26 @@ import QtQuick.Effects
 
 Window {
   id: settingsmenu
-  visible: persist.settingsOpen
+  visible: false
   color: "transparent"
   width: 900
   height: 600
 
-  property int activeIndex: persist.activeIndex
+  property int activeIndex: 0
 
-  PersistentProperties {
-    id: persist
-    reloadableId: "persistedStates"
-    property bool settingsOpen: false
-    property int activeIndex: 0
+  onVisibleChanged: {
+    if (!visible) {
+      activeIndex = 0
+    }
   }
 
   IpcHandler {
     target: "settingsmenu"
-    function toggle(): void { persist.settingsOpen = !persist.settingsOpen }
-    function hide(): void { persist.settingsOpen = false }
+    function toggle(): void { settingsmenu.visible = !settingsmenu.visible }
+    function hide(): void { settingsmenu.visible = false }
   }
 
-  Keys.onEscapePressed: persist.settingsOpen = false
+  Keys.onEscapePressed: settingsmenu.visible = false
 
   WindowShadow {
     id: windowShadow
@@ -93,7 +92,7 @@ Window {
 
               MouseArea {
                 anchors.fill: parent
-                onClicked: persist.activeIndex = index
+                onClicked: settingsmenu.activeIndex = index
               }
             }
           }
