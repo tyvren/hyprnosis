@@ -1,7 +1,8 @@
 import QtQuick.Effects
+import qs.Themes
 
 RectangularShadow {
-  color: theme.colAccent
+  color: Theme.colAccent
   blur: 2
   spread: 1
   radius: 10

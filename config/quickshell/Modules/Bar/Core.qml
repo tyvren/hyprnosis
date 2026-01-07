@@ -1,4 +1,4 @@
-import qs
+import qs.Themes
 import qs.Components
 import Quickshell
 import Quickshell.Io
@@ -20,7 +20,7 @@ PanelWindow {
   RectangularShadow {
     id: coreAreaShadow
     anchors.fill: coreArea
-    color: theme.colAccent
+    color: Theme.colAccent
     height: coreArea.height
     width: coreArea.width
     radius: 150
@@ -30,8 +30,8 @@ PanelWindow {
 
   Rectangle {
     id: coreArea
-    color: theme.colBg
-    border.color: theme.colAccent
+    color: Theme.colBg
+    border.color: Theme.colAccent
     border.width: 1
     anchors.verticalCenter: parent.verticalCenter
     x: -52
@@ -61,7 +61,7 @@ PanelWindow {
     Image {
       id: logo
       anchors.fill: coreArea
-      source: theme.logoPath
+      source: Theme.logoPath
       mipmap: true
       asynchronous: true
       fillMode: Image.PreserveAspectFit

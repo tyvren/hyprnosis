@@ -4,14 +4,13 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
-import qs
+import qs.Themes
 
 PanelWindow {
   id: updatemenu
   visible: false
   focusable: true
   color: "transparent"
-  property var theme: Theme {}
   property int currentIndex: 0
 
   anchors {
@@ -22,12 +21,14 @@ PanelWindow {
   }
 
   onVisibleChanged: {
-    if (visible) Qt.callLater(() => menuRoot.forceActiveFocus())
+    if (visible) {
+      currentIndex = 0
+      Qt.callLater(() => menuRoot.forceActiveFocus())
+    }
   }
 
   IpcHandler {
     target: "updatemenu"
-
     function toggle(): void { updatemenu.visible = !updatemenu.visible }
     function hide(): void { updatemenu.visible = false }
   }
@@ -50,15 +51,13 @@ PanelWindow {
     height: 300
     radius: 10
     color: "transparent"
-    //border.width: 2
-    //border.color: theme.colAccent
     
     Image {
       id: logoImage
       anchors.centerIn: parent
       width: 500
       height: 500
-      source: theme.logoPath
+      source: Theme.logoPath
       mipmap: true
       asynchronous: true
       fillMode: Image.PreserveAspectFit
@@ -86,7 +85,11 @@ PanelWindow {
         updatemenu.visible = false
       }
 
-      Item {
+      component UpdateButton : Item {
+        property string label: ""
+        property string script: ""
+        property int index: 0
+        property alias process: proc
         implicitWidth: 225
         implicitHeight: 60
 
@@ -102,154 +105,50 @@ PanelWindow {
         Rectangle {
           anchors.fill: parent
           radius: 50
-          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          color: currentIndex === index || mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
 
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 18
             text: ""
           }
+
           Text {
             anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
-            text: "System"
+            text: label
           }
 
           MouseArea {
-            id: button1area
+            id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: currentIndex = 0
+            onEntered: currentIndex = index
             onClicked: {
-              currentIndex = 0
-              button1.startDetached()
+              currentIndex = index
+              proc.startDetached()
               updatemenu.visible = false
             }
           }
+
           Process {
-            id: button1
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/updates/update_system.sh"]
+            id: proc
+            command: ["sh", "-c", `ghostty -e ~/.config/hyprnosis/modules/updates/${script}`]
           }
         }
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
-        }
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
-          border.width: 2
-          border.color: theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 18
-            text: ""
-          }
-          Text {
-            anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 14
-            text: "AUR"
-          }
-
-          MouseArea {
-            id: button2area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 1
-            onClicked: {
-              currentIndex = 1
-              button2.startDetached()
-              updatemenu.visible = false
-            }
-          }
-          Process {
-            id: button2
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/updates/update_aur.sh"]
-          }
-        }
-      }
-
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
-        }
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
-          border.width: 2
-          border.color: theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 18
-            text: ""
-          }
-          Text {
-            anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 14
-            text: "hyprnosis"
-          }
-
-          MouseArea {
-            id: button3area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 2
-            onClicked: {
-              currentIndex = 2
-              button3.startDetached()
-              updatemenu.visible = false
-            }
-          }
-          Process {
-            id: button3
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/updates/update_hyprnosis.sh"]
-          }
-        }
-      }
+      UpdateButton { index: 0; label: "System"; script: "update_system.sh"; id: button1 }
+      UpdateButton { index: 1; label: "AUR"; script: "update_aur.sh"; id: button2 }
+      UpdateButton { index: 2; label: "Hyprnosis"; script: "update_hyprnosis.sh"; id: button3 }
     }
   }
 }

@@ -4,14 +4,13 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
-import qs
+import qs.Themes
 
 PanelWindow {
   id: capturemenu
   visible: false
   focusable: true
   color: "transparent"
-  property var theme: Theme {}
   property int currentIndex: 0
 
   anchors {
@@ -57,15 +56,13 @@ PanelWindow {
     height: 300
     radius: 10
     color: "transparent" 
-    //border.width: 2
-    //border.color: theme.colAccent
     
     Image {
       id: logoImage
       anchors.centerIn: parent
       width: 500
       height: 500
-      source: theme.logoPath
+      source: Theme.logoPath
       mipmap: true
       asynchronous: true
       fillMode: Image.PreserveAspectFit
@@ -109,24 +106,24 @@ PanelWindow {
         Rectangle {
           anchors.fill: parent
           radius: 50
-          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          color: currentIndex === 0 || button1area.containsMouse ? Theme.colSelect : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
 
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 18
             text: "󰹑"
           }
 
           Text {
             anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
             text: "Region"
           }
@@ -166,24 +163,24 @@ PanelWindow {
         Rectangle {
           anchors.fill: parent
           radius: 50
-          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
+          color: currentIndex === 1 || button2area.containsMouse ? Theme.colSelect : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
 
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 18
             text: "󰹑"
           }
 
           Text {
             anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
             text: "Window"
           }
@@ -223,24 +220,24 @@ PanelWindow {
         Rectangle {
           anchors.fill: parent
           radius: 50
-          color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
+          color: currentIndex === 2 || button3area.containsMouse ? Theme.colSelect : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
 
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 18
             text: ""
           }
 
           Text {
             anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
             text: "Record"
           }

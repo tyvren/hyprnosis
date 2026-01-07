@@ -1,4 +1,4 @@
-import qs
+import qs.Themes
 import Quickshell
 import QtQuick
 import QtQuick.Effects
@@ -18,22 +18,22 @@ Item {
     blur: 5
     spread: 1
     radius: size
-    color: theme.colAccent
+    color: Theme.colAccent
   }
 
   Rectangle {
     anchors.fill: parent
     radius: size
-    color: mouseArea.containsMouse ? theme.colSelect : theme.colBg
-    border.color: theme.colAccent
+    color: mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
+    border.color: Theme.colAccent
     border.width: 2
 
     Text {
       anchors.centerIn: parent
       text: root.text
-      font.family: theme.fontFamily
+      font.family: Theme.fontFamily
       font.pointSize: 16
-      color: theme.colAccent
+      color: Theme.colAccent
     }
 
     MouseArea {

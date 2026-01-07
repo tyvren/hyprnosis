@@ -1,4 +1,5 @@
 import QtQuick
+import qs.Themes
 import qs.Services
 import QtQuick.Effects
 
@@ -11,9 +12,9 @@ Item {
   Text {
     id: icon
     text: Math.round(Battery.percentage * 100) + "%"
-    font.family: theme.fontFamily
-    font.pixelSize: theme.fontSize
-    color: theme.colAccent
+    font.family: Theme.fontFamily
+    font.pixelSize: Theme.fontSize
+    color: Theme.colAccent
     layer.enabled: true
     visible: false
   }
@@ -24,5 +25,6 @@ Item {
     shadowEnabled: true
     shadowBlur: 1
     shadowOpacity: 0.5
+    shadowColor: Theme.colAccent
   }
 }

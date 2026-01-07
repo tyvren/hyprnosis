@@ -4,14 +4,13 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
-import qs
+import qs.Themes
 
 PanelWindow {
   id: utilmenu
   visible: false
   focusable: true
   color: "transparent"
-  property var theme: Theme {}
   property int currentIndex: 0
 
   anchors {
@@ -22,12 +21,14 @@ PanelWindow {
   }
 
   onVisibleChanged: {
-    if (visible) Qt.callLater(() => menuRoot.forceActiveFocus())
+    if (visible) {
+      currentIndex = 0
+      Qt.callLater(() => menuRoot.forceActiveFocus())
+    }
   }
 
   IpcHandler {
     target: "utilmenu"
-
     function toggle(): void { utilmenu.visible = !utilmenu.visible }
     function hide(): void { utilmenu.visible = false }
   }
@@ -50,15 +51,13 @@ PanelWindow {
     height: 300
     radius: 10
     color: "transparent"
-    //border.width: 2
-    //border.color: theme.colAccent
 
     Image {
       id: logoImage
       anchors.centerIn: parent
       width: 500
       height: 500
-      source: theme.logoPath
+      source: Theme.logoPath
       mipmap: true
       asynchronous: true
       fillMode: Image.PreserveAspectFit
@@ -86,7 +85,13 @@ PanelWindow {
         utilmenu.visible = false
       }
 
-      Item {
+      component UtilButton : Item {
+        property string icon: ""
+        property string label: ""
+        property string fullCommand: ""
+        property int index: 0
+        property alias process: proc
+        
         implicitWidth: 225
         implicitHeight: 60
 
@@ -102,153 +107,63 @@ PanelWindow {
         Rectangle {
           anchors.fill: parent
           radius: 50
-          color: currentIndex === 0 || button1area.containsMouse ? theme.colSelect : theme.colBg
+          color: currentIndex === index || mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
 
           Text {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 18
-            text: ""
+            text: icon
           }
+
           Text {
             anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
-            text: "Hypr Config"
+            text: label
           }
 
           MouseArea {
-            id: button1area
+            id: mouseArea
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: currentIndex = 0
+            onEntered: currentIndex = index
             onClicked: {
-              currentIndex = 0
-              button1.startDetached()
+              currentIndex = index
+              proc.startDetached()
               utilmenu.visible = false
             }
           }
+
           Process {
-            id: button1
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/quickconfig/quickconfig.sh"]
+            id: proc
+            command: ["sh", "-c", `ghostty -e ${fullCommand}`]
           }
         }
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
-        }
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 1 || button2area.containsMouse ? theme.colSelect : theme.colBg
-          border.width: 2
-          border.color: theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 18
-            text: "󱊟"
-          }
-          Text {
-            anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 14
-            text: "ISO Writer"
-          }
-
-          MouseArea {
-            id: button2area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 1
-            onClicked: {
-              currentIndex = 1
-              button2.startDetached()
-              utilmenu.visible = false
-            }
-          }
-          Process {
-            id: button2
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/diskmanagement/write_iso.sh"]
-          }
-        }
+      UtilButton { 
+        index: 0; icon: ""; label: "Hypr Config"
+        fullCommand: "~/.config/hyprnosis/modules/quickconfig/quickconfig.sh"
+        id: button1 
       }
-
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
-        }
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 2 || button3area.containsMouse ? theme.colSelect : theme.colBg
-          border.width: 2
-          border.color: theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 18
-            text: "󱁋"
-          }
-          Text {
-            anchors.centerIn: parent
-            color: theme.colAccent
-            font.family: theme.fontFamily
-            font.pointSize: 14
-            text: "Mount Disk"
-          }
-
-          MouseArea {
-            id: button3area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 2
-            onClicked: {
-              currentIndex = 2
-              button3.startDetached()
-              utilmenu.visible = false
-            }
-          }
-          Process {
-            id: button3
-            command: ["sh","-c","ghostty -e ~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh"]
-          }
-        }
+      
+      UtilButton { 
+        index: 1; icon: "󱊟"; label: "ISO Writer"
+        fullCommand: "~/.config/hyprnosis/modules/diskmanagement/write_iso.sh"
+        id: button2 
+      }
+      
+      UtilButton { 
+        index: 2; icon: "󱁋"; label: "Mount Disk"
+        fullCommand: "~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh"
+        id: button3 
       }
     }
   }

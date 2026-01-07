@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
 import Quickshell.Widgets
-import qs
+import qs.Themes
 
 Scope {
   id: root
@@ -39,7 +39,6 @@ Scope {
       margins.right: 10
       implicitWidth: screen.width / 12
       implicitHeight: screen.height / 24
-      property var theme: Theme {}
       color: "transparent"
       mask: Region {}
 
@@ -49,7 +48,7 @@ Scope {
         Rectangle {
           anchors.fill: parent
           radius: 15
-          color: theme.colTransB
+          color: Theme.colTransB
 
           RowLayout {
             anchors.fill: parent
@@ -57,7 +56,7 @@ Scope {
             anchors.rightMargin: 15
 
             Text {
-              color: theme.colHilight
+              color: Theme.colHilight
               font.pixelSize: 25
               text: ""
             }
@@ -66,10 +65,10 @@ Scope {
               Layout.fillWidth: true
               implicitHeight: 10
               radius: 20
-              color: theme.colBg
+              color: Theme.colBg
 
               Rectangle {
-                color: theme.colHilight
+                color: Theme.colHilight
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom

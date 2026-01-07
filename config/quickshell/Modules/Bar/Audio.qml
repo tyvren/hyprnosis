@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Io
 import QtQuick.Effects
+import qs.Themes
 
 Item {
   id: audiobutton
@@ -10,9 +11,9 @@ Item {
   Text {
     id: icon
     text: ""
-    font.family: theme.fontFamily
-    font.pixelSize: theme.fontSize
-    color: theme.colAccent
+    font.family: Theme.fontFamily
+    font.pixelSize: Theme.fontSize
+    color: Theme.colAccent
     layer.enabled: true
     visible: false
   }
@@ -23,6 +24,7 @@ Item {
     shadowEnabled: true
     shadowBlur: 1
     shadowOpacity: 0.50
+    shadowColor: Theme.colAccent
   }
 
   Process {

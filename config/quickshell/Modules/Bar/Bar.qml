@@ -6,8 +6,8 @@ import QtQuick.Shapes
 import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell.Wayland
-import qs
 import qs.Components
+import qs.Themes
 
 Variants {
   model: Quickshell.screens
@@ -15,7 +15,6 @@ Variants {
     Item {
       id: root
       required property var modelData
-      property var theme: Theme {}
 
       PanelWindow {
         id: backgroundLayer
@@ -33,7 +32,7 @@ Variants {
         Image {
           id: wallpaper
           anchors.fill: parent
-          source: theme.wallpaperPath
+          source: Theme.wallpaperPath
           mipmap: true
           asynchronous: true
           fillMode: Image.PreserveAspectCrop
@@ -67,7 +66,7 @@ Variants {
           ShapePath {
             strokeWidth: 2
             strokeColor: "transparent"
-            fillColor: theme.colBg
+            fillColor: Theme.colBg
 
             startX: 0
             startY: 0
@@ -104,7 +103,7 @@ Variants {
           anchors.fill: leftBarShape
           source: leftBarShape
           shadowEnabled: true
-          shadowColor: theme.colAccent
+          shadowColor: Theme.colAccent
           shadowBlur: 0.2
           shadowHorizontalOffset: 1
           shadowVerticalOffset: 0
@@ -130,7 +129,7 @@ Variants {
           ShapePath {
             strokeWidth: 2
             strokeColor: "transparent"
-            fillColor: theme.colBg
+            fillColor: Theme.colBg
 
             startX: rightBar.width
             startY: 0
@@ -167,7 +166,7 @@ Variants {
           anchors.fill: rightBarShape
           source: rightBarShape
           shadowEnabled: true
-          shadowColor: theme.colAccent
+          shadowColor: Theme.colAccent
           shadowBlur: 0.2
           shadowHorizontalOffset: -1
           shadowVerticalOffset: 0

@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
-clear
 
-#HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
-HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
-QUICKSHELL_CONF="$HOME/.config/quickshell/Theme.qml"
+# Use the first argument as the path
 WALLPAPER_PATH="$1"
+STATE_DIR="$HOME/.config/hyprnosis"
+STATE_FILE="$STATE_DIR/.current_wallpaper"
+HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 
-#killall hyprpaper 2>/dev/null || true
-#if command -v hyprpaper &>/dev/null; then
-#  nohup hyprpaper >/dev/null 2>&1 &
-#fi
+# Ensure directory exists
+mkdir -p "$STATE_DIR"
 
-# Update hyprpaper config
-#sed -i "s|^preload = .*|preload = $WALLPAPER_PATH|" "$HYPRPAPER_CONF"
-#sed -i "s|^wallpaper = .*|wallpaper = ,$WALLPAPER_PATH|" "$HYPRPAPER_CONF"
+# Only write to the file if a path was actually provided
+if [ -n "$WALLPAPER_PATH" ]; then
+  echo "$WALLPAPER_PATH" >"$STATE_FILE"
 
-sed -i "s|^\(\s*property string wallpaperPath:\s*\)\".*\"|\1\"$WALLPAPER_PATH\"|" "$QUICKSHELL_CONF"
+  # Update hyprlock config if it exists
+  if [ -f "$HYPRLOCK_CONF" ]; then
+    # Use | as a delimiter in sed so we don't clash with / in file paths
+    sed -i "/background {/,/}/{s|path = .*|path = $WALLPAPER_PATH|}" "$HYPRLOCK_CONF"
+  fi
 
-# Update hyprlock config
-sed -i "/background {/,/}/{s|^\s*path = .*|  path = $WALLPAPER_PATH|}" "$HYPRLOCK_CONF"
-
-notify-send "Wallpaper Changed" "Wallpaper applied: $(basename "$WALLPAPER_PATH")"
+  notify-send "Wallpaper Updated" "$WALLPAPER_PATH"
+else
+  notify-send "Wallpaper Error" "No path provided to script."
+fi

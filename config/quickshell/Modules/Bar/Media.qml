@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
-import qs
+import qs.Themes
 import qs.Services
 import qs.Components
 
@@ -77,7 +77,7 @@ PopupWindow {
       anchors.fill: playerMain
       source: playerMain
       shadowEnabled: true
-      shadowColor: theme.colAccent
+      shadowColor: Theme.colAccent
       shadowBlur: 0.2
       shadowOpacity: 1
       shadowHorizontalOffset: -1
@@ -107,7 +107,11 @@ PopupWindow {
           asynchronous: true
           cache: true
           fillMode: Image.PreserveAspectCrop
-          source: Players.active?.trackArtUrl ?? ""
+          source: {
+            const url = Players.active?.trackArtUrl;
+            if (!url) return "";
+            return (url.startsWith("/") && !url.startsWith("file://")) ? "file://" + url : url;
+          }
         }
       }
 
@@ -140,7 +144,7 @@ PopupWindow {
         anchors.top: parent.top
         anchors.topMargin: 5
         anchors.horizontalCenter: parent.horizontalCenter
-        color: theme.colBg
+        color: Theme.colBg
         radius: 20
         clip: true
 
@@ -149,9 +153,9 @@ PopupWindow {
           anchors.left: parent.left
           anchors.verticalCenter: parent.verticalCenter
           anchors.leftMargin: 5
-          color: theme.colAccent
+          color: Theme.colAccent
           font.pointSize: 11
-          font.family: theme.fontFamily
+          font.family: Theme.fontFamily
           text: Players.active ? Players.active.trackTitle : ""
           elide: Text.ElideRight
           maximumLineCount: 1

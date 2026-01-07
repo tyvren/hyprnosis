@@ -6,14 +6,13 @@ import QtQuick.Layouts
 import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Hyprland
-import qs
+import qs.Themes
 
 PanelWindow {
   id: launcherMenu
   visible: false
   focusable: true
   color: "transparent"
-  property var theme: Theme {}
   property string query: ""
   property var filteredApps: DesktopEntries.applications.values
 
@@ -74,15 +73,13 @@ PanelWindow {
     height: 500
     radius: 10
     color: "transparent"
-    //border.width: 2
-    //border.color: theme.colAccent
     
     Image {
       id: logoImage
       anchors.centerIn: parent
       width: 500
       height: 500
-      source: theme.logoPath
+      source: Theme.logoPath
       mipmap: true
       asynchronous: true
       fillMode: Image.PreserveAspectFit
@@ -101,14 +98,19 @@ PanelWindow {
         width: 325
         height: 30
         radius: 50
+        color: Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 1
 
         TextField {
           id: searchField
           anchors.fill: parent
+          anchors.leftMargin: 10
           placeholderText: "Search apps..."
-          color: theme.colAccent
-          font.family: theme.fontFamily
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
           font.pointSize: 14
+          background: null
 
           onTextChanged: launcherMenu.query = text
 
@@ -158,28 +160,28 @@ PanelWindow {
           height: 60
           radius: 50
           color: (ListView.isCurrentItem || mouseArea.containsMouse)
-                 ? theme.colSelect
-                 : theme.colBg
+                 ? Theme.colSelect
+                 : Theme.colBg
           border.width: 2
-          border.color: theme.colAccent
+          border.color: Theme.colAccent
           clip: true
           anchors.horizontalCenter: parent.horizontalCenter
 
           IconImage {
             id: appIcon
             anchors.verticalCenter: parent.verticalCenter
-            x: 10
-            implicitSize: 30
+            x: 15
+            implicitSize: 32
             source: Quickshell.iconPath(modelData.icon, true) || ""
           }
 
           Text {
             id: appText
             anchors.verticalCenter: parent.verticalCenter
-            x: 60
+            x: 65
             text: modelData.name
-            color: theme.colAccent
-            font.family: theme.fontFamily
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
             font.pointSize: 14
           }
 

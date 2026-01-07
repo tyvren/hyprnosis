@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Effects
+import qs.Themes
 import qs.Services
 
 Item {
@@ -10,9 +11,9 @@ Item {
   Text {
     id: clock
     text: Time.time
-    font.family: theme.fontFamily
-    font.pixelSize: theme.fontSize
+    font.family: Theme.fontFamily
+    font.pixelSize: Theme.fontSize
     font.bold: true
-    color: theme.colAccent
+    color: Theme.colAccent
   }
 }

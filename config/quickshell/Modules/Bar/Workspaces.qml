@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
 import QtQuick.Effects
+import qs.Themes
 
 ColumnLayout {
   spacing: 15
@@ -21,9 +22,9 @@ ColumnLayout {
       Text {
         id: icon
         text: ""
-        color: isActive ? "transparent" : (ws ? theme.colMuted : "transparent")
-        font.family: theme.fontFamily
-        font.pixelSize: theme.fontSize
+        color: isActive ? "transparent" : (ws ? Theme.colMuted : "transparent")
+        font.family: Theme.fontFamily
+        font.pixelSize: Theme.fontSize
         layer.enabled: true
         visible: false
       }
@@ -33,7 +34,7 @@ ColumnLayout {
           width: 25
           height: 25
           x: -5
-          source: theme.logoPath
+          source: Theme.logoPath
           mipmap: true
           asynchronous: true
           fillMode: Image.PreserveAspectFit

@@ -1,34 +1,35 @@
-import qs
+import qs.Themes
+import qs.Services
 import qs.Components
 import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
+import QtQuick.Effects 
 
 Window {
   id: settingsmenu
-  visible: false
+  visible: persist.settingsOpen
   color: "transparent"
   width: 900
   height: 600
 
-  property var theme: Theme {}
-  property int activeIndex: 0
+  property int activeIndex: persist.activeIndex
+
+  PersistentProperties {
+    id: persist
+    reloadableId: "persistedStates"
+    property bool settingsOpen: false
+    property int activeIndex: 0
+  }
 
   IpcHandler {
     target: "settingsmenu"
-    function toggle(): void { settingsmenu.visible = !settingsmenu.visible }
-    function hide(): void { settingsmenu.visible = false }
+    function toggle(): void { persist.settingsOpen = !persist.settingsOpen }
+    function hide(): void { persist.settingsOpen = false }
   }
 
-  Keys.onEscapePressed: settingsmenu.toggle()
-
-  Process {
-    id: themeRunner
-    property string selectedTheme: ""
-    command: [ "sh", "-c", `~/.config/hyprnosis/modules/style/theme_changer.sh "${selectedTheme}"` ]
-  }
+  Keys.onEscapePressed: persist.settingsOpen = false
 
   WindowShadow {
     id: windowShadow
@@ -39,8 +40,8 @@ Window {
     id: menuWindow
     anchors.fill: parent
     radius: 20
-    color: theme.colBg
-    border.color: theme.colAccent
+    color: Theme.colBg
+    border.color: Theme.colAccent
     border.width: 1
 
     RowLayout {
@@ -56,8 +57,8 @@ Window {
 
       Rectangle {
         id: sidePane
-        color: theme.colBg
-        border.color: theme.colAccent
+        color: Theme.colBg
+        border.color: Theme.colAccent
         Layout.preferredWidth: 180
         Layout.fillHeight: true
         radius: 10
@@ -80,19 +81,19 @@ Window {
               Layout.fillWidth: true
               Layout.preferredHeight: 45
               radius: 10
-              color: settingsmenu.activeIndex === index ? theme.colHilight : "transparent"
-              border.color: theme.colAccent
+              color: settingsmenu.activeIndex === index ? Theme.colHilight : "transparent"
+              border.color: Theme.colAccent
 
               Text {
                 anchors.centerIn: parent
                 text: modelData
-                color: theme.colAccent
+                color: Theme.colAccent
                 font.pointSize: 14
               }
 
               MouseArea {
                 anchors.fill: parent
-                onClicked: settingsmenu.activeIndex = index
+                onClicked: persist.activeIndex = index
               }
             }
           }
@@ -107,8 +108,8 @@ Window {
 
       Rectangle {
         id: contentPane
-        color: theme.colBg
-        border.color: theme.colAccent
+        color: Theme.colBg
+        border.color: Theme.colAccent
         Layout.fillWidth: true
         Layout.fillHeight: true
         radius: 10
@@ -121,7 +122,7 @@ Window {
           ColumnLayout {
             Text {
               text: "General Settings"
-              color: theme.colAccent
+              color: Theme.colAccent
               font.pointSize: 16
             }
             Item { Layout.fillHeight: true } 
@@ -130,7 +131,7 @@ Window {
           ColumnLayout {
             Text { 
               text: "Display Configuration"
-              color: theme.colAccent
+              color: Theme.colAccent
               font.pointSize: 16
             }
             Item { Layout.fillHeight: true }
@@ -141,19 +142,19 @@ Window {
 
             Text {
               text: "Themes"
-              color: theme.colAccent
+              color: Theme.colAccent
               font.pointSize: 16
               Layout.bottomMargin: 5
             }
 
             Repeater {
               model: [ 
-                { name: "Hyprnosis", themeId: "Hyprnosis", bg: "#0c0c27", acc: "#01A2FC", hlt: "#214154" },
-                { name: "Mocha",     themeId: "Mocha",     bg: "#1e1e2e", acc: "#b4befe", hlt: "#cdd6f4" },
-                { name: "Emberforge",themeId: "Emberforge",bg: "#3B3B3B", acc: "#FD5001", hlt: "#626262" },
-                { name: "Dracula",   themeId: "Dracula",   bg: "#282a36", acc: "#bd93f9", hlt: "#50fa7b" },
-                { name: "Arcadia",   themeId: "Arcadia",   bg: "#403E44", acc: "#B3A3AD", hlt: "#AC4262" },
-                { name: "Eden",      themeId: "Eden",      bg: "#D1CDC2", acc: "#0D0D0D", hlt: "#feffff" } 
+                { name: "Hyprnosis",  themeId: "hyprnosis",  script: "Hyprnosis" },
+                { name: "Mocha",      themeId: "mocha",      script: "Mocha" },
+                { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
+                { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
+                { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
+                { name: "Eden",       themeId: "eden",       script: "Eden" } 
               ]
 
               WidgetShadow {
@@ -166,8 +167,8 @@ Window {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 radius: 10
-                color: themeArea.containsMouse ? theme.colHilight : "transparent"
-                border.color: theme.colAccent
+                color: themeArea.containsMouse ? Theme.colHilight : "transparent"
+                border.color: Theme.colAccent
                 border.width: 1
 
                 Row {
@@ -178,13 +179,14 @@ Window {
                   spacing: 4
                   
                   Repeater {
-                    model: [ modelData.bg, modelData.acc, modelData.hlt ]
+                    model: [ 
+                      Theme.themes[modelData.themeId].colBg, 
+                      Theme.themes[modelData.themeId].colAccent, 
+                      Theme.themes[modelData.themeId].colHilight 
+                    ]
 
                     Rectangle {
-                      id: colorDot
-                      width: 15
-                      height: 15
-                      radius: 6
+                      width: 15; height: 15; radius: 6
                       color: modelData
                       border.color: "white"
                       border.width: 1
@@ -195,7 +197,7 @@ Window {
                 Text {
                   anchors.centerIn: parent
                   text: modelData.name
-                  color: theme.colAccent
+                  color: Theme.colAccent
                   font.pointSize: 12
                 }
 
@@ -204,8 +206,8 @@ Window {
                   anchors.fill: parent
                   hoverEnabled: true
                   onClicked: {
-                    themeRunner.selectedTheme = modelData.themeId
-                    themeRunner.startDetached()
+                    Config.updateTheme(modelData.themeId, modelData.script)
+                    Config.updateWallpaper("")
                   }
                 }
               }
