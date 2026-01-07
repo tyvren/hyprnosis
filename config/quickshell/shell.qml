@@ -12,6 +12,7 @@ ShellRoot {
   Utilities {}
   Capture {}
   Style {}
+  ThemeMenu {}
   Wallpapers {}
   Launcher {}
   Settings {}
