@@ -28,8 +28,6 @@ Window {
     function hide(): void { settingsmenu.visible = false }
   }
 
-  Keys.onEscapePressed: settingsmenu.visible = false
-
   WindowShadow {
     id: windowShadow
     anchors.fill: menuWindow
@@ -48,11 +46,6 @@ Window {
       spacing: 10
       width: parent.width - 30
       height: parent.height - 30
-
-      WidgetShadow {
-        id: sidePaneShadow
-        anchors.fill: sidePane
-      }
 
       Rectangle {
         id: sidePane
@@ -100,9 +93,9 @@ Window {
         }
       }
 
-      WidgetShadow {
-        id: contentPaneShadow
-        anchors.fill: contentPane
+      WindowShadow {
+        id: contentShadow
+        Layout.alignment: Qt.AlignCenter
       }
 
       Rectangle {
