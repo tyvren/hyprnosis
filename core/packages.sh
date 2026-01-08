@@ -12,8 +12,6 @@ default_packages=(
 system_utils=(
   viewnior
   cliphist
-  mpv
-  swww
   v4l-utils
   pipewire
   wireplumber
