@@ -22,39 +22,6 @@ enable_service() {
   fi
 }
 
-enable_elephant_service() {
-  elephant service enable
-  systemctl --user start elephant.service
-  log_success "Enabled and started elephant.service"
-}
-
-enable_walker_service() {
-  local svc="walker.service"
-  local path="$HOME/.config/systemd/user/$svc"
-
-  if [[ ! -f "$path" ]]; then
-    cat >"$path" <<EOF
-[Unit]
-Description=Walker GApplication Service
-
-[Service]
-ExecStart=/usr/bin/walker --gapplication-service
-Restart=always
-
-[Install]
-WantedBy=default.target
-EOF
-    log_info "Created $svc at $path"
-  fi
-
-  systemctl --user daemon-reload
-  if systemctl --user enable --now "$svc"; then
-    log_success "Enabled and started $svc"
-  else
-    log_error "Failed to enable/start $svc"
-  fi
-}
-
 enable_plymouth() {
   spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
   sudo plymouth-set-default-theme -R hyprnosis

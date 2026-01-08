@@ -37,7 +37,7 @@ Scope {
       anchors.right: true
       margins.top: 10
       margins.right: 10 
-      implicitWidth: screen.width / 6
+      implicitWidth: screen.width / 8
       implicitHeight: screen.height / 18
       color: "transparent"
       mask: Region {}
@@ -58,31 +58,24 @@ Scope {
             anchors.rightMargin: 15
             spacing: 12
 
-            Text {
-              color: Theme.colHilight
-              font.pixelSize: 25
-              text: "󰂚"
-              Layout.alignment: Qt.AlignVCenter
-            }
-
             ColumnLayout {
               Layout.fillWidth: true
               Layout.alignment: Qt.AlignVCenter
-              spacing: 0
+              spacing: 4
 
               Text {
                 text: root.currentSummary
-                color: Theme.colHilight
+                color: Theme.colAccent
                 font.bold: true
-                font.pixelSize: 14
+                font.pointSize: 12
                 elide: Text.ElideRight
                 Layout.fillWidth: true
               }
 
               Text {
                 text: root.currentBody
-                color: "white"
-                font.pixelSize: 11
+                color: Theme.colAccent
+                font.pointSize: 11
                 elide: Text.ElideRight
                 maximumLineCount: 1
                 Layout.fillWidth: true

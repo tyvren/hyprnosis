@@ -29,7 +29,7 @@ Item {
 
   Process {
     id: openNotifications
-    command: ["swaync-client", "-t", "-swb"]
+    command: [""]
   }
 
   MouseArea {

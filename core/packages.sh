@@ -72,7 +72,6 @@ terminal_shell=(
 
 desktop_environment=(
   uwsm
-  swaync
   quickshell
 )
 

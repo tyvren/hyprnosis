@@ -36,7 +36,7 @@ Scope {
       anchors.top: true
       anchors.right: true
       margins.top: 10
-      margins.right: 10
+      margins.right: 15
       implicitWidth: screen.width / 12
       implicitHeight: screen.height / 24
       color: "transparent"
@@ -48,16 +48,18 @@ Scope {
         Rectangle {
           anchors.fill: parent
           radius: 15
-          color: Theme.colTransB
+          color: Theme.colBg
+          border.color: Theme.colAccent
+          border.width: 1
 
           RowLayout {
             anchors.fill: parent
             anchors.leftMargin: 10
-            anchors.rightMargin: 15
+            anchors.rightMargin: 10
 
             Text {
               color: Theme.colHilight
-              font.pixelSize: 25
+              font.pointSize: 16
               text: ""
             }
 
@@ -65,7 +67,7 @@ Scope {
               Layout.fillWidth: true
               implicitHeight: 10
               radius: 20
-              color: Theme.colBg
+              color: Theme.colMuted
 
               Rectangle {
                 color: Theme.colHilight
