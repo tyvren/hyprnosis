@@ -178,7 +178,9 @@ Window {
                     ]
 
                     Rectangle {
-                      width: 15; height: 15; radius: 6
+                      width: 15
+                      height: 15
+                      radius: 15
                       color: modelData
                       border.color: "white"
                       border.width: 1
