@@ -6,6 +6,7 @@ import qs.Modules.Menus
 ShellRoot {
   Bar {}
   VolumeOSD {}
+  NotificationOSD {}
   MainMenu {}
   Packages {}
   Updates {}
