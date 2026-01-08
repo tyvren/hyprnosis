@@ -7,17 +7,16 @@ import Quickshell.Io
 Singleton {
   id: root
 
+  readonly property string homeDir: Quickshell.env("HOME")
+  readonly property string modulePath: homeDir + "/.config/hyprnosis/modules/style"
   readonly property string configPath: Quickshell.shellDir + "/state.json"
   readonly property alias data: adapter
 
   FileView {
     id: stateFileView
     path: root.configPath
-    printErrors: true
-    
     watchChanges: true
     onFileChanged: reload()
-
     onAdapterUpdated: writeAdapter()
 
     JsonAdapter {
@@ -33,7 +32,7 @@ Singleton {
     adapter.theme = themeId
     
     if (scriptName) {
-      Quickshell.execDetached(["/home/tyvren/.config/hyprnosis/modules/style/theme_changer.sh", scriptName])
+      Quickshell.execDetached([root.modulePath + "/theme_changer.sh", scriptName])
     }
   }
 
