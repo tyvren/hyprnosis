@@ -14,8 +14,13 @@ Singleton {
     id: stateFileView
     path: root.configPath
     printErrors: true
+    
+    watchChanges: true
+    onFileChanged: reload()
 
-    adapter: JsonAdapter {
+    onAdapterUpdated: writeAdapter()
+
+    JsonAdapter {
       id: adapter
       property string theme: "hyprnosis"
       property string wallpaper: ""
@@ -24,26 +29,15 @@ Singleton {
     onLoaded: console.log("Config loaded from: " + root.configPath)
   }
 
-  function performSave() {
-    try {
-      stateFileView.writeAdapter()
-    } catch (e) {
-      console.log("Save failed: " + e)
-    }
-  }
-
   function updateTheme(themeId, scriptName) {
     adapter.theme = themeId
     
     if (scriptName) {
-      Quickshell.execDetached(["sh", "-c", `~/.config/hyprnosis/modules/style/theme_changer.sh "${scriptName}"`])
+      Quickshell.execDetached(["/home/tyvren/.config/hyprnosis/modules/style/theme_changer.sh", scriptName])
     }
-
-    performSave()
   }
 
   function updateWallpaper(path) {
     adapter.wallpaper = path
-    performSave()
   }
 }
