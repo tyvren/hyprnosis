@@ -1,11 +1,13 @@
+import Quickshell
+import Quickshell.Io
+import Quickshell.Widgets
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Effects
 import qs.Themes
 import qs.Services
 import qs.Components
-import Quickshell
-import Quickshell.Io
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Effects 
 
 Window {
   id: settingsmenu
@@ -26,11 +28,6 @@ Window {
     target: "settingsmenu"
     function toggle(): void { settingsmenu.visible = !settingsmenu.visible }
     function hide(): void { settingsmenu.visible = false }
-  }
-
-  WindowShadow {
-    id: windowShadow
-    anchors.fill: menuWindow
   }
 
   Rectangle {
@@ -61,7 +58,7 @@ Window {
           spacing: 10
 
           Repeater {
-            model: ["General", "Display", "Theme"]
+            model: ["General", "Display", "Theme", "Wallpaper"]
 
             WidgetShadow {
               id: sideButtonShadow
@@ -73,7 +70,7 @@ Window {
               Layout.fillWidth: true
               Layout.preferredHeight: 45
               radius: 10
-              color: settingsmenu.activeIndex === index ? Theme.colHilight : "transparent"
+              color: settingsmenu.activeIndex === index ? Theme.colMuted : "transparent"
               border.color: Theme.colAccent
 
               Text {
@@ -89,6 +86,7 @@ Window {
               }
             }
           }
+
           Item { Layout.fillHeight: true }
         }
       }
@@ -121,12 +119,19 @@ Window {
           }
 
           ColumnLayout {
+            spacing: 10
+
             Text { 
               text: "Display Configuration"
               color: Theme.colAccent
               font.pointSize: 16
             }
-            Item { Layout.fillHeight: true }
+
+            Repeater {
+              model: [
+                { name: ""}
+              ]
+            }
           }
 
           ColumnLayout {
@@ -153,13 +158,13 @@ Window {
                 id: themeButtonShadow
                 anchors.fill: themeButtons
               }
-              
+
               Rectangle {
                 id: themeButtons
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
                 radius: 10
-                color: themeArea.containsMouse ? Theme.colHilight : "transparent"
+                color: themeArea.containsMouse ? Theme.colMuted : "transparent"
                 border.color: Theme.colAccent
                 border.width: 1
 
@@ -169,7 +174,7 @@ Window {
                   anchors.leftMargin: 12
                   anchors.verticalCenter: parent.verticalCenter
                   spacing: 4
-                  
+
                   Repeater {
                     model: [ 
                       Theme.themes[modelData.themeId].colBg, 
@@ -206,7 +211,106 @@ Window {
                 }
               }
             }
+
             Item { Layout.fillHeight: true }
+          }
+
+          ColumnLayout {
+            id: wallpaperPane
+            spacing: 15
+
+            property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/wallpapers"
+            property var wallpaperList: []
+
+            Process {
+              id: scanWallpapers
+              command: ["find", "-L", wallpaperPane.wallpaperDir, "-type", "f", "!", "-name", ".*"]
+              running: settingsmenu.visible && settingsmenu.activeIndex === 3
+              stdout: StdioCollector {
+                onStreamFinished: {
+                  const wallList = text.trim().split('\n').filter(p => p.length > 0);
+                  wallpaperPane.wallpaperList = wallList;
+                }
+              }
+            }
+
+            RowLayout {
+              id: header
+              spacing: 10
+
+              Text { 
+                text: "Select a wallpaper to apply:"
+                color: Theme.colAccent
+                font.pointSize: 16
+              }
+
+              Text {
+                text: "~/Pictures/wallpapers"
+                color: Theme.colMuted
+                font.pointSize: 16
+              }
+            }
+
+            Rectangle {
+              Layout.fillWidth: true
+              Layout.fillHeight: true
+              radius: 10
+              color: "transparent" 
+
+              ScrollView {
+                anchors.fill: parent
+                clip: true
+                ScrollBar.vertical.policy: ScrollBar.AsNeeded
+
+                GridView {
+                  id: wallGrid
+                  anchors.fill: parent
+                  cellWidth: 225
+                  cellHeight: 160
+                  model: wallpaperPane.wallpaperList
+
+                  delegate: Rectangle {
+                    id: imageBox
+                    width: 215
+                    height: 150
+                    color: "transparent"
+                    border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
+                    border.width: 1
+                    radius: 15
+
+                    ClippingRectangle {
+                      id: clipImage
+                      anchors.fill: imageBox
+                      anchors.margins: 2
+                      color: "transparent"
+                      radius: 15
+                    
+                      Image {
+                        anchors.fill: parent
+                        source: "file://" + modelData
+                        fillMode: Image.PreserveAspectCrop
+                        asynchronous: true
+                        mipmap: true
+                        cache: true
+                      }
+                    }
+
+                    MouseArea {
+                      id: wallMouse
+                      anchors.fill: parent
+                      hoverEnabled: true
+                      onClicked: {
+                        Config.updateWallpaper(modelData);
+                        Quickshell.execDetached([
+                          Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/wallpaper_changer.sh",
+                          modelData
+                        ]);
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
