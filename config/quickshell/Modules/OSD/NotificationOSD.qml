@@ -37,8 +37,8 @@ Scope {
       anchors.right: true
       margins.top: 10
       margins.right: 10 
-      implicitWidth: screen.width / 8
-      implicitHeight: screen.height / 18
+      implicitWidth: 300
+      implicitHeight: 80
       color: "transparent"
       mask: Region {}
 
