@@ -6,7 +6,7 @@ POS=$3
 SCALE=$4
 GDK=$5
 
-CONF_FILE="$HOME/.config/hypr/monitors.conf"
+CONF_FILE="$HOME/.config/hypr/settings/monitors.conf"
 
 if grep -q "monitor=$NAME," "$CONF_FILE"; then
   sed -i "s|^monitor=$NAME,.*|monitor=$NAME,$RES,$POS,$SCALE|" "$CONF_FILE"
