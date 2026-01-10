@@ -75,13 +75,13 @@ Window {
               Layout.fillWidth: true
               Layout.preferredHeight: 45
               radius: 10
-              color: settingsmenu.activeIndex === index ? Theme.colMuted : "transparent"
+              color: settingsmenu.activeIndex === index || sideMouse.containsMouse ? Theme.colMuted : "transparent"
 
               RowLayout {
                 id: textRow
                 anchors.fill: parent
-                anchors.leftMargin: 5
-                spacing: 1
+                anchors.leftMargin: 10
+                spacing: 11
 
                 Text {
                   verticalAlignment: Text.AlignVCenter
@@ -92,7 +92,9 @@ Window {
               }
 
               MouseArea {
+                id: sideMouse
                 anchors.fill: parent
+                hoverEnabled: true
                 onClicked: settingsmenu.activeIndex = index
               }
             }
@@ -117,31 +119,296 @@ Window {
 
         StackLayout {
           anchors.fill: parent
-          anchors.margins: 15
+          anchors.margins: 25
           currentIndex: settingsmenu.activeIndex
 
           ColumnLayout {
+            spacing: 10
+
             Text {
               text: "General Settings"
               color: Theme.colAccent
               font.pointSize: 16
             }
+
+            Rectangle {
+              Layout.fillWidth: true
+              height: 1
+              color: Theme.colMuted
+              opacity: 0.3
+            }
+
             Item { Layout.fillHeight: true } 
           }
 
           ColumnLayout {
-            spacing: 10
+            id: displayPane
+            spacing: 20
 
-            Text { 
-              text: "Display Configuration"
-              color: Theme.colAccent
-              font.pointSize: 16
+            property var monitors: []
+            property int selectedMonitorIdx: 0
+            
+            property string currentPos: "auto"
+            property string currentScale: "1"
+            property string currentGdk: "1"
+
+            function updateCurrentSettings() {
+              if (monitors.length > 0 && monitors[selectedMonitorIdx]) {
+                let m = monitors[selectedMonitorIdx];
+                currentPos = m.x + "x" + m.y;
+                currentScale = m.scale.toString();
+              }
             }
 
-            Repeater {
-              model: [
-                { name: ""}
-              ]
+            onSelectedMonitorIdxChanged: updateCurrentSettings()
+
+            Process {
+              id: getMonitors
+              command: ["hyprctl", "monitors", "-j"]
+              running: settingsmenu.visible && settingsmenu.activeIndex === 1
+              stdout: StdioCollector {
+                onStreamFinished: {
+                  try {
+                    displayPane.monitors = JSON.parse(text);
+                    displayPane.updateCurrentSettings();
+                  } catch(e) {}
+                }
+              }
+            }
+
+            ColumnLayout {
+              spacing: 10
+              Layout.fillWidth: true
+
+              Text { 
+                text: "Display Configuration"
+                color: Theme.colAccent
+                font.pointSize: 16
+              }
+
+              Rectangle {
+                Layout.fillWidth: true
+                height: 1
+                color: Theme.colMuted
+                opacity: 0.3
+              }
+            }
+
+            RowLayout {
+              spacing: 15
+              Layout.fillWidth: true
+              
+              Repeater {
+                model: displayPane.monitors
+
+                Rectangle {
+                  Layout.preferredWidth: 160
+                  Layout.preferredHeight: 90
+                  radius: 12
+                  color: displayPane.selectedMonitorIdx === index || monMouse.containsMouse ? Theme.colMuted : "transparent"
+                  border.color: Theme.colAccent
+                  border.width: 1
+
+                  ColumnLayout {
+                    anchors.centerIn: parent
+                    spacing: 4
+
+                    Text { 
+                      text: modelData.name 
+                      color: Theme.colAccent
+                      font.bold: true
+                      font.pointSize: 11
+                      Layout.alignment: Qt.AlignHCenter
+                    }
+                    Text { 
+                      text: modelData.width + "x" + modelData.height
+                      color: Theme.colAccent
+                      font.pointSize: 9
+                      Layout.alignment: Qt.AlignHCenter
+                    }
+                  }
+
+                  MouseArea {
+                    id: monMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: displayPane.selectedMonitorIdx = index
+                  }
+                }
+              }
+            }
+
+            Rectangle {
+              Layout.fillWidth: true
+              height: 1
+              color: Theme.colMuted
+              opacity: 0.3
+            }
+
+            GridLayout {
+              columns: 2
+              rowSpacing: 25
+              columnSpacing: 30
+              Layout.fillWidth: true
+
+              ColumnLayout {
+                spacing: 8
+
+                Text { 
+                  text: "Monitor Position"
+                  color: Theme.colAccent
+                  font.pointSize: 10 
+                }
+
+                RowLayout {
+                  spacing: 10
+
+                  Repeater {
+                    model: ["auto", "left", "right"]
+
+                    Rectangle {
+                      Layout.preferredWidth: 70
+                      Layout.preferredHeight: 32
+                      radius: 6
+                      color: displayPane.currentPos === modelData ? Theme.colAccent : (posMouse.containsMouse ? Theme.colMuted : "transparent")
+                      border.color: Theme.colAccent
+                      border.width: 1
+
+                      Text {
+                        anchors.centerIn: parent
+                        text: modelData
+                        color: displayPane.currentPos === modelData ? Theme.colBg : Theme.colAccent
+                        font.pointSize: 9
+                      }
+
+                      MouseArea { 
+                        id: posMouse
+                        anchors.fill: parent 
+                        hoverEnabled: true
+                        onClicked: displayPane.currentPos = modelData
+                      }
+                    }
+                  }
+                }
+              }
+
+              ColumnLayout {
+                spacing: 8
+
+                Text { 
+                  text: "Hyprland Scaling"
+                  color: Theme.colAccent
+                  font.pointSize: 10 
+                }
+
+                RowLayout {
+                  spacing: 10
+
+                  Repeater {
+                    model: ["1", "1.5", "2"]
+
+                    Rectangle {
+                      Layout.preferredWidth: 50
+                      Layout.preferredHeight: 32
+                      radius: 6
+                      color: displayPane.currentScale === modelData ? Theme.colAccent : (scaleMouse.containsMouse ? Theme.colMuted : "transparent")
+                      border.color: Theme.colAccent
+                      border.width: 1
+
+                      Text {
+                        anchors.centerIn: parent
+                        text: modelData
+                        color: displayPane.currentScale === modelData ? Theme.colBg : Theme.colAccent
+                        font.pointSize: 9
+                      }
+
+                      MouseArea { 
+                        id: scaleMouse
+                        anchors.fill: parent 
+                        hoverEnabled: true
+                        onClicked: displayPane.currentScale = modelData
+                      }
+                    }
+                  }
+                }
+              }
+
+              ColumnLayout {
+                spacing: 8
+
+                Text { 
+                  text: "GDK App Scaling"
+                  color: Theme.colAccent
+                  font.pointSize: 10 
+                }
+
+                RowLayout {
+                  spacing: 10
+
+                  Repeater {
+                    model: ["1", "2"]
+
+                    Rectangle {
+                      Layout.preferredWidth: 60
+                      Layout.preferredHeight: 32
+                      radius: 6
+                      color: displayPane.currentGdk === modelData ? Theme.colAccent : (gdkMouse.containsMouse ? Theme.colMuted : "transparent")
+                      border.color: Theme.colAccent
+                      border.width: 1
+
+                      Text {
+                        anchors.centerIn: parent
+                        text: modelData + "x"
+                        color: displayPane.currentGdk === modelData ? Theme.colBg : Theme.colAccent
+                        font.pointSize: 9
+                      }
+
+                      MouseArea { 
+                        id: gdkMouse
+                        anchors.fill: parent 
+                        hoverEnabled: true
+                        onClicked: displayPane.currentGdk = modelData
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            Item { Layout.fillHeight: true }
+
+            Rectangle {
+              id: applyButton
+              Layout.alignment: Qt.AlignRight
+              Layout.preferredWidth: 140
+              Layout.preferredHeight: 40
+              radius: 10
+              color: Theme.colAccent
+              opacity: applyMouse.containsMouse ? 0.8 : 1.0
+
+              Text {
+                anchors.centerIn: parent
+                text: "Apply Settings"
+                color: Theme.colBg
+                font.bold: true
+              }
+
+              MouseArea {
+                id: applyMouse
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                  let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
+                  Quickshell.execDetached([
+                    Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/qs_apply_monitors.sh",
+                    monitor.name,
+                    monitor.width + "x" + monitor.height + "@" + (monitor.refreshRate || "60"),
+                    displayPane.currentPos,
+                    displayPane.currentScale,
+                    displayPane.currentGdk
+                  ]);
+                }
+              }
             }
           }
 
@@ -152,6 +419,14 @@ Window {
               text: "Themes"
               color: Theme.colAccent
               font.pointSize: 16
+              Layout.bottomMargin: 5
+            }
+
+            Rectangle {
+              Layout.fillWidth: true
+              height: 1
+              color: Theme.colMuted
+              opacity: 0.3
               Layout.bottomMargin: 5
             }
 
@@ -245,20 +520,27 @@ Window {
               }
             }
 
-            RowLayout {
-              id: header
+            ColumnLayout {
               spacing: 10
-
-              Text { 
-                text: "Select a wallpaper to apply:"
-                color: Theme.colAccent
-                font.pointSize: 16
+              Layout.fillWidth: true
+              RowLayout {
+                spacing: 10
+                Text { 
+                  text: "Select a wallpaper to apply:"
+                  color: Theme.colAccent
+                  font.pointSize: 16
+                }
+                Text {
+                  text: "~/Pictures/wallpapers"
+                  color: Theme.colMuted
+                  font.pointSize: 16
+                }
               }
-
-              Text {
-                text: "~/Pictures/wallpapers"
+              Rectangle {
+                Layout.fillWidth: true
+                height: 1
                 color: Theme.colMuted
-                font.pointSize: 16
+                opacity: 0.3
               }
             }
 
