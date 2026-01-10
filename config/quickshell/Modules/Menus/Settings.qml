@@ -58,7 +58,12 @@ Window {
           spacing: 10
 
           Repeater {
-            model: ["General", "Display", "Theme", "Wallpaper"]
+            model: [
+              {icon: "", text: "General"}, 
+              {icon: "󰍹", text: "Display"},
+              {icon: "", text: "Theme"},
+              {icon: "󰸉", text: "Wallpaper"}
+            ]
 
             WidgetShadow {
               id: sideButtonShadow
@@ -71,13 +76,19 @@ Window {
               Layout.preferredHeight: 45
               radius: 10
               color: settingsmenu.activeIndex === index ? Theme.colMuted : "transparent"
-              border.color: Theme.colAccent
 
-              Text {
-                anchors.centerIn: parent
-                text: modelData
-                color: Theme.colAccent
-                font.pointSize: 14
+              RowLayout {
+                id: textRow
+                anchors.fill: parent
+                anchors.leftMargin: 5
+                spacing: 1
+
+                Text {
+                  verticalAlignment: Text.AlignVCenter
+                  text: modelData.icon + "    " + modelData.text
+                  color: Theme.colAccent
+                  font.pointSize: 14
+                }
               }
 
               MouseArea {
