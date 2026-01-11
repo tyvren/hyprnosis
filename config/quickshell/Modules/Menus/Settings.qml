@@ -125,7 +125,7 @@ Window {
               spacing: 0
 
               Text {
-                Layout.preferredWidth: 20
+                Layout.preferredWidth: 25
                 verticalAlignment: Text.AlignVCenter
                 text: "󰅙"
                 color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
@@ -139,7 +139,7 @@ Window {
                 verticalAlignment: Text.AlignVCenter
                 text: "Close"
                 color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
-                font.pointSize: 14
+                font.pointSize: 12
                 font.family: Theme.fontFamily
                 antialiasing: true
               }
