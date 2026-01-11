@@ -45,9 +45,7 @@ ColumnLayout {
       Layout.fillWidth: true
       Layout.preferredHeight: 45
       radius: 10
-      color: themeArea.containsMouse ? Theme.colMuted : "transparent"
-      border.color: Theme.colAccent
-      border.width: 1
+      color: themeArea.containsMouse ? Theme.colAccent : Theme.colMuted
 
       Row {
         id: colorRow
@@ -77,7 +75,7 @@ ColumnLayout {
       Text {
         anchors.centerIn: parent
         text: modelData.name
-        color: Theme.colAccent
+        color: themeArea.containsMouse ? Theme.colBg : Theme.colAccent
         font.pointSize: 12
         font.family: Theme.fontFamily
       }
