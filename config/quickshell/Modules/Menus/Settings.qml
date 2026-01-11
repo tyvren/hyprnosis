@@ -58,10 +58,11 @@ Window {
           spacing: 10
 
           Repeater {
-            model: [
-              {icon: "󰍹", text: "Display"},
+            model: [ 
               {icon: "󰓃", text: "Audio"},
-              {icon: "󰖩", text: "Network"},
+              {icon: "󰂯", text: "Bluetooth"},
+              {icon: "󰍹", text: "Display"},
+              {icon: "󰖩", text: "Network"}, 
               {icon: "", text: "Theme"},
               {icon: "󰸉", text: "Wallpaper"} 
             ]
@@ -167,18 +168,20 @@ Window {
           anchors.margins: 15
           currentIndex: settingsmenu.activeIndex
 
+          AudioSettings {}
+
+          BluetoothSettings {}
+
           DisplaySettings { 
             active: settingsmenu.visible && settingsmenu.activeIndex === 0 
-          }
-
-          AudioSettings {}
+          } 
 
           NetworkSettings {}
 
           ThemeSettings {}
 
           WallpaperSettings {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 4
+            active: settingsmenu.visible && settingsmenu.activeIndex === 5
           }
         }
       }
