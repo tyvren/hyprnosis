@@ -51,6 +51,8 @@ ColumnLayout {
       text: "Display Configuration"
       color: Theme.colAccent
       font.pointSize: 16
+      font.family: Theme.fontFamily
+      antialiasing: true
     }
 
     Rectangle {
@@ -86,6 +88,7 @@ ColumnLayout {
             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.bold: true
             font.pointSize: 11
+            font.family: Theme.fontFamily
             Layout.alignment: Qt.AlignHCenter
           }
 
@@ -93,6 +96,7 @@ ColumnLayout {
             text: modelData.width + "x" + modelData.height
             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.pointSize: 9
+            font.family: Theme.fontFamily
             Layout.alignment: Qt.AlignHCenter
           }
 
@@ -100,6 +104,7 @@ ColumnLayout {
             text: modelData.refreshRate.toFixed(2) + "Hz"
             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.pointSize: 8
+            font.family: Theme.fontFamily
             opacity: 0.7
             Layout.alignment: Qt.AlignHCenter
           }
@@ -135,6 +140,7 @@ ColumnLayout {
         text: "Monitor Position"
         color: Theme.colAccent
         font.pointSize: 10
+        font.family: Theme.fontFamily
       }
 
       RowLayout {
@@ -154,6 +160,7 @@ ColumnLayout {
               text: modelData
               color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
+              font.family: Theme.fontFamily
             }
 
             MouseArea {
@@ -174,6 +181,7 @@ ColumnLayout {
         text: "Hyprland Scaling"
         color: Theme.colAccent
         font.pointSize: 10
+        font.family: Theme.fontFamily
       }
 
       RowLayout {
@@ -193,6 +201,7 @@ ColumnLayout {
               text: modelData
               color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
+              font.family: Theme.fontFamily
             }
 
             MouseArea {
@@ -213,6 +222,7 @@ ColumnLayout {
         text: "GDK App Scaling"
         color: Theme.colAccent
         font.pointSize: 10
+        font.family: Theme.fontFamily
       }
 
       RowLayout {
@@ -232,6 +242,7 @@ ColumnLayout {
               text: modelData + "x"
               color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
+              font.family: Theme.fontFamily
             }
 
             MouseArea {
@@ -252,6 +263,7 @@ ColumnLayout {
         text: "Resolution & Refresh Rate"
         color: Theme.colAccent
         font.pointSize: 10
+        font.family: Theme.fontFamily
       }
 
       ComboBox {
@@ -280,11 +292,16 @@ ColumnLayout {
             text: modelData
             color: highlighted ? Theme.colBg : Theme.colAccent
             font.pointSize: 10
+            font.family: Theme.fontFamily
             verticalAlignment: Text.AlignVCenter
           }
 
           background: Rectangle {
-            color: highlighted ? Theme.colAccent : Theme.colBg
+            color: Theme.colMuted
+            opacity: 0.2
+            border.color: Theme.colAccent
+            border.width: 1
+            radius: 10
           }
         }
 
@@ -292,6 +309,7 @@ ColumnLayout {
           leftPadding: 15
           text: modeSelector.displayText
           font.pointSize: 11
+          font.family: Theme.fontFamily
           color: Theme.colAccent
           verticalAlignment: Text.AlignVCenter
         }
@@ -342,6 +360,7 @@ ColumnLayout {
       text: "Apply Settings"
       color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
       font.bold: true
+      font.family: Theme.fontFamily
     }
 
     MouseArea {

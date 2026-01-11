@@ -13,6 +13,7 @@ ColumnLayout {
     text: "Themes"
     color: Theme.colAccent
     font.pointSize: 16
+    font.family: Theme.fontFamily
     Layout.bottomMargin: 5
   }
 
@@ -78,6 +79,7 @@ ColumnLayout {
         text: modelData.name
         color: Theme.colAccent
         font.pointSize: 12
+        font.family: Theme.fontFamily
       }
 
       MouseArea {

@@ -38,13 +38,15 @@ ColumnLayout {
       Text { 
         text: "Select a wallpaper to apply:"
         color: Theme.colAccent
-        font.pointSize: 16
+        font.pointSize: 14
+        font.family: Theme.fontFamily
       }
 
       Text {
         text: "~/Pictures/wallpapers"
         color: Theme.colMuted
-        font.pointSize: 16
+        font.pointSize: 14
+        font.family: Theme.fontFamily
       }
     }
 

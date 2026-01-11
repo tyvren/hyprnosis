@@ -74,13 +74,25 @@ Window {
               RowLayout {
                 anchors.fill: parent
                 anchors.leftMargin: 10
-                spacing: 11
 
                 Text {
+                  Layout.preferredWidth: 20
                   verticalAlignment: Text.AlignVCenter
-                  text: modelData.icon + "    " + modelData.text
+                  text: modelData.icon
                   color: (settingsmenu.activeIndex === index || navMa.containsMouse) ? Theme.colBg : Theme.colAccent
                   font.pointSize: 14
+                  font.family: Theme.fontFamily
+                  antialiasing: true
+                }
+
+                Text {
+                  Layout.fillWidth: true
+                  verticalAlignment: Text.AlignVCenter
+                  text: modelData.text
+                  color: (settingsmenu.activeIndex === index || navMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                  font.pointSize: 14
+                  font.family: Theme.fontFamily
+                  antialiasing: true
                 }
               }
 
@@ -106,14 +118,29 @@ Window {
 
             RowLayout {
               anchors.fill: parent
-              anchors.leftMargin: 10
-              spacing: 11
+              anchors.leftMargin: 15
+              spacing: 0
 
               Text {
+                Layout.preferredWidth: 35
                 verticalAlignment: Text.AlignVCenter
-                text: "󰅙    Close"
+                text: "󰅙"
                 color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
                 font.pointSize: 14
+                font.family: Theme.fontFamily
+                renderType: Text.NativeRendering
+                antialiasing: true
+              }
+
+              Text {
+                Layout.fillWidth: true
+                verticalAlignment: Text.AlignVCenter
+                text: "Close"
+                color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
+                font.pointSize: 14
+                font.family: Theme.fontFamily
+                renderType: Text.NativeRendering
+                antialiasing: true
               }
             }
 
