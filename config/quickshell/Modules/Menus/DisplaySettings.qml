@@ -73,8 +73,7 @@ ColumnLayout {
         Layout.preferredWidth: 160
         Layout.preferredHeight: 90
         radius: 12
-        color: displayPane.selectedMonitorIdx === index ? Theme.colMuted : (monitorMa.containsMouse ? Theme.colMuted : "transparent")
-        opacity: (displayPane.selectedMonitorIdx !== index && monitorMa.containsMouse) ? 0.6 : 1.0
+        color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
         border.color: Theme.colAccent
         border.width: 1
 
@@ -84,7 +83,7 @@ ColumnLayout {
 
           Text {
             text: modelData.name
-            color: Theme.colAccent
+            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.bold: true
             font.pointSize: 11
             Layout.alignment: Qt.AlignHCenter
@@ -92,14 +91,14 @@ ColumnLayout {
 
           Text {
             text: modelData.width + "x" + modelData.height
-            color: Theme.colAccent
+            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.pointSize: 9
             Layout.alignment: Qt.AlignHCenter
           }
 
           Text {
             text: modelData.refreshRate.toFixed(2) + "Hz"
-            color: Theme.colAccent
+            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
             font.pointSize: 8
             opacity: 0.7
             Layout.alignment: Qt.AlignHCenter
@@ -148,14 +147,12 @@ ColumnLayout {
             Layout.preferredWidth: 70
             Layout.preferredHeight: 32
             radius: 6
-            color: displayPane.currentPos === modelData ? Theme.colAccent : (posMa.containsMouse ? Theme.colMuted : "transparent")
-            border.color: Theme.colAccent
-            border.width: 1
+            color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
             Text {
               anchors.centerIn: parent
               text: modelData
-              color: displayPane.currentPos === modelData ? Theme.colBg : Theme.colAccent
+              color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
             }
 
@@ -189,14 +186,12 @@ ColumnLayout {
             Layout.preferredWidth: 50
             Layout.preferredHeight: 32
             radius: 6
-            color: displayPane.currentScale === modelData ? Theme.colAccent : (scaleMa.containsMouse ? Theme.colMuted : "transparent")
-            border.color: Theme.colAccent
-            border.width: 1
+            color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
             Text {
               anchors.centerIn: parent
               text: modelData
-              color: displayPane.currentScale === modelData ? Theme.colBg : Theme.colAccent
+              color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
             }
 
@@ -230,14 +225,12 @@ ColumnLayout {
             Layout.preferredWidth: 60
             Layout.preferredHeight: 32
             radius: 6
-            color: displayPane.currentGdk === modelData ? Theme.colAccent : (gdkMa.containsMouse ? Theme.colMuted : "transparent")
-            border.color: Theme.colAccent
-            border.width: 1
+            color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
             Text {
               anchors.centerIn: parent
               text: modelData + "x"
-              color: displayPane.currentGdk === modelData ? Theme.colBg : Theme.colAccent
+              color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colAccent
               font.pointSize: 9
             }
 
@@ -306,8 +299,6 @@ ColumnLayout {
         background: Rectangle {
           color: Theme.colMuted
           opacity: 0.2
-          border.color: Theme.colAccent
-          border.width: 1
           radius: 10
         }
 
@@ -344,14 +335,12 @@ ColumnLayout {
     Layout.preferredWidth: 140
     Layout.preferredHeight: 40
     radius: 10
-    color: applyMa.containsMouse ? Theme.colMuted : Theme.colAccent
-    border.color: Theme.colAccent
-    border.width: 1
+    color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
 
     Text {
       anchors.centerIn: parent
       text: "Apply Settings"
-      color: applyMa.containsMouse ? Theme.colAccent : Theme.colBg
+      color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
       font.bold: true
     }
 
