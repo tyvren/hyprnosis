@@ -60,8 +60,9 @@ Window {
           Repeater {
             model: [
               {icon: "󰍹", text: "Display"},
+              {icon: "󰓃", text: "Audio"},
               {icon: "", text: "Theme"},
-              {icon: "󰸉", text: "Wallpaper"}
+              {icon: "󰸉", text: "Wallpaper"} 
             ]
 
             Rectangle {
@@ -168,6 +169,8 @@ Window {
           DisplaySettings { 
             active: settingsmenu.visible && settingsmenu.activeIndex === 0 
           }
+
+          AudioSettings {}
 
           ThemeSettings {}
 
