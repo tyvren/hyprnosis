@@ -118,17 +118,16 @@ Window {
 
             RowLayout {
               anchors.fill: parent
-              anchors.leftMargin: 15
+              anchors.leftMargin: 10
               spacing: 0
 
               Text {
-                Layout.preferredWidth: 35
+                Layout.preferredWidth: 20
                 verticalAlignment: Text.AlignVCenter
                 text: "󰅙"
                 color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
                 font.pointSize: 14
                 font.family: Theme.fontFamily
-                renderType: Text.NativeRendering
                 antialiasing: true
               }
 
@@ -139,7 +138,6 @@ Window {
                 color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
                 font.pointSize: 14
                 font.family: Theme.fontFamily
-                renderType: Text.NativeRendering
                 antialiasing: true
               }
             }
@@ -164,7 +162,7 @@ Window {
 
         StackLayout {
           anchors.fill: parent
-          anchors.margins: 25
+          anchors.margins: 15
           currentIndex: settingsmenu.activeIndex
 
           DisplaySettings { 
