@@ -61,6 +61,7 @@ Window {
             model: [
               {icon: "󰍹", text: "Display"},
               {icon: "󰓃", text: "Audio"},
+              {icon: "󰖩", text: "Network"},
               {icon: "", text: "Theme"},
               {icon: "󰸉", text: "Wallpaper"} 
             ]
@@ -172,10 +173,12 @@ Window {
 
           AudioSettings {}
 
+          NetworkSettings {}
+
           ThemeSettings {}
 
           WallpaperSettings {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 2
+            active: settingsmenu.visible && settingsmenu.activeIndex === 4
           }
         }
       }

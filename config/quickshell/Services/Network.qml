@@ -1,69 +1,144 @@
 pragma Singleton
 
-import Quickshell
 import QtQuick
+import Quickshell
 import Quickshell.Io
 
 Singleton {
-  id: networkParent
-  property alias network: network
-  readonly property bool wifiEnabled: wifiState.text.split("\n")[0] === "enabled"
-  property string activeSsid: ""
-  property real activeSignalStrength: 0
+  id: root
+
+  property var networks: ({})
+  property bool scanning: false
+  property bool wifiEnabled: false
+  property bool ethernetConnected: false
+  property string ethernetInterface: ""
+  property string errorMessage: ""
+
+  function setWifiEnabled(enabled) {
+    wifiToggleProcess.enabledState = enabled ? "on" : "off"
+    wifiToggleProcess.running = true
+  }
+
+  function scan() {
+    if (scanning) return
+    scanning = true
+    scanProcess.running = true
+    ethProcess.running = true
+  }
+
+  function connect(ssid, password = "") {
+    root.errorMessage = ""
+    connectProcess.targetSsid = ssid
+    connectProcess.password = password
+    connectProcess.running = true
+  }
+
+  function forget(ssid) {
+    forgetProcess.targetSsid = ssid
+    forgetProcess.running = true
+  }
+
+  function signalIcon(signal) {
+    if (signal >= 80) return "󰤨"
+    if (signal >= 60) return "󰤥"
+    if (signal >= 40) return "󰤢"
+    if (signal >= 20) return "󰤟"
+    return "󰤯"
+  }
+
   Process {
-    id: process
-    command: [`${Quickshell.env("HOME")}/.config/quickshell/network.sh`]
-    running: true
-    onExited: {
-      var networkName = JSON.parse(networkModel.text)
-      network.clear()
-      networkName.forEach(function(item) {
-        network.append(item)
-      })
-      if (network.count === 0) {
-        networkParent.activeSsid=""
-        networkParent.activeSignalStrength=0
-      }
-      else {
-        var foundActive = false
-        for (let i = 0; i < network.count; i++) {
-          if (network.get(i).active) {
-            networkParent.activeSsid=network.get(i).ssid
-            networkParent.activeSignalStrength=network.get(i).signalStrength
-            foundActive = true
+    id: ethProcess
+    command: ["nmcli", "-t", "-f", "DEVICE,TYPE,STATE", "dev"]
+    stdout: StdioCollector {
+      onStreamFinished: {
+        const lines = text.split("\n")
+        let foundEth = false
+        for (let line of lines) {
+          const parts = line.split(":")
+          if (parts[1] === "ethernet" && parts[2] === "connected") {
+            root.ethernetInterface = parts[0]
+            foundEth = true
             break
           }
         }
-        if (!foundActive) {
-          networkParent.activeSsid = ""
-          networkParent.activeSignalStrength = 0
+        root.ethernetConnected = foundEth
+      }
+    }
+  }
+
+  Process {
+    id: wifiStateProcess
+    running: true
+    command: ["nmcli", "radio", "wifi"]
+    stdout: StdioCollector {
+      onStreamFinished: root.wifiEnabled = text.trim() === "enabled"
+    }
+  }
+
+  Process {
+    id: wifiToggleProcess
+    property string enabledState: "on"
+    command: ["nmcli", "radio", "wifi", enabledState]
+    onExited: {
+      root.wifiEnabled = (enabledState === "on")
+      root.scan()
+    }
+  }
+
+  Process {
+    id: scanProcess
+    command: ["nmcli", "-t", "-f", "SSID,SIGNAL,IN-USE,SECURITY", "dev", "wifi"]
+    stdout: StdioCollector {
+      onStreamFinished: {
+        const lines = text.split("\n")
+        let map = {}
+        for (let line of lines) {
+          const parts = line.split(":")
+          if (parts.length >= 3 && parts[0] !== "") {
+            const ssid = parts[0]
+            map[ssid] = {
+              ssid: ssid,
+              signal: parseInt(parts[1]),
+              connected: parts[2] === "*",
+              secured: parts[3] !== "" && parts[3] !== "--"
+            }
+          }
+        }
+        root.networks = map
+        root.scanning = false
+      }
+    }
+  }
+
+  Process {
+    id: connectProcess
+    property string targetSsid: ""
+    property string password: ""
+    command: password !== "" 
+      ? ["nmcli", "device", "wifi", "connect", targetSsid, "password", password]
+      : ["nmcli", "device", "wifi", "connect", targetSsid]
+    stderr: StdioCollector {
+      onStreamFinished: {
+        if (text.includes("Error") || text.includes("failed")) {
+          root.errorMessage = "Connection Failed"
         }
       }
     }
-    stdout: StdioCollector {
-      id: networkModel
-      waitForEnd: false
-    }
+    onExited: root.scan()
   }
+
   Process {
-    id: process1
-    command: ["nmcli", "radio", "wifi"]
-    running: true
-    stdout: StdioCollector {
-      id: wifiState
-    }
+    id: forgetProcess
+    property string targetSsid: ""
+    command: ["nmcli", "connection", "delete", targetSsid]
+    onExited: root.scan()
   }
-  Process {
+
+  Timer {
+    interval: 10000
     running: true
-    command: [`${Quickshell.env("HOME")}/.config/quickshell/networkMonitor.sh`]
-    stdout: SplitParser {
-      onRead: {
-        process.running=true
-        process1.running=true
-      }
-    }
-  }
-  ListModel {
-    id: network
+    repeat: true
+    triggeredOnStart: true
+    onTriggered: root.scan()
   }
 }
