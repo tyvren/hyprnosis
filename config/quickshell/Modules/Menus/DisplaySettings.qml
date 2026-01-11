@@ -268,7 +268,7 @@ ColumnLayout {
 
       ComboBox {
         id: modeSelector
-        Layout.preferredWidth: 185
+        Layout.preferredWidth: 195
         Layout.preferredHeight: 45
         model: displayPane.monitors.length > 0 ? displayPane.monitors[displayPane.selectedMonitorIdx].availableModes : []
 
