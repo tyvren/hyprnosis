@@ -9,10 +9,16 @@ Singleton {
 
   property var networks: ({})
   property bool scanning: false
+  property bool connecting: false
   property bool wifiEnabled: false
   property bool ethernetConnected: false
   property string ethernetInterface: ""
   property string errorMessage: ""
+
+  function isConnected(ssid) {
+    const net = networks[ssid]
+    return net ? net.connected : false
+  }
 
   function setWifiEnabled(enabled) {
     wifiToggleProcess.enabledState = enabled ? "on" : "off"
@@ -28,6 +34,8 @@ Singleton {
 
   function connect(ssid, password = "") {
     root.errorMessage = ""
+    root.connecting = true
+    failedTimer.stop()
     connectProcess.targetSsid = ssid
     connectProcess.password = password
     connectProcess.running = true
@@ -44,6 +52,17 @@ Singleton {
     if (signal >= 40) return "󰤢"
     if (signal >= 20) return "󰤟"
     return "󰤯"
+  }
+
+  Timer {
+    id: failedTimer
+    interval: 5000
+    repeat: false
+    onTriggered: {
+      if (!root.isConnected(connectProcess.targetSsid)) {
+        root.errorMessage = "Connection Failed"
+      }
+    }
   }
 
   Process {
@@ -120,11 +139,14 @@ Singleton {
     stderr: StdioCollector {
       onStreamFinished: {
         if (text.includes("Error") || text.includes("failed")) {
-          root.errorMessage = "Connection Failed"
+          failedTimer.start()
         }
       }
     }
-    onExited: root.scan()
+    onExited: {
+      root.connecting = false
+      root.scan()
+    }
   }
 
   Process {
