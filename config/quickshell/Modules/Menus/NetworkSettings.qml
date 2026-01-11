@@ -28,20 +28,23 @@ Item {
     Rectangle {
       id: ethernetBar
       Layout.fillWidth: true
-      Layout.preferredHeight: 50
-      color: Network.ethernetConnected ? Theme.colAccent : Theme.colMuted
-      opacity: Network.ethernetConnected ? 0.2 : 0.1
+      Layout.preferredHeight: 50 
+      color: Network.ethernetConnected ? Theme.colMuted : Theme.colAccent
+      opacity: Network.ethernetConnected ? 1 : 0.2
       radius: 10
       visible: Network.ethernetConnected
 
-      RowLayout {
+      Item {
         anchors.fill: parent
-        anchors.margins: 15
 
         Text {
+          id: ethIcon
           text: "󰈀"
           color: Theme.colAccent
           font.pointSize: 14
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: parent.left
+          anchors.leftMargin: 15
         }
 
         Text {
@@ -49,15 +52,19 @@ Item {
           color: Theme.colAccent
           font.bold: true
           font.family: Theme.fontFamily
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.left: ethIcon.right
+          anchors.leftMargin: 10
         }
-
-        Item { Layout.fillWidth: true }
 
         Text {
           text: "Connected"
           color: Theme.colAccent
           font.pointSize: 9
           font.family: Theme.fontFamily
+          anchors.verticalCenter: parent.verticalCenter
+          anchors.right: parent.right
+          anchors.rightMargin: 15
         }
       }
     }
@@ -119,18 +126,26 @@ Item {
             radius: 10
           }
 
-          contentItem: RowLayout {
+          contentItem: Item {
             anchors.fill: parent
-            anchors.margins: 15
 
             Text {
+              id: signalIcon
               text: Network.signalIcon(modelData.signal)
               color: Theme.colAccent
               font.pointSize: 14
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.left: parent.left
+              anchors.leftMargin: 15
             }
 
-            ColumnLayout {
+            Column {
+              id: labelColumn
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.left: signalIcon.right
+              anchors.leftMargin: 15
               spacing: 0
+
               Text {
                 text: modelData.ssid
                 color: Theme.colAccent
@@ -146,8 +161,6 @@ Item {
               }
             }
 
-            Item { Layout.fillWidth: true }
-
             Rectangle {
               visible: modelData.connected
               width: 70
@@ -156,6 +169,9 @@ Item {
               color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
               border.color: Theme.colAccent
               border.width: 1
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.right: parent.right
+              anchors.rightMargin: 15
 
               Text {
                 anchors.centerIn: parent
@@ -177,6 +193,9 @@ Item {
               text: "󰌾"
               color: Theme.colMuted
               font.pointSize: 10
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.right: parent.right
+              anchors.rightMargin: 15
             }
           }
 

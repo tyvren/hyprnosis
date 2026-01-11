@@ -13,18 +13,22 @@ Item {
 
     RowLayout {
       Layout.fillWidth: true
+
       Text { 
         text: "Bluetooth"
         color: Theme.colAccent
         font.pointSize: 14 
         font.family: Theme.fontFamily
+        Layout.alignment: Qt.AlignVCenter
       }
+
       Item { Layout.fillWidth: true }
       
       Switch {
         id: btToggle
         checked: Bluetooth.enabled
         onToggled: Bluetooth.togglePower()
+        Layout.alignment: Qt.AlignVCenter
         
         indicator: Rectangle {
           implicitWidth: 48; implicitHeight: 24; radius: 12
@@ -57,18 +61,26 @@ Item {
             radius: 10
           }
 
-          contentItem: RowLayout {
+          contentItem: Item {
             anchors.fill: parent
-            anchors.margins: 15
-            
+
             Text { 
+              id: btIcon
               text: Bluetooth.getIcon(modelData)
               color: Theme.colAccent
               font.pointSize: 14 
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.left: parent.left
+              anchors.leftMargin: 15
             }
 
-            ColumnLayout {
+            Column {
+              id: btLabelColumn
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.left: btIcon.right
+              anchors.leftMargin: 15
               spacing: 0
+
               Text { 
                 text: modelData.name
                 color: Theme.colAccent
@@ -90,12 +102,17 @@ Item {
               width: 70; height: 26; radius: 6
               color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
               border.color: Theme.colAccent; border.width: 1
+              anchors.verticalCenter: parent.verticalCenter
+              anchors.right: parent.right
+              anchors.rightMargin: 15
+
               Text {
                 anchors.centerIn: parent
                 text: "Forget"
                 font.pointSize: 8
                 color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
               }
+
               MouseArea {
                 id: forgetMa
                 anchors.fill: parent
@@ -110,6 +127,7 @@ Item {
     }
 
     Rectangle {
+      id: scanBtnRect
       Layout.alignment: Qt.AlignRight
       Layout.preferredWidth: 100
       Layout.preferredHeight: 35
