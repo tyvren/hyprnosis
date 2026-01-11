@@ -10,8 +10,8 @@ PopupWindow {
   id: root
   implicitWidth: 350
   implicitHeight: 225
-  anchor.window: barLayer
-  anchor.rect.x: barLayer.width / 2 - width / 2
+  anchor.window: rightBar
+  anchor.rect.x: rightBar.width -400
   anchor.rect.y: 40
   color: "transparent"
 

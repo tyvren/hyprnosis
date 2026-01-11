@@ -176,11 +176,22 @@ Variants {
           id: rightBarContent
           anchors.fill: parent
 
+          Calendar {
+            id: calendar
+            visible: clockArea.containsMouse
+          }
+
           Clock {
             id: clockButton
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: 50
+            anchors.topMargin: 50 
+
+            MouseArea {
+              id: clockArea
+              anchors.fill: clockButton
+              hoverEnabled: true
+            }
           }
 
           Workspaces {
