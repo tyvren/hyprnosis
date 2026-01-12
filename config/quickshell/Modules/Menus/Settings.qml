@@ -64,6 +64,7 @@ Window {
               {icon: "󰂯", text: "Bluetooth"},
               {icon: "󰍹", text: "Display"},
               {icon: "󰖩", text: "Network"}, 
+              {icon: "󰏖", text: "Packages"},
               {icon: "", text: "Theme"},
               {icon: "󰸉", text: "Wallpaper"},
               {icon: "󰚰", text: "Updates"}
@@ -206,9 +207,10 @@ Window {
             active: settingsmenu.visible && settingsmenu.activeIndex === 2 
           } 
           NetworkSettings {}
+          PackageSettings {}
           ThemeSettings {}
           WallpaperSettings {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 5
+            active: settingsmenu.visible && settingsmenu.activeIndex === 6
           }
           UpdateSettings {}
         }

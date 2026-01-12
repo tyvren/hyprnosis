@@ -1,0 +1,221 @@
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Effects
+import QtQuick.Controls
+import Quickshell
+import Quickshell.Io
+import Quickshell.Widgets
+import qs.Themes
+import qs.Services
+import qs.Components
+
+ColumnLayout {
+  id: packagePane
+  spacing: 15
+
+  property var fullPackageList: []
+  property var filteredList: []
+  property string searchQuery: ""
+
+  Text {
+    text: "Package Management"
+    color: Theme.colAccent
+    font.pointSize: 16
+    font.family: Theme.fontFamily
+    Layout.bottomMargin: 5
+  }
+
+  Rectangle {
+    Layout.fillWidth: true
+    height: 1
+    color: Theme.colMuted
+    opacity: 0.3
+    Layout.bottomMargin: 5
+  }
+
+  RowLayout {
+    Layout.fillWidth: true
+    spacing: 10
+
+    Rectangle {
+      id: searchBar
+      Layout.fillWidth: true
+      Layout.preferredHeight: 45
+      color: Theme.colBg
+      radius: 10
+      border.color: Theme.colAccent
+      border.width: 1
+
+      RowLayout {
+        anchors.fill: parent
+        anchors.leftMargin: 15
+        anchors.rightMargin: 10
+
+        TextInput {
+          id: searchInput
+          Layout.fillWidth: true
+          verticalAlignment: Text.AlignVCenter
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          font.pointSize: 12
+          clip: true
+          focus: true
+          
+          onTextChanged: {
+            packagePane.searchQuery = text.toLowerCase()
+            filterModel()
+          }
+        }
+
+        Text {
+          text: "󰑐"
+          font.pointSize: 14
+          color: refreshMa.containsMouse ? Theme.colAccent : Theme.colMuted
+          opacity: loader.running ? 0.5 : 1.0
+
+          MouseArea {
+            id: refreshMa
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: loader.start()
+          }
+
+          RotationAnimation on rotation {
+            from: 0; to: 360; duration: 1000
+            running: loader.running
+            loops: Animation.Infinite
+          }
+        }
+      }
+
+      Text {
+        anchors.fill: parent
+        anchors.leftMargin: 15
+        verticalAlignment: Text.AlignVCenter
+        text: "Search " + fullPackageList.length + " explicit packages..."
+        color: Theme.colAccent
+        opacity: 0.3
+        font.family: Theme.fontFamily
+        visible: !searchInput.text && !searchInput.focus
+      }
+    }
+  }
+
+  Rectangle {
+    Layout.fillWidth: true
+    Layout.fillHeight: true
+    color: "transparent"
+    clip: true
+
+    ListView {
+      id: packageView
+      anchors.fill: parent
+      model: packagePane.filteredList
+      spacing: 8
+      clip: true
+      ScrollBar.vertical: ScrollBar {
+        policy: ScrollBar.AsNeeded
+      }
+
+      delegate: Rectangle {
+        id: packageRow
+        width: packageView.width
+        height: 50
+        radius: 10
+        
+        property bool isHovered: rowMa.containsMouse || uninstallMa.containsMouse
+        
+        color: isHovered ? Theme.colMuted : Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 1
+        opacity: isHovered ? 1.0 : 0.6
+
+        MouseArea {
+          id: rowMa
+          anchors.fill: parent
+          hoverEnabled: true
+        }
+
+        Item {
+          anchors.fill: parent
+
+          Text {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            text: modelData
+            color: Theme.colAccent
+            font.family: Theme.fontFamily
+            font.pointSize: 11
+            font.bold: packageRow.isHovered
+          }
+
+          Item {
+            width: 85
+            height: 28
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: 15
+
+            Rectangle {
+              id: uninstallBtnRect
+              anchors.fill: parent
+              radius: 6
+              color: uninstallMa.containsMouse ? Theme.colAccent : "transparent"
+              border.color: Theme.colAccent
+              border.width: 1
+
+              Text {
+                anchors.centerIn: parent
+                text: "Uninstall"
+                font.pointSize: 9
+                font.family: Theme.fontFamily
+                color: uninstallMa.containsMouse ? Theme.colBg : Theme.colAccent
+                font.bold: true
+              }
+
+              MouseArea {
+                id: uninstallMa
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                  uninstallProc.packageToRemove = modelData
+                  uninstallProc.start()
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function filterModel() {
+    if (searchQuery === "") {
+      filteredList = fullPackageList
+    } else {
+      filteredList = fullPackageList.filter(pkg => pkg.includes(searchQuery))
+    }
+  }
+
+  Process {
+    id: loader
+    command: ["sh", "-c", "yay -Qqe"]
+    running: true
+    stdout: StdioCollector {
+      onStreamFinished: {
+        packagePane.fullPackageList = text.trim().split("\n")
+        packagePane.filteredList = packagePane.fullPackageList
+      }
+    }
+  }
+
+  Process {
+    id: uninstallProc
+    property string packageToRemove: ""
+    command: ["sh", "-c", "ghostty -e sudo pacman -Rns " + packageToRemove]
+    onExited: {
+      loader.start()
+    }
+  }
+}
