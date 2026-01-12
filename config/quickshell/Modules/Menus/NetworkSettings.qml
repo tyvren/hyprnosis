@@ -170,17 +170,6 @@ Item {
               anchors.right: parent.right
               anchors.rightMargin: 15
 
-              MultiEffect {
-                anchors.fill: forgetBtnRect
-                source: forgetBtnRect
-                shadowEnabled: true
-                shadowBlur: 0.2
-                shadowColor: Theme.colAccent
-                shadowVerticalOffset: 1
-                shadowHorizontalOffset: 0
-                opacity: 0.8
-              }
-
               Rectangle {
                 id: forgetBtnRect
                 anchors.fill: parent
