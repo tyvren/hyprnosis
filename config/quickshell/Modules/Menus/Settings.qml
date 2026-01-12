@@ -13,9 +13,6 @@ Window {
   id: settingsmenu
   visible: false
   color: "transparent"
-  width: 900
-  height: 600
-
   property int activeIndex: 0
 
   IpcHandler {
