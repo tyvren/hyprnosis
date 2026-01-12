@@ -25,8 +25,6 @@ Window {
       settingsmenu.visible = !settingsmenu.visible 
     }
 
-    function hide(): void { settingsmenu.visible = false }
-
     function openTo(index: int): void {
       settingsmenu.activeIndex = index
       settingsmenu.visible = true
@@ -67,7 +65,8 @@ Window {
               {icon: "󰍹", text: "Display"},
               {icon: "󰖩", text: "Network"}, 
               {icon: "", text: "Theme"},
-              {icon: "󰸉", text: "Wallpaper"} 
+              {icon: "󰸉", text: "Wallpaper"},
+              {icon: "󰚰", text: "Updates"}
             ]
 
             Item {
@@ -204,13 +203,14 @@ Window {
           AudioSettings {}
           BluetoothSettings {}
           DisplaySettings { 
-            active: settingsmenu.visible && settingsmenu.activeIndex === 0 
+            active: settingsmenu.visible && settingsmenu.activeIndex === 2 
           } 
           NetworkSettings {}
           ThemeSettings {}
           WallpaperSettings {
             active: settingsmenu.visible && settingsmenu.activeIndex === 5
           }
+          UpdateSettings {}
         }
       }
     }
