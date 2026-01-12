@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Quickshell.Io
 import QtQuick.Effects
 import qs.Themes
@@ -27,13 +28,10 @@ Item {
     shadowColor: Theme.colAccent
   }
 
-  Process {
-    id: openBluetooth
-    command: ["ghostty", "-e", "bluetui"]
-  }
-
   MouseArea {
     anchors.fill: parent
-    onClicked: openBluetooth.startDetached()
+    onClicked: {
+      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "1"])
+    }
   }
 }

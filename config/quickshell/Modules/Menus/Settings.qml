@@ -18,16 +18,22 @@ Window {
 
   property int activeIndex: 0
 
-  onVisibleChanged: {
-    if (!visible) {
-      activeIndex = 0
-    }
-  }
-
   IpcHandler {
     target: "settingsmenu"
-    function toggle(): void { settingsmenu.visible = !settingsmenu.visible }
+  
+    function toggle(): void { 
+      if (!settingsmenu.visible) {
+        settingsmenu.activeIndex = 0
+      }
+      settingsmenu.visible = !settingsmenu.visible 
+    }
+
     function hide(): void { settingsmenu.visible = false }
+
+    function openTo(index: int): void {
+      settingsmenu.activeIndex = index
+      settingsmenu.visible = true
+    }
   }
 
   Rectangle {
