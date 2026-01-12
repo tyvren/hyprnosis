@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import Quickshell
 import qs.Themes
 import qs.Services
@@ -93,82 +94,98 @@ ColumnLayout {
           font.family: Theme.fontFamily
         }
 
-        ComboBox {
-          id: deviceSelector
+        Item {
           Layout.preferredWidth: 350
           Layout.preferredHeight: 45
-          model: deviceList
-          textRole: "description"
 
-          currentIndex: {
-            if (!currentDevice || !deviceList || deviceList.length === 0) return -1;
-            for (let i = 0; i < deviceList.length; i++) {
-              if (deviceList[i] && deviceList[i].id === currentDevice.id) return i;
+          MultiEffect {
+            anchors.fill: comboBackground
+            source: comboBackground
+            shadowEnabled: true
+            shadowBlur: 0.2
+            shadowColor: Theme.colAccent
+            shadowVerticalOffset: 1
+            shadowHorizontalOffset: 0
+            opacity: 0.8
+          }
+
+          ComboBox {
+            id: deviceSelector
+            anchors.fill: parent
+            model: deviceList
+            textRole: "description"
+
+            currentIndex: {
+              if (!currentDevice || !deviceList || deviceList.length === 0) return -1;
+              for (let i = 0; i < deviceList.length; i++) {
+                if (deviceList[i] && deviceList[i].id === currentDevice.id) return i;
+              }
+              return -1;
             }
-            return -1;
-          }
 
-          onActivated: (index) => {
-            const node = deviceList[index];
-            if (node) deviceSelected(node);
-          }
+            onActivated: (index) => {
+              const node = deviceList[index];
+              if (node) deviceSelected(node);
+            }
 
-          delegate: ItemDelegate {
-            width: deviceSelector.width
+            delegate: ItemDelegate {
+              width: deviceSelector.width
+
+              contentItem: Text {
+                text: modelData.description || "Unknown Device"
+                color: highlighted ? Theme.colBg : Theme.colAccent
+                font.pointSize: 10
+                font.family: Theme.fontFamily
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+              }
+
+              background: Rectangle {
+                color: highlighted ? Theme.colAccent : "transparent"
+                radius: 10
+              }
+            }
 
             contentItem: Text {
-              text: modelData.description || "Unknown Device"
-              color: highlighted ? Theme.colBg : Theme.colAccent
-              font.pointSize: 10
+              leftPadding: 15
+              rightPadding: 30
+              text: deviceSelector.displayText
+              font.pointSize: 11
               font.family: Theme.fontFamily
+              color: Theme.colAccent
               verticalAlignment: Text.AlignVCenter
               elide: Text.ElideRight
             }
 
             background: Rectangle {
-              color: highlighted ? Theme.colAccent : "transparent"
+              id: comboBackground
+              color: Theme.colMuted
+              opacity: 0.2
               radius: 10
-            }
-          }
-
-          contentItem: Text {
-            leftPadding: 15
-            rightPadding: 30
-            text: deviceSelector.displayText
-            font.pointSize: 11
-            font.family: Theme.fontFamily
-            color: Theme.colAccent
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-          }
-
-          background: Rectangle {
-            color: Theme.colMuted
-            opacity: 0.2
-            radius: 10
-            border.color: deviceSelector.activeFocus ? Theme.colAccent : "transparent"
-            border.width: 1
-          }
-
-          popup: Popup {
-            y: deviceSelector.height + 5
-            width: deviceSelector.width
-            implicitHeight: Math.min(contentItem.implicitHeight, 250)
-            padding: 1
-
-            contentItem: ListView {
-              clip: true
-              implicitHeight: contentHeight
-              model: deviceSelector.popup.visible ? deviceSelector.delegateModel : null
-              currentIndex: deviceSelector.highlightedIndex
-              ScrollIndicator.vertical: ScrollIndicator { }
-            }
-
-            background: Rectangle {
-              color: Theme.colBg
-              border.color: Theme.colAccent
+              border.color: deviceSelector.activeFocus ? Theme.colAccent : "transparent"
               border.width: 1
-              radius: 10
+            }
+
+            popup: Popup {
+              y: deviceSelector.height + 5
+              width: deviceSelector.width
+              implicitHeight: Math.min(contentItem.implicitHeight, 250)
+              padding: 1
+
+              contentItem: ListView {
+                clip: true
+                implicitHeight: contentHeight
+                model: deviceSelector.popup.visible ? deviceSelector.delegateModel : null
+                currentIndex: deviceSelector.highlightedIndex
+                ScrollIndicator.vertical: ScrollIndicator { }
+              }
+
+              background: Rectangle {
+                color: Theme.colBg
+                border.color: Theme.colAccent
+                border.width: 1
+                radius: 10
+              }
             }
           }
         }
@@ -191,24 +208,40 @@ ColumnLayout {
       spacing: 15
       Layout.fillWidth: true
 
-      Rectangle {
+      Item {
         Layout.preferredWidth: 45
         Layout.preferredHeight: 45
-        radius: 10
-        color: muteMa.containsMouse ? Theme.colAccent : Theme.colMuted
-        
-        Text {
-          anchors.centerIn: parent
-          text: icon
-          font.pointSize: 16
-          color: muteMa.containsMouse ? Theme.colBg : (isMuted ? Theme.colMuted : Theme.colAccent)
+
+        MultiEffect {
+          anchors.fill: muteBtnBg
+          source: muteBtnBg
+          shadowEnabled: true
+          shadowBlur: 0.2
+          shadowColor: Theme.colAccent
+          shadowVerticalOffset: 1
+          shadowHorizontalOffset: 0
+          opacity: 0.8
         }
 
-        MouseArea {
-          id: muteMa
+        Rectangle {
+          id: muteBtnBg
           anchors.fill: parent
-          hoverEnabled: true
-          onClicked: toggleMute()
+          radius: 10
+          color: muteMa.containsMouse ? Theme.colAccent : Theme.colMuted
+          
+          Text {
+            anchors.centerIn: parent
+            text: icon
+            font.pointSize: 16
+            color: muteMa.containsMouse ? Theme.colBg : (isMuted ? Theme.colMuted : Theme.colAccent)
+          }
+
+          MouseArea {
+            id: muteMa
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: toggleMute()
+          }
         }
       }
 

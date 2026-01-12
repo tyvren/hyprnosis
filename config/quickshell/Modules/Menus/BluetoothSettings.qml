@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import qs.Themes
 import qs.Services
 
@@ -97,27 +98,44 @@ Item {
             
             Item { Layout.fillWidth: true }
 
-            Rectangle {
+            Item {
               visible: modelData.paired || modelData.connected
-              width: 70; height: 26; radius: 6
-              color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
-              border.color: Theme.colAccent; border.width: 1
+              width: 70; height: 26
               anchors.verticalCenter: parent.verticalCenter
               anchors.right: parent.right
               anchors.rightMargin: 15
 
-              Text {
-                anchors.centerIn: parent
-                text: "Forget"
-                font.pointSize: 8
-                color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+              MultiEffect {
+                anchors.fill: forgetBtnRect
+                source: forgetBtnRect
+                shadowEnabled: true
+                shadowBlur: 0.2
+                shadowColor: Theme.colAccent
+                shadowVerticalOffset: 1
+                shadowHorizontalOffset: 0
+                opacity: 0.8
               }
 
-              MouseArea {
-                id: forgetMa
+              Rectangle {
+                id: forgetBtnRect
                 anchors.fill: parent
-                hoverEnabled: true
-                onClicked: Bluetooth.forgetDevice(modelData)
+                radius: 6
+                color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
+                border.color: Theme.colAccent; border.width: 1
+
+                Text {
+                  anchors.centerIn: parent
+                  text: "Forget"
+                  font.pointSize: 8
+                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+                }
+
+                MouseArea {
+                  id: forgetMa
+                  anchors.fill: parent
+                  hoverEnabled: true
+                  onClicked: Bluetooth.forgetDevice(modelData)
+                }
               }
             }
           }
@@ -126,27 +144,42 @@ Item {
       }
     }
 
-    Rectangle {
-      id: scanBtnRect
+    Item {
       Layout.alignment: Qt.AlignRight
       Layout.preferredWidth: 100
       Layout.preferredHeight: 35
-      radius: 10
-      color: scanMa.containsMouse ? Theme.colAccent : Theme.colMuted
-      
-      Text {
-        anchors.centerIn: parent
-        text: Bluetooth.scanning ? "..." : "Scan"
-        color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
-        font.bold: true
-        font.family: Theme.fontFamily
+
+      MultiEffect {
+        anchors.fill: scanBtnRect
+        source: scanBtnRect
+        shadowEnabled: true
+        shadowBlur: 0.2
+        shadowColor: Theme.colAccent
+        shadowVerticalOffset: 1
+        shadowHorizontalOffset: 0
+        opacity: 0.8
       }
-      
-      MouseArea {
-        id: scanMa
+
+      Rectangle {
+        id: scanBtnRect
         anchors.fill: parent
-        hoverEnabled: true
-        onClicked: Bluetooth.toggleScan()
+        radius: 10
+        color: scanMa.containsMouse ? Theme.colAccent : Theme.colMuted
+        
+        Text {
+          anchors.centerIn: parent
+          text: Bluetooth.scanning ? "..." : "Scan"
+          color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
+          font.bold: true
+          font.family: Theme.fontFamily
+        }
+        
+        MouseArea {
+          id: scanMa
+          anchors.fill: parent
+          hoverEnabled: true
+          onClicked: Bluetooth.toggleScan()
+        }
       }
     }
   }

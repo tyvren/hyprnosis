@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import qs.Themes
 import qs.Services
 
@@ -161,30 +162,46 @@ Item {
               }
             }
 
-            Rectangle {
+            Item {
               visible: modelData.connected
               width: 70
               height: 24
-              radius: 5
-              color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
-              border.color: Theme.colAccent
-              border.width: 1
               anchors.verticalCenter: parent.verticalCenter
               anchors.right: parent.right
               anchors.rightMargin: 15
 
-              Text {
-                anchors.centerIn: parent
-                text: "Forget"
-                font.pointSize: 8
-                color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+              MultiEffect {
+                anchors.fill: forgetBtnRect
+                source: forgetBtnRect
+                shadowEnabled: true
+                shadowBlur: 0.2
+                shadowColor: Theme.colAccent
+                shadowVerticalOffset: 1
+                shadowHorizontalOffset: 0
+                opacity: 0.8
               }
 
-              MouseArea {
-                id: forgetMa
+              Rectangle {
+                id: forgetBtnRect
                 anchors.fill: parent
-                hoverEnabled: true
-                onClicked: Network.forget(modelData.ssid)
+                radius: 5
+                color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
+                border.color: Theme.colAccent
+                border.width: 1
+
+                Text {
+                  anchors.centerIn: parent
+                  text: "Forget"
+                  font.pointSize: 8
+                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+                }
+
+                MouseArea {
+                  id: forgetMa
+                  anchors.fill: parent
+                  hoverEnabled: true
+                  onClicked: Network.forget(modelData.ssid)
+                }
               }
             }
 
@@ -212,28 +229,43 @@ Item {
       }
     }
 
-    Rectangle {
-      id: scanButton
+    Item {
       Layout.alignment: Qt.AlignRight
       Layout.preferredWidth: 100
       Layout.preferredHeight: 35
-      radius: 10
-      color: (scanMa.containsMouse && selectedNetwork === null) ? Theme.colAccent : Theme.colMuted
-      opacity: selectedNetwork === null ? 1.0 : 0.5
 
-      Text {
-        anchors.centerIn: parent
-        text: Network.scanning ? "..." : "Rescan"
-        color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
-        font.bold: true
-        font.family: Theme.fontFamily
+      MultiEffect {
+        anchors.fill: scanBtnRect
+        source: scanBtnRect
+        shadowEnabled: true
+        shadowBlur: 0.2
+        shadowColor: Theme.colAccent
+        shadowVerticalOffset: 1
+        shadowHorizontalOffset: 0
+        opacity: selectedNetwork === null ? 0.8 : 0.4
       }
 
-      MouseArea {
-        id: scanMa
+      Rectangle {
+        id: scanBtnRect
         anchors.fill: parent
-        hoverEnabled: selectedNetwork === null
-        onClicked: Network.scan()
+        radius: 10
+        color: (scanMa.containsMouse && selectedNetwork === null) ? Theme.colAccent : Theme.colMuted
+        opacity: selectedNetwork === null ? 1.0 : 0.5
+
+        Text {
+          anchors.centerIn: parent
+          text: Network.scanning ? "..." : "Rescan"
+          color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
+          font.bold: true
+          font.family: Theme.fontFamily
+        }
+
+        MouseArea {
+          id: scanMa
+          anchors.fill: parent
+          hoverEnabled: selectedNetwork === null
+          onClicked: Network.scan()
+        }
       }
     }
   }
@@ -303,49 +335,83 @@ Item {
         Layout.alignment: Qt.AlignHCenter
         spacing: 15
 
-        Rectangle {
-          width: 110; height: 40; radius: 10
-          color: cancelMa.containsMouse ? Theme.colAccent : Theme.colMuted
+        Item {
+          width: 110; height: 40
           enabled: !Network.connecting
           opacity: enabled ? 1.0 : 0.5
 
-          Text {
-            anchors.centerIn: parent
-            text: "Cancel"
-            color: cancelMa.containsMouse ? Theme.colBg : Theme.colAccent
-            font.bold: true
+          MultiEffect {
+            anchors.fill: cancelBtnRect
+            source: cancelBtnRect
+            shadowEnabled: true
+            shadowBlur: 0.2
+            shadowColor: Theme.colAccent
+            shadowVerticalOffset: 1
+            shadowHorizontalOffset: 0
+            opacity: 0.8
           }
 
-          MouseArea {
-            id: cancelMa
+          Rectangle {
+            id: cancelBtnRect
             anchors.fill: parent
-            hoverEnabled: true
-            onClicked: {
-              networkRoot.selectedNetwork = null
-              Network.errorMessage = ""
-              passInput.text = ""
+            radius: 10
+            color: cancelMa.containsMouse ? Theme.colAccent : Theme.colMuted
+
+            Text {
+              anchors.centerIn: parent
+              text: "Cancel"
+              color: cancelMa.containsMouse ? Theme.colBg : Theme.colAccent
+              font.bold: true
+            }
+
+            MouseArea {
+              id: cancelMa
+              anchors.fill: parent
+              hoverEnabled: true
+              onClicked: {
+                networkRoot.selectedNetwork = null
+                Network.errorMessage = ""
+                passInput.text = ""
+              }
             }
           }
         }
 
-        Rectangle {
-          width: 110; height: 40; radius: 10
-          color: (connectMa.containsMouse || Network.connecting) ? Theme.colAccent : Theme.colMuted
+        Item {
+          width: 110; height: 40
 
-          Text {
-            anchors.centerIn: parent
-            text: Network.connecting ? "..." : "Connect"
-            color: (connectMa.containsMouse || Network.connecting) ? Theme.colBg : Theme.colAccent
-            font.bold: true
+          MultiEffect {
+            anchors.fill: connectBtnRect
+            source: connectBtnRect
+            shadowEnabled: true
+            shadowBlur: 0.2
+            shadowColor: Theme.colAccent
+            shadowVerticalOffset: 1
+            shadowHorizontalOffset: 0
+            opacity: 0.8
           }
 
-          MouseArea {
-            id: connectMa
+          Rectangle {
+            id: connectBtnRect
             anchors.fill: parent
-            hoverEnabled: true
-            onClicked: {
-              if (Network.connecting) return
-              Network.connect(selectedNetwork.ssid, passInput.text)
+            radius: 10
+            color: (connectMa.containsMouse || Network.connecting) ? Theme.colAccent : Theme.colMuted
+
+            Text {
+              anchors.centerIn: parent
+              text: Network.connecting ? "..." : "Connect"
+              color: (connectMa.containsMouse || Network.connecting) ? Theme.colBg : Theme.colAccent
+              font.bold: true
+            }
+
+            MouseArea {
+              id: connectMa
+              anchors.fill: parent
+              hoverEnabled: true
+              onClicked: {
+                if (Network.connecting) return
+                Network.connect(selectedNetwork.ssid, passInput.text)
+              }
             }
           }
         }

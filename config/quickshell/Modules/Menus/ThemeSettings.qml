@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Widgets
 import qs.Themes
@@ -35,58 +36,68 @@ ColumnLayout {
       { name: "Eden",       themeId: "eden",       script: "Eden" } 
     ]
 
-    WidgetShadow {
-      id: themeButtonShadow
-      anchors.fill: themeButtons
-    }
-
-    Rectangle {
-      id: themeButtons
+    Item {
       Layout.fillWidth: true
       Layout.preferredHeight: 45
-      radius: 10
-      color: themeArea.containsMouse ? Theme.colAccent : Theme.colMuted
 
-      Row {
-        id: colorRow
-        anchors.left: parent.left
-        anchors.leftMargin: 12
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: 4
+      MultiEffect {
+        anchors.fill: themeButtons
+        source: themeButtons
+        shadowEnabled: true
+        shadowBlur: 0.2
+        shadowColor: Theme.colAccent
+        shadowVerticalOffset: 1
+        shadowHorizontalOffset: 0
+        opacity: 0.8
+      }
 
-        Repeater {
-          model: [ 
-            Theme.themes[modelData.themeId].colBg, 
-            Theme.themes[modelData.themeId].colAccent, 
-            Theme.themes[modelData.themeId].colHilight 
-          ]
+      Rectangle {
+        id: themeButtons
+        anchors.fill: parent
+        radius: 10
+        color: themeArea.containsMouse ? Theme.colAccent : Theme.colMuted
 
-          Rectangle {
-            width: 15
-            height: 15
-            radius: 15
-            color: modelData
-            border.color: "white"
-            border.width: 1
+        Row {
+          id: colorRow
+          anchors.left: parent.left
+          anchors.leftMargin: 12
+          anchors.verticalCenter: parent.verticalCenter
+          spacing: 4
+
+          Repeater {
+            model: [ 
+              Theme.themes[modelData.themeId].colBg, 
+              Theme.themes[modelData.themeId].colAccent, 
+              Theme.themes[modelData.themeId].colHilight 
+            ]
+
+            Rectangle {
+              width: 15
+              height: 15
+              radius: 15
+              color: modelData
+              border.color: "white"
+              border.width: 1
+            }
           }
         }
-      }
 
-      Text {
-        anchors.centerIn: parent
-        text: modelData.name
-        color: themeArea.containsMouse ? Theme.colBg : Theme.colAccent
-        font.pointSize: 12
-        font.family: Theme.fontFamily
-      }
+        Text {
+          anchors.centerIn: parent
+          text: modelData.name
+          color: themeArea.containsMouse ? Theme.colBg : Theme.colAccent
+          font.pointSize: 12
+          font.family: Theme.fontFamily
+        }
 
-      MouseArea {
-        id: themeArea
-        anchors.fill: parent
-        hoverEnabled: true
-        onClicked: {
-          Config.updateTheme(modelData.themeId, modelData.script)
-          Config.updateWallpaper("")
+        MouseArea {
+          id: themeArea
+          anchors.fill: parent
+          hoverEnabled: true
+          onClicked: {
+            Config.updateTheme(modelData.themeId, modelData.script)
+            Config.updateWallpaper("")
+          }
         }
       }
     }

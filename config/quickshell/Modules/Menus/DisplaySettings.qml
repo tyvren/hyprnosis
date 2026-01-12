@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import qs.Themes
@@ -70,51 +71,66 @@ ColumnLayout {
     Repeater {
       model: displayPane.monitors
 
-      Rectangle {
-        id: monitorRect
+      Item {
         Layout.preferredWidth: 160
         Layout.preferredHeight: 90
-        radius: 12
-        color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
-        border.color: Theme.colAccent
-        border.width: 1
 
-        ColumnLayout {
-          anchors.centerIn: parent
-          spacing: 2
-
-          Text {
-            text: modelData.name
-            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
-            font.bold: true
-            font.pointSize: 11
-            font.family: Theme.fontFamily
-            Layout.alignment: Qt.AlignHCenter
-          }
-
-          Text {
-            text: modelData.width + "x" + modelData.height
-            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
-            font.pointSize: 9
-            font.family: Theme.fontFamily
-            Layout.alignment: Qt.AlignHCenter
-          }
-
-          Text {
-            text: modelData.refreshRate.toFixed(2) + "Hz"
-            color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
-            font.pointSize: 8
-            font.family: Theme.fontFamily
-            opacity: 0.7
-            Layout.alignment: Qt.AlignHCenter
-          }
+        MultiEffect {
+          anchors.fill: monitorRect
+          source: monitorRect
+          shadowEnabled: true
+          shadowBlur: 0.2
+          shadowColor: Theme.colAccent
+          shadowVerticalOffset: 1
+          shadowHorizontalOffset: 0
+          opacity: 0.8
         }
 
-        MouseArea {
-          id: monitorMa
+        Rectangle {
+          id: monitorRect
           anchors.fill: parent
-          hoverEnabled: true
-          onClicked: displayPane.selectedMonitorIdx = index
+          radius: 12
+          color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
+          border.color: Theme.colAccent
+          border.width: 1
+
+          ColumnLayout {
+            anchors.centerIn: parent
+            spacing: 2
+
+            Text {
+              text: modelData.name
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              font.bold: true
+              font.pointSize: 11
+              font.family: Theme.fontFamily
+              Layout.alignment: Qt.AlignHCenter
+            }
+
+            Text {
+              text: modelData.width + "x" + modelData.height
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              font.pointSize: 9
+              font.family: Theme.fontFamily
+              Layout.alignment: Qt.AlignHCenter
+            }
+
+            Text {
+              text: modelData.refreshRate.toFixed(2) + "Hz"
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              font.pointSize: 8
+              font.family: Theme.fontFamily
+              opacity: 0.7
+              Layout.alignment: Qt.AlignHCenter
+            }
+          }
+
+          MouseArea {
+            id: monitorMa
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: displayPane.selectedMonitorIdx = index
+          }
         }
       }
     }
@@ -149,25 +165,41 @@ ColumnLayout {
         Repeater {
           model: ["auto", "left", "right"]
 
-          Rectangle {
+          Item {
             Layout.preferredWidth: 70
             Layout.preferredHeight: 32
-            radius: 6
-            color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
-            Text {
-              anchors.centerIn: parent
-              text: modelData
-              color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colAccent
-              font.pointSize: 9
-              font.family: Theme.fontFamily
+            MultiEffect {
+              anchors.fill: posBtnRect
+              source: posBtnRect
+              shadowEnabled: true
+              shadowBlur: 0.2
+              shadowColor: Theme.colAccent
+              shadowVerticalOffset: 1
+              shadowHorizontalOffset: 0
+              opacity: 0.8
             }
 
-            MouseArea {
-              id: posMa
+            Rectangle {
+              id: posBtnRect
               anchors.fill: parent
-              hoverEnabled: true
-              onClicked: displayPane.currentPos = modelData
+              radius: 6
+              color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colAccent : Theme.colMuted
+
+              Text {
+                anchors.centerIn: parent
+                text: modelData
+                color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                font.pointSize: 9
+                font.family: Theme.fontFamily
+              }
+
+              MouseArea {
+                id: posMa
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: displayPane.currentPos = modelData
+              }
             }
           }
         }
@@ -190,25 +222,41 @@ ColumnLayout {
         Repeater {
           model: ["1", "1.5", "2"]
 
-          Rectangle {
+          Item {
             Layout.preferredWidth: 50
             Layout.preferredHeight: 32
-            radius: 6
-            color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
-            Text {
-              anchors.centerIn: parent
-              text: modelData
-              color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colAccent
-              font.pointSize: 9
-              font.family: Theme.fontFamily
+            MultiEffect {
+              anchors.fill: scaleBtnRect
+              source: scaleBtnRect
+              shadowEnabled: true
+              shadowBlur: 0.2
+              shadowColor: Theme.colAccent
+              shadowVerticalOffset: 1
+              shadowHorizontalOffset: 0
+              opacity: 0.8
             }
 
-            MouseArea {
-              id: scaleMa
+            Rectangle {
+              id: scaleBtnRect
               anchors.fill: parent
-              hoverEnabled: true
-              onClicked: displayPane.currentScale = modelData
+              radius: 6
+              color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colAccent : Theme.colMuted
+
+              Text {
+                anchors.centerIn: parent
+                text: modelData
+                color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                font.pointSize: 9
+                font.family: Theme.fontFamily
+              }
+
+              MouseArea {
+                id: scaleMa
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: displayPane.currentScale = modelData
+              }
             }
           }
         }
@@ -231,25 +279,41 @@ ColumnLayout {
         Repeater {
           model: ["1", "2"]
 
-          Rectangle {
+          Item {
             Layout.preferredWidth: 60
             Layout.preferredHeight: 32
-            radius: 6
-            color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
-            Text {
-              anchors.centerIn: parent
-              text: modelData + "x"
-              color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colAccent
-              font.pointSize: 9
-              font.family: Theme.fontFamily
+            MultiEffect {
+              anchors.fill: gdkBtnRect
+              source: gdkBtnRect
+              shadowEnabled: true
+              shadowBlur: 0.2
+              shadowColor: Theme.colAccent
+              shadowVerticalOffset: 1
+              shadowHorizontalOffset: 0
+              opacity: 0.8
             }
 
-            MouseArea {
-              id: gdkMa
+            Rectangle {
+              id: gdkBtnRect
               anchors.fill: parent
-              hoverEnabled: true
-              onClicked: displayPane.currentGdk = modelData
+              radius: 6
+              color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colAccent : Theme.colMuted
+
+              Text {
+                anchors.centerIn: parent
+                text: modelData + "x"
+                color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                font.pointSize: 9
+                font.family: Theme.fontFamily
+              }
+
+              MouseArea {
+                id: gdkMa
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: displayPane.currentGdk = modelData
+              }
             }
           }
         }
@@ -266,78 +330,94 @@ ColumnLayout {
         font.family: Theme.fontFamily
       }
 
-      ComboBox {
-        id: modeSelector
+      Item {
         Layout.preferredWidth: 195
         Layout.preferredHeight: 45
-        model: displayPane.monitors.length > 0 ? displayPane.monitors[displayPane.selectedMonitorIdx].availableModes : []
 
-        currentIndex: {
-          if (displayPane.monitors.length === 0 || !displayPane.currentMode) return -1;
-          let modes = displayPane.monitors[displayPane.selectedMonitorIdx].availableModes;
-          for (let i = 0; i < modes.length; i++) {
-            let btnParts = modes[i].split('@');
-            let curParts = displayPane.currentMode.split('@');
-            if (btnParts[0] === curParts[0] && btnParts[1].substring(0,3) === curParts[1].substring(0,3)) return i;
-          }
-          return 0;
+        MultiEffect {
+          anchors.fill: modeSelectorBackground
+          source: modeSelectorBackground
+          shadowEnabled: true
+          shadowBlur: 0.2
+          shadowColor: Theme.colAccent
+          shadowVerticalOffset: 1
+          shadowHorizontalOffset: 0
+          opacity: 0.8
         }
 
-        onActivated: (index) => { displayPane.currentMode = model[index]; }
+        ComboBox {
+          id: modeSelector
+          anchors.fill: parent
+          model: displayPane.monitors.length > 0 ? displayPane.monitors[displayPane.selectedMonitorIdx].availableModes : []
 
-        delegate: ItemDelegate {
-          width: modeSelector.width
+          currentIndex: {
+            if (displayPane.monitors.length === 0 || !displayPane.currentMode) return -1;
+            let modes = displayPane.monitors[displayPane.selectedMonitorIdx].availableModes;
+            for (let i = 0; i < modes.length; i++) {
+              let btnParts = modes[i].split('@');
+              let curParts = displayPane.currentMode.split('@');
+              if (btnParts[0] === curParts[0] && btnParts[1].substring(0,3) === curParts[1].substring(0,3)) return i;
+            }
+            return 0;
+          }
+
+          onActivated: (index) => { displayPane.currentMode = model[index]; }
+
+          delegate: ItemDelegate {
+            width: modeSelector.width
+
+            contentItem: Text {
+              text: modelData
+              color: highlighted ? Theme.colBg : Theme.colAccent
+              font.pointSize: 10
+              font.family: Theme.fontFamily
+              verticalAlignment: Text.AlignVCenter
+            }
+
+            background: Rectangle {
+              color: Theme.colMuted
+              opacity: 0.2
+              border.color: Theme.colAccent
+              border.width: 1
+              radius: 10
+            }
+          }
 
           contentItem: Text {
-            text: modelData
-            color: highlighted ? Theme.colBg : Theme.colAccent
-            font.pointSize: 10
+            leftPadding: 15
+            text: modeSelector.displayText
+            font.pointSize: 11
             font.family: Theme.fontFamily
+            color: Theme.colAccent
             verticalAlignment: Text.AlignVCenter
           }
 
           background: Rectangle {
+            id: modeSelectorBackground
             color: Theme.colMuted
             opacity: 0.2
-            border.color: Theme.colAccent
-            border.width: 1
             radius: 10
           }
-        }
 
-        contentItem: Text {
-          leftPadding: 15
-          text: modeSelector.displayText
-          font.pointSize: 11
-          font.family: Theme.fontFamily
-          color: Theme.colAccent
-          verticalAlignment: Text.AlignVCenter
-        }
+          popup: Popup {
+            y: modeSelector.height + 5
+            width: modeSelector.width
+            implicitHeight: Math.min(contentItem.implicitHeight, 250)
+            padding: 1
 
-        background: Rectangle {
-          color: Theme.colMuted
-          opacity: 0.2
-          radius: 10
-        }
+            contentItem: ListView {
+              clip: true
+              implicitHeight: contentHeight
+              model: modeSelector.popup.visible ? modeSelector.delegateModel : null
+              currentIndex: modeSelector.highlightedIndex
+              ScrollIndicator.vertical: ScrollIndicator { }
+            }
 
-        popup: Popup {
-          y: modeSelector.height + 5
-          width: modeSelector.width
-          implicitHeight: Math.min(contentItem.implicitHeight, 250)
-          padding: 1
-
-          contentItem: ListView {
-            clip: true
-            implicitHeight: contentHeight
-            model: modeSelector.popup.visible ? modeSelector.delegateModel : null
-            currentIndex: modeSelector.highlightedIndex
-            ScrollIndicator.vertical: ScrollIndicator { }
-          }
-
-          background: Rectangle {
-            color: Theme.colBg
-            border.color: Theme.colAccent
-            radius: 10
+            background: Rectangle {
+              color: Theme.colBg
+              border.color: Theme.colAccent
+              radius: 10
+            }
           }
         }
       }
@@ -348,35 +428,51 @@ ColumnLayout {
     Layout.fillHeight: true
   }
 
-  Rectangle {
+  Item {
     Layout.alignment: Qt.AlignRight
     Layout.preferredWidth: 140
     Layout.preferredHeight: 40
-    radius: 10
-    color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
 
-    Text {
-      anchors.centerIn: parent
-      text: "Apply Settings"
-      color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
-      font.bold: true
-      font.family: Theme.fontFamily
+    MultiEffect {
+      anchors.fill: applyBtnRect
+      source: applyBtnRect
+      shadowEnabled: true
+      shadowBlur: 0.2
+      shadowColor: Theme.colAccent
+      shadowVerticalOffset: 1
+      shadowHorizontalOffset: 0
+      opacity: 0.8
     }
 
-    MouseArea {
-      id: applyMa
+    Rectangle {
+      id: applyBtnRect
       anchors.fill: parent
-      hoverEnabled: true
-      onClicked: {
-        let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
-        Quickshell.execDetached([
-          Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/qs_apply_monitors.sh",
-          monitor.name,
-          displayPane.currentMode,
-          displayPane.currentPos,
-          displayPane.currentScale,
-          displayPane.currentGdk
-        ]);
+      radius: 10
+      color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
+
+      Text {
+        anchors.centerIn: parent
+        text: "Apply Settings"
+        color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
+        font.bold: true
+        font.family: Theme.fontFamily
+      }
+
+      MouseArea {
+        id: applyMa
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: {
+          let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
+          Quickshell.execDetached([
+            Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/qs_apply_monitors.sh",
+            monitor.name,
+            displayPane.currentMode,
+            displayPane.currentPos,
+            displayPane.currentScale,
+            displayPane.currentGdk
+          ]);
+        }
       }
     }
   }
