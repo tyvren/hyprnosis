@@ -334,17 +334,6 @@ ColumnLayout {
         Layout.preferredWidth: 195
         Layout.preferredHeight: 45
 
-        MultiEffect {
-          anchors.fill: modeSelectorBackground
-          source: modeSelectorBackground
-          shadowEnabled: true
-          shadowBlur: 0.2
-          shadowColor: Theme.colAccent
-          shadowVerticalOffset: 1
-          shadowHorizontalOffset: 0
-          opacity: 0.8
-        }
-
         ComboBox {
           id: modeSelector
           anchors.fill: parent

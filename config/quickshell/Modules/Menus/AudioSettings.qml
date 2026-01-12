@@ -98,17 +98,6 @@ ColumnLayout {
           Layout.preferredWidth: 350
           Layout.preferredHeight: 45
 
-          MultiEffect {
-            anchors.fill: comboBackground
-            source: comboBackground
-            shadowEnabled: true
-            shadowBlur: 0.2
-            shadowColor: Theme.colAccent
-            shadowVerticalOffset: 1
-            shadowHorizontalOffset: 0
-            opacity: 0.8
-          }
-
           ComboBox {
             id: deviceSelector
             anchors.fill: parent
