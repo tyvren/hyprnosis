@@ -10,15 +10,15 @@ import qs.Services
 import qs.Components
 
 ColumnLayout {
-  id: packagePane
+  id: appPane
   spacing: 15
 
-  property var fullPackageList: []
+  property var fullAppList: []
   property var filteredList: []
   property string searchQuery: ""
 
   Text {
-    text: "Package Management"
+    text: "App Management"
     color: Theme.colAccent
     font.pointSize: 16
     font.family: Theme.fontFamily
@@ -62,7 +62,7 @@ ColumnLayout {
           focus: true
           
           onTextChanged: {
-            packagePane.searchQuery = text.toLowerCase()
+            appPane.searchQuery = text.toLowerCase()
             filterModel()
           }
         }
@@ -92,7 +92,7 @@ ColumnLayout {
         anchors.fill: parent
         anchors.leftMargin: 15
         verticalAlignment: Text.AlignVCenter
-        text: "Search " + fullPackageList.length + " explicit packages..."
+        text: "Search " + fullAppList.length + " installed apps..."
         color: Theme.colAccent
         opacity: 0.3
         font.family: Theme.fontFamily
@@ -108,9 +108,9 @@ ColumnLayout {
     clip: true
 
     ListView {
-      id: packageView
+      id: appView
       anchors.fill: parent
-      model: packagePane.filteredList
+      model: appPane.filteredList
       spacing: 8
       clip: true
       ScrollBar.vertical: ScrollBar {
@@ -118,8 +118,8 @@ ColumnLayout {
       }
 
       delegate: Rectangle {
-        id: packageRow
-        width: packageView.width
+        id: appRow
+        width: appView.width
         height: 50
         radius: 10
         
@@ -147,7 +147,7 @@ ColumnLayout {
             color: Theme.colAccent
             font.family: Theme.fontFamily
             font.pointSize: 11
-            font.bold: packageRow.isHovered
+            font.bold: appRow.isHovered
           }
 
           Item {
@@ -179,7 +179,7 @@ ColumnLayout {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                  uninstallProc.packageToRemove = modelData
+                  uninstallProc.appToRemove = modelData
                   uninstallProc.start()
                 }
               }
@@ -192,9 +192,9 @@ ColumnLayout {
 
   function filterModel() {
     if (searchQuery === "") {
-      filteredList = fullPackageList
+      filteredList = fullAppList
     } else {
-      filteredList = fullPackageList.filter(pkg => pkg.includes(searchQuery))
+      filteredList = fullAppList.filter(app => app.includes(searchQuery))
     }
   }
 
@@ -204,16 +204,16 @@ ColumnLayout {
     running: true
     stdout: StdioCollector {
       onStreamFinished: {
-        packagePane.fullPackageList = text.trim().split("\n")
-        packagePane.filteredList = packagePane.fullPackageList
+        appPane.fullAppList = text.trim().split("\n")
+        appPane.filteredList = appPane.fullAppList
       }
     }
   }
 
   Process {
     id: uninstallProc
-    property string packageToRemove: ""
-    command: ["sh", "-c", "ghostty -e sudo pacman -Rns " + packageToRemove]
+    property string appToRemove: ""
+    command: ["sh", "-c", "ghostty -e sudo pacman -Rns " + appToRemove]
     onExited: {
       loader.start()
     }

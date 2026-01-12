@@ -20,7 +20,7 @@ Item {
   }
 
   MultiEffect {
-    anchors.fill: parent
+    anchors.fill: icon
     source: icon
     shadowEnabled: true
     shadowBlur: 1
@@ -31,7 +31,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "1"])
+      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "2"])
     }
   }
 }
