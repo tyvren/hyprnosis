@@ -60,6 +60,7 @@ Window {
 
           Repeater {
             model: [ 
+              {icon: "󰋼", text: "About"},
               {icon: "󰏖", text: "Apps"},
               {icon: "󰓃", text: "Audio"},
               {icon: "󰂯", text: "Bluetooth"},
@@ -201,16 +202,17 @@ Window {
           anchors.margins: 15
           currentIndex: settingsmenu.activeIndex
 
+          SystemInfo {}
           AppSettings {}
           AudioSettings {}
           BluetoothSettings {}
           DisplaySettings { 
-            active: settingsmenu.visible && settingsmenu.activeIndex === 3 
+            active: settingsmenu.visible && settingsmenu.activeIndex === 4 
           } 
           NetworkSettings {}
           ThemeSettings {}
           WallpaperSettings {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 6
+            active: settingsmenu.visible && settingsmenu.activeIndex === 7
           }
           UpdateSettings {}
         }
