@@ -65,37 +65,6 @@ PanelWindow {
         }
 
         Item { Layout.fillWidth: true }
-
-        Rectangle {
-          width: 80
-          height: 30
-          radius: 8
-          color: clearMa.containsMouse ? Theme.colAccent : Theme.colMuted
-          
-          Text {
-            anchors.centerIn: parent
-            text: "Clear All"
-            color: clearMa.containsMouse ? Theme.colBg : Theme.colAccent
-            font.family: Theme.fontFamily
-            font.bold: true
-            font.pointSize: 10
-          }
-
-          MouseArea {
-            id: clearMa
-            anchors.fill: parent
-            hoverEnabled: true
-            onClicked: {
-              const children = notifList.contentItem.children;
-              for (let i = children.length - 1; i >= 0; i--) {
-                const item = children[i];
-                if (item && item.modelData && typeof item.modelData.dismiss === "function") {
-                  item.modelData.dismiss();
-                }
-              }
-            }
-          }
-        }
       }
 
       DividerLine {
