@@ -5,6 +5,7 @@ import QtQuick.Effects
 import Quickshell
 import qs.Themes
 import qs.Services
+import qs.Components
 
 ColumnLayout {
   id: audioPane
@@ -21,11 +22,8 @@ ColumnLayout {
       font.family: Theme.fontFamily
     }
 
-    Rectangle {
+    DividerLine {
       Layout.fillWidth: true
-      height: 1
-      color: Theme.colMuted
-      opacity: 0.3
     }
   }
 
@@ -45,11 +43,8 @@ ColumnLayout {
       onDeviceSelected: (node) => Audio.selectSink(node)
     }
 
-    Rectangle {
+    DividerLine {
       Layout.fillWidth: true
-      height: 1
-      color: Theme.colMuted
-      opacity: 0.15
     }
 
     AudioControlRow {

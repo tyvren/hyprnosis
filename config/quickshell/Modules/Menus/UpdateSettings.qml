@@ -23,12 +23,8 @@ ColumnLayout {
     Layout.bottomMargin: 5
   }
 
-  Rectangle {
+  DividerLine {
     Layout.fillWidth: true
-    height: 1
-    color: Theme.colMuted
-    opacity: 0.3
-    Layout.bottomMargin: 5
   }
 
   ColumnLayout {

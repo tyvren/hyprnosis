@@ -50,11 +50,8 @@ ColumnLayout {
       }
     }
 
-    Rectangle {
+    DividerLine {
       Layout.fillWidth: true
-      height: 1
-      color: Theme.colMuted
-      opacity: 0.3
     }
   }
 

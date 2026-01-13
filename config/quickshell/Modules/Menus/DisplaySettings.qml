@@ -5,6 +5,7 @@ import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import qs.Themes
+import qs.Components
 
 ColumnLayout {
   id: displayPane
@@ -56,11 +57,8 @@ ColumnLayout {
       antialiasing: true
     }
 
-    Rectangle {
+    DividerLine {
       Layout.fillWidth: true
-      height: 1
-      color: Theme.colMuted
-      opacity: 0.3
     }
   }
 
@@ -136,11 +134,8 @@ ColumnLayout {
     }
   }
 
-  Rectangle {
+  DividerLine {
     Layout.fillWidth: true
-    height: 1
-    color: Theme.colMuted
-    opacity: 0.3
   }
 
   GridLayout {
