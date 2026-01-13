@@ -31,7 +31,7 @@ Item {
   MouseArea {
     anchors.fill: parent
     onClicked: {
-      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "4"])
+      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "5"])
     }
   }
 }
