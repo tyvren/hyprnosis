@@ -202,7 +202,9 @@ Window {
           anchors.margins: 15
           currentIndex: settingsmenu.activeIndex
 
-          SystemInfo {}
+          SystemInfo {
+            active: settingsmenu.visible && settingsmenu.activeIndex === 0
+          }
           AppSettings {}
           AudioSettings {}
           BluetoothSettings {}

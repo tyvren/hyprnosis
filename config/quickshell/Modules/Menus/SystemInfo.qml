@@ -10,6 +10,7 @@ ColumnLayout {
   id: infoPane
   spacing: 20
 
+  property bool active: false // Added this property
   property string osName: "Arch Linux"
   property string kernel: "..."
   property string uptime: "..."
@@ -18,6 +19,23 @@ ColumnLayout {
   property string gpu: "..."
   property string mem: "..."
   property var disks: []
+
+  onActiveChanged: {
+    if (active) {
+      sysFetcher.running = false
+      sysFetcher.running = true
+    }
+  }
+
+  Timer {
+    interval: 60000
+    running: infoPane.active
+    repeat: true
+    onTriggered: {
+      sysFetcher.running = false
+      sysFetcher.running = true
+    }
+  }
 
   Text {
     text: "About"
@@ -178,17 +196,23 @@ ColumnLayout {
       "echo \"CPUS:$(lscpu | grep 'Model name' | cut -d: -f2 | xargs)\"; " +
       "echo \"GPUS:$(lspci | grep -i vga | grep 'Navi 31' | sed 's/.*Navi 31 //; s/\\[//; s/\\/.*//; s/XT.*/XTX/; s/ //g' | sed 's/RadeonRX/Radeon RX /; s/RX7/RX 7/')\"; " +
       "echo \"MEMS:$(free --mebi | awk '/^Mem:/ {printf \"%d GB\", ($2/1024)+0.9}')\"; " +
-      "lsblk -no MOUNTPOINTS,SIZE | grep -E '(/|/mnt/.*)' | awk '{print \"DISK:\" $0}'"
+      "lsblk -JO"
     ]
     running: true
     stdout: StdioCollector {
       onStreamFinished: {
-        let lines = text.trim().split('\n');
-        let diskResults = [];
+        let lines = text.trim().split('\n')
+        let diskResults = []
+        let jsonStr = ""
         
         lines.forEach(line => {
-          let tag = line.substring(0, 5);
-          let val = line.substring(5).trim();
+          if (line.startsWith("{") || jsonStr.length > 0) {
+            jsonStr += line
+            return
+          }
+
+          let tag = line.substring(0, 5)
+          let val = line.substring(5).trim()
           
           switch(tag) {
             case "KERN:": infoPane.kernel = val; break;
@@ -197,29 +221,40 @@ ColumnLayout {
             case "CPUS:": infoPane.cpu = val; break;
             case "GPUS:": infoPane.gpu = val; break;
             case "MEMS:": infoPane.mem = val; break;
-            case "DISK:":
-              let parts = val.split(/\s+/);
-              if (parts.length >= 2) {
-                let size = parts.pop();
-                let mounts = parts.join(" ");
-                
-                let label = "";
-                if (mounts.includes("/home")) label = "Home";
-                else if (mounts === "/") label = "System";
-                else if (mounts.includes("/mnt/games")) label = "Games";
-                else if (mounts.includes("/boot")) return; 
-                else label = mounts.split('/').pop() || "Disk";
+          }
+        })
 
-                label = label.charAt(0).toUpperCase() + label.slice(1);
-                
+        if (jsonStr) {
+          try {
+            let data = JSON.parse(jsonStr)
+            let processDev = function(dev) {
+              if (dev.name && dev.name.startsWith("zram")) return
+              if (dev.children) dev.children.forEach(processDev)
+              
+              if (dev.mountpoints) {
+                let mpts = dev.mountpoints.filter(m => m !== null)
+                if (mpts.length === 0) return
+
+                let label = ""
+                if (mpts.includes("/home")) label = "Home"
+                else if (mpts.includes("/")) label = "System"
+                else if (mpts.some(m => m.includes("/mnt/games"))) label = "Games"
+                else return
+
+                label = label.charAt(0).toUpperCase() + label.slice(1)
                 if (!diskResults.find(d => d.label === label)) {
-                  diskResults.push({ "label": label, "total": size });
+                  diskResults.push({ "label": label, "total": dev.size })
                 }
               }
-              break;
-          }
-        });
-        infoPane.disks = diskResults.sort((a, b) => a.label === "System" ? -1 : 1);
+            }
+            data.blockdevices.forEach(processDev)
+          } catch(e) {}
+        }
+
+        infoPane.disks = diskResults.sort((a, b) => {
+          const order = { "System": 1, "Home": 2, "Games": 3 }
+          return (order[a.label] || 99) - (order[b.label] || 99)
+        })
       }
     }
   }
