@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Quickshell.Io
 import QtQuick.Effects
 import qs.Themes
@@ -27,13 +28,10 @@ Item {
     shadowColor: Theme.colAccent
   }
 
-  Process {
-    id: openNotifications
-    command: [""]
-  }
-
   MouseArea {
     anchors.fill: parent
-    onClicked: openNotifications.startDetached()
+    onClicked: {
+      Quickshell.execDetached(["qs", "ipc", "call", "notificationpane", "toggle"])
+    }
   }
 }
