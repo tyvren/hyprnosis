@@ -10,7 +10,7 @@ ColumnLayout {
   id: infoPane
   spacing: 20
 
-  property bool active: false // Added this property
+  property bool active: false
   property string osName: "Arch Linux"
   property string kernel: "..."
   property string uptime: "..."
