@@ -8,6 +8,7 @@ ShellRoot {
   Bar {}
   VolumeOSD {}
   NotificationOSD {}
+  NotificationPane {}
   MainMenu {}
   Packages {}
   Updates {}
