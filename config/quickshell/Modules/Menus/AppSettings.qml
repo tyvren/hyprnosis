@@ -11,7 +11,7 @@ import qs.Components
 
 ColumnLayout {
   id: appPane
-  spacing: 15
+  spacing: 10
 
   property var fullAppList: []
   property var filteredList: []
@@ -22,12 +22,10 @@ ColumnLayout {
     color: Theme.colAccent
     font.pointSize: 16
     font.family: Theme.fontFamily
-    Layout.bottomMargin: 5
   }
 
   DividerLine {
     Layout.fillWidth: true
-    Layout.bottomMargin: 5
   }
 
   RowLayout {

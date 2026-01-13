@@ -11,7 +11,7 @@ import qs.Components
 
 ColumnLayout {
   id: updatePane
-  spacing: 15
+  spacing: 10
 
   property string scriptDir: Quickshell.env("HOME") + "/.config/hyprnosis/modules/updates/"
 
@@ -20,7 +20,6 @@ ColumnLayout {
     color: Theme.colAccent
     font.pointSize: 16
     font.family: Theme.fontFamily
-    Layout.bottomMargin: 5
   }
 
   DividerLine {

@@ -15,7 +15,6 @@ ColumnLayout {
     color: Theme.colAccent
     font.pointSize: 16
     font.family: Theme.fontFamily
-    Layout.bottomMargin: 5
   }
 
   DividerLine {
