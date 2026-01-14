@@ -7,6 +7,7 @@ Item {
   id: root
   property string text: ""
   property int size: 45
+  property bool active: false
   signal clicked()
   implicitWidth: size
   implicitHeight: size
@@ -15,7 +16,7 @@ Item {
     anchors.centerIn: parent
     width: root.size
     height: root.size
-    blur: 5
+    blur: 2
     spread: 1
     radius: size
     color: Theme.colAccent
@@ -24,7 +25,7 @@ Item {
   Rectangle {
     anchors.fill: parent
     radius: size
-    color: mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
+    color: root.active ? Theme.colMuted : (mouseArea.containsMouse ? Theme.colSelect : Theme.colBg)
     border.color: Theme.colAccent
     border.width: 2
 

@@ -49,7 +49,7 @@ Window {
         id: sidePane
         color: Theme.colBg
         border.color: Theme.colAccent
-        Layout.preferredWidth: 180
+        Layout.preferredWidth: 65
         Layout.fillHeight: true
         radius: 10
 
@@ -60,70 +60,22 @@ Window {
 
           Repeater {
             model: [ 
-              {icon: "󰋼", text: "About"},
-              {icon: "󰏖", text: "Apps"},
-              {icon: "󰓃", text: "Audio"},
-              {icon: "󰂯", text: "Bluetooth"},
-              {icon: "󰍹", text: "Display"},
-              {icon: "󰖩", text: "Network"}, 
-              {icon: "", text: "Theme"},
-              {icon: "󰸉", text: "Wallpaper"},
-              {icon: "󰚰", text: "Updates"}
+              {icon: "󰋼"},
+              {icon: "󰏖"},
+              {icon: "󰓃"},
+              {icon: "󰂯"},
+              {icon: "󰍹"},
+              {icon: "󰖩"}, 
+              {icon: ""},
+              {icon: "󰸉"},
+              {icon: "󰚰"}
             ]
 
-            Item {
-              Layout.fillWidth: true
-              Layout.preferredHeight: 45
-
-              MultiEffect {
-                anchors.fill: sideButton
-                source: sideButton
-                shadowEnabled: true
-                shadowBlur: 0.2
-                shadowColor: Theme.colAccent
-                shadowVerticalOffset: 1
-                shadowHorizontalOffset: 0
-                opacity: 0.8
-              }
-
-              Rectangle {
-                id: sideButton
-                anchors.fill: parent
-                radius: 10
-                color: (settingsmenu.activeIndex === index || navMa.containsMouse) ? Theme.colAccent : Theme.colMuted
-
-                RowLayout {
-                  anchors.fill: parent
-                  anchors.leftMargin: 10
-
-                  Text {
-                    Layout.preferredWidth: 25
-                    verticalAlignment: Text.AlignVCenter
-                    text: modelData.icon
-                    color: (settingsmenu.activeIndex === index || navMa.containsMouse) ? Theme.colBg : Theme.colAccent
-                    font.pointSize: 14
-                    font.family: Theme.fontFamily
-                    antialiasing: true
-                  }
-
-                  Text {
-                    Layout.fillWidth: true
-                    verticalAlignment: Text.AlignVCenter
-                    text: modelData.text
-                    color: (settingsmenu.activeIndex === index || navMa.containsMouse) ? Theme.colBg : Theme.colAccent
-                    font.pointSize: 12
-                    font.family: Theme.fontFamily
-                    antialiasing: true
-                  }
-                }
-
-                MouseArea {
-                  id: navMa
-                  anchors.fill: parent
-                  hoverEnabled: true
-                  onClicked: settingsmenu.activeIndex = index
-                }
-              }
+            StyledButton {
+              text: modelData.icon
+              size: 45
+              active: settingsmenu.activeIndex === index
+              onClicked: settingsmenu.activeIndex = index
             }
           }
 
@@ -131,60 +83,10 @@ Window {
             Layout.fillHeight: true
           }
 
-          Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 45
-
-            MultiEffect {
-              anchors.fill: closeButton
-              source: closeButton
-              shadowEnabled: true
-              shadowBlur: 0.2
-              shadowColor: Theme.colAccent
-              shadowVerticalOffset: 1
-              shadowHorizontalOffset: 0
-              opacity: 0.8
-            }
-
-            Rectangle {
-              id: closeButton
-              anchors.fill: parent
-              radius: 10
-              color: closeMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-              RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 10
-                spacing: 0
-
-                Text {
-                  Layout.preferredWidth: 25
-                  verticalAlignment: Text.AlignVCenter
-                  text: "󰅙"
-                  color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
-                  font.pointSize: 14
-                  font.family: Theme.fontFamily
-                  antialiasing: true
-                }
-
-                Text {
-                  Layout.fillWidth: true
-                  verticalAlignment: Text.AlignVCenter
-                  text: "Close"
-                  color: closeMa.containsMouse ? Theme.colBg : Theme.colAccent
-                  font.pointSize: 12
-                  font.family: Theme.fontFamily
-                  antialiasing: true
-                }
-              }
-
-              MouseArea {
-                id: closeMa
-                anchors.fill: parent
-                hoverEnabled: true
-                onClicked: settingsmenu.visible = false
-              }
-            }
+          StyledButton {
+            text: "󰅙"
+            size: 45
+            onClicked: settingsmenu.visible = false
           }
         }
       }
