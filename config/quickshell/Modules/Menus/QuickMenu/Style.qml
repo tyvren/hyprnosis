@@ -6,6 +6,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Themes
+import qs.Components
 
 PanelWindow {
   id: stylemenu
@@ -78,111 +79,43 @@ PanelWindow {
 
       function activate(index) {
         switch (index) {
-          case 0: button1.startDetached(); break
-          case 1: button2.startDetached(); break
+          case 0: button1proc.startDetached(); break
+          case 1: button2proc.startDetached(); break
         }
         stylemenu.visible = false
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+      QuickMenuButton {
+        id: button1
+        icon: ""
+        text: "Theme"
+        isActive: currentIndex === 0
+        onEntered: currentIndex = 0
+        onClicked: {
+          currentIndex = 0
+          button1proc.startDetached()
+          stylemenu.visible = false
         }
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 0 || button1area.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: ""
-          }
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: "Theme"
-          }
-          MouseArea {
-            id: button1area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 0
-            onClicked: {
-              currentIndex = 0
-              button1.startDetached()
-              stylemenu.visible = false
-            }
-          }
-          Process {
-            id: button1
-            command: ["sh", "-c", "qs ipc call thememenu toggle"]
-          }
+        Process {
+          id: button1proc
+          command: ["sh", "-c", "qs ipc call thememenu toggle"]
         }
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+      QuickMenuButton {
+        id: button2
+        icon: "󰸉"
+        text: "Wallpaper"
+        isActive: currentIndex === 1
+        onEntered: currentIndex = 1
+        onClicked: {
+          currentIndex = 1
+          button2proc.startDetached()
+          stylemenu.visible = false
         }
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 1 || button2area.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: "󰸉"
-          }
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: "Wallpaper"
-          }
-          MouseArea {
-            id: button2area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 1
-            onClicked: {
-              currentIndex = 1
-              button2.startDetached()
-              stylemenu.visible = false
-            }
-          }
-          Process {
-            id: button2
-            command: ["sh", "-c", "qs ipc call wallpapersmenu toggle"]
-          }
+        Process {
+          id: button2proc
+          command: ["sh", "-c", "qs ipc call wallpapersmenu toggle"]
         }
       }
     }

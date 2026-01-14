@@ -6,6 +6,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Themes
+import qs.Components
 
 PanelWindow {
   id: packagesmenu
@@ -78,163 +79,61 @@ PanelWindow {
 
       function activate(index) {
         switch (index) {
-          case 0: button1.startDetached(); break
-          case 1: button2.startDetached(); break
-          case 2: button3.startDetached(); break
+          case 0: button1proc.startDetached(); break
+          case 1: button2proc.startDetached(); break
+          case 2: button3proc.startDetached(); break
         }
         packagesmenu.visible = false
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+      QuickMenuButton {
+        id: button1
+        icon: "󰣇"
+        text: "Install ArchPkg"
+        isActive: currentIndex === 0
+        onEntered: currentIndex = 0
+        onClicked: {
+          currentIndex = 0
+          button1proc.startDetached()
+          packagesmenu.visible = false
         }
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 0 || button1area.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: "󰣇"
-          }
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: "Install ArchPkg"
-          }
-          MouseArea {
-            id: button1area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 0
-            onClicked: {
-              currentIndex = 0
-              button1.startDetached()
-              packagesmenu.visible = false
-            }
-          }
-          Process {
-            id: button1
-            command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"]
-          }
+        Process {
+          id: button1proc
+          command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"]
         }
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+      QuickMenuButton {
+        id: button2
+        icon: ""
+        text: "Install AURPkg"
+        isActive: currentIndex === 1
+        onEntered: currentIndex = 1
+        onClicked: {
+          currentIndex = 1
+          button2proc.startDetached()
+          packagesmenu.visible = false
         }
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 1 || button2area.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: ""
-          }
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: "Install AURPkg"
-          }
-          MouseArea {
-            id: button2area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 1
-            onClicked: {
-              currentIndex = 1
-              button2.startDetached()
-              packagesmenu.visible = false
-            }
-          }
-          Process {
-            id: button2
-            command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"]
-          }
+        Process {
+          id: button2proc
+          command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"]
         }
       }
 
-      Item {
-        implicitWidth: 225
-        implicitHeight: 60
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+      QuickMenuButton {
+        id: button3
+        icon: "󱧙"
+        text: "Uninstall Pkg"
+        isActive: currentIndex === 2
+        onEntered: currentIndex = 2
+        onClicked: {
+          currentIndex = 2
+          button3proc.startDetached()
+          packagesmenu.visible = false
         }
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === 2 || button3area.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: "󱧙"
-          }
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: "Uninstall Pkg"
-          }
-          MouseArea {
-            id: button3area
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = 2
-            onClicked: {
-              currentIndex = 2
-              button3.startDetached()
-              packagesmenu.visible = false
-            }
-          }
-          Process {
-            id: button3
-            command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_uninstall.sh"]
-          }
+        Process {
+          id: button3proc
+          command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_uninstall.sh"]
         }
       }
     }

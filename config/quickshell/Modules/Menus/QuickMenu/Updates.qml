@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Themes
+import qs.Components
 
 PanelWindow {
   id: updatemenu
@@ -85,70 +86,29 @@ PanelWindow {
         updatemenu.visible = false
       }
 
-      component UpdateButton : Item {
-        property string label: ""
+      component UpdateButton : QuickMenuButton {
         property string script: ""
         property int index: 0
         property alias process: proc
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+        icon: ""
+        
+        isActive: currentIndex === index
+        onEntered: currentIndex = index
+        onClicked: {
+          currentIndex = index
+          proc.startDetached()
+          updatemenu.visible = false
         }
 
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === index || mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: ""
-          }
-
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: label
-          }
-
-          MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = index
-            onClicked: {
-              currentIndex = index
-              proc.startDetached()
-              updatemenu.visible = false
-            }
-          }
-
-          Process {
-            id: proc
-            command: ["sh", "-c", `ghostty -e ~/.config/hyprnosis/modules/updates/${script}`]
-          }
+        Process {
+          id: proc
+          command: ["sh", "-c", `ghostty -e ~/.config/hyprnosis/modules/updates/${script}`]
         }
       }
 
-      UpdateButton { index: 0; label: "System"; script: "update_system.sh"; id: button1 }
-      UpdateButton { index: 1; label: "AUR"; script: "update_aur.sh"; id: button2 }
-      UpdateButton { index: 2; label: "Hyprnosis"; script: "update_hyprnosis.sh"; id: button3 }
+      UpdateButton { index: 0; text: "System"; script: "update_system.sh"; id: button1 }
+      UpdateButton { index: 1; text: "AUR"; script: "update_aur.sh"; id: button2 }
+      UpdateButton { index: 2; text: "Hyprnosis"; script: "update_hyprnosis.sh"; id: button3 }
     }
   }
 }

@@ -7,6 +7,7 @@ import Quickshell.Io
 import Quickshell.Widgets
 import qs.Services
 import qs.Themes
+import qs.Components
 
 PanelWindow {
   id: thememenu
@@ -80,43 +81,19 @@ PanelWindow {
         thememenu.visible = false
       }
 
-      component ThemeButton : Item {
-        property string label: ""
+      component ThemeButton : QuickMenuButton {
         property int index: 0
-        implicitWidth: 225
-        implicitHeight: 60
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === index || mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: label
-          }
-
-          MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = index
-            onClicked: themelist.activate(index)
-          }
-        }
+        isActive: currentIndex === index
+        onEntered: currentIndex = index
+        onClicked: themelist.activate(index)
       }
 
-      ThemeButton { index: 0; label: "Hyprnosis" }
-      ThemeButton { index: 1; label: "Catppuccin Mocha" }
-      ThemeButton { index: 2; label: "Emberforge" }
-      ThemeButton { index: 3; label: "Dracula" }
-      ThemeButton { index: 4; label: "Arcadia" }
-      ThemeButton { index: 5; label: "Eden" }
+      ThemeButton { index: 0; text: "Hyprnosis" }
+      ThemeButton { index: 1; text: "Catppuccin Mocha" }
+      ThemeButton { index: 2; text: "Emberforge" }
+      ThemeButton { index: 3; text: "Dracula" }
+      ThemeButton { index: 4; text: "Arcadia" }
+      ThemeButton { index: 5; text: "Eden" }
     }
   }
 }

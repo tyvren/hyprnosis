@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Themes
+import qs.Components
 
 PanelWindow {
   id: utilmenu
@@ -85,83 +86,39 @@ PanelWindow {
         utilmenu.visible = false
       }
 
-      component UtilButton : Item {
-        property string icon: ""
-        property string label: ""
+      component UtilButton : QuickMenuButton {
         property string fullCommand: ""
         property int index: 0
         property alias process: proc
         
-        implicitWidth: 225
-        implicitHeight: 60
-
-        RectangularShadow {
-          anchors.centerIn: parent
-          width: 225
-          height: 60
-          blur: 5
-          spread: 1
-          radius: 50
+        isActive: currentIndex === index
+        onEntered: currentIndex = index
+        onClicked: {
+          currentIndex = index
+          proc.startDetached()
+          utilmenu.visible = false
         }
 
-        Rectangle {
-          anchors.fill: parent
-          radius: 50
-          color: currentIndex === index || mouseArea.containsMouse ? Theme.colSelect : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-
-          Text {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 18
-            text: icon
-          }
-
-          Text {
-            anchors.centerIn: parent
-            color: Theme.colAccent
-            font.family: Theme.fontFamily
-            font.pointSize: 14
-            text: label
-          }
-
-          MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: currentIndex = index
-            onClicked: {
-              currentIndex = index
-              proc.startDetached()
-              utilmenu.visible = false
-            }
-          }
-
-          Process {
-            id: proc
-            command: ["sh", "-c", `ghostty -e ${fullCommand}`]
-          }
+        Process {
+          id: proc
+          command: ["sh", "-c", `ghostty -e ${fullCommand}`]
         }
       }
 
       UtilButton { 
-        index: 0; icon: ""; label: "Hypr Config"
+        index: 0; icon: ""; text: "Hypr Config"
         fullCommand: "~/.config/hyprnosis/modules/quickconfig/quickconfig.sh"
         id: button1 
       }
       
       UtilButton { 
-        index: 1; icon: "󱊟"; label: "ISO Writer"
+        index: 1; icon: "󱊟"; text: "ISO Writer"
         fullCommand: "~/.config/hyprnosis/modules/diskmanagement/write_iso.sh"
         id: button2 
       }
       
       UtilButton { 
-        index: 2; icon: "󱁋"; label: "Mount Disk"
+        index: 2; icon: "󱁋"; text: "Mount Disk"
         fullCommand: "~/.config/hyprnosis/modules/diskmanagement/mount_disk.sh"
         id: button3 
       }
