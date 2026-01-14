@@ -65,6 +65,29 @@ PanelWindow {
         }
 
         Item { Layout.fillWidth: true }
+
+        Rectangle {
+          width: 80
+          height: 30
+          radius: 8
+          color: clearMa.containsMouse ? Theme.colAccent : Theme.colMuted
+          
+          Text {
+            anchors.centerIn: parent
+            text: "Clear All"
+            color: clearMa.containsMouse ? Theme.colBg : Theme.colAccent
+            font.family: Theme.fontFamily
+            font.bold: true
+            font.pointSize: 10
+          }
+
+          MouseArea {
+            id: clearMa
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: Notifications.clearAll()
+          }
+        }
       }
 
       DividerLine {
@@ -142,7 +165,7 @@ PanelWindow {
           color: Theme.colAccent
           font.family: Theme.fontFamily
           opacity: 0.4
-          visible: Notifications.notifications.rowCount() === 0
+          visible: notifList.count === 0
         }
       }
     }

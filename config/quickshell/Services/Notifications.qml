@@ -9,6 +9,12 @@ Singleton {
 
   property alias notifications: notifServer.trackedNotifications
   signal notification(notification: Notification)
+  
+  signal clearAllRequested()
+
+  function clearAll() {
+    root.clearAllRequested()
+  }
 
   NotificationServer {
     id: notifServer
@@ -22,8 +28,15 @@ Singleton {
     imageSupported: true
 
     onNotification: function(notif) {
-        notif.tracked = true;
-        root.notification(notif);
+      notif.tracked = true
+      
+      root.clearAllRequested.connect(notif.dismiss)
+      
+      notif.closed.connect(() => {
+        root.clearAllRequested.disconnect(notif.dismiss)
+      })
+
+      root.notification(notif)
     }
   }
 }
