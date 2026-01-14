@@ -1,11 +1,11 @@
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Effects
+import QtQuick.Layouts
 import Quickshell
-import qs.Themes
-import qs.Services
 import qs.Components
+import qs.Services
+import qs.Themes
 
 ColumnLayout {
   id: audioPane

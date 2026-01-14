@@ -1,6 +1,6 @@
-import Quickshell
 import QtQuick
 import QtQuick.Effects
+import Quickshell
 
 PanelWindow {
   id: windowPanel

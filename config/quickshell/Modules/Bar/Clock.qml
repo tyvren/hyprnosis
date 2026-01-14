@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Effects
-import qs.Themes
 import qs.Services
+import qs.Themes
 
 Item {
   id: clockWrapper

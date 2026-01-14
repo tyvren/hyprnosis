@@ -1,10 +1,10 @@
-import Quickshell
 import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
+import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
-import Quickshell.Hyprland
 import qs.Themes
 
 PanelWindow {

@@ -1,6 +1,7 @@
 import QtQuick
-import Quickshell.Io
 import QtQuick.Effects
+import Quickshell
+import Quickshell.Io
 
 Item {
   id: menubutton
@@ -11,8 +12,8 @@ Item {
   Text {
     id: icon
     text: ""
-    font.family: theme.fontFamily
-    font.pixelSize: theme.fontSize
+    font.family: Theme.fontFamily
+    font.pixelSize: Theme.fontSize
     color: theme.colAccent
     layer.enabled: true
     visible: false

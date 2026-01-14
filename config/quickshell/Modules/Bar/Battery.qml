@@ -1,7 +1,7 @@
 import QtQuick
-import qs.Themes
-import qs.Services
 import QtQuick.Effects
+import qs.Services
+import qs.Themes
 
 Item {
   id: batterybutton

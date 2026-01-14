@@ -1,9 +1,10 @@
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Effects
-import qs.Themes
+import QtQuick.Layouts
+import qs.Components
 import qs.Services
+import qs.Themes
 
 Item {
   id: networkRoot

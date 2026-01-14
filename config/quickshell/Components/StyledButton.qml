@@ -1,7 +1,7 @@
-import qs.Themes
-import Quickshell
 import QtQuick
 import QtQuick.Effects
+import Quickshell
+import qs.Themes
 
 Item {
   id: root

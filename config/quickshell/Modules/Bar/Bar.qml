@@ -1,10 +1,10 @@
-import Quickshell
 import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Shapes
-import Quickshell.Widgets
+import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.Components
 import qs.Themes

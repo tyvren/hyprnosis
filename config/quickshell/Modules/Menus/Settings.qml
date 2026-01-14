@@ -1,13 +1,13 @@
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Effects
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls
-import QtQuick.Effects
-import qs.Themes
-import qs.Services
 import qs.Components
+import qs.Services
+import qs.Themes
 
 Window {
   id: settingsmenu

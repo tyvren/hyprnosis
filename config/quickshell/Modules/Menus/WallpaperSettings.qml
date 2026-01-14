@@ -1,12 +1,12 @@
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
-import qs.Themes
-import qs.Services
 import qs.Components
+import qs.Services
+import qs.Themes
 
 ColumnLayout {
   id: wallpaperPane

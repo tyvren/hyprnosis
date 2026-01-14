@@ -1,6 +1,6 @@
 import QtQuick
-import Quickshell.Io
 import QtQuick.Effects
+import Quickshell.Io
 import qs.Themes
 
 Item {

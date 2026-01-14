@@ -1,10 +1,10 @@
-import qs.Themes
-import Quickshell
-import Quickshell.Widgets
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Effects
+import QtQuick.Layouts
+import Quickshell
+import Quickshell.Widgets
+import qs.Themes
 
 PopupWindow {
   id: root

@@ -1,8 +1,8 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
-import QtQuick.Effects
 import qs.Themes
 
 ColumnLayout {

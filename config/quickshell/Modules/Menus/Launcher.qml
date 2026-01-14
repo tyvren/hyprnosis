@@ -1,11 +1,11 @@
-import QtQuick.Controls
-import Quickshell
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
+import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
-import Quickshell.Hyprland
 import qs.Themes
 
 PanelWindow {

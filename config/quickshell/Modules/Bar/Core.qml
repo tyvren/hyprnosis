@@ -1,9 +1,9 @@
-import qs.Themes
-import qs.Components
-import Quickshell
-import Quickshell.Io
 import QtQuick
 import QtQuick.Effects
+import Quickshell
+import Quickshell.Io
+import qs.Components
+import qs.Themes
 
 PanelWindow {
   id: core 
