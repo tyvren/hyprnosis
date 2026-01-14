@@ -3,6 +3,7 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Wayland
+import qs.Components
 import qs.Themes
 
 ColumnLayout {
@@ -46,8 +47,8 @@ ColumnLayout {
         anchors.fill: parent
         source: icon
         shadowEnabled: true
-        shadowBlur: 1
-        shadowOpacity: 0.50
+        shadowBlur: 0.2
+        shadowOpacity: 0.7
       }
 
       MouseArea {
