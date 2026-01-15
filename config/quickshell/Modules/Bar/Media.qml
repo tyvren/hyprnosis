@@ -103,9 +103,7 @@ PopupWindow {
         Image {
           id: backgroundImage
           anchors.fill: parent
-          mipmap: true
           asynchronous: true
-          cache: true
           fillMode: Image.PreserveAspectCrop
           source: {
             const url = Players.active?.trackArtUrl;
