@@ -60,9 +60,15 @@ Window {
 
           Repeater {
             model: [ 
-              {icon: "󰋼"}, {icon: "󰏖"}, {icon: "󰓃"}, 
-              {icon: "󰂯"}, {icon: "󰍹"}, {icon: "󰖩"}, 
-              {icon: ""}, {icon: "󰸉"}, {icon: "󰚰"}
+              {icon: "󰋼"}, 
+              {icon: "󰏖"}, 
+              {icon: "󰓃"}, 
+              {icon: "󰂯"}, 
+              {icon: "󰍹"}, 
+              {icon: "󰖩"}, 
+              {icon: ""}, 
+              {icon: "󰸉"}, 
+              {icon: "󰚰"}
             ]
 
             StyledButton {
