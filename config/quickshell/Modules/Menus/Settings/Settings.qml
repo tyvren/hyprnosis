@@ -60,15 +60,9 @@ Window {
 
           Repeater {
             model: [ 
-              {icon: "󰋼"},
-              {icon: "󰏖"},
-              {icon: "󰓃"},
-              {icon: "󰂯"},
-              {icon: "󰍹"},
-              {icon: "󰖩"}, 
-              {icon: ""},
-              {icon: "󰸉"},
-              {icon: "󰚰"}
+              {icon: "󰋼"}, {icon: "󰏖"}, {icon: "󰓃"}, 
+              {icon: "󰂯"}, {icon: "󰍹"}, {icon: "󰖩"}, 
+              {icon: ""}, {icon: "󰸉"}, {icon: "󰚰"}
             ]
 
             StyledButton {
@@ -79,9 +73,7 @@ Window {
             }
           }
 
-          Item {
-            Layout.fillHeight: true
-          }
+          Item { Layout.fillHeight: true }
 
           StyledButton {
             text: "󰅙"
@@ -99,26 +91,33 @@ Window {
         Layout.fillHeight: true
         radius: 10
 
-        StackLayout {
-          anchors.fill: parent
-          anchors.margins: 15
-          currentIndex: settingsmenu.activeIndex
+        LazyLoader {
+          id: menuLoader
+          active: settingsmenu.visible
+          loading: true
+          
+          StackLayout {
+            parent: contentPane
+            anchors.fill: parent
+            anchors.margins: 15
+            currentIndex: settingsmenu.activeIndex
 
-          SystemInfo {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 0
+            SystemInfo {
+              active: settingsmenu.visible && settingsmenu.activeIndex === 0
+            }
+            AppSettings {}
+            AudioSettings {}
+            BluetoothSettings {}
+            DisplaySettings { 
+              active: settingsmenu.visible && settingsmenu.activeIndex === 4 
+            } 
+            NetworkSettings {}
+            ThemeSettings {}
+            WallpaperSettings {
+              active: settingsmenu.visible && settingsmenu.activeIndex === 7
+            }
+            UpdateSettings {}
           }
-          AppSettings {}
-          AudioSettings {}
-          BluetoothSettings {}
-          DisplaySettings { 
-            active: settingsmenu.visible && settingsmenu.activeIndex === 4 
-          } 
-          NetworkSettings {}
-          ThemeSettings {}
-          WallpaperSettings {
-            active: settingsmenu.visible && settingsmenu.activeIndex === 7
-          }
-          UpdateSettings {}
         }
       }
     }
