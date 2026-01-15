@@ -100,7 +100,6 @@ Window {
         LazyLoader {
           id: menuLoader
           active: settingsmenu.visible
-          loading: true
           
           StackLayout {
             parent: contentPane
