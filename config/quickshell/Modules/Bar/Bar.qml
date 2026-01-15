@@ -33,7 +33,6 @@ Variants {
           id: wallpaper
           anchors.fill: parent
           source: Theme.wallpaperPath
-          mipmap: true
           asynchronous: true
           fillMode: Image.PreserveAspectCrop
         }
