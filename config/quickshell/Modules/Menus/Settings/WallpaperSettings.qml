@@ -94,6 +94,7 @@ ColumnLayout {
               source: "file://" + modelData
               fillMode: Image.PreserveAspectCrop
               asynchronous: true
+              mipmap: true
             }
           }
 
