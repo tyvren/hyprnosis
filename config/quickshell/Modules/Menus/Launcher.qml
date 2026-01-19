@@ -12,8 +12,8 @@ PanelWindow {
   id: launcherMenu
   visible: false
   focusable: true
-  implicitWidth: 380
-  implicitHeight: 320
+  implicitWidth: 520
+  implicitHeight: 500
   color: "transparent"
   property string query: ""
   property var filteredApps: DesktopEntries.applications.values
@@ -23,19 +23,16 @@ PanelWindow {
   property bool showContent: false
 
   anchors {
-    top: true
+    bottom: true
   }
 
   onVisibleChanged: {
     if (visible) {
       open = true
-      query = ""
     } else {
       open = false
-      query = ""
-      searchField.text = ""
-      gridview.currentIndex = -1
     }
+    query = ""
   }
 
   onQueryChanged: {
@@ -46,7 +43,6 @@ PanelWindow {
         app.name.toLowerCase().includes(query.toLowerCase())
       )
     }
-    gridview.currentIndex = filteredApps.length > 0 ? 0 : -1
   }
 
   IpcHandler {
@@ -66,9 +62,10 @@ PanelWindow {
   }
 
   Item {
-    id: animationContainer
-    width: 380
+    id: launcherContainer
+    width: 520
     height: 0
+    y: 500
     state: launcherMenu.open ? "open" : "closed"
     focus: true
 
@@ -78,17 +75,19 @@ PanelWindow {
       State {
         name: "closed"
         PropertyChanges {
-          target: animationContainer
+          target: launcherContainer
           opacity: 0
           height: 0
+          y: 500
         }
       },
       State {
         name: "open"
         PropertyChanges {
-          target: animationContainer
+          target: launcherContainer
           opacity: 1
-          height: 320
+          height: 500
+          y: 0
         }
       }
     ]
@@ -99,9 +98,9 @@ PanelWindow {
         to: "open"
         SequentialAnimation {
           NumberAnimation {
-            properties: "opacity, height"
-            duration: 750
-            easing.type: Easing.InOutCubic
+            properties: "opacity, height, y"
+            duration: 300
+            easing.type: Easing.OutQuart
           }
           ScriptAction { 
             script: {
@@ -116,41 +115,33 @@ PanelWindow {
         SequentialAnimation {
           ScriptAction { script: launcherMenu.showContent = false }
           NumberAnimation {
-            properties: "opacity, height"
-            duration: 750
-            easing.type: Easing.InOutCubic
+            properties: "opacity, height, y"
+            duration: 300
+            easing.type: Easing.InQuart
           }
           ScriptAction { script: launcherMenu.visible = false }
         }
       }
     ]
 
-    RectangularShadow {
-      anchors.fill: parent
-      blur: 10
-      spread: 0
-      radius: 10
-      color: "transparent"
-    }
-
     Rectangle {
       id: mainBackground
       anchors.fill: parent
-      bottomLeftRadius: 10
-      bottomRightRadius: 10
+      topLeftRadius: 15
+      topRightRadius: 15
       color: Theme.colBg
       clip: true
       
       Image {
         id: logoImage
         anchors.centerIn: parent
-        width: 380
-        height: 320
+        width: 520
+        height: 500
         source: Theme.logoPath
         mipmap: true
         asynchronous: true
         fillMode: Image.PreserveAspectFit
-        opacity: 0.7
+        opacity: 0.3
       }
 
       Loader {
@@ -167,9 +158,9 @@ PanelWindow {
     id: launcherContent
     ColumnLayout {
       anchors.fill: parent
-      anchors.topMargin: 12
-      anchors.bottomMargin: 12
-      spacing: 12
+      anchors.topMargin: 20
+      anchors.bottomMargin: 10
+      spacing: 15
       opacity: 0
       Component.onCompleted: {
         opacity = 1
@@ -179,8 +170,8 @@ PanelWindow {
 
       Rectangle {
         Layout.alignment: Qt.AlignHCenter
-        width: 325
-        height: 30
+        width: 440
+        height: 35
         radius: 50
         color: Theme.colBg
         border.color: Theme.colAccent
@@ -189,15 +180,20 @@ PanelWindow {
         TextField {
           id: searchField
           anchors.fill: parent
-          anchors.leftMargin: 10
+          anchors.leftMargin: 15
           placeholderText: "Search apps..."
           color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pointSize: 14
           background: null
           focus: true
+          text: launcherMenu.query
 
-          onTextChanged: launcherMenu.query = text
+          onTextChanged: {
+            if (activeFocus) {
+              launcherMenu.query = text
+            }
+          }
 
           Keys.onPressed: event => {
             if ((event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
@@ -210,7 +206,7 @@ PanelWindow {
               event.accepted = true
             }
 
-            if (event.key === Qt.Key_Down) {
+            if (event.key === Qt.Key_Down || event.key === Qt.Key_Tab) {
               gridview.forceActiveFocus()
               event.accepted = true
             }
@@ -221,15 +217,17 @@ PanelWindow {
       GridView {
         id: gridview
         Layout.fillHeight: true
-        Layout.preferredWidth: 340
-        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        Layout.leftMargin: 25
+        Layout.rightMargin: 25
         model: launcherMenu.filteredApps
         clip: true
         keyNavigationEnabled: true
-        cellWidth: 85
-        cellHeight: 85
+        cellWidth: 94
+        cellHeight: 105
         focus: true
-        
+        currentIndex: launcherMenu.filteredApps.length > 0 ? 0 : -1
+
         ScrollBar.vertical: ScrollBar {
           policy: ScrollBar.AsNeeded
         }
@@ -246,50 +244,64 @@ PanelWindow {
           }
         }
 
-        delegate: Rectangle {
-          width: 75
-          height: 75
-          radius: 50
-          color: (GridView.isCurrentItem || mouseArea.containsMouse)
-                  ? Theme.colSelect
-                  : Theme.colBg
-          border.width: 2
-          border.color: Theme.colAccent
-          clip: true
+        delegate: Item {
+          id: appDelegate
+          width: 80
+          height: 80
+          property bool isHighlighted: GridView.isCurrentItem || mouseArea.containsMouse
 
-          ColumnLayout {
+          RectangularShadow {
             anchors.centerIn: parent
-            width: parent.width - 10
-            spacing: 2
-
-            IconImage {
-              source: Quickshell.iconPath(modelData.icon, true) || ""
-              Layout.preferredWidth: 32
-              Layout.preferredHeight: 32
-              Layout.alignment: Qt.AlignHCenter
-            }
-
-            Text {
-              text: modelData.name
-              color: Theme.colAccent
-              font.family: Theme.fontFamily
-              font.pointSize: 8
-              Layout.fillWidth: true
-              horizontalAlignment: Text.AlignHCenter
-              elide: Text.ElideRight
-              maximumLineCount: 1
-            }
+            width: appDelegate.width
+            height: appDelegate.height
+            blur: 2
+            spread: 1
+            radius: appDelegate.width
+            color: Theme.colAccent
+            visible: isHighlighted
           }
 
-          MouseArea {
-            id: mouseArea
+          Rectangle {
             anchors.fill: parent
-            hoverEnabled: true
-            onClicked: {
-              Quickshell.execDetached({
-                command: ["sh", "-c", modelData.execute()]
-              })
-              launcherMenu.open = false
+            radius: width
+            color: isHighlighted ? Theme.colSelect : Theme.colBg
+            border.color: Theme.colAccent
+            border.width: 2
+            
+            ColumnLayout {
+              anchors.centerIn: parent
+              width: parent.width - 15
+              spacing: 4
+
+              IconImage {
+                source: Quickshell.iconPath(modelData.icon, true) || ""
+                Layout.preferredWidth: 34
+                Layout.preferredHeight: 34
+                Layout.alignment: Qt.AlignHCenter
+              }
+
+              Text {
+                text: modelData.name
+                color: Theme.colAccent
+                font.family: Theme.fontFamily
+                font.pointSize: 7
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                elide: Text.ElideRight
+                maximumLineCount: 1
+              }
+            }
+
+            MouseArea {
+              id: mouseArea
+              anchors.fill: parent
+              hoverEnabled: true
+              onClicked: {
+                Quickshell.execDetached({
+                  command: ["sh", "-c", modelData.execute()]
+                })
+                launcherMenu.open = false
+              }
             }
           }
         }
