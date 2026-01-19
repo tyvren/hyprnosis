@@ -12,8 +12,8 @@ PanelWindow {
   id: launcherMenu
   visible: false
   focusable: true
-  implicitWidth: 520
-  implicitHeight: 500
+  implicitWidth: 540
+  implicitHeight: 520
   color: "transparent"
   property string query: ""
   property var filteredApps: DesktopEntries.applications.values
@@ -64,8 +64,8 @@ PanelWindow {
   Item {
     id: launcherContainer
     width: 520
-    height: 0
-    y: 500
+    height: 520
+    anchors.horizontalCenter: parent.horizontalCenter
     state: launcherMenu.open ? "open" : "closed"
     focus: true
 
@@ -77,8 +77,7 @@ PanelWindow {
         PropertyChanges {
           target: launcherContainer
           opacity: 0
-          height: 0
-          y: 500
+          y: 520
         }
       },
       State {
@@ -86,7 +85,6 @@ PanelWindow {
         PropertyChanges {
           target: launcherContainer
           opacity: 1
-          height: 500
           y: 0
         }
       }
@@ -98,7 +96,7 @@ PanelWindow {
         to: "open"
         SequentialAnimation {
           NumberAnimation {
-            properties: "opacity, height, y"
+            properties: "opacity, y"
             duration: 300
             easing.type: Easing.OutQuart
           }
@@ -115,7 +113,7 @@ PanelWindow {
         SequentialAnimation {
           ScriptAction { script: launcherMenu.showContent = false }
           NumberAnimation {
-            properties: "opacity, height, y"
+            properties: "opacity, y"
             duration: 300
             easing.type: Easing.InQuart
           }
@@ -127,11 +125,12 @@ PanelWindow {
     Rectangle {
       id: mainBackground
       anchors.fill: parent
+      anchors.topMargin: 20
       topLeftRadius: 15
       topRightRadius: 15
       color: Theme.colBg
       clip: true
-      
+
       Image {
         id: logoImage
         anchors.centerIn: parent
@@ -151,6 +150,16 @@ PanelWindow {
         focus: true
         sourceComponent: launcherContent
       }
+    }
+
+    MultiEffect {
+      id: launcherShadow
+      anchors.fill: mainBackground
+      source: mainBackground
+      shadowEnabled: true
+      shadowColor: Theme.colAccent
+      shadowBlur: 0.2
+      z: -1
     }
   }
 
