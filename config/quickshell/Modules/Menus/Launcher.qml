@@ -182,6 +182,7 @@ PanelWindow {
           anchors.fill: parent
           anchors.leftMargin: 15
           placeholderText: "Search apps..."
+          placeholderTextColor: Theme.colAccent
           color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pointSize: 14
