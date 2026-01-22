@@ -29,8 +29,10 @@ PanelWindow {
   onVisibleChanged: {
     if (visible) {
       open = true
+      focusGrab.active = true
     } else {
       open = false
+      focusGrab.active = false
     }
     query = ""
   }
@@ -67,7 +69,6 @@ PanelWindow {
     height: 520
     anchors.horizontalCenter: parent.horizontalCenter
     state: launcherMenu.open ? "open" : "closed"
-    focus: true
 
     Keys.onEscapePressed: launcherMenu.open = false
 
@@ -196,13 +197,10 @@ PanelWindow {
           font.family: Theme.fontFamily
           font.pointSize: 14
           background: null
-          focus: true
           text: launcherMenu.query
 
           onTextChanged: {
-            if (activeFocus) {
-              launcherMenu.query = text
-            }
+            launcherMenu.query = text
           }
 
           Keys.onPressed: event => {
@@ -235,7 +233,6 @@ PanelWindow {
         keyNavigationEnabled: true
         cellWidth: 94
         cellHeight: 105
-        focus: true
         currentIndex: launcherMenu.filteredApps.length > 0 ? 0 : -1
 
         ScrollBar.vertical: ScrollBar {
@@ -317,5 +314,14 @@ PanelWindow {
         }
       }
     }
+  }
+
+  HyprlandFocusGrab {
+    id: focusGrab
+    windows: [ launcherMenu ]
+    
+    onCleared: {
+      launcherMenu.open = false
+    } 
   }
 }
