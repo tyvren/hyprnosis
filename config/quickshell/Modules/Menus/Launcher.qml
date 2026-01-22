@@ -97,7 +97,7 @@ PanelWindow {
         SequentialAnimation {
           NumberAnimation {
             properties: "opacity, y"
-            duration: 300
+            duration: 150
             easing.type: Easing.OutQuart
           }
           ScriptAction { 

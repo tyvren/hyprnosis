@@ -16,26 +16,8 @@ Variants {
       id: root
       required property var modelData
 
-      PanelWindow {
-        id: backgroundLayer
-        color: "transparent"
-        anchors {
-          top: true
-          bottom: true
-          left: true
-          right: true
-        }
-        screen: modelData
-        exclusionMode: ExclusionMode.Ignore
-        WlrLayershell.layer: WlrLayer.Bottom
-
-        Image {
-          id: wallpaper
-          anchors.fill: parent
-          source: Theme.wallpaperPath
-          asynchronous: true
-          fillMode: Image.PreserveAspectCrop
-        }
+      Wallpaper {
+        modelData: root.modelData
       }
 
       PanelWindow {
