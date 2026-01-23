@@ -116,7 +116,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: contentHeight
         interactive: false
-        cellWidth: Math.floor(width / Math.floor(width / 225))
+        cellWidth: 225
         cellHeight: 160
         model: wallpaperPane.themeWallpaperList
         delegate: wallpaperDelegate
@@ -133,8 +133,8 @@ ColumnLayout {
       Rectangle {
         id: imageBox
         anchors.centerIn: parent
-        width: parent.width - 10
-        height: parent.height - 10
+        width: 215
+        height: 150
         color: "transparent"
         border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
         border.width: 1
