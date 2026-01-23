@@ -72,7 +72,7 @@ ColumnLayout {
             id: refreshMa
             anchors.fill: parent
             hoverEnabled: true
-            onClicked: loader.start()
+            onClicked: loader.running = true
           }
 
           RotationAnimation on rotation {
@@ -175,7 +175,7 @@ ColumnLayout {
                 hoverEnabled: true
                 onClicked: {
                   uninstallProc.appToRemove = modelData
-                  uninstallProc.start()
+                  uninstallProc.running = true
                 }
               }
             }
@@ -210,7 +210,7 @@ ColumnLayout {
     property string appToRemove: ""
     command: ["sh", "-c", "ghostty -e sudo pacman -Rns " + appToRemove]
     onExited: {
-      loader.start()
+      loader.running = true
     }
   }
 }
