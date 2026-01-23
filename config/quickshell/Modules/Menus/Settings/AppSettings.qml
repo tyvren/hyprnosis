@@ -18,6 +18,7 @@ ColumnLayout {
   property string searchQuery: ""
 
   Text {
+    id: appMgtHeader
     text: "App Management"
     color: Theme.colAccent
     font.pointSize: 16
@@ -26,16 +27,132 @@ ColumnLayout {
 
   DividerLine {
     Layout.fillWidth: true
+    Layout.bottomMargin: 30
+  }
+
+  Text {
+    id: installHeader
+    text: "Install"
+    color: Theme.colAccent
+    font.pointSize: 12
+    font.family: Theme.fontFamily
+  }
+
+  DividerLine {
+    Layout.fillWidth: true
   }
 
   RowLayout {
+    id: installRow
     Layout.fillWidth: true
+    Layout.alignment: Qt.AlignHCenter
+    Layout.margins: 10
+    spacing: 40
+
+    Item {
+      id: archInstallBtn
+      width: 180
+      height: 45
+      
+      RectangularShadow {
+        id: archBtnShadow
+        anchors.fill: parent
+        blur: 1
+        spread: 0
+        radius: 10
+        color: Theme.colAccent
+      }
+
+      Rectangle {
+        id: archBtn
+        anchors.fill: parent
+        color: archBtnArea.containsMouse ? Theme.colAccent : Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 1
+        radius: 10
+
+        Text {
+          id: archBtnTxt
+          anchors.centerIn: parent
+          color: archBtnArea.containsMouse ? Theme.colBg : Theme.colAccent
+          font.pointSize: 12
+          font.family: Theme.fontFamily
+          text: "Install Arch App"
+        }
+        
+        MouseArea {
+          id: archBtnArea
+          anchors.fill: parent
+          hoverEnabled: true
+          onClicked: archInstallProc.running = true
+        }
+      }
+    }
+    
+    Item {
+      id: aurInstallBtn
+      width: 180
+      height: 45
+      
+      RectangularShadow {
+        id: aurBtnShadow
+        anchors.fill: parent
+        blur: 1
+        spread: 0
+        radius: 10
+        color: Theme.colAccent
+      }
+
+      Rectangle {
+        id: aurBtn
+        anchors.fill: parent
+        color: aurBtnArea.containsMouse ? Theme.colAccent : Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 1
+        radius: 10
+
+        Text {
+          id: aurBtnTxt
+          anchors.centerIn: parent
+          color: aurBtnArea.containsMouse ? Theme.colBg : Theme.colAccent
+          font.pointSize: 12
+          font.family: Theme.fontFamily
+          text: "Install AUR App"
+        }
+
+        MouseArea {
+          id: aurBtnArea
+          anchors.fill: parent
+          hoverEnabled: true
+          onClicked: aurInstallProc.running = true
+        }
+      }
+    }
+  }
+
+  Text {
+    id: uninstallHeader
+    text: "Uninstall"
+    color: Theme.colAccent
+    font.pointSize: 12
+    font.family: Theme.fontFamily
+  }
+
+  DividerLine {
+    Layout.fillWidth: true
+  }
+
+  RowLayout {
+    id: uninstallRow
+    Layout.fillWidth: true
+    Layout.margins: 10
     spacing: 10
 
     Rectangle {
       id: searchBar
       Layout.fillWidth: true
       Layout.preferredHeight: 45
+      Layout.margins: 10
       color: Theme.colBg
       radius: 10
       border.color: Theme.colAccent
@@ -203,6 +320,16 @@ ColumnLayout {
         appPane.filteredList = appPane.fullAppList
       }
     }
+  }
+
+  Process {
+    id: archInstallProc
+    command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"]
+  }
+
+  Process {
+    id: aurInstallProc
+    command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"]
   }
 
   Process {
