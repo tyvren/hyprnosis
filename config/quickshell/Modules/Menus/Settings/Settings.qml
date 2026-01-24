@@ -3,8 +3,10 @@ import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
+import Quickshell.Wayland
 import qs.Components
 import qs.Services
 import qs.Themes
@@ -16,6 +18,14 @@ PanelWindow {
   implicitHeight: 900
   color: "transparent"
   property int activeIndex: 0
+
+  WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
+
+  onVisibleChanged: {
+    if (visible) {
+      forceActiveFocus()
+    }
+  }
 
   IpcHandler {
     target: "settingsmenu"
