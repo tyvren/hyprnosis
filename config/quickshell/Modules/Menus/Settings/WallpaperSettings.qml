@@ -54,7 +54,7 @@ ColumnLayout {
 
     ColumnLayout {
       width: scrollRoot.width
-      spacing: 25
+      spacing: 15
 
       ColumnLayout {
         spacing: 10
@@ -81,9 +81,10 @@ ColumnLayout {
       GridView {
         id: customGrid
         Layout.fillWidth: true
-        Layout.preferredHeight: contentHeight
-        interactive: false
-        cellWidth: Math.floor(width / Math.floor(width / 225))
+        Layout.preferredHeight: 320
+        interactive: true
+        clip: true
+        cellWidth:  225
         cellHeight: 160
         model: wallpaperPane.wallpaperList
         delegate: wallpaperDelegate
@@ -114,8 +115,9 @@ ColumnLayout {
       GridView {
         id: themeGrid
         Layout.fillWidth: true
-        Layout.preferredHeight: contentHeight
-        interactive: false
+        Layout.preferredHeight: 320
+        interactive: true
+        clip: true
         cellWidth: 225
         cellHeight: 160
         model: wallpaperPane.themeWallpaperList
