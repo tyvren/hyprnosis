@@ -9,9 +9,11 @@ import qs.Components
 import qs.Services
 import qs.Themes
 
-Window {
+PanelWindow {
   id: settingsmenu
   visible: false
+  implicitWidth: 825
+  implicitHeight: 900
   color: "transparent"
   property int activeIndex: 0
 
@@ -34,6 +36,8 @@ Window {
   Rectangle {
     id: menuWindow
     anchors.fill: parent
+    width: 825
+    height: 900
     radius: 20
     color: Theme.colBg
     border.color: Theme.colAccent
