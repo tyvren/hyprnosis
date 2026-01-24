@@ -84,7 +84,7 @@ ColumnLayout {
           id: archBtnArea
           anchors.fill: parent
           hoverEnabled: true
-          onClicked: archInstallProc.running = true
+          onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"])
         }
       }
     }
@@ -124,7 +124,7 @@ ColumnLayout {
           id: aurBtnArea
           anchors.fill: parent
           hoverEnabled: true
-          onClicked: aurInstallProc.running = true
+          onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"])
         }
       }
     }
@@ -320,16 +320,6 @@ ColumnLayout {
         appPane.filteredList = appPane.fullAppList
       }
     }
-  }
-
-  Process {
-    id: archInstallProc
-    command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"]
-  }
-
-  Process {
-    id: aurInstallProc
-    command: ["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"]
   }
 
   Process {
