@@ -40,7 +40,9 @@ ColumnLayout {
       antialiasing: true
     }
 
-    DividerLine { Layout.fillWidth: true }
+    DividerLine { 
+      Layout.fillWidth: true 
+    }
   }
 
   GridLayout {
@@ -54,41 +56,177 @@ ColumnLayout {
       spacing: 15
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
-      Text { text: "General Layout"; color: Theme.colAccent; font.pointSize: 10; font.family: Theme.fontFamily; font.bold: true }
-      SettingRow { label: "Gaps In"; StyledInput { text: hyprPane.gapsIn; onUserEdited: (val) => hyprPane.gapsIn = val } }
-      SettingRow { label: "Gaps Out"; StyledInput { text: hyprPane.gapsOut; onUserEdited: (val) => hyprPane.gapsOut = val } }
-      SettingRow { label: "Border Size"; StyledInput { text: hyprPane.borderSize; onUserEdited: (val) => hyprPane.borderSize = val } }
+
+      Text { 
+        text: "General Layout" 
+        color: Theme.colAccent 
+        font.pointSize: 10 
+        font.family: Theme.fontFamily 
+        font.bold: true
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Gaps In"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.gapsIn
+          onUserEdited: (val) => hyprPane.gapsIn = val 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Gaps Out"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.gapsOut
+          onUserEdited: (val) => hyprPane.gapsOut = val 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Border Size"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.borderSize
+          onUserEdited: (val) => hyprPane.borderSize = val 
+        }
+      }
     }
 
     ColumnLayout {
       spacing: 15
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
-      Text { text: "Decoration"; color: Theme.colAccent; font.pointSize: 10; font.family: Theme.fontFamily; font.bold: true }
-      SettingRow { label: "Rounding"; StyledInput { text: hyprPane.rounding; onUserEdited: (val) => hyprPane.rounding = val } }
-      SettingRow { label: "Active Opacity"; StyledInput { text: hyprPane.activeOpacity; onUserEdited: (val) => hyprPane.activeOpacity = val } }
-      SettingRow { label: "Inactive Opacity"; StyledInput { text: hyprPane.inactiveOpacity; onUserEdited: (val) => hyprPane.inactiveOpacity = val } }
+
+      Text { 
+        text: "Decoration" 
+        color: Theme.colAccent 
+        font.pointSize: 10 
+        font.family: Theme.fontFamily
+        font.bold: true 
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Rounding"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.rounding
+          onUserEdited: (val) => hyprPane.rounding = val 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Active Opacity"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.activeOpacity
+          onUserEdited: (val) => hyprPane.activeOpacity = val 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Inactive Opacity"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.inactiveOpacity
+          onUserEdited: (val) => hyprPane.inactiveOpacity = val 
+        }
+      }
     }
 
     ColumnLayout {
       spacing: 15
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
-      Text { text: "Blur Settings"; color: Theme.colAccent; font.pointSize: 10; font.family: Theme.fontFamily; font.bold: true }
-      SettingRow { label: "Blur Enabled"; CustomSwitch { checked: hyprPane.blurEnabled === "true"; onToggled: hyprPane.blurEnabled = checked.toString() } }
-      SettingRow { label: "Blur Size"; enabled: hyprPane.blurEnabled === "true"; StyledInput { text: hyprPane.blurSize; onUserEdited: (val) => hyprPane.blurSize = val } }
-      SettingRow { label: "Blur Passes"; enabled: hyprPane.blurEnabled === "true"; StyledInput { text: hyprPane.blurPasses; onUserEdited: (val) => hyprPane.blurPasses = val } }
+
+      Text { 
+        text: "Blur Settings" 
+        color: Theme.colAccent 
+        font.pointSize: 10 
+        font.family: Theme.fontFamily 
+        font.bold: true 
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Blur Enabled"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledSwitch { 
+          checked: hyprPane.blurEnabled === "true" 
+          onToggled: hyprPane.blurEnabled = checked.toString() 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
+        enabled: hyprPane.blurEnabled === "true"
+        Text { text: "Blur Size"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.blurSize
+          onUserEdited: (val) => hyprPane.blurSize = val 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
+        enabled: hyprPane.blurEnabled === "true"
+        Text { text: "Blur Passes"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledInput { 
+          text: hyprPane.blurPasses
+          onUserEdited: (val) => hyprPane.blurPasses = val 
+        }
+      }
     }
 
     ColumnLayout {
       spacing: 15
       Layout.fillWidth: true
       Layout.alignment: Qt.AlignTop
-      Text { text: "Miscellaneous"; color: Theme.colAccent; font.pointSize: 10; font.family: Theme.fontFamily; font.bold: true }
-      SettingRow { label: "Tearing"; CustomSwitch { checked: hyprPane.allowTearing === "true"; onToggled: hyprPane.allowTearing = checked.toString() } }
-      SettingRow { label: "Shadows"; CustomSwitch { checked: hyprPane.shadowEnabled === "true"; onToggled: hyprPane.shadowEnabled = checked.toString() } }
-      SettingRow { label: "Hyprland Logo"; CustomSwitch { checked: hyprPane.disableHyprlandLogo === "false"; onToggled: hyprPane.disableHyprlandLogo = (!checked).toString() } }
-      SettingRow { label: "Force Default Wallpaper"; CustomSwitch { checked: hyprPane.forceDefaultWallpaper === "1"; onToggled: hyprPane.forceDefaultWallpaper = checked ? "1" : "0" } }
+
+      Text { 
+        text: "Miscellaneous" 
+        color: Theme.colAccent 
+        font.pointSize: 10 
+        font.family: Theme.fontFamily 
+        font.bold: true 
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Tearing"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledSwitch { 
+          checked: hyprPane.allowTearing === "true" 
+          onToggled: hyprPane.allowTearing = checked.toString() 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Shadows"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledSwitch {
+          checked: hyprPane.shadowEnabled === "true" 
+          onToggled: hyprPane.shadowEnabled = checked.toString() 
+        }
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Hyprland Logo"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledSwitch { 
+          checked: hyprPane.disableHyprlandLogo === "false" 
+          onToggled: hyprPane.disableHyprlandLogo = (!checked).toString() 
+        } 
+      }
+
+      RowLayout {
+        Layout.fillWidth: true
+        Text { text: "Force Default Wallpaper"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        StyledSwitch { 
+          checked: hyprPane.forceDefaultWallpaper === "1" 
+          onToggled: hyprPane.forceDefaultWallpaper = checked ? "1" : "0" 
+        }
+      }
     }
   }
 
@@ -101,9 +239,14 @@ ColumnLayout {
     Layout.preferredHeight: 40
 
     MultiEffect {
-      anchors.fill: applyBtnRect; source: applyBtnRect
-      shadowEnabled: true; shadowBlur: 0.2; shadowColor: Theme.colAccent
-      shadowVerticalOffset: 1; shadowHorizontalOffset: 0; opacity: 0.8
+      anchors.fill: applyBtnRect 
+      source: applyBtnRect
+      shadowEnabled: true 
+      shadowBlur: 0.2 
+      shadowColor: Theme.colAccent
+      shadowVerticalOffset: 1 
+      shadowHorizontalOffset: 0 
+      opacity: 0.8
     }
 
     Rectangle {
@@ -119,7 +262,10 @@ ColumnLayout {
       }
 
       MouseArea {
-        id: applyMa; anchors.fill: parent; hoverEnabled: true
+        id: applyMa 
+        anchors.fill: parent 
+        hoverEnabled: true
+
         onClicked: {
           Config.data.gapsIn = hyprPane.gapsIn
           Config.data.gapsOut = hyprPane.gapsOut
@@ -152,38 +298,6 @@ ColumnLayout {
             hyprPane.forceDefaultWallpaper
           ]);
         }
-      }
-    }
-  }
-
-  component StyledInput : TextField {
-    id: input
-    signal userEdited(string val)
-    color: Theme.colAccent; font.family: Theme.fontFamily; font.pointSize: 10
-    verticalAlignment: TextInput.AlignVCenter; horizontalAlignment: TextInput.AlignHCenter
-    onTextEdited: userEdited(text)
-    background: Rectangle {
-      implicitWidth: 80; implicitHeight: 30; radius: 8; color: Theme.colMuted; opacity: 0.3
-      border.color: input.activeFocus ? Theme.colAccent : "transparent"; border.width: 1
-    }
-  }
-
-  component SettingRow : RowLayout {
-    property string label: ""
-    default property alias content: container.data
-    Layout.fillWidth: true; opacity: enabled ? 1.0 : 0.4
-    Text { text: label; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
-    Item { id: container; Layout.preferredWidth: 80; Layout.preferredHeight: 30 }
-  }
-
-  component CustomSwitch : Switch {
-    id: control
-    indicator: Rectangle {
-      implicitWidth: 44; implicitHeight: 22; radius: 11; color: control.checked ? Theme.colAccent : Theme.colMuted; opacity: control.checked ? 1.0 : 0.5
-      Rectangle {
-        x: control.checked ? parent.width - width - 2 : 2; y: 2; width: 18; height: 18; radius: 9
-        color: control.checked ? Theme.colBg : Theme.colAccent
-        Behavior on x { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
       }
     }
   }
