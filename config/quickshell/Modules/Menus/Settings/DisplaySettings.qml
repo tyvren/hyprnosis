@@ -436,7 +436,7 @@ ColumnLayout {
   Item {
     id: applyBtn
     Layout.alignment: Qt.AlignRight
-    Layout.preferredWidth: 140
+    Layout.preferredWidth: 120
     Layout.preferredHeight: 40
 
     MultiEffect {
@@ -458,7 +458,7 @@ ColumnLayout {
 
       Text {
         anchors.centerIn: parent
-        text: "Apply Settings"
+        text: "Apply"
         color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
         font.bold: true
         font.family: Theme.fontFamily
