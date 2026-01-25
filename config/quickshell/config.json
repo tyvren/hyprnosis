@@ -1,4 +1,17 @@
 {
-    "theme": "hyprnosis",
-    "wallpaper": ""
+  "activeOpacity": "1.0",
+  "allowTearing": "false",
+  "blurEnabled": "true",
+  "blurPasses": "3",
+  "blurSize": "3",
+  "borderSize": "2",
+  "disableHyprlandLogo": "true",
+  "forceDefaultWallpaper": "0",
+  "gapsIn": "2",
+  "gapsOut": "4",
+  "inactiveOpacity": "0.6",
+  "rounding": "20",
+  "shadowEnabled": "true",
+  "theme": "hyprnosis",
+  "wallpaper": ""
 }
