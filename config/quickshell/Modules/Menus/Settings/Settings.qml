@@ -81,7 +81,8 @@ PanelWindow {
               {icon: "󰍹"}, 
               {icon: "󰖩"}, 
               {icon: ""}, 
-              {icon: "󰸉"}, 
+              {icon: "󰸉"},
+              {icon: ""},
               {icon: "󰚰"}
             ]
 
@@ -135,6 +136,7 @@ PanelWindow {
             WallpaperSettings {
               active: settingsmenu.visible && settingsmenu.activeIndex === 7
             }
+            HyprSettings {}
             UpdateSettings {}
           }
         }
