@@ -67,7 +67,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Gaps In"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Gaps In"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.gapsIn
           onUserEdited: (val) => hyprPane.gapsIn = val 
@@ -76,7 +81,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Gaps Out"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Gaps Out"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.gapsOut
           onUserEdited: (val) => hyprPane.gapsOut = val 
@@ -85,7 +95,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Border Size"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Border Size"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.borderSize
           onUserEdited: (val) => hyprPane.borderSize = val 
@@ -108,7 +123,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Rounding"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Rounding"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.rounding
           onUserEdited: (val) => hyprPane.rounding = val 
@@ -117,7 +137,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Active Opacity"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Active Opacity"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.activeOpacity
           onUserEdited: (val) => hyprPane.activeOpacity = val 
@@ -126,7 +151,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Inactive Opacity"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Inactive Opacity"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.inactiveOpacity
           onUserEdited: (val) => hyprPane.inactiveOpacity = val 
@@ -149,7 +179,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Blur Enabled"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Blur Enabled"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledSwitch { 
           checked: hyprPane.blurEnabled === "true" 
           onToggled: hyprPane.blurEnabled = checked.toString() 
@@ -160,7 +195,12 @@ ColumnLayout {
         Layout.fillWidth: true
         opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
         enabled: hyprPane.blurEnabled === "true"
-        Text { text: "Blur Size"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Blur Size"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.blurSize
           onUserEdited: (val) => hyprPane.blurSize = val 
@@ -171,7 +211,12 @@ ColumnLayout {
         Layout.fillWidth: true
         opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
         enabled: hyprPane.blurEnabled === "true"
-        Text { text: "Blur Passes"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Blur Passes"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledInput { 
           text: hyprPane.blurPasses
           onUserEdited: (val) => hyprPane.blurPasses = val 
@@ -194,7 +239,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Tearing"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Tearing"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledSwitch { 
           checked: hyprPane.allowTearing === "true" 
           onToggled: hyprPane.allowTearing = checked.toString() 
@@ -203,7 +253,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Shadows"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Shadows"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledSwitch {
           checked: hyprPane.shadowEnabled === "true" 
           onToggled: hyprPane.shadowEnabled = checked.toString() 
@@ -212,7 +267,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Hyprland Logo"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Hyprland Logo"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledSwitch { 
           checked: hyprPane.disableHyprlandLogo === "false" 
           onToggled: hyprPane.disableHyprlandLogo = (!checked).toString() 
@@ -221,7 +281,12 @@ ColumnLayout {
 
       RowLayout {
         Layout.fillWidth: true
-        Text { text: "Force Default Wallpaper"; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { 
+          text: "Force Default Wallpaper"
+          color: Theme.colAccent
+          font.family: Theme.fontFamily
+          Layout.fillWidth: true 
+        }
         StyledSwitch { 
           checked: hyprPane.forceDefaultWallpaper === "1" 
           onToggled: hyprPane.forceDefaultWallpaper = checked ? "1" : "0" 
@@ -230,7 +295,9 @@ ColumnLayout {
     }
   }
 
-  Item { Layout.fillHeight: true }
+  Item { 
+    Layout.fillHeight: true 
+  }
 
   Item {
     id: applyBtn
@@ -251,14 +318,16 @@ ColumnLayout {
 
     Rectangle {
       id: applyBtnRect
-      anchors.fill: parent; radius: 10
+      anchors.fill: parent
+      radius: 10
       color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
 
       Text {
         anchors.centerIn: parent
         text: "Apply Changes"
         color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
-        font.bold: true; font.family: Theme.fontFamily
+        font.bold: true
+        font.family: Theme.fontFamily
       }
 
       MouseArea {
