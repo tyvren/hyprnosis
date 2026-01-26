@@ -302,8 +302,8 @@ ColumnLayout {
   Item {
     id: applyBtn
     Layout.alignment: Qt.AlignRight
-    Layout.preferredWidth: 120
-    Layout.preferredHeight: 40
+    Layout.preferredWidth: 90
+    Layout.preferredHeight: 35
 
     MultiEffect {
       anchors.fill: applyBtnRect 

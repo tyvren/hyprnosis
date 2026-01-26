@@ -74,13 +74,13 @@ PanelWindow {
 
           Repeater {
             model: [ 
-              {icon: "󰋼"}, 
-              {icon: "󰏖"}, 
-              {icon: "󰓃"}, 
-              {icon: "󰂯"}, 
-              {icon: "󰍹"}, 
-              {icon: "󰖩"}, 
-              {icon: ""}, 
+              {icon: "󰋼"},
+              {icon: "󰏖"},
+              {icon: "󰓃"},
+              {icon: "󰂯"},
+              {icon: "󰖩"},
+              {icon: "󰍹"},
+              {icon: ""},
               {icon: "󰸉"},
               {icon: ""},
               {icon: "󰚰"}
@@ -128,10 +128,10 @@ PanelWindow {
             AppSettings {}
             AudioSettings {}
             BluetoothSettings {}
-            DisplaySettings { 
-              active: settingsmenu.visible && settingsmenu.activeIndex === 4 
-            } 
             NetworkSettings {}
+            DisplaySettings {
+              active: settingsmenu.visible && settingsmenu.activeIndex === 5
+            }
             ThemeSettings {}
             WallpaperSettings {
               active: settingsmenu.visible && settingsmenu.activeIndex === 7

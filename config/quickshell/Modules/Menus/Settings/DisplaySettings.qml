@@ -162,7 +162,7 @@ ColumnLayout {
 
       Item {
         Layout.preferredWidth: 220
-        Layout.preferredHeight: 45
+        Layout.preferredHeight: 35
         Layout.alignment: Qt.AlignHCenter
 
         ComboBox {
@@ -266,7 +266,7 @@ ColumnLayout {
 
           Item {
             Layout.preferredWidth: 70
-            Layout.preferredHeight: 32
+            Layout.preferredHeight: 35
 
             MultiEffect {
               anchors.fill: posBtnRect
@@ -282,7 +282,7 @@ ColumnLayout {
             Rectangle {
               id: posBtnRect
               anchors.fill: parent
-              radius: 6
+              radius: 10
               color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
               Text {
@@ -327,7 +327,7 @@ ColumnLayout {
 
           Item {
             Layout.preferredWidth: 70
-            Layout.preferredHeight: 32
+            Layout.preferredHeight: 35
 
             MultiEffect {
               anchors.fill: scaleBtnRect
@@ -343,7 +343,7 @@ ColumnLayout {
             Rectangle {
               id: scaleBtnRect
               anchors.fill: parent
-              radius: 6
+              radius: 10
               color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
               Text {
@@ -388,7 +388,7 @@ ColumnLayout {
 
           Item {
             Layout.preferredWidth: 70
-            Layout.preferredHeight: 32
+            Layout.preferredHeight: 35
 
             MultiEffect {
               anchors.fill: gdkBtnRect
@@ -404,7 +404,7 @@ ColumnLayout {
             Rectangle {
               id: gdkBtnRect
               anchors.fill: parent
-              radius: 6
+              radius: 10
               color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colAccent : Theme.colMuted
 
               Text {
@@ -436,8 +436,8 @@ ColumnLayout {
   Item {
     id: applyBtn
     Layout.alignment: Qt.AlignRight
-    Layout.preferredWidth: 120
-    Layout.preferredHeight: 40
+    Layout.preferredWidth: 90
+    Layout.preferredHeight: 35
 
     MultiEffect {
       anchors.fill: applyBtnRect
