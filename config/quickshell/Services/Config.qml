@@ -9,6 +9,7 @@ Singleton {
 
   readonly property string homeDir: Quickshell.env("HOME")
   readonly property string scriptPath: homeDir + "/.config/hyprnosis/modules/quickshell"
+  readonly property string themeScript: homeDir + "/.config/hyprnosis/modules/style"
   readonly property string configPath: Quickshell.shellDir + "/config.json"
   readonly property alias data: adapter
 
@@ -73,7 +74,7 @@ Singleton {
   function updateTheme(themeId, scriptName) {
     adapter.theme = themeId
     if (scriptName) {
-      Quickshell.execDetached([root.scriptPath + "/theme_changer.sh", scriptName])
+      Quickshell.execDetached([root.themeScript + "/theme_changer.sh", scriptName])
     }
   }
 
