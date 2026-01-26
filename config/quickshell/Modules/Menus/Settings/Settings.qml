@@ -83,6 +83,7 @@ PanelWindow {
               {icon: ""},
               {icon: "󰸉"},
               {icon: ""},
+              {icon: ""},
               {icon: "󰚰"}
             ]
 
@@ -137,6 +138,7 @@ PanelWindow {
               active: settingsmenu.visible && settingsmenu.activeIndex === 7
             }
             HyprSettings {}
+            Keybinds {}
             UpdateSettings {}
           }
         }
