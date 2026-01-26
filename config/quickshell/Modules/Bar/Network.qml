@@ -13,7 +13,7 @@ Item {
     id: button
     icon: ""
     onClicked: {
-      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "5"])
+      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "4"])
     }
   }
 }
