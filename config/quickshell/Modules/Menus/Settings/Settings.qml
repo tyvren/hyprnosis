@@ -17,9 +17,8 @@ PanelWindow {
   implicitWidth: 825
   implicitHeight: 900
   color: "transparent"
+  focusable: true
   property int activeIndex: 0
-
-  WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
   IpcHandler {
     target: "settingsmenu"
