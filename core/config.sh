@@ -13,10 +13,12 @@ config_setup() {
   cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
   rm -rf /tmp/wallpapers
 
+  chmod +x "$HOME/.config/hyprnosis/modules/diskmanagement/"*
   chmod +x "$HOME/.config/hyprnosis/modules/packages/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/quickconfig/"*
+  chmod +x "$HOME/.config/hyprnosis/modules/quickshell/"*
   chmod +x "$HOME/.config/hyprnosis/modules/style/"*
   chmod +x "$HOME/.config/hyprnosis/modules/updates/"*
-  chmod +x "$HOME/.config/hyprnosis/modules/quickconfig/"*
 
   log_success "Configuration setup complete"
 }
