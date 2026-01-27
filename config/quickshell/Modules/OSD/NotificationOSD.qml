@@ -65,7 +65,7 @@ Scope {
 
               Text {
                 text: root.currentSummary
-                color: Theme.colAccent
+                color: Theme.colText
                 font.bold: true
                 font.pointSize: 12
                 elide: Text.ElideRight
@@ -74,7 +74,7 @@ Scope {
 
               Text {
                 text: root.currentBody
-                color: Theme.colAccent
+                color: Theme.colText
                 font.pointSize: 11
                 elide: Text.ElideRight
                 maximumLineCount: 1

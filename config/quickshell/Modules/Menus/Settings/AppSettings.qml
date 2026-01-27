@@ -74,7 +74,7 @@ ColumnLayout {
         Text {
           id: archBtnTxt
           anchors.centerIn: parent
-          color: archBtnArea.containsMouse ? Theme.colBg : Theme.colAccent
+          color: archBtnArea.containsMouse ? Theme.colBg : Theme.colText
           font.pointSize: 12
           font.family: Theme.fontFamily
           text: "Install Arch App"
@@ -114,7 +114,7 @@ ColumnLayout {
         Text {
           id: aurBtnTxt
           anchors.centerIn: parent
-          color: aurBtnArea.containsMouse ? Theme.colBg : Theme.colAccent
+          color: aurBtnArea.containsMouse ? Theme.colBg : Theme.colText
           font.pointSize: 12
           font.family: Theme.fontFamily
           text: "Install AUR App"
@@ -167,7 +167,7 @@ ColumnLayout {
           id: searchInput
           Layout.fillWidth: true
           verticalAlignment: Text.AlignVCenter
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           font.pointSize: 12
           clip: true
@@ -205,7 +205,7 @@ ColumnLayout {
         anchors.leftMargin: 15
         verticalAlignment: Text.AlignVCenter
         text: "Search " + fullAppList.length + " installed apps..."
-        color: Theme.colAccent
+        color: Theme.colText
         opacity: 0.3
         font.family: Theme.fontFamily
         visible: !searchInput.text && !searchInput.focus
@@ -256,7 +256,7 @@ ColumnLayout {
             anchors.left: parent.left
             anchors.leftMargin: 20
             text: modelData
-            color: Theme.colAccent
+            color: Theme.colText
             font.family: Theme.fontFamily
             font.pointSize: 11
             font.bold: appRow.isHovered

@@ -58,7 +58,7 @@ Scope {
             anchors.rightMargin: 10
 
             Text {
-              color: Theme.colHilight
+              color: Theme.colAccent
               font.pointSize: 16
               text: ""
             }
@@ -70,7 +70,7 @@ Scope {
               color: Theme.colMuted
 
               Rectangle {
-                color: Theme.colHilight
+                color: Theme.colAccent
                 anchors.left: parent.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom

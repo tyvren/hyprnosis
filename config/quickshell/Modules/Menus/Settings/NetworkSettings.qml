@@ -51,7 +51,7 @@ Item {
 
         Text {
           text: "Ethernet (" + Network.ethernetInterface + ")"
-          color: Theme.colAccent
+          color: Theme.colText
           font.bold: true
           font.family: Theme.fontFamily
           anchors.verticalCenter: parent.verticalCenter
@@ -61,7 +61,7 @@ Item {
 
         Text {
           text: "Connected"
-          color: Theme.colAccent
+          color: Theme.colText
           font.pointSize: 9
           font.family: Theme.fontFamily
           anchors.verticalCenter: parent.verticalCenter
@@ -150,13 +150,13 @@ Item {
 
               Text {
                 text: modelData.ssid
-                color: Theme.colAccent
+                color: Theme.colText
                 font.bold: modelData.connected
                 font.family: Theme.fontFamily
               }
               Text {
                 text: modelData.connected ? "Connected" : (modelData.secured ? "Secured" : "Open")
-                color: modelData.connected ? Theme.colAccent : Theme.colMuted
+                color: modelData.connected ? Theme.colText : Theme.colMuted
                 font.bold: modelData.connected
                 font.pointSize: 8
                 font.family: Theme.fontFamily
@@ -183,7 +183,7 @@ Item {
                   anchors.centerIn: parent
                   text: "Forget"
                   font.pointSize: 8
-                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colText
                 }
 
                 MouseArea {
@@ -245,7 +245,7 @@ Item {
         Text {
           anchors.centerIn: parent
           text: Network.scanning ? "..." : "Rescan"
-          color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
+          color: scanMa.containsMouse ? Theme.colBg : Theme.colText
           font.bold: true
           font.family: Theme.fontFamily
         }
@@ -390,7 +390,7 @@ Item {
             Text {
               anchors.centerIn: parent
               text: Network.connecting ? "..." : "Connect"
-              color: (connectMa.containsMouse || Network.connecting) ? Theme.colBg : Theme.colAccent
+              color: (connectMa.containsMouse || Network.connecting) ? Theme.colBg : Theme.colText
               font.bold: true
             }
 

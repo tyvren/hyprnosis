@@ -59,7 +59,7 @@ ColumnLayout {
 
       Text { 
         text: "General Layout" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true
@@ -69,7 +69,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Gaps In"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -83,7 +83,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Gaps Out"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -97,7 +97,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Border Size"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -115,7 +115,7 @@ ColumnLayout {
 
       Text { 
         text: "Decoration" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily
         font.bold: true 
@@ -125,7 +125,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Rounding"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -139,7 +139,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Active Opacity"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -153,7 +153,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Inactive Opacity"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -171,7 +171,7 @@ ColumnLayout {
 
       Text { 
         text: "Blur Settings" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true 
@@ -181,7 +181,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Blur Enabled"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -197,7 +197,7 @@ ColumnLayout {
         enabled: hyprPane.blurEnabled === "true"
         Text { 
           text: "Blur Size"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -213,7 +213,7 @@ ColumnLayout {
         enabled: hyprPane.blurEnabled === "true"
         Text { 
           text: "Blur Passes"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -231,7 +231,7 @@ ColumnLayout {
 
       Text { 
         text: "Miscellaneous" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true 
@@ -241,7 +241,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Tearing"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -255,7 +255,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Shadows"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -269,7 +269,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Hyprland Logo"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -283,7 +283,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Force Default Wallpaper"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }

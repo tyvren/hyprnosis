@@ -33,12 +33,18 @@ Item {
         Layout.alignment: Qt.AlignVCenter
         
         indicator: Rectangle {
-          implicitWidth: 48; implicitHeight: 24; radius: 12
+          implicitWidth: 48 
+          implicitHeight: 24 
+          radius: 12
           color: btToggle.checked ? Theme.colAccent : Theme.colMuted
           opacity: btToggle.checked ? 1.0 : 0.3
+
           Rectangle {
-            x: btToggle.checked ? parent.width - width - 4 : 4; y: 4
-            width: 16; height: 16; radius: 8
+            x: btToggle.checked ? parent.width - width - 4 : 4 
+            y: 4
+            width: 16 
+            height: 16 
+            radius: 8
             color: btToggle.checked ? Theme.colBg : Theme.colAccent
             Behavior on x { NumberAnimation { duration: 200 } }
           }
@@ -85,7 +91,7 @@ Item {
 
               Text { 
                 text: modelData.name
-                color: Theme.colAccent
+                color: Theme.colText
                 font.bold: modelData.connected
                 font.family: Theme.fontFamily
               }
@@ -117,7 +123,7 @@ Item {
                   anchors.centerIn: parent
                   text: "Forget"
                   font.pointSize: 8
-                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colAccent
+                  color: forgetMa.containsMouse ? Theme.colBg : Theme.colText
                 }
 
                 MouseArea {
@@ -159,7 +165,7 @@ Item {
         Text {
           anchors.centerIn: parent
           text: Bluetooth.scanning ? "..." : "Scan"
-          color: scanMa.containsMouse ? Theme.colBg : Theme.colAccent
+          color: scanMa.containsMouse ? Theme.colBg : Theme.colText
           font.bold: true
           font.family: Theme.fontFamily
         }

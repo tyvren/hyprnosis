@@ -25,6 +25,7 @@ QtObject {
         },
         arcadia: {
             colBg: "#403E44",
+            colText: "#f2eff5",
             colHilight: "#AC4262",
             colSelect: "#505154",
             colAccent: "#B3A3AD",
@@ -37,6 +38,7 @@ QtObject {
         },
         dracula: {
             colBg: "#282a36",
+            colText: "#F8F8F2",
             colHilight: "#50fa7b",
             colSelect: "#44475a",
             colAccent: "#bd93f9",
@@ -49,6 +51,7 @@ QtObject {
         },
         eden: {
             colBg: "#D1CDC2",
+            colText: "#1a1a1a",
             colHilight: "#feffff",
             colSelect: "#E0DED6",
             colAccent: "#0D0D0D",
@@ -61,6 +64,7 @@ QtObject {
         },
         emberforge: {
             colBg: "#3B3B3B",
+            colText: "#fff1eb",
             colHilight: "#626262",
             colSelect: "#626262",
             colAccent: "#FD5001",
@@ -73,7 +77,7 @@ QtObject {
         },
         hyprnosis: {
             colBg: "#0c0c27",
-            colText: "white",
+            colText: "#e0def4",
             colHilight: "#517187",
             colSelect: "#214154",
             colAccent: "#01A2FC",
@@ -89,7 +93,7 @@ QtObject {
     readonly property var active: themes[activeId] || themes["hyprnosis"]
 
     readonly property color colBg: active.colBg
-    readonly property color colText: active.colText || "white"
+    readonly property color colText: active.colText
     readonly property color colHilight: active.colHilight
     readonly property color colSelect: active.colSelect
     readonly property color colAccent: active.colAccent

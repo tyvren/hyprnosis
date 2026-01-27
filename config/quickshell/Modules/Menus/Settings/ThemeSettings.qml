@@ -80,7 +80,7 @@ ColumnLayout {
         Text {
           anchors.centerIn: parent
           text: modelData.name
-          color: themeArea.containsMouse ? Theme.colBg : Theme.colAccent
+          color: themeArea.containsMouse ? Theme.colBg : Theme.colText
           font.pointSize: 12
           font.family: Theme.fontFamily
         }

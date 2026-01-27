@@ -100,7 +100,7 @@ ColumnLayout {
 
             Text {
               text: modelData.name
-              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
               font.bold: true
               font.pointSize: 11
               font.family: Theme.fontFamily
@@ -109,7 +109,7 @@ ColumnLayout {
 
             Text {
               text: modelData.width + "x" + modelData.height
-              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
               font.pointSize: 9
               font.family: Theme.fontFamily
               Layout.alignment: Qt.AlignHCenter
@@ -117,7 +117,7 @@ ColumnLayout {
 
             Text {
               text: modelData.refreshRate.toFixed(2) + "Hz"
-              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colAccent
+              color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
               font.pointSize: 8
               font.family: Theme.fontFamily
               opacity: 0.7
@@ -188,7 +188,7 @@ ColumnLayout {
 
             contentItem: Text {
               text: modelData
-              color: highlighted ? Theme.colBg : Theme.colAccent
+              color: highlighted ? Theme.colBg : Theme.colText
               font.pointSize: 10
               font.family: Theme.fontFamily
               verticalAlignment: Text.AlignVCenter
@@ -208,7 +208,7 @@ ColumnLayout {
             text: modeSelector.displayText
             font.pointSize: 11
             font.family: Theme.fontFamily
-            color: Theme.colAccent
+            color: Theme.colText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
           }
@@ -288,7 +288,7 @@ ColumnLayout {
               Text {
                 anchors.centerIn: parent
                 text: modelData
-                color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colText
                 font.pointSize: 9
                 font.family: Theme.fontFamily
               }
@@ -349,7 +349,7 @@ ColumnLayout {
               Text {
                 anchors.centerIn: parent
                 text: modelData
-                color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colText
                 font.pointSize: 9
                 font.family: Theme.fontFamily
               }
@@ -410,7 +410,7 @@ ColumnLayout {
               Text {
                 anchors.centerIn: parent
                 text: modelData + "x"
-                color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colAccent
+                color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colText
                 font.pointSize: 9
                 font.family: Theme.fontFamily
               }
@@ -459,7 +459,7 @@ ColumnLayout {
       Text {
         anchors.centerIn: parent
         text: "Apply"
-        color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
+        color: applyMa.containsMouse ? Theme.colBg : Theme.colText
         font.bold: true
         font.family: Theme.fontFamily
       }

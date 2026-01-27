@@ -117,7 +117,7 @@ ColumnLayout {
 
               contentItem: Text {
                 text: modelData.description || "Unknown Device"
-                color: highlighted ? Theme.colBg : Theme.colAccent
+                color: highlighted ? Theme.colBg : Theme.colText
                 font.pointSize: 10
                 font.family: Theme.fontFamily
                 verticalAlignment: Text.AlignVCenter
@@ -136,7 +136,7 @@ ColumnLayout {
               text: deviceSelector.displayText
               font.pointSize: 11
               font.family: Theme.fontFamily
-              color: Theme.colAccent
+              color: Theme.colText
               verticalAlignment: Text.AlignVCenter
               elide: Text.ElideRight
             }

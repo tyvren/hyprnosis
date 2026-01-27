@@ -62,7 +62,7 @@ ColumnLayout {
 
       Text { 
         text: "General Bindings" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true
@@ -72,7 +72,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Main Modifier"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
@@ -86,13 +86,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Terminal"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -107,13 +107,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "File Manager"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -128,13 +128,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "App Launcher"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -153,7 +153,7 @@ ColumnLayout {
 
       Text { 
         text: "Window Management" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true
@@ -163,13 +163,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Kill Active"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -184,13 +184,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Toggle Floating"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -205,13 +205,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Toggle Split"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -226,13 +226,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Pseudo"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -261,13 +261,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Lock Screen"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -282,13 +282,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Screenshot"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -303,13 +303,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Enable Idle"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod + SHIFT +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -324,13 +324,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Disable Idle"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -349,7 +349,7 @@ ColumnLayout {
 
       Text { 
         text: "Navigation" 
-        color: Theme.colAccent 
+        color: Theme.colAccent
         font.pointSize: 10 
         font.family: Theme.fontFamily 
         font.bold: true
@@ -359,13 +359,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Focus Left"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -380,13 +380,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Focus Right"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -401,13 +401,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Focus Up"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -422,13 +422,13 @@ ColumnLayout {
         Layout.fillWidth: true
         Text { 
           text: "Focus Down"
-          color: Theme.colAccent
+          color: Theme.colText
           font.family: Theme.fontFamily
           Layout.fillWidth: true 
         }
         Text {
           text: "mainMod +"
-          color: Theme.colMuted
+          color: Theme.colAccent
           font.family: Theme.fontFamily
           font.pixelSize: 11
           verticalAlignment: Text.AlignVCenter
@@ -471,7 +471,7 @@ ColumnLayout {
       Text {
         anchors.centerIn: parent
         text: "Apply"
-        color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
+        color: applyMa.containsMouse ? Theme.colBg : Theme.colText
         font.bold: true
         font.family: Theme.fontFamily
       }

@@ -4,7 +4,7 @@ import qs.Themes
 
 TextField {
   id: input
-  color: Theme.colAccent 
+  color: Theme.colText 
   font.family: Theme.fontFamily 
   font.pointSize: 10
   verticalAlignment: TextInput.AlignVCenter 

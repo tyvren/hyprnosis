@@ -86,8 +86,7 @@ ColumnLayout {
         text: "A hyprland offering built with quickshell"
         font.family: Theme.fontFamily
         font.pointSize: 12
-        color: Theme.colAccent
-        opacity: 0.7
+        color: Theme.colText
         Layout.alignment: Qt.AlignHCenter
       }
     }
@@ -135,32 +134,32 @@ ColumnLayout {
       spacing: 8
 
       RowLayout {
-        Text { text: "󰻠 OS "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.osName; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
+        Text { text: "󰻠 OS "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.osName; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
       }
       RowLayout {
-        Text { text: "󰒋 Kernel "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.kernel; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { text: "󰒋 Kernel "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.kernel; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
       }
       RowLayout {
-        Text { text: "󱎫 Uptime "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.uptime; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { text: "󱎫 Uptime "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.uptime; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
       }
       RowLayout {
-        Text { text: "󰏖 Packages "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.pkgs; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { text: "󰏖 Packages "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.pkgs; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
       }
       RowLayout {
-        Text { text: "󰻠 CPU "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.cpu; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
+        Text { text: "󰻠 CPU "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.cpu; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
       }
       RowLayout {
-        Text { text: "󰢮 GPU "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.gpu; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
+        Text { text: "󰢮 GPU "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.gpu; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true; elide: Text.ElideRight }
       }
       RowLayout {
-        Text { text: "󰍛 Memory "; color: Theme.colAccent; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
-        Text { text: infoPane.mem; color: Theme.colAccent; font.family: Theme.fontFamily; Layout.fillWidth: true }
+        Text { text: "󰍛 Memory "; color: Theme.colText; font.family: Theme.fontFamily; font.bold: true; Layout.preferredWidth: 100 }
+        Text { text: infoPane.mem; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
       }
       
       Repeater {
@@ -168,14 +167,14 @@ ColumnLayout {
         RowLayout {
           Text { 
             text: "󰋊 " + modelData.label
-            color: Theme.colAccent
+            color: Theme.colText
             font.family: Theme.fontFamily
             font.bold: true
             Layout.preferredWidth: 100 
           }
           Text { 
             text: modelData.total
-            color: Theme.colAccent
+            color: Theme.colText
             font.family: Theme.fontFamily
             Layout.fillWidth: true
           }
