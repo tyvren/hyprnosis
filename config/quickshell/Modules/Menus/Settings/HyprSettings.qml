@@ -351,7 +351,7 @@ ColumnLayout {
           Config.data.forceDefaultWallpaper = hyprPane.forceDefaultWallpaper
 
           Quickshell.execDetached([
-            Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/qs_apply_hyprland.sh",
+            Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_hyprland.sh",
             hyprPane.gapsIn,
             hyprPane.gapsOut,
             hyprPane.borderSize,

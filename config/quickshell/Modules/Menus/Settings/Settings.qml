@@ -21,12 +21,6 @@ PanelWindow {
 
   WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
-  onVisibleChanged: {
-    if (visible) {
-      forceActiveFocus()
-    }
-  }
-
   IpcHandler {
     target: "settingsmenu"
   
