@@ -325,7 +325,7 @@ ColumnLayout {
       Text {
         anchors.centerIn: parent
         text: "Apply"
-        color: applyMa.containsMouse ? Theme.colBg : Theme.colAccent
+        color: applyMa.containsMouse ? Theme.colBg : Theme.colText
         font.bold: true
         font.family: Theme.fontFamily
       }
