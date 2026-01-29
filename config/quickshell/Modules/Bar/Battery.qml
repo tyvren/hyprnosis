@@ -4,13 +4,13 @@ import qs.Components
 import qs.Themes
 
 Item {
-  id: batterybutton
-  implicitWidth: button.implicitWidth
-  implicitHeight: button.implicitHeight
-  visible: Battery.available
+    id: batterybutton
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
+    visible: Battery.available
 
-  BarButton {
-    id: button
-    icon: Math.round(Battery.percentage * 100) + "%"
-  }
+    BarButton {
+        id: button
+        icon: Math.round(Battery.percentage * 100) + "%"
+    }
 }

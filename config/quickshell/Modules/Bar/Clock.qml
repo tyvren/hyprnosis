@@ -4,16 +4,16 @@ import qs.Services
 import qs.Themes
 
 Item {
-  id: clockWrapper
-  implicitWidth: clock.implicitWidth
-  implicitHeight: clock.implicitHeight
+    id: clockWrapper
+    implicitWidth: clock.implicitWidth
+    implicitHeight: clock.implicitHeight
 
-  Text {
-    id: clock
-    text: Time.time
-    font.family: Theme.fontFamily
-    font.pixelSize: Theme.fontSize
-    font.bold: true
-    color: Theme.colAccent
-  }
+    Text {
+        id: clock
+        text: Time.time
+        font.family: Theme.fontFamily
+        font.pixelSize: Theme.fontSize
+        font.bold: true
+        color: Theme.colAccent
+    }
 }

@@ -12,130 +12,130 @@ import qs.Services
 import qs.Themes
 
 PanelWindow {
-  id: settingsmenu
-  visible: false
-  implicitWidth: 825
-  implicitHeight: 900
-  color: "transparent"
-  focusable: true
-  property int activeIndex: 0
+    id: settingsmenu
+    visible: false
+    implicitWidth: 825
+    implicitHeight: 900
+    color: "transparent"
+    focusable: true
+    property int activeIndex: 0
 
-  IpcHandler {
-    target: "settingsmenu"
-  
-    function toggle(): void { 
-      if (!settingsmenu.visible) {
-        settingsmenu.activeIndex = 0
-      }
-      settingsmenu.visible = !settingsmenu.visible 
+    IpcHandler {
+        target: "settingsmenu"
+    
+        function toggle(): void { 
+            if (!settingsmenu.visible) {
+                settingsmenu.activeIndex = 0
+            }
+            settingsmenu.visible = !settingsmenu.visible 
+        }
+
+        function openTo(index: int): void {
+            settingsmenu.activeIndex = index
+            settingsmenu.visible = true
+        }
     }
 
-    function openTo(index: int): void {
-      settingsmenu.activeIndex = index
-      settingsmenu.visible = true
-    }
-  }
-
-  Rectangle {
-    id: menuWindow
-    anchors.fill: parent
-    width: 825
-    height: 900
-    radius: 20
-    color: Theme.colBg
-    border.color: Theme.colAccent
-    border.width: 1
-
-    RowLayout {
-      anchors.centerIn: parent
-      spacing: 10
-      width: parent.width - 30
-      height: parent.height - 30
-
-      Rectangle {
-        id: sidePane
+    Rectangle {
+        id: menuWindow
+        anchors.fill: parent
+        width: 825
+        height: 900
+        radius: 20
         color: Theme.colBg
         border.color: Theme.colAccent
-        Layout.preferredWidth: 65
-        Layout.fillHeight: true
-        radius: 10
+        border.width: 1
 
-        ColumnLayout {
-          anchors.fill: parent
-          anchors.margins: 10
-          spacing: 10
+        RowLayout {
+            anchors.centerIn: parent
+            spacing: 10
+            width: parent.width - 30
+            height: parent.height - 30
 
-          Repeater {
-            model: [ 
-              {icon: "󰋼"},
-              {icon: "󰏖"},
-              {icon: "󰓃"},
-              {icon: "󰂯"},
-              {icon: "󰖩"},
-              {icon: "󰍹"},
-              {icon: ""},
-              {icon: "󰸉"},
-              {icon: ""},
-              {icon: ""},
-              {icon: "󰚰"}
-            ]
+            Rectangle {
+                id: sidePane
+                color: Theme.colBg
+                border.color: Theme.colAccent
+                Layout.preferredWidth: 65
+                Layout.fillHeight: true
+                radius: 10
 
-            StyledButton {
-              text: modelData.icon
-              size: 45
-              active: settingsmenu.activeIndex === index
-              onClicked: settingsmenu.activeIndex = index
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: 10
+
+                    Repeater {
+                        model: [ 
+                            {icon: "󰋼"},
+                            {icon: "󰏖"},
+                            {icon: "󰓃"},
+                            {icon: "󰂯"},
+                            {icon: "󰖩"},
+                            {icon: "󰍹"},
+                            {icon: ""},
+                            {icon: "󰸉"},
+                            {icon: ""},
+                            {icon: ""},
+                            {icon: "󰚰"}
+                        ]
+
+                        StyledButton {
+                            text: modelData.icon
+                            size: 45
+                            active: settingsmenu.activeIndex === index
+                            onClicked: settingsmenu.activeIndex = index
+                        }
+                    }
+
+                    Item { Layout.fillHeight: true }
+
+                    StyledButton {
+                        text: "󰅙"
+                        size: 45
+                        onClicked: settingsmenu.visible = false
+                    }
+                }
             }
-          }
 
-          Item { Layout.fillHeight: true }
+            Rectangle {
+                id: contentPane
+                color: Theme.colBg
+                border.color: Theme.colAccent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                radius: 10
 
-          StyledButton {
-            text: "󰅙"
-            size: 45
-            onClicked: settingsmenu.visible = false
-          }
+                LazyLoader {
+                    id: menuLoader
+                    active: settingsmenu.visible
+                    
+                    StackLayout {
+                        parent: contentPane
+                        anchors.fill: parent
+                        anchors.margins: 15
+                        currentIndex: settingsmenu.activeIndex
+
+                        SystemInfo {
+                            active: settingsmenu.visible && settingsmenu.activeIndex === 0
+                        }
+                        AppSettings {}
+                        AudioSettings {}
+                        BluetoothSettings {}
+                        NetworkSettings {}
+                        DisplaySettings {
+                            active: settingsmenu.visible && settingsmenu.activeIndex === 5
+                        }
+                        ThemeSettings {}
+                        WallpaperSettings {
+                            active: settingsmenu.visible && settingsmenu.activeIndex === 7
+                        }
+                        HyprSettings {}
+                        Keybinds {}
+                        UpdateSettings {}
+                    }
+                }
+            }
         }
-      }
-
-      Rectangle {
-        id: contentPane
-        color: Theme.colBg
-        border.color: Theme.colAccent
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        radius: 10
-
-        LazyLoader {
-          id: menuLoader
-          active: settingsmenu.visible
-          
-          StackLayout {
-            parent: contentPane
-            anchors.fill: parent
-            anchors.margins: 15
-            currentIndex: settingsmenu.activeIndex
-
-            SystemInfo {
-              active: settingsmenu.visible && settingsmenu.activeIndex === 0
-            }
-            AppSettings {}
-            AudioSettings {}
-            BluetoothSettings {}
-            NetworkSettings {}
-            DisplaySettings {
-              active: settingsmenu.visible && settingsmenu.activeIndex === 5
-            }
-            ThemeSettings {}
-            WallpaperSettings {
-              active: settingsmenu.visible && settingsmenu.activeIndex === 7
-            }
-            HyprSettings {}
-            Keybinds {}
-            UpdateSettings {}
-          }
-        }
-      }
     }
-  }
 }

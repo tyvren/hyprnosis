@@ -4,14 +4,14 @@ import Quickshell
 import QtQuick
 
 Singleton {
-  id: root
+    id: root
 
-  readonly property string time: {
-    Qt.formatDateTime(clock.date, "hh\nmm\nAP")
-  }
+    readonly property string time: {
+        Qt.formatDateTime(clock.date, "hh\nmm\nAP")
+    }
 
-  SystemClock {
-    id: clock
-    precision: SystemClock.Seconds
-  }
+    SystemClock {
+        id: clock
+        precision: SystemClock.Seconds
+    }
 }

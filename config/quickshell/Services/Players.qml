@@ -6,67 +6,67 @@ import Quickshell.Io
 import QtQml
 
 Singleton {
-  id: root
-  readonly property list<MprisPlayer> players: Mpris.players.values
-  property MprisPlayer manualActive
-  readonly property MprisPlayer active:
-    manualActive
-    ?? Mpris.activePlayer
-    ?? players[0]
-    ?? null
+    id: root
+    readonly property list<MprisPlayer> players: Mpris.players.values
+    property MprisPlayer manualActive
+    readonly property MprisPlayer active:
+        manualActive
+        ?? Mpris.activePlayer
+        ?? players[0]
+        ?? null
 
-  function identity(player: MprisPlayer): string {
-    return player?.identity ?? ""
-  }
-
-  function title(player: MprisPlayer): string {
-    return player?.trackTitle ?? ""
-  }
-
-  function artist(player: MprisPlayer): string {
-    return player?.trackArtist ?? ""
-  }
-
-  IpcHandler {
-    target: "mpris"
-
-    function list(): string {
-      return root.players.map(p => p.identity).join("\n");
+    function identity(player: MprisPlayer): string {
+        return player?.identity ?? ""
     }
 
-    function activeProp(prop: string): string {
-      const p = root.active;
-      return p ? (p[prop] ?? "Invalid property") : "No active player";
+    function title(player: MprisPlayer): string {
+        return player?.trackTitle ?? ""
     }
 
-    function play(): void {
-      if (root.active?.canPlay)
-        root.active.play();
+    function artist(player: MprisPlayer): string {
+        return player?.trackArtist ?? ""
     }
 
-    function pause(): void {
-      if (root.active?.canPause)
-        root.active.pause();
-    }
+    IpcHandler {
+        target: "mpris"
 
-    function playPause(): void {
-      if (root.active?.canTogglePlaying)
-        root.active.togglePlaying();
-    }
+        function list(): string {
+            return root.players.map(p => p.identity).join("\n");
+        }
 
-    function previous(): void {
-      if (root.active?.canGoPrevious)
-        root.active.previous();
-    }
+        function activeProp(prop: string): string {
+            const p = root.active;
+            return p ? (p[prop] ?? "Invalid property") : "No active player";
+        }
 
-    function next(): void {
-      if (root.active?.canGoNext)
-        root.active.next();
-    }
+        function play(): void {
+            if (root.active?.canPlay)
+                root.active.play();
+        }
 
-    function stop(): void {
-      root.active?.stop();
+        function pause(): void {
+            if (root.active?.canPause)
+                root.active.pause();
+        }
+
+        function playPause(): void {
+            if (root.active?.canTogglePlaying)
+                root.active.togglePlaying();
+        }
+
+        function previous(): void {
+            if (root.active?.canGoPrevious)
+                root.active.previous();
+        }
+
+        function next(): void {
+            if (root.active?.canGoNext)
+                root.active.next();
+        }
+
+        function stop(): void {
+            root.active?.stop();
+        }
     }
-  }
 }
 

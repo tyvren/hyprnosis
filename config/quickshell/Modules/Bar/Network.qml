@@ -5,15 +5,15 @@ import qs.Components
 import qs.Themes
 
 Item {
-  id: networkbutton
-  implicitWidth: button.implicitWidth
-  implicitHeight: button.implicitHeight
+    id: networkbutton
+    implicitWidth: button.implicitWidth
+    implicitHeight: button.implicitHeight
 
-  BarButton {
-    id: button
-    icon: ""
-    onClicked: {
-      Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "4"])
+    BarButton {
+        id: button
+        icon: ""
+        onClicked: {
+            Quickshell.execDetached(["qs", "ipc", "call", "settingsmenu", "openTo", "4"])
+        }
     }
-  }
 }

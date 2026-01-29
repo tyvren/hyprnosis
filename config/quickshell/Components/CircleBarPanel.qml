@@ -5,156 +5,156 @@ import Quickshell.Io
 import qs.Components
 
 PanelWindow {
-  id: core 
-  anchors {
-    left: true
-    top: true
-  }
-  color: "transparent"
-  implicitWidth: 110
-  implicitHeight: 240
-  exclusionMode: ExclusionMode.Ignore
-  property bool open: false
-  property bool showButtons: false
+    id: core 
+    anchors {
+        left: true
+        top: true
+    }
+    color: "transparent"
+    implicitWidth: 110
+    implicitHeight: 240
+    exclusionMode: ExclusionMode.Ignore
+    property bool open: false
+    property bool showButtons: false
 
-  RectangularShadow {
-    id: coreAreaShadow
-    anchors.fill: coreArea
-    color: theme.colAccent
-    height: coreArea.height
-    width: coreArea.width
-    radius: 150
-    blur: 5
-    spread: 1
-  }
-
-  Rectangle {
-    id: coreArea
-    color: theme.colBg
-    border.color: theme.colAccent
-    border.width: 1
-    anchors.left: parent.left
-    anchors.top: parent.top
-    x: -52
-    width: 80
-    height: 80
-    radius: 150
-    scale: 1
-
-    RotationAnimation on rotation {
-      id: spinAnim
-      running: false
-      loops: 1
-      from: 0
-      to: 360
-      duration: 6000
+    RectangularShadow {
+        id: coreAreaShadow
+        anchors.fill: coreArea
+        color: theme.colAccent
+        height: coreArea.height
+        width: coreArea.width
+        radius: 150
+        blur: 5
+        spread: 1
     }
 
-    RotationAnimation on rotation {
-      id: infiniteSpinAnim
-      running: false
-      loops: Animation.Infinite
-      from: 0
-      to: 360
-      duration: 6000
-    }
+    Rectangle {
+        id: coreArea
+        color: theme.colBg
+        border.color: theme.colAccent
+        border.width: 1
+        anchors.left: parent.left
+        anchors.top: parent.top
+        x: -52
+        width: 80
+        height: 80
+        radius: 150
+        scale: 1
 
-    Image {
-      id: logo
-      anchors.fill: coreArea
-      source: theme.logoPath
-      mipmap: true
-      asynchronous: true
-      fillMode: Image.PreserveAspectFit
-    }
-
-    MouseArea {
-      id: coreAreaMouse
-      anchors.fill: coreArea
-      hoverEnabled: true
-      onEntered: {
-        if (!core.open) {
-          spinAnim.start()
+        RotationAnimation on rotation {
+            id: spinAnim
+            running: false
+            loops: 1
+            from: 0
+            to: 360
+            duration: 6000
         }
-      }
-      onClicked: {
-        core.open = !core.open
-      }
-    }
 
-    states: [
-      State {
-        name: "closed"
-        when: !core.open
-        PropertyChanges {
-          target: coreArea
-          scale: 1
+        RotationAnimation on rotation {
+            id: infiniteSpinAnim
+            running: false
+            loops: Animation.Infinite
+            from: 0
+            to: 360
+            duration: 6000
         }
-      },
-      State {
-        name: "open"
-        when: core.open
-        PropertyChanges {
-          target: coreArea
-          scale: 3
-        }
-      }
-    ]
 
-    transitions: [
-      Transition {
-        from: "closed"
-        to: "open"
-        SequentialAnimation {
-          ScriptAction {
-            script: { 
-              infiniteSpinAnim.start()
+        Image {
+            id: logo
+            anchors.fill: coreArea
+            source: theme.logoPath
+            mipmap: true
+            asynchronous: true
+            fillMode: Image.PreserveAspectFit
+        }
+
+        MouseArea {
+            id: coreAreaMouse
+            anchors.fill: coreArea
+            hoverEnabled: true
+            onEntered: {
+                if (!core.open) {
+                    spinAnim.start()
+                }
             }
-          }
-          NumberAnimation {
-            properties: "scale"
-            duration: 400
-            easing.type: Easing.OutCubic
-          }
-          ScriptAction {
-            script: {
-              core.showButtons = true
+            onClicked: {
+                core.open = !core.open
             }
-          }
         }
-      },
-      Transition {
-        from: "open"
-        to: "closed"
-        SequentialAnimation {
-          ScriptAction {
-            script: {
-              infiniteSpinAnim.stop()
-              spinAnim.start()
-              core.showButtons = false
+
+        states: [
+            State {
+                name: "closed"
+                when: !core.open
+                PropertyChanges {
+                    target: coreArea
+                    scale: 1
+                }
+            },
+            State {
+                name: "open"
+                when: core.open
+                PropertyChanges {
+                    target: coreArea
+                    scale: 3
+                }
             }
-          }
-          NumberAnimation {
-            properties: "scale"
-            duration: 400
-            easing.type: Easing.OutCubic
-          }
-        }
-      }
-    ]
-  }
+        ]
 
-  Loader {
-    id: buttonLoader
-    active: core.showButtons
-    sourceComponent: Component {
-      Item {
-        id: buttons
-        property bool ready: false
-        Component.onCompleted: ready = true
-
-      }
+        transitions: [
+            Transition {
+                from: "closed"
+                to: "open"
+                SequentialAnimation {
+                    ScriptAction {
+                        script: { 
+                            infiniteSpinAnim.start()
+                        }
+                    }
+                    NumberAnimation {
+                        properties: "scale"
+                        duration: 400
+                        easing.type: Easing.OutCubic
+                    }
+                    ScriptAction {
+                        script: {
+                            core.showButtons = true
+                        }
+                    }
+                }
+            },
+            Transition {
+                from: "open"
+                to: "closed"
+                SequentialAnimation {
+                    ScriptAction {
+                        script: {
+                            infiniteSpinAnim.stop()
+                            spinAnim.start()
+                            core.showButtons = false
+                        }
+                    }
+                    NumberAnimation {
+                        properties: "scale"
+                        duration: 400
+                        easing.type: Easing.OutCubic
+                    }
+                }
+            }
+        ]
     }
-  }
+
+    Loader {
+        id: buttonLoader
+        active: core.showButtons
+        sourceComponent: Component {
+            Item {
+                id: buttons
+                property bool ready: false
+                Component.onCompleted: ready = true
+
+            }
+        }
+    }
 }
 

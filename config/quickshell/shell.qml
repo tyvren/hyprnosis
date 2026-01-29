@@ -5,10 +5,10 @@ import qs.Modules.Menus.Settings
 import qs.Modules.OSD
 
 ShellRoot {
-  Bar {}
-  VolumeOSD {}
-  NotificationOSD {}
-  NotificationPane {}
-  Launcher {}
-  Settings {}
+     Bar {}
+     VolumeOSD {}
+     NotificationOSD {}
+     NotificationPane {}
+     Launcher {}
+     Settings {}
 }
