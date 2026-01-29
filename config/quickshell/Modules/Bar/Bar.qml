@@ -111,10 +111,10 @@ Variants {
                         radius: 50
                         visible: {
                             if (Players.active) { 
-                              return true 
+                              return true;
                             }
                             return false;
-                        }
+                        } 
 
                         Image {
                              id: activeLogo
@@ -123,7 +123,27 @@ Variants {
                              mipmap: true
                              asynchronous: true
                              fillMode: Image.PreserveAspectFit
+
+                             RotationAnimation on rotation {
+                                 id: infiniteSpinAnim
+                                 running: true
+                                 loops: Animation.Infinite
+                                 from: 0
+                                 to: 360
+                                 duration: 6000
+                            }
                         }
+
+                        Text {
+                            id: musicIcon
+                            anchors.centerIn: mediaBtn
+                            color: Theme.colText
+                            font.bold: true
+                            font.family: Theme.fontFamily
+                            font.pointSize: 12
+                            text: ""
+                        }
+
 
                         MouseArea {
                             id: mediaBtnArea
@@ -131,7 +151,7 @@ Variants {
                             hoverEnabled: true
                             onEntered: {
                                 if (!mediaPlayer.open) {
-                                    mediaPlayer.visible = true
+                                    mediaPlayer.visible = true 
                                 } else {
                                     mediaPlayer.visible = false
                                     mediaPlayer.open = false
