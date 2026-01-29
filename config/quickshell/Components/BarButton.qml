@@ -22,14 +22,9 @@ Item {
         visible: false
     }
 
-    MultiEffect {
+    BtnTextShadow {
         anchors.fill: parent
         source: iconText
-        shadowEnabled: true
-        shadowBlur: 0.2
-        shadowHorizontalOffset: 1
-        shadowVerticalOffset: 1
-        shadowColor: Theme.colBg
     }
 
     MouseArea {

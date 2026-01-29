@@ -147,15 +147,9 @@ Variants {
                                 visible: false
                               }
 
-                            MultiEffect {
-                                id: textShadow
+                            BtnTextShadow {
                                 anchors.fill: musicIcon 
                                 source: musicIcon
-                                shadowEnabled: true
-                                shadowColor: Theme.colBg
-                                shadowBlur: 0.2
-                                shadowHorizontalOffset: 1
-                                shadowVerticalOffset: 1
                             }
                         }
 
