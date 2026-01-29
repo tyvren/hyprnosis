@@ -122,6 +122,7 @@ Variants {
                              source: Theme.logoPath
                              mipmap: true
                              asynchronous: true
+                             opacity: 0.5
                              fillMode: Image.PreserveAspectFit
 
                              RotationAnimation on rotation {
@@ -134,14 +135,31 @@ Variants {
                             }
                         }
 
-                        Text {
-                            id: musicIcon
-                            anchors.centerIn: mediaBtn
-                            color: Theme.colText
-                            font.bold: true
-                            font.family: Theme.fontFamily
-                            font.pointSize: 12
-                            text: ""
+                        Item {
+                          id: textContainer
+                          anchors.fill: mediaBtn
+
+                            Text {
+                                id: musicIcon
+                                anchors.centerIn: textContainer
+                                color: Theme.colAccent
+                                font.bold: true
+                                font.family: Theme.fontFamily
+                                font.pointSize: 14
+                                text: ""
+                                visible: false
+                              }
+
+                            MultiEffect {
+                                id: textShadow
+                                anchors.fill: musicIcon 
+                                source: musicIcon
+                                shadowEnabled: true
+                                shadowColor: Theme.colBg
+                                shadowBlur: 0.2
+                                shadowHorizontalOffset: 0
+                                shadowVerticalOffset: 0
+                            }
                         }
 
 
