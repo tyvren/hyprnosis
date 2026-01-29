@@ -26,9 +26,10 @@ Item {
         anchors.fill: parent
         source: iconText
         shadowEnabled: true
-        shadowBlur: 1
-        shadowOpacity: 0.50
-        shadowColor: Theme.colAccent
+        shadowBlur: 0.2
+        shadowHorizontalOffset: 1
+        shadowVerticalOffset: 1
+        shadowColor: Theme.colBg
     }
 
     MouseArea {
