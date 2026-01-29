@@ -35,7 +35,7 @@ Variants {
                     id: mediaPlayer
                     anchor.window: leftBar
                     anchor.rect.x: leftBar.width - 2
-                    anchor.rect.y: leftBar.height / 5.2
+                    anchor.rect.y: leftBar.top
                     color: "transparent"
                 }
 
@@ -95,16 +95,12 @@ Variants {
                     id: leftBarContent
                     anchors.fill: parent
 
-                    WidgetShadow {
-                        id: mediaBtnShadow 
-                    }
-
                     Rectangle {
                         id: mediaBtn
                         anchors.top: leftBarContent.top
-                        anchors.topMargin: leftBarContent.height / 4
+                        anchors.topMargin: 50 
                         anchors.left: leftBarContent.left
-                        anchors.leftMargin: 1
+                        anchors.leftMargin: 2
                         width: 25
                         height: 25
                         color: "transparent"
