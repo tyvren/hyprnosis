@@ -137,11 +137,12 @@ Variants {
 
                             Text {
                                 id: musicIcon
-                                anchors.centerIn: textContainer
+                                anchors.left: textContainer.left
+                                anchors.leftMargin: 3
                                 color: Theme.colAccent
                                 font.bold: true
                                 font.family: Theme.fontFamily
-                                font.pointSize: 14
+                                font.pointSize: 16
                                 text: ""
                                 visible: false
                               }
@@ -153,8 +154,8 @@ Variants {
                                 shadowEnabled: true
                                 shadowColor: Theme.colBg
                                 shadowBlur: 0.2
-                                shadowHorizontalOffset: 0
-                                shadowVerticalOffset: 0
+                                shadowHorizontalOffset: 1
+                                shadowVerticalOffset: 1
                             }
                         }
 
@@ -174,7 +175,6 @@ Variants {
                         }
                     }
                 }
-
             }
 
             PanelWindow {

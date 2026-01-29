@@ -41,7 +41,7 @@ PanelWindow {
         anchors.fill: parent
         width: 825
         height: 900
-        radius: 20
+        radius: 15
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 1
