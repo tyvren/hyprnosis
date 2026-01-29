@@ -130,10 +130,6 @@ PanelWindow {
                         ScriptAction {
                             script: {
                                 core.showButtons = true
-                                if (typeof mediaPlayer !== 'undefined') {
-                                        mediaPlayer.visible = true
-                                        mediaPlayer.open = true
-                                }
                             }
                         }
                     }
@@ -147,9 +143,6 @@ PanelWindow {
                                 infiniteSpinAnim.stop()
                                 spinAnim.start()
                                 core.showButtons = false
-                                if (typeof mediaPlayer !== 'undefined') {
-                                        mediaPlayer.open = false
-                                }
                             }
                         }
                         NumberAnimation {

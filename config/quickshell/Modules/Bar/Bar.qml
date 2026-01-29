@@ -8,6 +8,7 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.Components
 import qs.Themes
+import qs.Services
 
 Variants {
     model: Quickshell.screens
@@ -34,7 +35,7 @@ Variants {
                     id: mediaPlayer
                     anchor.window: leftBar
                     anchor.rect.x: leftBar.width - 2
-                    anchor.rect.y: leftBar.height / 10
+                    anchor.rect.y: leftBar.height / 5.2
                     color: "transparent"
                 }
 
@@ -89,6 +90,57 @@ Variants {
                     shadowHorizontalOffset: 1
                     shadowVerticalOffset: 0
                 }
+
+                Item {
+                    id: leftBarContent
+                    anchors.fill: parent
+
+                    WidgetShadow {
+                        id: mediaBtnShadow 
+                    }
+
+                    Rectangle {
+                        id: mediaBtn
+                        anchors.top: leftBarContent.top
+                        anchors.topMargin: leftBarContent.height / 4
+                        anchors.left: leftBarContent.left
+                        anchors.leftMargin: 1
+                        width: 25
+                        height: 25
+                        color: "transparent"
+                        radius: 50
+                        visible: {
+                            if (Players.active) { 
+                              return true 
+                            }
+                            return false;
+                        }
+
+                        Image {
+                             id: activeLogo
+                             anchors.fill: mediaBtn
+                             source: Theme.logoPath
+                             mipmap: true
+                             asynchronous: true
+                             fillMode: Image.PreserveAspectFit
+                        }
+
+                        MouseArea {
+                            id: mediaBtnArea
+                            anchors.fill: mediaBtn
+                            hoverEnabled: true
+                            onEntered: {
+                                if (!mediaPlayer.open) {
+                                    mediaPlayer.visible = true
+                                } else {
+                                    mediaPlayer.visible = false
+                                    mediaPlayer.open = false
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
 
             PanelWindow {
@@ -181,27 +233,27 @@ Variants {
                         y: parent.height / 2 - 65
                     }
 
-                    Battery {
+                    BatteryBtn {
                         anchors.bottom: parent.bottom
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 170
                     }
-                    Audio {
+                    AudioBtn {
                         anchors.bottom: parent.bottom
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 140
                     }
-                    Bluetooth {
+                    BluetoothBtn {
                         anchors.bottom: parent.bottom
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 110
                     }
-                    Network {
+                    NetworkBtn {
                         anchors.bottom: parent.bottom
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 80
                     }
-                    Notifications {
+                    NotificationBtn {
                         anchors.bottom: parent.bottom
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 50
