@@ -162,7 +162,6 @@ Variants {
                                 if (!mediaPlayer.open) {
                                     mediaPlayer.visible = true 
                                 } else {
-                                    mediaPlayer.visible = false
                                     mediaPlayer.open = false
                                 }
                             }

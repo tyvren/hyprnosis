@@ -17,7 +17,11 @@ PopupWindow {
     property bool showContent: false
 
     onVisibleChanged: {
-        if (visible) open = true
+      if (visible) { 
+        open = true
+      } else {
+        open = false
+      }
     }
 
     Item {
