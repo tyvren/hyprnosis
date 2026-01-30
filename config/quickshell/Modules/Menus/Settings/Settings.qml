@@ -12,7 +12,7 @@ import qs.Services
 import qs.Themes
 
 PanelWindow {
-    id: settingsmenu
+    id: settingsMenu
     visible: false
     implicitWidth: 825
     implicitHeight: 900
@@ -21,18 +21,18 @@ PanelWindow {
     property int activeIndex: 0
 
     IpcHandler {
-        target: "settingsmenu"
+        target: "settingsMenu"
     
         function toggle(): void { 
-            if (!settingsmenu.visible) {
-                settingsmenu.activeIndex = 0
+            if (!settingsMenu.visible) {
+                settingsMenu.activeIndex = 0
             }
-            settingsmenu.visible = !settingsmenu.visible 
+            settingsMenu.visible = !settingsMenu.visible 
         }
 
         function openTo(index: int): void {
-            settingsmenu.activeIndex = index
-            settingsmenu.visible = true
+            settingsMenu.activeIndex = index
+            settingsMenu.visible = true
         }
     }
 
@@ -83,8 +83,8 @@ PanelWindow {
                         StyledButton {
                             text: modelData.icon
                             size: 45
-                            active: settingsmenu.activeIndex === index
-                            onClicked: settingsmenu.activeIndex = index
+                            active: settingsMenu.activeIndex === index
+                            onClicked: settingsMenu.activeIndex = index
                         }
                     }
 
@@ -93,7 +93,7 @@ PanelWindow {
                     StyledButton {
                         text: "󰅙"
                         size: 45
-                        onClicked: settingsmenu.visible = false
+                        onClicked: settingsMenu.visible = false
                     }
                 }
             }
@@ -108,27 +108,27 @@ PanelWindow {
 
                 LazyLoader {
                     id: menuLoader
-                    active: settingsmenu.visible
+                    active: settingsMenu.visible
                     
                     StackLayout {
                         parent: contentPane
                         anchors.fill: parent
                         anchors.margins: 15
-                        currentIndex: settingsmenu.activeIndex
+                        currentIndex: settingsMenu.activeIndex
 
                         SystemInfo {
-                            active: settingsmenu.visible && settingsmenu.activeIndex === 0
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 0
                         }
                         AppSettings {}
                         AudioSettings {}
                         BluetoothSettings {}
                         NetworkSettings {}
                         DisplaySettings {
-                            active: settingsmenu.visible && settingsmenu.activeIndex === 5
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 5
                         }
                         ThemeSettings {}
                         WallpaperSettings {
-                            active: settingsmenu.visible && settingsmenu.activeIndex === 7
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 7
                         }
                         HyprSettings {}
                         Keybinds {}
