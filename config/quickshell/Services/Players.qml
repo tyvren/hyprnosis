@@ -1,9 +1,9 @@
 pragma Singleton
 
+import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
 import Quickshell.Io
-import QtQml
 
 Singleton {
     id: root
@@ -25,6 +25,21 @@ Singleton {
 
     function artist(player: MprisPlayer): string {
         return player?.trackArtist ?? ""
+    }
+
+    function length(player: MprisPlayer): real {
+        return player?.length ?? 0
+    }
+
+    function formatTime(seconds: real): string {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m}:${s < 10 ? "0" : ""}${s}`;
+    }
+
+    FrameAnimation {
+        running: root.active && root.active.playbackState == MprisPlaybackState.Playing
+        onTriggered: root.active.positionChanged()
     }
 
     IpcHandler {
@@ -69,4 +84,3 @@ Singleton {
         }
     }
 }
-

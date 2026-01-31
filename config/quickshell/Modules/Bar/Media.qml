@@ -142,24 +142,23 @@ PopupWindow {
             color: "transparent"
             opacity: 0
             Component.onCompleted: opacity = 1
-            Behavior on opacity { NumberAnimation { duration: 250 } }
+            Behavior on opacity { NumberAnimation { duration: 500 } }
 
             Rectangle {
                 id: trackInfo
-                width: 200
+                width: 190
                 height: 240
                 anchors.top: parent.top
-                anchors.topMargin: 35
+                anchors.topMargin: 20
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.colBg
                 radius: 15
                 clip: true
 
                 ColumnLayout {
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                    anchors.fill: parent 
                     anchors.topMargin: 4
+                    anchors.bottomMargin: 4
                     spacing: 4
 
                     Text {
@@ -172,10 +171,14 @@ PopupWindow {
                         font.family: Theme.fontFamily
                         text: Players.active ? Players.active.trackTitle : ""
                     }
+  
+                    Item {
+                        Layout.fillHeight: true
+                    }
 
                     Text {
                         id: artist
-                        Layout.fillWidth: true
+                        Layout.fillWidth: true 
                         horizontalAlignment: Text.AlignHCenter
                         color: Theme.colAccent
                         font.pointSize: 8
@@ -190,10 +193,19 @@ PopupWindow {
 
             Rectangle {
                 id: albumArt
-                anchors.centerIn: parent
+                anchors.centerIn: trackInfo
                 color: "transparent"
                 width: 200
                 height: 200
+                opacity: playerContainer.opacity
+
+                RectangularShadow {
+                    anchors.fill: parent
+                    color: Theme.colAccent
+                    blur: 15
+                    spread: -10
+                    radius: 15
+                }
 
                 ClippingRectangle {
                     id: imageContainer
@@ -201,10 +213,9 @@ PopupWindow {
                     anchors.topMargin: 5
                     anchors.bottomMargin: 5
                     anchors.rightMargin: 5
-                    anchors.leftMargin: 5
-                    opacity: playerContainer.opacity
+                    anchors.leftMargin: 5 
                     radius: 15
-                    color: "transparent"
+                    color: "transparent" 
 
                     Image {
                         id: albumImage
@@ -220,12 +231,83 @@ PopupWindow {
                 }
             }
 
+            ColumnLayout {
+                id: sliderContainer
+                width: 180
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: trackInfo.bottom
+                anchors.bottom: playerControls.top
+                spacing: 0
+
+                Slider {
+                    id: trackBar
+                    Layout.fillWidth: true
+                    from: 0
+                    to: Players.active ? Players.active.length : 0
+                    value: Players.active ? Players.active.position : 0
+                    onMoved: {
+                        if (Players.active && Players.active.canSeek) {
+                            Players.active.position = value
+                        }
+                    }
+
+                    background: Rectangle {
+                        x: trackBar.leftPadding
+                        y: trackBar.topPadding + trackBar.availableHeight / 2 - height / 2
+                        implicitHeight: 4
+                        width: trackBar.availableWidth
+                        height: implicitHeight
+                        radius: 2
+                        color: Theme.colBg
+                        opacity: 0.5
+
+                        Rectangle {
+                            width: trackBar.visualPosition * parent.width
+                            height: parent.height
+                            color: Theme.colAccent
+                            radius: 2
+                        }
+                    }
+
+                    handle: Rectangle {
+                        x: trackBar.leftPadding + trackBar.visualPosition * (trackBar.availableWidth - width)
+                        y: trackBar.topPadding + trackBar.availableHeight / 2 - height / 2
+                        implicitWidth: 10
+                        implicitHeight: 10
+                        radius: 5
+                        color: Theme.colAccent
+                    }
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.topMargin: -8
+
+                    Text {
+                        text: Players.formatTime(Players.active ? Players.active.position : 0)
+                        font.family: Theme.fontFamily
+                        font.pointSize: 7
+                        color: Theme.colAccent
+                        opacity: 0.8
+                    }
+
+                    Item { Layout.fillWidth: true }
+
+                    Text {
+                        text: Players.formatTime(Players.active ? Players.active.length : 0)
+                        font.family: Theme.fontFamily
+                        font.pointSize: 7
+                        color: Theme.colAccent
+                        opacity: 0.8
+                    }
+                }
+            }
+
             RowLayout {
                 id: playerControls
-                anchors.left: playerBox.left
-                anchors.leftMargin: 45
+                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: playerBox.bottom
-                anchors.bottomMargin: 20
+                anchors.bottomMargin: 15
                 spacing: 10
 
                 StyledButton {
