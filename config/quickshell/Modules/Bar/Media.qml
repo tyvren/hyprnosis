@@ -223,7 +223,6 @@ PopupWindow {
                         id: albumImage
                         anchors.fill: parent
                         asynchronous: true
-                        mipmap: true
                         smooth: true
                         fillMode: Image.PreserveAspectCrop
                         source: {
