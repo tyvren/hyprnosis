@@ -4,35 +4,33 @@
 **hyprnosis - a hyprland offering - setup script and full configuration for arch linux**
 -----------------------------------------------------------------------
 
+<img width="3840" height="2160" alt="2026-01-31-162543_hyprshot" src="https://github.com/user-attachments/assets/8b8c40f7-2bb9-448b-9abc-0587b6620155" />
+
 **Features**
 
-- A fully configured hyprland environment
+- A fully configured hyprland environment built with quickshell
 - AMD or NVidia GPU packages installed automatically during setup
 - Steam, Discord, OCCT and other useful tools pre-installed
 - NVIM - preconfigured neovim plugins and themes using lazyvim
 - Theme switching with multiple preinstalled themes
-- Helpful config scripts in the modules directory with predefined shortcuts
-
-Check out the desktop environment themes in the wiki: https://github.com/tyvren/hyprnosis/wiki/themes
 
 **The full list of pre-installed packages can be found under /core/packages.sh**
 
 ----------------------------------------------------------------------
 
-**User Interface**
+**Desktop Environment**
 - Quickshell
 
 ----------------------------------------------------------------------
 
 **QuickStart**
-
 Detailed documentation can be found in the wiki.
 
 **Dependencies** 
 - multilib repository, pipewire and network manager must be added during arch install.
 - Secure boot must be disabled in UEFI for systemd bootloader use.
 
-**This script is meant to be used as an automated setup for new arch systems. Clean installs only, as I can not guarantee the functionality when applied to a pre-configured system.**
+**This script is meant to be used as an automated setup for new arch systems. Clean installs are recommended, as I can not guarantee the functionality when applied to a pre-configured system.**
 
 After logging into your new Arch system, run the following command to start the setup:
 
@@ -40,6 +38,4 @@ After logging into your new Arch system, run the following command to start the 
 
 - Enter your password when prompted
 
-- Follow the remaining steps in the installer to automatically configure your hyprland login and download required packages. 
-
-Enjoy hyprland!
+- Follow the remaining steps in the installer to automatically configure your hyprland login and download required packages
