@@ -81,8 +81,8 @@ PopupWindow {
             source: playerMain
             shadowEnabled: true
             shadowColor: Theme.colAccent
-            shadowBlur: 0.2
-            shadowOpacity: 1
+            shadowBlur: 0.5
+            shadowOpacity: 0.7
             opacity: playerContainer.opacity
         }
 
@@ -120,7 +120,7 @@ PopupWindow {
                     anchors.fill: parent
                     source: backgroundImage
                     blurEnabled: true
-                    blur: 1
+                    blur: 0.8
                 }
             }
 
@@ -146,7 +146,7 @@ PopupWindow {
 
             Rectangle {
                 id: trackInfo
-                width: 190
+                width: 215
                 height: 240
                 anchors.top: parent.top
                 anchors.topMargin: 20
@@ -195,14 +195,14 @@ PopupWindow {
                 id: albumArt
                 anchors.centerIn: trackInfo
                 color: "transparent"
-                width: 200
+                width: trackInfo.width
                 height: 200
                 radius: 15
 
                 RectangularShadow {
                     anchors.fill: parent
-                    anchors.leftMargin: 15
-                    anchors.rightMargin: 15
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
                     color: Theme.colAccent
                     blur: 20
                     spread: -5
@@ -215,15 +215,16 @@ PopupWindow {
                     anchors.fill: albumArt
                     anchors.topMargin: 5
                     anchors.bottomMargin: 5
-                    anchors.rightMargin: 5
-                    anchors.leftMargin: 5 
                     radius: 15
+                    antialiasing: true
                     color: "transparent" 
 
                     Image {
                         id: albumImage
                         anchors.fill: parent
                         asynchronous: true
+                        mipmap: true
+                        smooth: true
                         fillMode: Image.PreserveAspectCrop
                         source: {
                             const url = Players.active?.trackArtUrl;
@@ -290,7 +291,7 @@ PopupWindow {
                         text: Players.formatTime(Players.active ? Players.active.position : 0)
                         font.family: Theme.fontFamily
                         font.pointSize: 7
-                        color: Theme.colAccent
+                        color: Theme.colText
                         opacity: 0.8
                     }
 
@@ -300,7 +301,7 @@ PopupWindow {
                         text: Players.formatTime(Players.active ? Players.active.length : 0)
                         font.family: Theme.fontFamily
                         font.pointSize: 7
-                        color: Theme.colAccent
+                        color: Theme.colText
                         opacity: 0.8
                     }
                 }
