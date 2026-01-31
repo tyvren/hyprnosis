@@ -84,7 +84,7 @@ QtObject {
                 fontFamily: "JetBrainsMono Nerd Font",
                 fontSize: 14,
                 logo: "spiral_hyprnosis.png",
-                wall: "hyprnosis.jpg"
+                wall: "hyprnosis.png"
             }
         })
 
