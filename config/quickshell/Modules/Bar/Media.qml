@@ -212,9 +212,7 @@ PopupWindow {
 
                 ClippingRectangle {
                     id: imageContainer
-                    anchors.fill: albumArt
-                    anchors.topMargin: 5
-                    anchors.bottomMargin: 5
+                    anchors.fill: parent
                     radius: 15
                     antialiasing: true
                     color: "transparent" 
