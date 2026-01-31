@@ -1,6 +1,7 @@
-<img width="761" height="204" alt="hyprnosis" src="https://github.com/user-attachments/assets/25d6c010-0cec-4fae-bc0e-d9253c9fcee5" />
 
-**A hyprland offering - setup script and full configuration for arch linux**
+<img width="3825" height="1518" alt="hyprnosis_banner" src="https://github.com/user-attachments/assets/66b5b537-8012-4dc3-acbc-162e3d3d2a11" />
+
+**hyprnosis - a hyprland offering - setup script and full configuration for arch linux**
 -----------------------------------------------------------------------
 
 **Features**
