@@ -202,7 +202,7 @@ PopupWindow {
                     anchors.bottomMargin: 5
                     anchors.rightMargin: 5
                     anchors.leftMargin: 5
-                    opacity: 1
+                    opacity: playerContainer.opacity
                     radius: 15
                     color: "transparent"
 
