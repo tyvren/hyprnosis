@@ -164,12 +164,14 @@ PopupWindow {
                     Text {
                         id: title
                         Layout.fillWidth: true
+                        Layout.topMargin: -2
                         horizontalAlignment: Text.AlignHCenter
                         color: Theme.colAccent
                         font.pointSize: 10
                         font.bold: true
                         font.family: Theme.fontFamily
                         text: Players.active ? Players.active.trackTitle : ""
+                        elide: Text.ElideRight
                     }
   
                     Item {
@@ -178,7 +180,8 @@ PopupWindow {
 
                     Text {
                         id: artist
-                        Layout.fillWidth: true 
+                        Layout.fillWidth: true
+                        Layout.bottomMargin: -2
                         horizontalAlignment: Text.AlignHCenter
                         color: Theme.colAccent
                         font.pointSize: 10
@@ -186,7 +189,6 @@ PopupWindow {
                         font.family: Theme.fontFamily
                         text: Players.active ? Players.active.trackArtist : ""
                         elide: Text.ElideRight
-                        maximumLineCount: 1
                     }
                 }
             }
