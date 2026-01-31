@@ -34,7 +34,7 @@ Variants {
                 Media {
                     id: mediaPlayer
                     anchor.window: leftBar
-                    anchor.rect.x: leftBar.width - 2
+                    anchor.rect.x: leftBar.width + 4
                     anchor.rect.y: leftBar.top
                     color: "transparent"
                 }
@@ -98,7 +98,7 @@ Variants {
                     Rectangle {
                         id: mediaBtn
                         anchors.top: leftBarContent.top
-                        anchors.topMargin: 50 
+                        anchors.topMargin: 50
                         anchors.left: leftBarContent.left
                         anchors.leftMargin: 2
                         width: 25
