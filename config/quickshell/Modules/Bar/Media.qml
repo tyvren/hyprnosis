@@ -197,14 +197,17 @@ PopupWindow {
                 color: "transparent"
                 width: 200
                 height: 200
-                opacity: playerContainer.opacity
+                radius: 15
 
                 RectangularShadow {
                     anchors.fill: parent
+                    anchors.leftMargin: 15
+                    anchors.rightMargin: 15
                     color: Theme.colAccent
-                    blur: 15
-                    spread: -10
+                    blur: 20
+                    spread: -5
                     radius: 15
+                    opacity: playerContainer.opacity
                 }
 
                 ClippingRectangle {
