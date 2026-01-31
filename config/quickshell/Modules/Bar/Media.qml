@@ -181,7 +181,7 @@ PopupWindow {
                         Layout.fillWidth: true 
                         horizontalAlignment: Text.AlignHCenter
                         color: Theme.colAccent
-                        font.pointSize: 8
+                        font.pointSize: 10
                         font.bold: true
                         font.family: Theme.fontFamily
                         text: Players.active ? Players.active.trackArtist : ""
