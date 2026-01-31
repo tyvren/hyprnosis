@@ -223,7 +223,6 @@ PopupWindow {
                         id: albumImage
                         anchors.fill: parent
                         asynchronous: true
-                        smooth: true
                         fillMode: Image.PreserveAspectCrop
                         source: {
                             const url = Players.active?.trackArtUrl;
