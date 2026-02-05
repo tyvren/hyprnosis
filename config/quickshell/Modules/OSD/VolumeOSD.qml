@@ -34,12 +34,11 @@ Scope {
 
         PanelWindow {
             anchors.top: true
-            anchors.right: true
             margins.top: 10
-            margins.right: 10
             implicitWidth: 180
             implicitHeight: 60
             color: "transparent"
+            exclusionMode: ExclusionMode.Ignore
             mask: Region {}
 
             Item {
