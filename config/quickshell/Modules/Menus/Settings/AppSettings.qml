@@ -193,9 +193,11 @@ ColumnLayout {
                     }
 
                     RotationAnimation on rotation {
-                        from: 0; to: 360; duration: 1000
-                        running: loader.running
-                        loops: Animation.Infinite
+                      from: 0
+                      to: 360
+                      duration: 1000
+                      running: loader.running
+                      loops: Animation.Infinite
                     }
                 }
             }
@@ -292,7 +294,7 @@ ColumnLayout {
                                 hoverEnabled: true
                                 onClicked: {
                                     uninstallProc.appToRemove = modelData
-                                    uninstallProc.running = true
+                                    uninstallProc.startDetached()
                                 }
                             }
                         }
