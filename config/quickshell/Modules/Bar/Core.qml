@@ -57,7 +57,7 @@ PanelWindow {
                 running: false
                 loops: 1
                 from: 0
-                to: 360
+                to: -360
                 duration: 6000
             }
 
@@ -66,7 +66,7 @@ PanelWindow {
                 running: false
                 loops: Animation.Infinite
                 from: 0
-                to: 360
+                to: -360
                 duration: 6000
             }
 
