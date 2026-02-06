@@ -2,6 +2,7 @@
   "activeOpacity": "1.0",
   "allowTearing": "false",
   "appLauncher": "SPACE",
+  "barLayout": "side",
   "blurEnabled": "true",
   "blurPasses": "3",
   "blurSize": "3",

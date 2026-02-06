@@ -17,13 +17,79 @@ Variants {
             id: root
             required property var modelData
 
-            Wallpaper {
-                modelData: root.modelData
+            property var barLayout: ({
+                top: topBar,
+                side: [leftBar, rightBar]
+            })
+
+            PanelWindow {
+                id: topBar
+                color: "transparent"
+                visible: Config.data.barLayout === "top"
+                implicitHeight: 30
+                anchors {
+                    top: true
+                    left: true
+                    right: true
+                }
+
+                Shape {
+                    id: topBarShape
+                    anchors.fill: parent
+                    layer.enabled: true
+                    layer.samples: 5
+
+                    ShapePath {
+                        strokeWidth: 2
+                        strokeColor: "transparent"
+                        fillColor: Theme.colBg
+
+                        startX: 0
+                        startY: 0
+
+                        PathCubic {
+                            x: 50
+                            y: 28
+                            control1X: 30
+                            control1Y: 5
+                            control2X: 35
+                            control2Y: 28
+                        }
+                        PathLine {
+                            x: topBar.width - 50
+                            y: 28
+                        }
+                        PathCubic {
+                            x: topBar.width
+                            y: 0
+                            control1X: topBar.width - 35
+                            control1Y: 28
+                            control2X: topBar.width - 30
+                            control2Y: 5
+                        }
+                        PathLine {
+                            x: topBar.width
+                            y: 0
+                        }
+                    }
+                }
+
+                MultiEffect {
+                    id: topBarShadow
+                    anchors.fill: topBarShape
+                    source: topBarShape
+                    shadowEnabled: true
+                    shadowColor: Theme.colAccent
+                    shadowBlur: 0.2
+                    shadowHorizontalOffset: 0
+                    shadowVerticalOffset: 1
+                }
             }
 
             PanelWindow {
                 id: leftBar
                 color: "transparent"
+                visible: Config.data.barLayout === "side"
                 implicitWidth: 30
                 anchors {
                     left: true
@@ -107,33 +173,33 @@ Variants {
                         radius: 50
                         visible: {
                             if (Players.active) { 
-                              return true;
+                                return true;
                             }
                             return false;
                         } 
 
                         Image {
-                             id: activeLogo
-                             anchors.fill: mediaBtn
-                             source: Theme.logoPath
-                             mipmap: true
-                             asynchronous: true
-                             opacity: 0.5
-                             fillMode: Image.PreserveAspectFit
+                            id: activeLogo
+                            anchors.fill: mediaBtn
+                            source: Theme.logoPath
+                            mipmap: true
+                            asynchronous: true
+                            opacity: 0.5
+                            fillMode: Image.PreserveAspectFit
 
-                             RotationAnimation on rotation {
-                                 id: infiniteSpinAnim
-                                 running: true
-                                 loops: Animation.Infinite
-                                 from: 0
-                                 to: 360
-                                 duration: 6000
+                            RotationAnimation on rotation {
+                                id: infiniteSpinAnim
+                                running: true
+                                loops: Animation.Infinite
+                                from: 0
+                                to: 360
+                                duration: 6000
                             }
                         }
 
                         Item {
-                          id: textContainer
-                          anchors.fill: mediaBtn
+                            id: textContainer
+                            anchors.fill: mediaBtn
 
                             Text {
                                 id: musicIcon
@@ -145,7 +211,7 @@ Variants {
                                 font.pointSize: 16
                                 text: ""
                                 visible: false
-                              }
+                            }
 
                             BtnTextShadow {
                                 anchors.fill: musicIcon 
@@ -173,6 +239,7 @@ Variants {
             PanelWindow {
                 id: rightBar
                 color: "transparent"
+                visible: Config.data.barLayout === "side"
                 implicitWidth: 30
                 anchors {
                     right: true
@@ -287,6 +354,7 @@ Variants {
                     } 
                 }
             }
+
             Core {}
         }
     }

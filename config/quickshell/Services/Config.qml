@@ -31,6 +31,8 @@ Singleton {
             property string theme: "hyprnosis"
             property string wallpaper: ""
 
+            property string barLayout: "side"
+
             property string gapsIn: ""
             property string gapsOut: ""
             property string borderSize: ""

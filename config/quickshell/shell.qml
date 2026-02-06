@@ -6,6 +6,7 @@ import qs.Modules.OSD
 
 ShellRoot {
      Bar {}
+     Wallpaper {}
      VolumeOSD {}
      NotificationOSD {}
      NotificationPane {}
