@@ -73,6 +73,7 @@ PanelWindow {
                             {icon: "󰂯"},
                             {icon: "󰖩"},
                             {icon: "󰍹"},
+                            {icon: ""},
                             {icon: ""},
                             {icon: "󰸉"},
                             {icon: ""},
@@ -126,6 +127,7 @@ PanelWindow {
                         DisplaySettings {
                             active: settingsMenu.visible && settingsMenu.activeIndex === 5
                         }
+                        BarSettings {}
                         ThemeSettings {}
                         WallpaperSettings {
                             active: settingsMenu.visible && settingsMenu.activeIndex === 7

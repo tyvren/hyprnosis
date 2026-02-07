@@ -17,11 +17,6 @@ Variants {
             id: root
             required property var modelData
 
-            property var barLayout: ({
-                top: topBar,
-                side: [leftBar, rightBar]
-            })
-
             PanelWindow {
                 id: topBar
                 color: "transparent"
@@ -84,6 +79,62 @@ Variants {
                     shadowHorizontalOffset: 0
                     shadowVerticalOffset: 1
                 }
+
+                Item {
+                    id: topBarContent
+                    anchors.fill: parent
+
+                    Calendar {
+                        id: topCalendar
+                        visible: clockAreaTop.containsMouse
+                    }
+
+                    ClockH {
+                        id: clockButtonTop
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 450
+
+                        MouseArea {
+                            id: clockAreaTop
+                            anchors.fill: clockButtonTop
+                            hoverEnabled: true
+                        }
+                    }
+
+                    WorkspacesH {
+                        id: workspacesButtonTop
+                        anchors.left: parent.left
+                        anchors.leftMargin: 450
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    BatteryBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 175
+                    }
+                    AudioBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 145
+                    }
+                    BluetoothBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 115
+                    }
+                    NetworkBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 80
+                    }
+                    NotificationBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 50
+                    }
+                }
             }
 
             PanelWindow {
@@ -100,8 +151,8 @@ Variants {
                 Media {
                     id: mediaPlayer
                     anchor.window: leftBar
-                    anchor.rect.x: leftBar.width + 4
-                    anchor.rect.y: leftBar.top
+                    anchor.rect.x: 35
+                    anchor.rect.y: 10
                     color: "transparent"
                 }
 
@@ -171,12 +222,7 @@ Variants {
                         height: 25
                         color: "transparent"
                         radius: 50
-                        visible: {
-                            if (Players.active) { 
-                                return true;
-                            }
-                            return false;
-                        } 
+                        visible: Players.active
 
                         Image {
                             id: activeLogo
@@ -218,7 +264,6 @@ Variants {
                                 source: musicIcon
                             }
                         }
-
 
                         MouseArea {
                             id: mediaBtnArea
@@ -355,7 +400,15 @@ Variants {
                 }
             }
 
-            Core {}
+            LazyLoader {
+                active: Config.data.barLayout === "side"
+                Core {}
+            }
+
+            LazyLoader {
+                active: Config.data.barLayout === "top"
+                CoreH {}
+            }
         }
     }
 }

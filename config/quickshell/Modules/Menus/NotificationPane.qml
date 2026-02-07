@@ -19,8 +19,8 @@ PanelWindow {
     anchors.right: true
     implicitWidth: 350
     margins.right: 35
-    margins.top: 10
-    margins.bottom: 10
+    margins.top: 35
+    margins.bottom: 35
 
     WlrLayershell.layer: WlrLayer.Top
     exclusionMode: ExclusionMode.Ignore
