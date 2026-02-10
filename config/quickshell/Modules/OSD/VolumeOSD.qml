@@ -34,7 +34,7 @@ Scope {
 
         PanelWindow {
             anchors.top: true
-            margins.top: 10
+            margins.top: 40
             implicitWidth: 180
             implicitHeight: 60
             color: "transparent"
@@ -46,7 +46,7 @@ Scope {
             
                 Rectangle {
                     anchors.fill: parent
-                    radius: 15
+                    radius: 50
                     color: Theme.colBg
                     border.color: Theme.colAccent
                     border.width: 1
