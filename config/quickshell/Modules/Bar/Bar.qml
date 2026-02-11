@@ -18,7 +18,7 @@ Variants {
             required property var modelData
 
             PanelWindow {
-                id: shellRoot
+                id: overlay
                 anchors {
                     top: true
                     bottom: true
@@ -30,7 +30,7 @@ Variants {
 
                 Media {
                     id: mediaPlayer
-                    anchor.window: shellRoot
+                    anchor.window: overlay
                     anchor.rect.x: 35
                     anchor.rect.y: 10
                     color: "transparent"
@@ -160,6 +160,7 @@ Variants {
                     MediaBtn {
                         anchors.left: parent.left
                         anchors.leftMargin: 50
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
             }
