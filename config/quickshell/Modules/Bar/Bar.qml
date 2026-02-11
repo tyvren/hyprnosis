@@ -18,6 +18,26 @@ Variants {
             required property var modelData
 
             PanelWindow {
+                id: shellRoot
+                anchors {
+                    top: true
+                    bottom: true
+                    right: true
+                    left: true
+                }
+                color: "transparent"
+                mask: Region {}
+
+                Media {
+                    id: mediaPlayer
+                    anchor.window: shellRoot
+                    anchor.rect.x: 35
+                    anchor.rect.y: 10
+                    color: "transparent"
+                }
+            }
+
+            PanelWindow {
                 id: topBar
                 color: "transparent"
                 visible: Config.data.barLayout === "top"
@@ -87,6 +107,9 @@ Variants {
                     Calendar {
                         id: topCalendar
                         visible: clockAreaTop.containsMouse
+                        anchor.window: topBar
+                        anchor.rect.x: 0
+                        anchor.rect.y: 40
                     }
 
                     ClockH {
@@ -134,6 +157,10 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.rightMargin: 50
                     }
+                    MediaBtn {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 50
+                    }
                 }
             }
 
@@ -146,14 +173,6 @@ Variants {
                     left: true
                     top: true
                     bottom: true
-                } 
-
-                Media {
-                    id: mediaPlayer
-                    anchor.window: leftBar
-                    anchor.rect.x: 35
-                    anchor.rect.y: 10
-                    color: "transparent"
                 }
 
                 Shape {
@@ -212,71 +231,11 @@ Variants {
                     id: leftBarContent
                     anchors.fill: parent
 
-                    Rectangle {
-                        id: mediaBtn
+                    MediaBtn {
                         anchors.top: leftBarContent.top
                         anchors.topMargin: 50
                         anchors.left: leftBarContent.left
                         anchors.leftMargin: 2
-                        width: 25
-                        height: 25
-                        color: "transparent"
-                        radius: 50
-                        visible: Players.active
-
-                        Image {
-                            id: activeLogo
-                            anchors.fill: mediaBtn
-                            source: Theme.logoPath
-                            mipmap: true
-                            asynchronous: true
-                            opacity: 0.5
-                            fillMode: Image.PreserveAspectFit
-
-                            RotationAnimation on rotation {
-                                id: infiniteSpinAnim
-                                running: true
-                                loops: Animation.Infinite
-                                from: 0
-                                to: 360
-                                duration: 6000
-                            }
-                        }
-
-                        Item {
-                            id: textContainer
-                            anchors.fill: mediaBtn
-
-                            Text {
-                                id: musicIcon
-                                anchors.left: textContainer.left
-                                anchors.leftMargin: 3
-                                color: Theme.colAccent
-                                font.bold: true
-                                font.family: Theme.fontFamily
-                                font.pointSize: 16
-                                text: ""
-                                visible: false
-                            }
-
-                            BtnTextShadow {
-                                anchors.fill: musicIcon 
-                                source: musicIcon
-                            }
-                        }
-
-                        MouseArea {
-                            id: mediaBtnArea
-                            anchors.fill: mediaBtn
-                            hoverEnabled: true
-                            onEntered: {
-                                if (!mediaPlayer.open) {
-                                    mediaPlayer.visible = true 
-                                } else {
-                                    mediaPlayer.open = false
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -351,6 +310,9 @@ Variants {
                     Calendar {
                         id: calendar
                         visible: clockArea.containsMouse
+                        anchor.window: rightBar
+                        anchor.rect.x: rightBar.width -400
+                        anchor.rect.y: 40
                     }
 
                     Clock {
