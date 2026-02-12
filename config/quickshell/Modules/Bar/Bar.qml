@@ -108,7 +108,7 @@ Variants {
                         id: topCalendar
                         visible: clockAreaTop.containsMouse
                         anchor.window: topBar
-                        anchor.rect.x: 0
+                        anchor.rect.x: 1900
                         anchor.rect.y: 40
                     }
 
