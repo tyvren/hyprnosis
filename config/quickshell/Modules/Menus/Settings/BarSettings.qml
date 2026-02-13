@@ -13,7 +13,7 @@ ColumnLayout {
     property string barLayout: Config.data.barLayout
 
     Text {
-        text: "Shell Configuration"
+        text: "Bar Layout"
         color: Theme.colAccent
         font.pointSize: 16
         font.family: Theme.fontFamily

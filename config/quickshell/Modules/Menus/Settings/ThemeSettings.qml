@@ -8,7 +8,10 @@ import qs.Services
 import qs.Themes
 
 ColumnLayout {
+    id: themeSettings
     spacing: 10
+
+    property string theme: Config.data.theme
 
     Text {
         text: "Themes"
@@ -50,7 +53,7 @@ ColumnLayout {
                 id: themeButtons
                 anchors.fill: parent
                 radius: 10
-                color: themeArea.containsMouse ? Theme.colAccent : Theme.colMuted
+                color: (themeSettings.theme === modelData.themeId || themeArea.containsMouse) ? Theme.colAccent : Theme.colMuted
 
                 Row {
                     id: colorRow
@@ -80,7 +83,7 @@ ColumnLayout {
                 Text {
                     anchors.centerIn: parent
                     text: modelData.name
-                    color: themeArea.containsMouse ? Theme.colBg : Theme.colText
+                    color: (themeSettings.theme === modelData.themeId || themeArea.containsMouse) ? Theme.colBg : Theme.colText
                     font.pointSize: 12
                     font.family: Theme.fontFamily
                 }
