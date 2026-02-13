@@ -67,11 +67,11 @@ PanelWindow {
 
                     Repeater {
                         model: [ 
-                            {icon: "󰋼"},
-                            {icon: "󰏖"},
-                            {icon: "󰓃"},
-                            {icon: "󰂯"},
-                            {icon: "󰖩"},
+                            {icon: ""},
+                            {icon: ""},
+                            {icon: ""},
+                            {icon: ""},
+                            {icon: ""},
                             {icon: "󰍹"},
                             {icon: ""},
                             {icon: ""},
@@ -92,7 +92,7 @@ PanelWindow {
                     Item { Layout.fillHeight: true }
 
                     StyledButton {
-                        text: "󰅙"
+                        text: ""
                         size: 45
                         onClicked: settingsMenu.visible = false
                     }
