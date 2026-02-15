@@ -1,7 +1,6 @@
 default_packages=(
   zen-browser-bin
   steam
-  discord
   gimp
   occt
   obs-studio
