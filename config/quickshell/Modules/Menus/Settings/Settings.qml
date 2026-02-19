@@ -130,7 +130,7 @@ PanelWindow {
                         BarSettings {}
                         ThemeSettings {}
                         WallpaperSettings {
-                            active: settingsMenu.visible && settingsMenu.activeIndex === 7
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 8
                         }
                         HyprSettings {}
                         Keybinds {}
