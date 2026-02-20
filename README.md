@@ -10,7 +10,7 @@
 
 - A fully configured hyprland environment built with quickshell
 - AMD or NVidia GPU packages installed automatically during setup
-- Steam, Discord, OCCT and other useful tools pre-installed
+- Minimal pre-installed packages
 - NVIM - preconfigured neovim plugins and themes using lazyvim
 - Theme switching with multiple preinstalled themes
 
