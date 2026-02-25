@@ -77,52 +77,8 @@ ColumnLayout {
                     hoverEnabled: true
                     onClicked: {
                         barSettings.barLayout = modelData.value
+                        Config.data.barLayout = barSettings.barLayout
                     }
-                }
-            }
-        }
-    }
-
-    Item { Layout.fillHeight: true }
-
-    Item {
-        id: applyBtn
-        Layout.alignment: Qt.AlignRight
-        Layout.preferredWidth: 90
-        Layout.preferredHeight: 35
-
-        MultiEffect {
-            anchors.fill: applyBtnRect 
-            source: applyBtnRect
-            shadowEnabled: true 
-            shadowBlur: 0.2 
-            shadowColor: Theme.colAccent
-            shadowVerticalOffset: 1 
-            shadowHorizontalOffset: 0 
-            opacity: 0.8
-        }
-
-        Rectangle {
-            id: applyBtnRect
-            anchors.fill: parent
-            radius: 10
-            color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-            Text {
-                anchors.centerIn: parent
-                text: "Apply"
-                color: applyMa.containsMouse ? Theme.colBg : Theme.colText
-                font.bold: true
-                font.family: Theme.fontFamily
-            }
-
-            MouseArea {
-                id: applyMa 
-                anchors.fill: parent 
-                hoverEnabled: true
-
-                onClicked: {
-                    Config.data.barLayout = barSettings.barLayout
                 }
             }
         }
