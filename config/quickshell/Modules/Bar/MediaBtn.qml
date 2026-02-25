@@ -56,8 +56,7 @@ Rectangle {
     MouseArea {
         id: mediaBtnArea
         anchors.fill: mediaBtn
-        hoverEnabled: true
-        onEntered: {
+        onClicked: {
             if (!mediaPlayer.open) {
                 mediaPlayer.visible = true 
             } else {
