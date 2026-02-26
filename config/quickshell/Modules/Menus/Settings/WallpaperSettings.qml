@@ -13,6 +13,7 @@ ColumnLayout {
     spacing: 15
 
     property bool active: false
+    property string currentWallpaper: Config.data.wallpaper
     
     property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/wallpapers"
     property var wallpaperList: []
@@ -57,6 +58,54 @@ ColumnLayout {
             spacing: 15
 
             ColumnLayout {
+                spacing: 80
+                Layout.fillWidth: true
+
+                RowLayout {
+                    spacing: 10
+                    Text { 
+                        text: "Current Wallpaper"
+                        color: Theme.colAccent
+                        font.pointSize: 11
+                        font.family: Theme.fontFamily
+                    }
+                }
+
+                Item {
+                    anchors.centerIn: parent 
+
+                    Rectangle {
+                        id: currentWall
+                        anchors.centerIn: parent
+                        width: 260
+                        height: 150
+                        color: "transparent"
+                        border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
+                        border.width: 1
+                        radius: 15
+
+                        ClippingRectangle {
+                            id: clipCurrentWall
+                            anchors.fill: parent 
+                            anchors.margins: 2
+                            color: "transparent"
+                            radius: 15
+                    
+                            Image {
+                                anchors.fill: parent
+                                source: "file://" + currentWallpaper
+                                fillMode: Image.PreserveAspectCrop
+                                asynchronous: true
+                                smooth: true
+                            }
+                        }
+                    }
+                }
+
+                DividerLine { Layout.fillWidth: true }
+            }
+
+            ColumnLayout {
                 spacing: 10
                 Layout.fillWidth: true
 
@@ -65,13 +114,13 @@ ColumnLayout {
                     Text { 
                         text: "Custom Wallpapers"
                         color: Theme.colAccent
-                        font.pointSize: 14
+                        font.pointSize: 11
                         font.family: Theme.fontFamily
                     }
                     Text {
                         text: "~/Pictures/wallpapers"
                         color: Theme.colMuted
-                        font.pointSize: 14
+                        font.pointSize: 11
                         font.family: Theme.fontFamily
                     }
                 }
@@ -81,10 +130,10 @@ ColumnLayout {
             GridView {
                 id: customGrid
                 Layout.fillWidth: true
-                Layout.preferredHeight: 320
+                Layout.preferredHeight: 280
                 interactive: true
                 clip: true
-                cellWidth:  225
+                cellWidth:  220
                 cellHeight: 160
                 model: wallpaperPane.wallpaperList
                 delegate: wallpaperDelegate
@@ -99,13 +148,13 @@ ColumnLayout {
                     Text { 
                         text: "Theme Wallpapers"
                         color: Theme.colAccent
-                        font.pointSize: 14
+                        font.pointSize: 11
                         font.family: Theme.fontFamily
                     }
                     Text {
                         text: "hyprnosis/wallpapers/" + wallpaperPane.folderName
                         color: Theme.colMuted
-                        font.pointSize: 14
+                        font.pointSize: 11
                         font.family: Theme.fontFamily
                     }
                 }
@@ -115,10 +164,10 @@ ColumnLayout {
             GridView {
                 id: themeGrid
                 Layout.fillWidth: true
-                Layout.preferredHeight: 320
+                Layout.preferredHeight: 280
                 interactive: true
                 clip: true
-                cellWidth: 225
+                cellWidth: 220
                 cellHeight: 160
                 model: wallpaperPane.themeWallpaperList
                 delegate: wallpaperDelegate
