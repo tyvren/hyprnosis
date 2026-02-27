@@ -31,7 +31,7 @@ Variants {
                 Media {
                     id: mediaPlayer
                     anchor.window: overlay
-                    anchor.rect.x: 35
+                    anchor.rect.x: 10
                     anchor.rect.y: 10
                     color: "transparent"
                 }
