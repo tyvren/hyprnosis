@@ -58,7 +58,7 @@ ColumnLayout {
             spacing: 15
 
             ColumnLayout {
-                spacing: 80
+                spacing: 10
                 Layout.fillWidth: true
 
                 RowLayout {
@@ -70,17 +70,21 @@ ColumnLayout {
                         font.family: Theme.fontFamily
                     }
                 }
+  
+                DividerLine { Layout.fillWidth: true }
 
                 Item {
-                    anchors.centerIn: parent 
+                  Layout.alignment: Qt.AlignHCenter
+                  Layout.preferredHeight: 150
+                  Layout.topMargin: 10
 
                     Rectangle {
                         id: currentWall
                         anchors.centerIn: parent
                         width: 260
-                        height: 150
+                        height: 160
                         color: "transparent"
-                        border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
+                        border.color: Theme.colAccent 
                         border.width: 1
                         radius: 15
 
@@ -101,8 +105,6 @@ ColumnLayout {
                         }
                     }
                 }
-
-                DividerLine { Layout.fillWidth: true }
             }
 
             ColumnLayout {
