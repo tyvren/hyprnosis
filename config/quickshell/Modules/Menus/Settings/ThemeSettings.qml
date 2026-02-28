@@ -32,7 +32,7 @@ ColumnLayout {
             { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
             { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
             { name: "Eden",       themeId: "eden",       script: "Eden" },
-            { name: "Ghost", themeId: "ghost", script: "Ghost" }
+            { name: "Ghost",      themeId: "ghost",      script: "Ghost" }
         ]
 
         Item {
