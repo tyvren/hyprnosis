@@ -7,6 +7,8 @@ import Quickshell
 QtObject {
         id: theme
         readonly property string activeId: Config.data.theme
+        readonly property string fontFamily: "JetBrainsMono Nerd Font"
+        readonly property int fontSize: 14
         readonly property var themes: ({
             mocha: {
                 colBg: "#1e1e2e",
@@ -16,8 +18,6 @@ QtObject {
                 colAccent: "#b4befe",
                 colMuted: "#404063",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_mocha.png",
                 wall: "mocha.png"
             },
@@ -29,8 +29,6 @@ QtObject {
                 colAccent: "#B3A3AD",
                 colMuted: "#67636E",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_arcadia.png",
                 wall: "arcadia.png"
             },
@@ -42,8 +40,6 @@ QtObject {
                 colAccent: "#bd93f9",
                 colMuted: "#44475a",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_dracula.png",
                 wall: "oni.png"
             },
@@ -55,8 +51,6 @@ QtObject {
                 colAccent: "#0D0D0D",
                 colMuted: "#B9B3A2",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_eden.png",
                 wall: "10_rain.png"
             },
@@ -68,8 +62,6 @@ QtObject {
                 colAccent: "#FD5001",
                 colMuted: "#696969",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_emberforge.png",
                 wall: "emberforge.jpg"
             },
@@ -81,10 +73,19 @@ QtObject {
                 colAccent: "#01A2FC",
                 colMuted: "#444b6a",
                 colTransB: "#80000000",
-                fontFamily: "JetBrainsMono Nerd Font",
-                fontSize: 14,
                 logo: "spiral_hyprnosis.png",
                 wall: "hyprnosis.png"
+            },
+            ghost: {
+                colBg: "#B3000000",
+                colText: "#D0D0D0",
+                colSelect: "#404040",
+                colHilight: "#FFFFFF",
+                colAccent: "#80FFFFFF",
+                colMuted: "#606060",
+                colTransB: "#80000000",
+                logo: "spiral_ghost.png",
+                wall: "hyprnosis_ghost.png"
             }
         })
 
@@ -97,9 +98,6 @@ QtObject {
         readonly property color colAccent: active.colAccent
         readonly property color colMuted: active.colMuted
         readonly property color colTransB: active.colTransB
-
-        readonly property string fontFamily: active.fontFamily
-        readonly property int fontSize: active.fontSize
 
         readonly property string wallpaperPath: {
             if (Config.data.wallpaper) {

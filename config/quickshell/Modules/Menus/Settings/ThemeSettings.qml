@@ -31,7 +31,8 @@ ColumnLayout {
             { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
             { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
             { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
-            { name: "Eden",       themeId: "eden",       script: "Eden" } 
+            { name: "Eden",       themeId: "eden",       script: "Eden" },
+            { name: "Ghost", themeId: "ghost", script: "Ghost" }
         ]
 
         Item {
