@@ -11,9 +11,7 @@ CONF_FILE="$HOME/.config/hypr/settings/monitors.conf"
 if grep -q "monitor=$NAME," "$CONF_FILE"; then
   sed -i "s|^monitor=$NAME,.*|monitor=$NAME,$RES,$POS,$SCALE|" "$CONF_FILE"
 else
-  sed -i "/### MONITORS ###/a monitor=$NAME,$RES,$POS,$SCALE" "$CONF_FILE"
+  sed -i "/monitor=,preferred,auto, 1/a monitor=$NAME,$RES,$POS,$SCALE" "$CONF_FILE"
 fi
 
 sed -i "s|^env = GDK_SCALE,.*|env = GDK_SCALE,$GDK|" "$CONF_FILE"
-
-hyprctl keyword monitor "$NAME,$RES,$POS,$SCALE"
