@@ -68,10 +68,16 @@ Variants {
                     }
 
                     MainMenuBtn {
-                        id: mainMenu
                         anchors.left: parent.left
                         anchors.leftMargin: 25
                         anchors.verticalCenter: parent.verticalCenter
+
+                        BarButton {
+                            icon: "   "
+                            onClicked: {
+                                quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
+                            }
+                        }
                     }
 
                     LazyLoader {
@@ -163,7 +169,7 @@ Variants {
                         visible: clockAreaBottom.containsMouse
                         anchor.window: bottomBar
                         anchor.rect.x: 1100
-                        anchor.rect.y: -40
+                        anchor.rect.y: 40
                     }
 
                     ClockH {
@@ -180,6 +186,24 @@ Variants {
                         anchors.left: parent.left
                         anchors.leftMargin: 25
                         anchors.verticalCenter: parent.verticalCenter
+
+                        BarButton {
+                            icon: "   "
+                            onClicked: {
+                                quickMenuLoaderB.item.visible = !quickMenuLoaderB.item.visible 
+                            }
+                        }
+                    }
+
+                    LazyLoader {
+                        id: quickMenuLoaderB
+                        loading: true
+
+                        QuickMenu {
+                            anchor.window: bottomBar
+                            anchor.rect.x: 10
+                            anchor.rect.y: -201
+                        }
                     }
 
                     WorkspacesH {
@@ -267,7 +291,25 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 25
                         x: 3.5
+
+                        BarButton {
+                            icon: "   "
+                            onClicked: {
+                                quickMenuLoaderL.item.visible = !quickMenuLoaderL.item.visible 
+                            }
+                        }
                     }
+                    
+                    LazyLoader {
+                        id: quickMenuLoaderL
+                        loading: true
+
+                        QuickMenu {
+                            anchor.window: leftBar
+                            anchor.rect.x: 31
+                            anchor.rect.y: 10
+                        }
+                    }  
 
                     Workspaces {
                         anchors.top: parent.top
@@ -353,6 +395,24 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 25
                         x: 1.5
+
+                        BarButton {
+                            icon: "   "
+                            onClicked: {
+                                quickMenuLoaderR.item.visible = !quickMenuLoaderR.item.visible 
+                            }
+                        }
+                    }
+
+                    LazyLoader {
+                        id: quickMenuLoaderR
+                        loading: true
+
+                        QuickMenu {
+                            anchor.window: rightBar
+                            anchor.rect.x: -152
+                            anchor.rect.y: 10
+                        }
                     }
 
                     Workspaces {
