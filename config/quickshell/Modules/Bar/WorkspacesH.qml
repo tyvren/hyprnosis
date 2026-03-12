@@ -10,7 +10,7 @@ RowLayout {
     spacing: 15
 
     Repeater {
-        model: 6
+        model: 9
 
         Item {
             id: wsbutton
@@ -23,7 +23,7 @@ RowLayout {
             Text {
                 id: icon
                 text: ""
-                color: isActive ? "transparent" : (ws ? Theme.colMuted : "transparent")
+                color: isActive ? Theme.colAccent : (ws ? Theme.colMuted : "transparent")
                 font.family: Theme.fontFamily
                 font.pixelSize: Theme.fontSize
                 layer.enabled: true
@@ -41,7 +41,7 @@ RowLayout {
                 asynchronous: true
                 fillMode: Image.PreserveAspectFit
                 layer.enabled: true
-                visible: isActive
+                visible: false
             }
 
             MultiEffect {

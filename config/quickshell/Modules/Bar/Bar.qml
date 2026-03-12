@@ -7,6 +7,7 @@ import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.Components
+import qs.Modules.Menus
 import qs.Themes
 import qs.Services
 
@@ -16,26 +17,6 @@ Variants {
         Item {
             id: root
             required property var modelData
-
-            PanelWindow {
-                id: overlay
-                anchors {
-                    top: true
-                    bottom: true
-                    right: true
-                    left: true
-                }
-                color: "transparent"
-                mask: Region {}
-
-                Media {
-                    id: mediaPlayer
-                    anchor.window: overlay
-                    anchor.rect.x: 10
-                    anchor.rect.y: 10
-                    color: "transparent"
-                }
-            }
 
             PanelWindow {
                 id: topBar
@@ -48,119 +29,199 @@ Variants {
                     right: true
                 }
 
-                Shape {
-                    id: topBarShape
+                Rectangle {
+                    id: topBarRect
+                    color: Theme.colBg
                     anchors.fill: parent
-                    layer.enabled: true
-                    layer.samples: 5
-
-                    ShapePath {
-                        strokeWidth: 2
-                        strokeColor: "transparent"
-                        fillColor: Theme.colBg
-
-                        startX: 0
-                        startY: 0
-
-                        PathCubic {
-                            x: 50
-                            y: 28
-                            control1X: 30
-                            control1Y: 5
-                            control2X: 35
-                            control2Y: 28
-                        }
-                        PathLine {
-                            x: topBar.width - 50
-                            y: 28
-                        }
-                        PathCubic {
-                            x: topBar.width
-                            y: 0
-                            control1X: topBar.width - 35
-                            control1Y: 28
-                            control2X: topBar.width - 30
-                            control2Y: 5
-                        }
-                        PathLine {
-                            x: topBar.width
-                            y: 0
-                        }
-                    }
-                }
-
-                MultiEffect {
-                    id: topBarShadow
-                    anchors.fill: topBarShape
-                    source: topBarShape
-                    shadowEnabled: true
-                    shadowColor: Theme.colAccent
-                    shadowBlur: 0.2
-                    shadowHorizontalOffset: 0
-                    shadowVerticalOffset: 1
+                    anchors.topMargin: 2
+                    anchors.leftMargin: Config.data.barMargin
+                    anchors.rightMargin: Config.data.barMargin
+                    radius: Config.data.barRadius
+                    border.color: Theme.colAccent
                 }
 
                 Item {
                     id: topBarContent
                     anchors.fill: parent
-
-                    Calendar {
-                        id: topCalendar
-                        visible: clockAreaTop.containsMouse
-                        anchor.window: topBar
-                        anchor.rect.x: 1900
-                        anchor.rect.y: 40
-                    }
+                    anchors.topMargin: 2.5
 
                     ClockH {
                         id: clockButtonTop
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 450
-
+                        anchors.centerIn: parent
                         MouseArea {
                             id: clockAreaTop
                             anchors.fill: clockButtonTop
-                            hoverEnabled: true
+                            onClicked: calendarLoader.item.visible = !calendarLoader.item.visible
+                        }
+                    }
+
+                    LazyLoader {
+                        id: calendarLoader
+                        loading: true
+
+                        Calendar {
+                            id: topCalendar
+                            anchor.window: topBar
+                            anchor.rect.x: 1100
+                            anchor.rect.y: 40
+                        }
+                    }
+
+                    MainMenuBtn {
+                        id: mainMenu
+                        anchors.left: parent.left
+                        anchors.leftMargin: 25
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    LazyLoader {
+                        id: quickMenuLoader
+                        loading: true
+
+                        QuickMenu {
+                            id: quickMenu
+                            anchor.window: topBar
+                            anchor.rect.x: 10
+                            anchor.rect.y: 31
                         }
                     }
 
                     WorkspacesH {
                         id: workspacesButtonTop
                         anchors.left: parent.left
-                        anchors.leftMargin: 450
+                        anchors.leftMargin: 80
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 175
+                        anchors.rightMargin: 180
                     }
+
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 145
+                        anchors.rightMargin: 150
                     }
+
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 115
+                        anchors.rightMargin: 120
                     }
+
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 80
+                        anchors.rightMargin: 85
                     }
+
                     NotificationBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 50
+                        anchors.rightMargin: 55
                     }
-                    MediaBtn {
+
+                    SidePanelBtn {
+                       anchors.right: parent.right
+                       anchors.verticalCenter: parent.verticalCenter
+                       anchors.rightMargin: 25
+                    }
+                }
+            }
+
+            PanelWindow {
+                id: bottomBar
+                color: "transparent"
+                visible: Config.data.barLayout === "bottom"
+                implicitHeight: 30
+                anchors {
+                    bottom: true
+                    left: true
+                    right: true
+                } 
+
+                Rectangle {
+                    id: bottomBarRect
+                    color: Theme.colBg
+                    anchors.fill: parent
+                    anchors.bottomMargin: 2
+                    anchors.leftMargin: Config.data.barMargin
+                    anchors.rightMargin: Config.data.barMargin
+                    radius: Config.data.barRadius
+                    border.color: Theme.colAccent
+                }
+
+                Item {
+                    id: bottomBarContent
+                    anchors.fill: parent
+                    anchors.bottomMargin: 2.5
+
+                    Calendar {
+                        id: bottomCalendar
+                        visible: clockAreaBottom.containsMouse
+                        anchor.window: bottomBar
+                        anchor.rect.x: 1100
+                        anchor.rect.y: -40
+                    }
+
+                    ClockH {
+                        id: clockButtonBottom
+                        anchors.centerIn: parent
+                        MouseArea {
+                            id: clockAreaBottom
+                            anchors.fill: clockButtonBottom
+                            hoverEnabled: true
+                        }
+                    }
+
+                    MainMenuBtn {
                         anchors.left: parent.left
-                        anchors.leftMargin: 50
+                        anchors.leftMargin: 25
                         anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    WorkspacesH {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 80
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    BatteryBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 180
+                    }
+
+                    AudioBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 150
+                    }
+
+                    BluetoothBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 120
+                    }
+
+                    NetworkBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 85
+                    }
+
+                    NotificationBtn {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 55
+                    }
+
+                    SidePanelBtn {
+                       anchors.right: parent.right
+                       anchors.verticalCenter: parent.verticalCenter
+                       anchors.rightMargin: 25
                     }
                 }
             }
@@ -168,7 +229,7 @@ Variants {
             PanelWindow {
                 id: leftBar
                 color: "transparent"
-                visible: Config.data.barLayout === "side"
+                visible: Config.data.barLayout === "left"
                 implicitWidth: 30
                 anchors {
                     left: true
@@ -176,67 +237,78 @@ Variants {
                     bottom: true
                 }
 
-                Shape {
-                    id: leftBarShape
+                Rectangle {
+                    id: leftBarRect
+                    color: Theme.colBg
                     anchors.fill: parent
-                    layer.enabled: true
-                    layer.samples: 5
-
-                    ShapePath {
-                        strokeWidth: 2
-                        strokeColor: "transparent"
-                        fillColor: Theme.colBg
-
-                        startX: 0
-                        startY: 0
-
-                        PathCubic {
-                            x: 28
-                            y: 50
-                            control1X: 5
-                            control1Y: 30
-                            control2X: 28
-                            control2Y: 35
-                        }
-                        PathLine {
-                            x: 28
-                            y: leftBar.height - 50
-                        }
-                        PathCubic {
-                            x: 0
-                            y: leftBar.height
-                            control1X: 28
-                            control1Y: leftBar.height - 35
-                            control2X: 5
-                            control2Y: leftBar.height - 30
-                        }
-                        PathLine {
-                            x: 0
-                            y: 0
-                        }
-                    }
-                }
-
-                MultiEffect {
-                    id: leftBarShadow
-                    anchors.fill: leftBarShape
-                    source: leftBarShape
-                    shadowEnabled: true
-                    shadowColor: Theme.colAccent
-                    shadowBlur: 0.2
-                    shadowHorizontalOffset: 1
-                    shadowVerticalOffset: 0
+                    anchors.leftMargin: 2
+                    anchors.topMargin: Config.data.barMargin
+                    anchors.bottomMargin: Config.data.barMargin
+                    radius: Config.data.barRadius
+                    border.color: Theme.colAccent
                 }
 
                 Item {
                     id: leftBarContent
                     anchors.fill: parent
+                    anchors.bottomMargin: 2.5
 
-                    MediaBtn {
-                        anchors.top: leftBarContent.top
-                        anchors.topMargin: 50
-                        anchors.left: leftBarContent.left
-                        anchors.leftMargin: 2
+                    Clock {
+                        id: clockButtonLeft
+                        anchors.centerIn: parent
+                        MouseArea {
+                            id: clockAreaLeft
+                            anchors.fill: clockButtonLeft
+                            hoverEnabled: true
+                        }
+                    }
+
+                    MainMenuBtn {
+                        anchors.top: parent.top
+                        anchors.topMargin: 25
+                        x: 3.5
+                    }
+
+                    Workspaces {
+                        anchors.top: parent.top
+                        anchors.topMargin: 80
+                        x: 9
+                    }
+
+                    BatteryBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 180
+                        x: 8
+                    }
+
+                    AudioBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 150
+                        x: 8  
+                    }
+
+                    BluetoothBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 120
+                        x: 10 
+                    }
+
+                    NetworkBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 85
+                        x: 8
+                    }
+
+                    NotificationBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 55
+                        x: 10 
+                    }
+
+                    SidePanelBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 25
+                        x: 10 
                     }
                 }
             }
@@ -244,7 +316,7 @@ Variants {
             PanelWindow {
                 id: rightBar
                 color: "transparent"
-                visible: Config.data.barLayout === "side"
+                visible: Config.data.barLayout === "right"
                 implicitWidth: 30
                 anchors {
                     right: true
@@ -252,125 +324,79 @@ Variants {
                     bottom: true
                 }
 
-                Shape {
-                    id: rightBarShape
+                Rectangle {
+                    id: rightBarRect
+                    color: Theme.colBg
                     anchors.fill: parent
-                    layer.enabled: true
-                    layer.samples: 5
-
-                    ShapePath {
-                        strokeWidth: 2
-                        strokeColor: "transparent"
-                        fillColor: Theme.colBg
-
-                        startX: rightBar.width
-                        startY: 0
-
-                        PathCubic {
-                            x: rightBar.width - 28
-                            y: 50
-                            control1X: rightBar.width - 5
-                            control1Y: 30
-                            control2X: rightBar.width - 28
-                            control2Y: 35
-                        }
-                        PathLine {
-                            x: rightBar.width - 28
-                            y: rightBar.height - 50
-                        }
-                        PathCubic {
-                            x: rightBar.width
-                            y: rightBar.height
-                            control1X: rightBar.width - 28
-                            control1Y: rightBar.height - 35
-                            control2X: rightBar.width - 5
-                            control2Y: rightBar.height - 30
-                        }
-                        PathLine {
-                            x: rightBar.width
-                            y: 0
-                        }
-                    }
-                }
-
-                MultiEffect {
-                    id: rightBarShadow
-                    anchors.fill: rightBarShape
-                    source: rightBarShape
-                    shadowEnabled: true
-                    shadowColor: Theme.colAccent
-                    shadowBlur: 0.2
-                    shadowHorizontalOffset: -1
-                    shadowVerticalOffset: 0
+                    anchors.rightMargin: 2
+                    anchors.topMargin: Config.data.barMargin
+                    anchors.bottomMargin: Config.data.barMargin
+                    radius: Config.data.barRadius
+                    border.color: Theme.colAccent
                 }
 
                 Item {
                     id: rightBarContent
                     anchors.fill: parent
 
-                    Calendar {
-                        id: calendar
-                        visible: clockArea.containsMouse
-                        anchor.window: rightBar
-                        anchor.rect.x: rightBar.width -400
-                        anchor.rect.y: 40
-                    }
-
                     Clock {
-                        id: clockButton
-                        anchors.top: parent.top
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.topMargin: 50 
-
+                        id: clockButtonRight
+                        anchors.centerIn: parent
                         MouseArea {
-                            id: clockArea
-                            anchors.fill: clockButton
+                            id: clockAreaRight
+                            anchors.fill: clockButtonRight
                             hoverEnabled: true
                         }
                     }
 
+                    MainMenuBtn {
+                        anchors.top: parent.top
+                        anchors.topMargin: 25
+                        x: 1.5
+                    }
+
                     Workspaces {
-                        id: workspacesButton
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        y: parent.height / 2 - 65
+                        anchors.top: parent.top
+                        anchors.topMargin: 80
+                        x: 7
                     }
 
                     BatteryBtn {
                         anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 180
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 170
                     }
+
                     AudioBtn {
                         anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 150
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 140
                     }
+
                     BluetoothBtn {
                         anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 120
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 110
                     }
+
                     NetworkBtn {
                         anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 85
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 80
                     }
+
                     NotificationBtn {
                         anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 55
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 50
-                    } 
+                    }
+
+                    SidePanelBtn {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 25
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
                 }
-            }
-
-            LazyLoader {
-                active: Config.data.barLayout === "side"
-                Core {}
-            }
-
-            LazyLoader {
-                active: Config.data.barLayout === "top"
-                CoreH {}
             }
         }
     }

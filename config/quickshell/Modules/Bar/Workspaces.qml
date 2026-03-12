@@ -23,24 +23,11 @@ ColumnLayout {
             Text {
                 id: icon
                 text: ""
-                color: isActive ? "transparent" : (ws ? Theme.colMuted : "transparent")
+                color: isActive ? Theme.colAccent : (ws ? Theme.colMuted : "transparent")
                 font.family: Theme.fontFamily
                 font.pixelSize: Theme.fontSize
                 layer.enabled: true
                 visible: false
-            }
-
-            Image {
-                    id: workspaceLogo
-                    width: 25
-                    height: 25
-                    x: -5
-                    source: Theme.logoPath
-                    mipmap: true
-                    asynchronous: true
-                    fillMode: Image.PreserveAspectFit
-                    layer.enabled: true
-                    visible: isActive
             }
 
             MultiEffect {

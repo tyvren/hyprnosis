@@ -12,21 +12,24 @@ ColumnLayout {
     id: hyprPane
     spacing: 20
 
-    property bool active: false
-
-    property string gapsIn: Config.data.gapsIn
-    property string gapsOut: Config.data.gapsOut
-    property string borderSize: Config.data.borderSize
-    property string rounding: Config.data.rounding
-    property string activeOpacity: Config.data.activeOpacity
-    property string inactiveOpacity: Config.data.inactiveOpacity
-    property string allowTearing: Config.data.allowTearing
-    property string shadowEnabled: Config.data.shadowEnabled
-    property string blurEnabled: Config.data.blurEnabled
-    property string blurSize: Config.data.blurSize
-    property string blurPasses: Config.data.blurPasses
-    property string disableHyprlandLogo: Config.data.disableHyprlandLogo
-    property string forceDefaultWallpaper: Config.data.forceDefaultWallpaper
+    function applyHypr() {
+        Quickshell.execDetached([
+            Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_hyprland.sh",
+            Config.data.gapsIn.toString(),
+            Config.data.gapsOut.toString(),
+            Config.data.borderSize.toString(),
+            Config.data.rounding.toString(),
+            Config.data.activeOpacity.toString(),
+            Config.data.inactiveOpacity.toString(),
+            Config.data.allowTearing.toString(),
+            Config.data.shadowEnabled.toString(),
+            Config.data.blurEnabled.toString(),
+            Config.data.blurSize.toString(),
+            Config.data.blurPasses.toString(),
+            Config.data.disableHyprlandLogo.toString(),
+            Config.data.forceDefaultWallpaper.toString()
+        ]);
+    }
 
     ColumnLayout {
         spacing: 10
@@ -67,43 +70,28 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Gaps In"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Gaps In"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.gapsIn
-                    onUserEdited: (val) => hyprPane.gapsIn = val 
+                    text: Config.data.gapsIn.toString()
+                    onUserEdited: (val) => { Config.data.gapsIn = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Gaps Out"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Gaps Out"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.gapsOut
-                    onUserEdited: (val) => hyprPane.gapsOut = val 
+                    text: Config.data.gapsOut.toString()
+                    onUserEdited: (val) => { Config.data.gapsOut = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Border Size"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Border Size"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.borderSize
-                    onUserEdited: (val) => hyprPane.borderSize = val 
+                    text: Config.data.borderSize.toString()
+                    onUserEdited: (val) => { Config.data.borderSize = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
         }
@@ -123,43 +111,28 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Rounding"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Rounding"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.rounding
-                    onUserEdited: (val) => hyprPane.rounding = val 
+                    text: Config.data.rounding.toString()
+                    onUserEdited: (val) => { Config.data.rounding = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Active Opacity"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Active Opacity"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.activeOpacity
-                    onUserEdited: (val) => hyprPane.activeOpacity = val 
+                    text: Config.data.activeOpacity.toString()
+                    onUserEdited: (val) => { Config.data.activeOpacity = parseFloat(val); hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Inactive Opacity"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Inactive Opacity"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.inactiveOpacity
-                    onUserEdited: (val) => hyprPane.inactiveOpacity = val 
+                    text: Config.data.inactiveOpacity.toString()
+                    onUserEdited: (val) => { Config.data.inactiveOpacity = parseFloat(val); hyprPane.applyHypr(); }
                 }
             }
         }
@@ -179,47 +152,32 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Blur Enabled"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Blur Enabled"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledSwitch { 
-                    checked: hyprPane.blurEnabled === "true" 
-                    onToggled: hyprPane.blurEnabled = checked.toString() 
+                    checked: Config.data.blurEnabled
+                    onToggled: { Config.data.blurEnabled = checked; hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
-                enabled: hyprPane.blurEnabled === "true"
-                Text { 
-                    text: "Blur Size"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                opacity: Config.data.blurEnabled ? 1.0 : 0.4
+                enabled: Config.data.blurEnabled
+                Text { text: "Blur Size"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.blurSize
-                    onUserEdited: (val) => hyprPane.blurSize = val 
+                    text: Config.data.blurSize.toString()
+                    onUserEdited: (val) => { Config.data.blurSize = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                opacity: hyprPane.blurEnabled === "true" ? 1.0 : 0.4
-                enabled: hyprPane.blurEnabled === "true"
-                Text { 
-                    text: "Blur Passes"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                opacity: Config.data.blurEnabled ? 1.0 : 0.4
+                enabled: Config.data.blurEnabled
+                Text { text: "Blur Passes"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledInput { 
-                    text: hyprPane.blurPasses
-                    onUserEdited: (val) => hyprPane.blurPasses = val 
+                    text: Config.data.blurPasses.toString()
+                    onUserEdited: (val) => { Config.data.blurPasses = parseInt(val); hyprPane.applyHypr(); }
                 }
             }
         }
@@ -239,135 +197,41 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Tearing"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Tearing"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledSwitch { 
-                    checked: hyprPane.allowTearing === "true" 
-                    onToggled: hyprPane.allowTearing = checked.toString() 
+                    checked: Config.data.allowTearing
+                    onToggled: { Config.data.allowTearing = checked; hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Shadows"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Shadows"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledSwitch {
-                    checked: hyprPane.shadowEnabled === "true" 
-                    onToggled: hyprPane.shadowEnabled = checked.toString() 
+                    checked: Config.data.shadowEnabled
+                    onToggled: { Config.data.shadowEnabled = checked; hyprPane.applyHypr(); }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Hyprland Logo"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Hyprland Logo"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledSwitch { 
-                    checked: hyprPane.disableHyprlandLogo === "false" 
-                    onToggled: hyprPane.disableHyprlandLogo = (!checked).toString() 
+                    checked: !Config.data.disableHyprlandLogo
+                    onToggled: { Config.data.disableHyprlandLogo = !checked; hyprPane.applyHypr(); }
                 } 
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "Force Default Wallpaper"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
-                    Layout.fillWidth: true 
-                }
+                Text { text: "Force Default Wallpaper"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
                 StyledSwitch { 
-                    checked: hyprPane.forceDefaultWallpaper === "1" 
-                    onToggled: hyprPane.forceDefaultWallpaper = checked ? "1" : "0" 
+                    checked: Config.data.forceDefaultWallpaper === 1
+                    onToggled: { Config.data.forceDefaultWallpaper = checked ? 1 : 0; hyprPane.applyHypr(); }
                 }
             }
         }
     }
 
-    Item { 
-        Layout.fillHeight: true 
-    }
-
-    Item {
-        id: applyBtn
-        Layout.alignment: Qt.AlignRight
-        Layout.preferredWidth: 90
-        Layout.preferredHeight: 35
-
-        MultiEffect {
-            anchors.fill: applyBtnRect 
-            source: applyBtnRect
-            shadowEnabled: true 
-            shadowBlur: 0.2 
-            shadowColor: Theme.colAccent
-            shadowVerticalOffset: 1 
-            shadowHorizontalOffset: 0 
-            opacity: 0.8
-        }
-
-        Rectangle {
-            id: applyBtnRect
-            anchors.fill: parent
-            radius: 10
-            color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-            Text {
-                anchors.centerIn: parent
-                text: "Apply"
-                color: applyMa.containsMouse ? Theme.colBg : Theme.colText
-                font.bold: true
-                font.family: Theme.fontFamily
-            }
-
-            MouseArea {
-                id: applyMa 
-                anchors.fill: parent 
-                hoverEnabled: true
-
-                onClicked: {
-                    Config.data.gapsIn = hyprPane.gapsIn
-                    Config.data.gapsOut = hyprPane.gapsOut
-                    Config.data.borderSize = hyprPane.borderSize
-                    Config.data.rounding = hyprPane.rounding
-                    Config.data.activeOpacity = hyprPane.activeOpacity
-                    Config.data.inactiveOpacity = hyprPane.inactiveOpacity
-                    Config.data.blurEnabled = hyprPane.blurEnabled
-                    Config.data.blurSize = hyprPane.blurSize
-                    Config.data.blurPasses = hyprPane.blurPasses
-                    Config.data.allowTearing = hyprPane.allowTearing
-                    Config.data.shadowEnabled = hyprPane.shadowEnabled
-                    Config.data.disableHyprlandLogo = hyprPane.disableHyprlandLogo
-                    Config.data.forceDefaultWallpaper = hyprPane.forceDefaultWallpaper
-
-                    Quickshell.execDetached([
-                        Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_hyprland.sh",
-                        hyprPane.gapsIn,
-                        hyprPane.gapsOut,
-                        hyprPane.borderSize,
-                        hyprPane.rounding,
-                        hyprPane.activeOpacity,
-                        hyprPane.inactiveOpacity,
-                        hyprPane.allowTearing,
-                        hyprPane.shadowEnabled,
-                        hyprPane.blurEnabled,
-                        hyprPane.blurSize,
-                        hyprPane.blurPasses,
-                        hyprPane.disableHyprlandLogo,
-                        hyprPane.forceDefaultWallpaper
-                    ]);
-                }
-            }
-        }
-    }
+    Item { Layout.fillHeight: true }
 }

@@ -82,7 +82,7 @@ QtObject {
                 colSelect: "#404040",
                 colHilight: "#FFFFFF",
                 colAccent: "#80FFFFFF",
-                colMuted: "#606060",
+                colMuted: "#3B3B3B",
                 colTransB: "#80000000",
                 logo: "spiral_ghost.png",
                 wall: "hyprnosis_ghost.png"

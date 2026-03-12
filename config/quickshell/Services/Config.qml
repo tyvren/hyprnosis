@@ -31,21 +31,23 @@ Singleton {
             property string theme: "hyprnosis"
             property string wallpaper: ""
 
-            property string barLayout: "side"
+            property string barLayout: "top"
+            property int barRadius: 15
+            property int barMargin: 10
 
-            property string gapsIn: ""
-            property string gapsOut: ""
-            property string borderSize: ""
-            property string rounding: ""
-            property string activeOpacity: ""
-            property string inactiveOpacity: ""
-            property string allowTearing: ""
-            property string shadowEnabled: ""
-            property string blurEnabled: ""
-            property string blurSize: ""
-            property string blurPasses: ""
-            property string disableHyprlandLogo: ""
-            property string forceDefaultWallpaper: ""
+            property int gapsIn: 5
+            property int gapsOut: 10
+            property int borderSize: 2
+            property int rounding: 10
+            property real activeOpacity: 1.0
+            property real inactiveOpacity: 0.8
+            property bool allowTearing: false
+            property bool shadowEnabled: true
+            property bool blurEnabled: true
+            property int blurSize: 8
+            property int blurPasses: 2
+            property bool disableHyprlandLogo: true
+            property int forceDefaultWallpaper: 0
 
             property string mainMod: ""
             property string terminal: ""
@@ -80,7 +82,8 @@ Singleton {
         }
     }
 
-    function updateWallpaper(path) {
-        adapter.wallpaper = path
+    function updateWallpaper(wallpaperPath) {
+        adapter.wallpaper = wallpaperPath
+        Quickshell.execDetached([root.themeScript + "/wallpaper_changer.sh", wallpaperPath])
     }
 }

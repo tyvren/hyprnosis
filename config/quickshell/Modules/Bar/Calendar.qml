@@ -7,12 +7,9 @@ import Quickshell.Widgets
 import qs.Themes
 
 PopupWindow {
-    id: root
+    id: calendarRoot
     implicitWidth: 350
     implicitHeight: 225
-    anchor.window: rightBar
-    anchor.rect.x: rightBar.width -400
-    anchor.rect.y: 40
     color: "transparent"
 
     Rectangle {
@@ -22,7 +19,7 @@ PopupWindow {
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 2
-        opacity: root.visible ? 1.0 : 0.0
+        opacity: calendarRoot.visible ? 1.0 : 0.0
 
         Behavior on opacity {
             NumberAnimation {
