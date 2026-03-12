@@ -9,7 +9,7 @@ ShellRoot {
      Wallpaper {}
      VolumeOSD {}
      NotificationOSD {}
-     NotificationPane {}
      Launcher {}
      Settings {}
+     SidePane {}
 }
