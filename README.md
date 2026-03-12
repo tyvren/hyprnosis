@@ -4,7 +4,7 @@
 **hyprnosis - a hyprland offering - setup script and full configuration for arch linux**
 -----------------------------------------------------------------------
 
-<img width="3840" height="2160" alt="2026-01-31-162543_hyprshot" src="https://github.com/user-attachments/assets/8b8c40f7-2bb9-448b-9abc-0587b6620155" />
+<img width="3840" height="2160" alt="2026-03-12-145748_hyprshot" src="https://github.com/user-attachments/assets/8ac4faa6-1485-4ecf-a3fb-c9d920b2fce8" />
 
 **Features**
 
