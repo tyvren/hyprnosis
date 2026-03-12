@@ -4,11 +4,12 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
+import qs.Components
 import qs.Themes
 
 PopupWindow {
     id: quickMenuRoot
-    implicitWidth: 150
+    implicitWidth: 200
     implicitHeight: 200
     color: "transparent"
 
@@ -31,7 +32,7 @@ PopupWindow {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            spacing: -20
+            spacing: 0
 
             Rectangle {
                 Layout.fillWidth: true
@@ -43,9 +44,9 @@ PopupWindow {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Settings"
+                    text: "  Settings"
                     font.family: Theme.fontFamily
-                    font.pointSize: 12
+                    font.pointSize: 11
                     color: Theme.colAccent
                 }
                 MouseArea {
@@ -59,6 +60,10 @@ PopupWindow {
                 }
             }
 
+            DividerLine {
+                Layout.fillWidth: true
+            }
+
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 25
@@ -69,9 +74,9 @@ PopupWindow {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Lock"
+                    text: "󰌾  Lock"
                     font.family: Theme.fontFamily
-                    font.pointSize: 12
+                    font.pointSize: 11
                     color: Theme.colAccent
                 }
                 MouseArea {
@@ -95,9 +100,9 @@ PopupWindow {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Restart"
+                    text: "󰜉  Restart"
                     font.family: Theme.fontFamily
-                    font.pointSize: 12
+                    font.pointSize: 11
                     color: Theme.colAccent
                 }
                 MouseArea {
@@ -121,9 +126,9 @@ PopupWindow {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "Shutdown"
+                    text: "󰐥  Shutdown"
                     font.family: Theme.fontFamily
-                    font.pointSize: 12
+                    font.pointSize: 11
                     color: Theme.colAccent
                 }
                 MouseArea {
@@ -132,7 +137,7 @@ PopupWindow {
                     hoverEnabled: true
                     onClicked: {
                         shutdownProcess.startDetached()
-                        quickMenuRoot.visible = false
+                        accessMenuRoot.visible = false
                     }
                 }
             }
