@@ -164,21 +164,25 @@ Variants {
                     anchors.fill: parent
                     anchors.bottomMargin: 2.5
 
-                    Calendar {
-                        id: bottomCalendar
-                        visible: clockAreaBottom.containsMouse
-                        anchor.window: bottomBar
-                        anchor.rect.x: 1100
-                        anchor.rect.y: 40
-                    }
-
                     ClockH {
                         id: clockButtonBottom
                         anchors.centerIn: parent
                         MouseArea {
                             id: clockAreaBottom
                             anchors.fill: clockButtonBottom
-                            hoverEnabled: true
+                            onClicked: calendarLoaderB.item.visible = !calendarLoaderB.item.visible
+                        }
+                    }
+
+                    LazyLoader {
+                        id: calendarLoaderB
+                        loading: true
+
+                        Calendar {
+                            id: bottomCalendar
+                            anchor.window: bottomBar
+                            anchor.rect.x: 1100
+                            anchor.rect.y: -235
                         }
                     }
 
@@ -283,7 +287,19 @@ Variants {
                         MouseArea {
                             id: clockAreaLeft
                             anchors.fill: clockButtonLeft
-                            hoverEnabled: true
+                            onClicked: calendarLoaderL.item.visible = !calendarLoaderL.item.visible
+                        }
+                    }
+
+                    LazyLoader {
+                        id: calendarLoaderL
+                        loading: true
+
+                        Calendar {
+                            id: leftCalendar
+                            anchor.window: leftBar
+                            anchor.rect.x: 41
+                            anchor.rect.y: 615
                         }
                     }
 
@@ -387,7 +403,19 @@ Variants {
                         MouseArea {
                             id: clockAreaRight
                             anchors.fill: clockButtonRight
-                            hoverEnabled: true
+                            onClicked: calendarLoaderR.item.visible = !calendarLoaderR.item.visible
+                        }
+                    }
+                    
+                    LazyLoader {
+                        id: calendarLoaderR
+                        loading: true
+
+                        Calendar {
+                            id: rightCalendar
+                            anchor.window: rightBar
+                            anchor.rect.x: -360
+                            anchor.rect.y: 615
                         }
                     }
 
