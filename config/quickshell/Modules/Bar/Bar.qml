@@ -102,37 +102,31 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 180
+                        anchors.rightMargin: 170
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 150
+                        anchors.rightMargin: 135
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 120
+                        anchors.rightMargin: 105
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 85
+                        anchors.rightMargin: 65
                     }
 
-                    NotificationBtn {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 55
-                    }
-
-                    SidePanelBtn {
+                    SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 25
+                       anchors.rightMargin: 35
                     }
                 }
             }
@@ -219,37 +213,31 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 180
+                        anchors.rightMargin: 170
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 150
+                        anchors.rightMargin: 135
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 120
+                        anchors.rightMargin: 105
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 85
+                        anchors.rightMargin: 65
                     }
 
-                    NotificationBtn {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 55
-                    }
-
-                    SidePanelBtn {
+                    SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 25
+                       anchors.rightMargin: 35
                     }
                 }
             }
@@ -335,37 +323,31 @@ Variants {
 
                     BatteryBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 180
+                        anchors.bottomMargin: 170
                         x: 8
                     }
 
                     AudioBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 150
+                        anchors.bottomMargin: 125
                         x: 8  
                     }
 
                     BluetoothBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 120
+                        anchors.bottomMargin: 105
                         x: 10 
                     }
 
                     NetworkBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 85
+                        anchors.bottomMargin: 65
                         x: 8
                     }
 
-                    NotificationBtn {
+                    SidePaneBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 55
-                        x: 10 
-                    }
-
-                    SidePanelBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 25
+                        anchors.bottomMargin: 35
                         x: 10 
                     }
                 }
@@ -451,37 +433,31 @@ Variants {
 
                     BatteryBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 180
+                        anchors.bottomMargin: 170
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     AudioBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 150
+                        anchors.bottomMargin: 135
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     BluetoothBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 120
+                        anchors.bottomMargin: 105
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NetworkBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 85
+                        anchors.bottomMargin: 65
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
-                    NotificationBtn {
+                    SidePaneBtn {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 55
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    SidePanelBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 25
+                        anchors.bottomMargin: 35
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
