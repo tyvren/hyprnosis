@@ -134,7 +134,7 @@ ColumnLayout {
                 radius: 8
                 color: (Config.data.qsTransparency == modelData.value) ? Theme.colAccent : Theme.colMuted
                 border.width: 1
-                border.color: (Config.data.qsTransparency == modelData.value) ? "white" : "transparent"
+                border.color: (Config.data.qsTransparency == modelData.value) ? Theme.colAccent : "transparent"
 
                 Text {
                     anchors.centerIn: parent
