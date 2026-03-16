@@ -106,7 +106,7 @@ ColumnLayout {
     Item { Layout.preferredHeight: 10 }
 
     Text {
-        text: "Shell Transparency"
+        text: "Transparency"
         color: Theme.colAccent
         font.pointSize: 16
         font.family: Theme.fontFamily
