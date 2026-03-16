@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
@@ -97,6 +98,56 @@ ColumnLayout {
                         Config.updateTheme(modelData.themeId, modelData.script)
                         Config.updateWallpaper("")
                     }
+                }
+            }
+        }
+    }
+
+    Item { Layout.preferredHeight: 10 }
+
+    Text {
+        text: "Shell Transparency"
+        color: Theme.colAccent
+        font.pointSize: 16
+        font.family: Theme.fontFamily
+    }
+
+    DividerLine {
+        Layout.fillWidth: true
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+        spacing: 8
+
+        Repeater {
+            model: [
+                { label: "0%",   value: 0.00 },
+                { label: "25%",  value: 0.25 },
+                { label: "50%",  value: 0.50 },
+                { label: "75%",  value: 0.75 }
+            ]
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 35
+                radius: 8
+                color: (Config.data.qsTransparency == modelData.value) ? Theme.colAccent : Theme.colMuted
+                border.width: 1
+                border.color: (Config.data.qsTransparency == modelData.value) ? "white" : "transparent"
+
+                Text {
+                    anchors.centerIn: parent
+                    text: modelData.label
+                    color: (Config.data.qsTransparency == modelData.value) ? Theme.colBg : Theme.colText
+                    font.family: Theme.fontFamily
+                    font.pixelSize: 12
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: Config.data.qsTransparency = modelData.value
                 }
             }
         }

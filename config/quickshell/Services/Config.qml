@@ -41,6 +41,7 @@ Singleton {
             property int rounding: 10
             property real activeOpacity: 1.0
             property real inactiveOpacity: 0.8
+            property real qsTransparency: 0.0
             property bool allowTearing: false
             property bool shadowEnabled: true
             property bool blurEnabled: true
