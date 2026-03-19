@@ -8,10 +8,10 @@ Item {
     id: root
     implicitWidth: 55
     implicitHeight: 24
-    property real percentage: UPowerService.percentage
-    property bool isCharging: UPowerService.isCharging
-    property bool isFull: UPowerService.isFull
-    property bool available: UPowerService.available
+    property real percentage: Battery.percentage
+    property bool isCharging: Battery.isCharging
+    property bool isFull: Battery.isFull
+    property bool available: Battery.available
     visible: available
     
     readonly property color fillCol: percentage <= 0.2 ? Theme.colAccent : percentage <= 0.4 ? Theme.colAccent : Theme.colAccent
