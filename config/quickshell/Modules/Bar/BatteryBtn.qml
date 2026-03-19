@@ -24,7 +24,7 @@ Item {
     
     readonly property string statusText: {
         if (isFull) return "Fully Charged"
-        if (isCharging) return "AC Power"
+        if (isCharging) return "Charging"
         return "On Battery"
     }
     
