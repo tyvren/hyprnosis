@@ -6,13 +6,13 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 55
-    implicitHeight: 24
+    implicitWidth: 50
+    implicitHeight: 22
     property real percentage: Battery.percentage
     property bool isCharging: Battery.isCharging
     property bool isFull: Battery.isFull
     property bool available: Battery.available
-    visible: available
+    visible: available 
     
     readonly property color fillCol: percentage <= 0.2 ? Theme.colAccent : percentage <= 0.4 ? Theme.colAccent : Theme.colAccent
     
@@ -20,13 +20,7 @@ Item {
         if (isCharging) return ""
         const icons = ["", "", "", "", ""]
         return icons[Math.min(Math.floor(percentage * 5), 4)]
-    }
-    
-    readonly property string statusText: {
-        if (isFull) return "Fully Charged"
-        if (isCharging) return "Charging"
-        return "On Battery"
-    }
+    } 
     
     Rectangle { 
         anchors.fill: parent
