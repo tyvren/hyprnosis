@@ -59,6 +59,7 @@ Item {
                 color: Theme.colBg
                 font.bold: true
                 font.pointSize: 9
+                x: 5
             }
             
             Text {
