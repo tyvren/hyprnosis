@@ -36,9 +36,9 @@ Item {
         
         Rectangle {
           color: root.fillCol
-          height: parent.height
-          width: parent.width * root.percentage
-          Behavior on width { 
+          height: parent.height * root.percentage 
+          width: parent.width
+          Behavior on height { 
               NumberAnimation { 
                 duration: 250 
                 easing.type: Easing.OutCubic 
