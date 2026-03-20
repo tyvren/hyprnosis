@@ -62,8 +62,8 @@ Variants {
                         Calendar {
                             id: topCalendar
                             anchor.window: topBar
-                            anchor.rect.x: 1100
-                            anchor.rect.y: 40
+                            anchor.rect.x: topBar.width / 2 - width / 2
+                            anchor.rect.y: topBar.height + 10
                         }
                     }
 
@@ -175,7 +175,7 @@ Variants {
                         Calendar {
                             id: bottomCalendar
                             anchor.window: bottomBar
-                            anchor.rect.x: 1100
+                            anchor.rect.x: bottomBar.width / 2 - width / 2
                             anchor.rect.y: -235
                         }
                     }
@@ -287,7 +287,7 @@ Variants {
                             id: leftCalendar
                             anchor.window: leftBar
                             anchor.rect.x: 41
-                            anchor.rect.y: 615
+                            anchor.rect.y: leftBar.height / 2 - height / 2 
                         }
                     }
 
@@ -397,7 +397,7 @@ Variants {
                             id: rightCalendar
                             anchor.window: rightBar
                             anchor.rect.x: -360
-                            anchor.rect.y: 615
+                            anchor.rect.y: rightBar.height / 2 - height / 2 
                         }
                     }
 
