@@ -18,7 +18,6 @@ PopupWindow {
         anchors.fill: parent
         radius: 15
         color: Theme.colBg
-        border.color: Theme.colAccent
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
 
         Behavior on opacity {
@@ -32,13 +31,11 @@ PopupWindow {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            spacing: 0
 
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 25
-                color: "transparent"
-                border.color: settingsArea.containsMouse ? Theme.colAccent : "transparent"
+                color: settingsArea.containsMouse ? Theme.colAccent : "transparent"
                 radius: 10
                 Text {
                     anchors.left: parent.left
@@ -47,7 +44,7 @@ PopupWindow {
                     text: "  Settings"
                     font.family: Theme.fontFamily
                     font.pointSize: 11
-                    color: Theme.colAccent
+                    color: settingsArea.containsMouse ? Theme.colBg : Theme.colAccent
                 }
                 MouseArea {
                     id: settingsArea
@@ -67,8 +64,7 @@ PopupWindow {
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 25
-                color: "transparent"
-                border.color: lockArea.containsMouse ? Theme.colAccent : "transparent"
+                color: lockArea.containsMouse ? Theme.colAccent : "transparent"
                 radius: 10
                 Text {
                     anchors.left: parent.left
@@ -77,7 +73,7 @@ PopupWindow {
                     text: "󰌾  Lock"
                     font.family: Theme.fontFamily
                     font.pointSize: 11
-                    color: Theme.colAccent
+                    color: lockArea.containsMouse ? Theme.colBg : Theme.colAccent
                 }
                 MouseArea {
                     id: lockArea
@@ -93,8 +89,7 @@ PopupWindow {
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 25
-                color: "transparent"
-                border.color: restartArea.containsMouse ? Theme.colAccent : "transparent"
+                color: restartArea.containsMouse ? Theme.colAccent : "transparent"
                 radius: 10
                 Text {
                     anchors.left: parent.left
@@ -103,7 +98,7 @@ PopupWindow {
                     text: "󰜉  Restart"
                     font.family: Theme.fontFamily
                     font.pointSize: 11
-                    color: Theme.colAccent
+                    color: restartArea.containsMouse ? Theme.colBg : Theme.colAccent
                 }
                 MouseArea {
                     id: restartArea
@@ -119,8 +114,7 @@ PopupWindow {
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: 25
-                color: "transparent"
-                border.color: shutdownArea.containsMouse ? Theme.colAccent : "transparent"
+                color: shutdownArea.containsMouse ? Theme.colAccent : "transparent"
                 radius: 10
                 Text {
                     anchors.left: parent.left
@@ -129,7 +123,7 @@ PopupWindow {
                     text: "󰐥  Shutdown"
                     font.family: Theme.fontFamily
                     font.pointSize: 11
-                    color: Theme.colAccent
+                    color: shutdownArea.containsMouse ? Theme.colBg : Theme.colAccent
                 }
                 MouseArea {
                     id: shutdownArea

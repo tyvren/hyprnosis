@@ -11,13 +11,12 @@ import qs.Components
 import qs.Services
 import qs.Themes
 
-PanelWindow {
+FloatingWindow {
     id: settingsMenu
     visible: false
     implicitWidth: 825
     implicitHeight: 900
     color: "transparent"
-    focusable: true
     property int activeIndex: 0
 
     IpcHandler {
@@ -43,8 +42,6 @@ PanelWindow {
         height: 900
         radius: 15
         color: Theme.colBg
-        border.color: Theme.colAccent
-        border.width: 1
 
         RowLayout {
             anchors.centerIn: parent
@@ -56,7 +53,7 @@ PanelWindow {
                 id: sidePane
                 color: Theme.colBg
                 border.color: Theme.colAccent
-                Layout.preferredWidth: 65
+                Layout.preferredWidth: 200
                 Layout.fillHeight: true
                 radius: 10
 
@@ -67,23 +64,23 @@ PanelWindow {
 
                     Repeater {
                         model: [ 
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: "󰍹"},
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: "󰸉"},
-                            {icon: ""},
-                            {icon: ""},
-                            {icon: "󰚰"}
+                            {icon: "", text: "About"},
+                            {icon: "", text: "Apps"},
+                            {icon: "", text: "Audio"},
+                            {icon: "", text: "Bluetooth"},
+                            {icon: "", text: "Network"},
+                            {icon: "󰍹", text: "Monitors"},
+                            {icon: "", text: "Bar"},
+                            {icon: "", text: "Themes"},
+                            {icon: "󰸉", text: "Wallpapers"},
+                            {icon: "", text: "Hyprland"},
+                            {icon: "", text: "Keybinds"},
+                            {icon: "󰚰", text: "Updates"}
                         ]
 
                         StyledButton {
-                            text: modelData.icon
-                            size: 45
+                            icon: modelData.icon
+                            text: modelData.text
                             active: settingsMenu.activeIndex === index
                             onClicked: settingsMenu.activeIndex = index
                         }
@@ -92,8 +89,8 @@ PanelWindow {
                     Item { Layout.fillHeight: true }
 
                     StyledButton {
-                        text: ""
-                        size: 45
+                        icon: "" 
+                        text: "Close"
                         onClicked: settingsMenu.visible = false
                     }
                 }

@@ -5,36 +5,38 @@ import qs.Themes
 
 Item {
     id: root
+    property string icon: ""
     property string text: ""
-    property int size: 45
     property bool active: false
     signal clicked()
-    implicitWidth: size
-    implicitHeight: size
-
-    RectangularShadow {
-        anchors.centerIn: parent
-        width: root.size
-        height: root.size
-        blur: 2
-        spread: 1
-        radius: size
-        color: Theme.colAccent
-    }
+    implicitWidth: 180
+    implicitHeight: 40
 
     Rectangle {
         anchors.fill: parent
-        radius: size
-        color: root.active ? Theme.colMuted : (mouseArea.containsMouse ? Theme.colSelect : Theme.colBg)
-        border.color: Theme.colAccent
-        border.width: 2
+        radius: 15
+        color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : "transparent"
 
         Text {
-            anchors.centerIn: parent
+            id: iconText
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
+            text: root.icon
+            font.family: Theme.fontFamily
+            font.pointSize: 12
+            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colAccent
+        }
+
+        Text {
+            id: text
+            anchors.left: iconText.right 
+            anchors.leftMargin: 15
+            anchors.verticalCenter: parent.verticalCenter
             text: root.text
             font.family: Theme.fontFamily
-            font.pointSize: 16
-            color: Theme.colAccent
+            font.pointSize: 12
+            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colAccent
         }
 
         MouseArea {
