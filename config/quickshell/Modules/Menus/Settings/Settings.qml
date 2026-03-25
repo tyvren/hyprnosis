@@ -40,12 +40,11 @@ FloatingWindow {
         anchors.fill: parent
         width: 825
         height: 900
-        radius: 15
         color: Theme.colBg
 
         RowLayout {
             anchors.centerIn: parent
-            spacing: 10
+            spacing: 5
             width: parent.width - 30
             height: parent.height - 30
 
@@ -60,7 +59,7 @@ FloatingWindow {
                 ColumnLayout {
                     anchors.fill: parent
                     anchors.margins: 10
-                    spacing: 10
+                    spacing: 2
 
                     Repeater {
                         model: [ 
@@ -88,6 +87,10 @@ FloatingWindow {
 
                     Item { Layout.fillHeight: true }
 
+                    DividerLine {
+                        Layout.fillWidth: true
+                    }
+
                     StyledButton {
                         icon: "" 
                         text: "Close"
@@ -111,7 +114,7 @@ FloatingWindow {
                     StackLayout {
                         parent: contentPane
                         anchors.fill: parent
-                        anchors.margins: 15
+                        anchors.margins: 10
                         currentIndex: settingsMenu.activeIndex
 
                         SystemInfo {

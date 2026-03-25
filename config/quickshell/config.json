@@ -25,7 +25,7 @@
     "lockScreen": "L",
     "mainMod": "SUPER",
     "pseudo": "P",
-    "qsTransparency": 0,
+    "qsTransparency": 0.25,
     "rounding": 15,
     "screenshot": "PRINT",
     "shadowEnabled": true,
