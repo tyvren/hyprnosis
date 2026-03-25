@@ -19,6 +19,7 @@ PopupWindow {
         radius: 15
         color: Theme.colBg
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
+        focus: true
 
         Behavior on opacity {
             NumberAnimation {
@@ -131,7 +132,7 @@ PopupWindow {
                     hoverEnabled: true
                     onClicked: {
                         shutdownProcess.startDetached()
-                        accessMenuRoot.visible = false
+                        quickMenuRoot.visible = false
                     }
                 }
             }
