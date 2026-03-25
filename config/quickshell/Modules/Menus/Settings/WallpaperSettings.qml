@@ -10,7 +10,7 @@ import qs.Themes
 
 ColumnLayout {
     id: wallpaperPane
-    spacing: 15
+    spacing: 10
 
     property bool active: false
     property string currentWallpaper: Config.data.wallpaper
@@ -55,10 +55,10 @@ ColumnLayout {
 
         ColumnLayout {
             width: scrollRoot.width
-            spacing: 15
+            spacing: 5
 
             ColumnLayout {
-                spacing: 10
+                spacing: 5
                 Layout.fillWidth: true
 
                 RowLayout {
@@ -76,7 +76,7 @@ ColumnLayout {
                 Item {
                   Layout.alignment: Qt.AlignHCenter
                   Layout.preferredHeight: 150
-                  Layout.topMargin: 10
+                  Layout.topMargin: 5
 
                     Rectangle {
                         id: currentWall
@@ -108,7 +108,7 @@ ColumnLayout {
             }
 
             ColumnLayout {
-                spacing: 10
+                spacing: 5
                 Layout.fillWidth: true
 
                 RowLayout {
@@ -132,17 +132,17 @@ ColumnLayout {
             GridView {
                 id: customGrid
                 Layout.fillWidth: true
-                Layout.preferredHeight: 280
+                Layout.preferredHeight: 320
                 interactive: true
                 clip: true
-                cellWidth:  220
-                cellHeight: 160
+                cellWidth:  240
+                cellHeight: 140
                 model: wallpaperPane.wallpaperList
                 delegate: wallpaperDelegate
             }
 
             ColumnLayout {
-                spacing: 10
+                spacing: 5
                 Layout.fillWidth: true
 
                 RowLayout {
@@ -166,11 +166,11 @@ ColumnLayout {
             GridView {
                 id: themeGrid
                 Layout.fillWidth: true
-                Layout.preferredHeight: 280
+                Layout.preferredHeight: 620
                 interactive: true
                 clip: true
-                cellWidth: 220
-                cellHeight: 160
+                cellWidth: 240
+                cellHeight: 140
                 model: wallpaperPane.themeWallpaperList
                 delegate: wallpaperDelegate
             }
@@ -186,19 +186,19 @@ ColumnLayout {
             Rectangle {
                 id: imageBox
                 anchors.centerIn: parent
-                width: 215
-                height: 150
+                width: 200
+                height: 120
                 color: "transparent"
                 border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
                 border.width: 1
-                radius: 15
+                radius: 10
 
                 ClippingRectangle {
                     id: clipImage
                     anchors.fill: imageBox
                     anchors.margins: 2
                     color: "transparent"
-                    radius: 15
+                    radius: 10
                     
                     Image {
                         anchors.fill: parent
