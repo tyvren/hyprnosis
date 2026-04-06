@@ -28,14 +28,9 @@ system_utils=(
 
 development=(
   neovim
-  python
-  nodejs
-  npm
-  gcc
 )
 
 files_disk_management=(
-  yazi
   thunar
   thunar-archive-plugin
   thunar-volman
