@@ -102,7 +102,8 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 225
+                        anchors.rightMargin: 235
+                        visible: true
                     }
 
                     SysMon {
@@ -335,7 +336,7 @@ Variants {
 
                     BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 220
+                        anchors.bottomMargin: 240
                         x: 5
                     }
 
@@ -451,7 +452,7 @@ Variants {
 
                     BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 220
+                        anchors.bottomMargin: 240
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
