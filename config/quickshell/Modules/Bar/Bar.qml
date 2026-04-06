@@ -103,7 +103,6 @@ Variants {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.rightMargin: 235
-                        visible: true
                     }
 
                     SysMon {
