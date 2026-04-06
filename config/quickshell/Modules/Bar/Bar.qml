@@ -105,6 +105,12 @@ Variants {
                         anchors.rightMargin: 170
                     }
 
+                    SysMon {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 215
+                    }
+
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
@@ -216,6 +222,12 @@ Variants {
                         anchors.rightMargin: 170
                     }
 
+                    SysMon {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 215
+                    }
+
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
@@ -319,6 +331,12 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 80
                         x: 9
+                    }
+
+                    SysMonV {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 195
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     BatteryBtnV {
@@ -429,6 +447,12 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 80
                         x: 7
+                    }
+
+                    SysMonV {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 195
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     BatteryBtnV {
