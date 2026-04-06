@@ -335,7 +335,7 @@ Variants {
 
                     BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 205
+                        anchors.bottomMargin: 220
                         x: 5
                     }
 
@@ -451,7 +451,7 @@ Variants {
 
                     BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 205
+                        anchors.bottomMargin: 220
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
