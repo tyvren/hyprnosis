@@ -102,13 +102,13 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 170
+                        anchors.rightMargin: 225
                     }
 
                     SysMon {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 215
+                        anchors.rightMargin: 170
                     }
 
                     AudioBtn {
@@ -219,13 +219,13 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 170
+                        anchors.rightMargin: 225
                     }
 
                     SysMon {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 215
+                        anchors.rightMargin: 170
                     }
 
                     AudioBtn {
@@ -333,16 +333,16 @@ Variants {
                         x: 9
                     }
 
-                    SysMonV {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 195
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
                     BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 160
+                        anchors.bottomMargin: 205
                         x: 5
+                    }
+
+                    SysMonV {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 160
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     AudioBtn {
@@ -449,13 +449,13 @@ Variants {
                         x: 7
                     }
 
-                    SysMonV {
+                    BatteryBtnV {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 195
+                        anchors.bottomMargin: 205
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
-                    BatteryBtnV {
+                    SysMonV {
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 160
                         anchors.horizontalCenter: parent.horizontalCenter
