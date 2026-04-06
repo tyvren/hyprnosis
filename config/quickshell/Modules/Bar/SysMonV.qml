@@ -14,8 +14,7 @@ Column {
             color: Theme.colAccent
             font.bold: true
             font.pointSize: 9
-            anchors.left: parent.left
-            anchors.leftMargin: 5
+            anchors.horizontalCenter: parent.horizontalCenter 
         }
 
         Text {

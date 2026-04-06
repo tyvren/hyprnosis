@@ -59,12 +59,12 @@ Item {
                 color: Theme.colBg
                 font.bold: true
                 font.pointSize: 9
-                x: 5
+                anchors.horizontalCenter: parent.horizontalCenter
             }
             
             Text {
               id: percentageText
-              text: Math.round(root.percentage * 100) + "%" 
+              text: Math.round(root.percentage * 100)
               color: Theme.colBg 
               font.bold: true 
               font.pointSize: 9
