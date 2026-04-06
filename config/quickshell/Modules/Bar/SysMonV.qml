@@ -4,36 +4,38 @@ import qs.Themes
 
 Column {
     id: root
-    spacing: 6
+    spacing: 14
 
     Column {
-        spacing: 0
+        spacing: -2
 
         Text {
             text: ""
             color: Theme.colAccent
             font.bold: true
-            font.pointSize: 8
-            anchors.horizontalCenter: parent.horizontalCenter
+            font.pointSize: 9
+            anchors.left: parent.left
+            anchors.leftMargin: 5
         }
 
         Text {
             text: Math.round(SysMonitor.cpuUsage) + "%"
             color: Theme.colAccent
             font.bold: true
-            font.pointSize: 6
-            anchors.horizontalCenter: parent.horizontalCenter
+            font.pointSize: 8
+            anchors.left: parent.left
+            anchors.leftMargin: 2
         }
     }
 
     Column {
-        spacing: 0
+        spacing: -2
 
         Text {
             text: ""
             color: Theme.colAccent
             font.bold: true
-            font.pointSize: 8
+            font.pointSize: 9
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -41,7 +43,7 @@ Column {
             text: Math.round(SysMonitor.ramUsage * 100) + "%"
             color: Theme.colAccent
             font.bold: true
-            font.pointSize: 6
+            font.pointSize: 8
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }

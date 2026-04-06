@@ -4,10 +4,10 @@ import qs.Themes
 
 Row {
     id: root
-    spacing: 8
+    spacing: 14
 
     Column {
-        spacing: 0
+        spacing: -2
 
         Text {
             text: ""
@@ -27,7 +27,7 @@ Row {
     }
 
     Column {
-        spacing: 0
+        spacing: -2
 
         Text {
             text: ""
