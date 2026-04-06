@@ -22,8 +22,7 @@ Column {
             color: Theme.colAccent
             font.bold: true
             font.pointSize: 8
-            anchors.left: parent.left
-            anchors.leftMargin: 2
+            anchors.horizontalCenter: parent.horizontalCenter 
         }
     }
 
