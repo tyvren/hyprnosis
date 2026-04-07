@@ -27,12 +27,14 @@ enable_plymouth() {
   sudo plymouth-set-default-theme -R hyprnosis
 
   if [ -d "/boot/loader/entries" ]; then
+    shopt -s nullglob
     for entry in /boot/loader/entries/*.conf; do
       [[ "$entry" == *"-fallback.conf" ]] && continue
       if ! grep -q "quiet splash" "$entry"; then
         sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
       fi
     done
+    shopt -u nullglob
   fi
 
   if [ -f "/etc/kernel/cmdline" ]; then
