@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Wayland
@@ -25,9 +26,18 @@ PanelWindow {
 
     exclusionMode: ExclusionMode.Ignore
 
+    HyprlandFocusGrab {
+        id: focusGrab
+        windows: [sidePane]
+        onCleared: sidePane.visible = false
+    }
+
     onVisibleChanged: {
         if (visible) {
             Qt.callLater(() => paneRoot.forceActiveFocus())
+            focusGrab.active = true
+        } else {
+            focusGrab.active = false
         }
     }
 
@@ -319,11 +329,64 @@ PanelWindow {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 15
-                        spacing: 10
+                        spacing: 15
 
-                        StyledButton { text: "󰒮"; onClicked: Players.active?.previous() }
-                        StyledButton { text: Players.active?.isPlaying ? "" : ""; onClicked: Players.active?.togglePlaying() }
-                        StyledButton { text: "󰒭"; onClicked: Players.active?.next() }
+                        Rectangle {
+                            width: 36
+                            height: 36
+                            radius: 18
+                            color: buttonsArea1.containsMouse ? Theme.colAccent : Theme.colBg
+                            Text {
+                                anchors.centerIn: parent
+                                text: "󰒮"
+                                font.pointSize: 14
+                                color: buttonsArea1.containsMouse ? Theme.colBg : Theme.colAccent
+                            }
+                            MouseArea {
+                                id: buttonsArea1
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: Players.active?.previous()
+                            }
+                        }
+
+                        Rectangle {
+                            width: 44
+                            height: 44
+                            radius: 22
+                            color: buttonsArea2.containsMouse ? Theme.colAccent : Theme.colBg
+                            Text {
+                                anchors.centerIn: parent
+                                text: Players.active?.isPlaying ? "" : ""
+                                font.pointSize: 16
+                                color: buttonsArea2.containsMouse ? Theme.colBg : Theme.colAccent
+                            }
+                            MouseArea {
+                                id: buttonsArea2
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: Players.active?.togglePlaying()
+                            }
+                        }
+
+                        Rectangle {
+                            width: 36
+                            height: 36
+                            radius: 18
+                            color: buttonsArea3.containsMouse ? Theme.colAccent : Theme.colBg
+                            Text {
+                                anchors.centerIn: parent
+                                text: "󰒭"
+                                font.pointSize: 14
+                                color: buttonsArea3.containsMouse ? Theme.colBg : Theme.colAccent
+                            }
+                            MouseArea {
+                                id: buttonsArea3
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: Players.active?.next()
+                            }
+                        }
                     }
                 }
             }
