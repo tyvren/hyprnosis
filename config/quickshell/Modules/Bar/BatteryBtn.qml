@@ -6,8 +6,8 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 50
-    implicitHeight: 22
+    implicitWidth: 40
+    implicitHeight: 20
     property real percentage: Battery.percentage
     property bool isCharging: Battery.isCharging
     property bool isFull: Battery.isFull
