@@ -25,10 +25,25 @@ enable_service() {
 enable_plymouth() {
   spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
   sudo plymouth-set-default-theme -R hyprnosis
-  for entry in /boot/loader/entries/*.conf; do
-    [[ "$entry" == *"-fallback.conf" ]] && continue
-    sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
-  done
+
+  if [ -d "/boot/loader/entries" ]; then
+    for entry in /boot/loader/entries/*.conf; do
+      [[ "$entry" == *"-fallback.conf" ]] && continue
+      if ! grep -q "quiet splash" "$entry"; then
+        sudo sed -i '/^options/ s/$/ quiet splash/' "$entry"
+      fi
+    done
+  fi
+
+  if [ -f "/etc/kernel/cmdline" ]; then
+    if ! grep -q "quiet splash" "/etc/kernel/cmdline"; then
+      echo "quiet splash" | sudo tee -a /etc/kernel/cmdline >/dev/null
+      sudo mkinitcpio -P
+    fi
+  elif ls /boot/EFI/Linux/*.efi >/dev/null 2>&1; then
+    sudo mkinitcpio -P
+  fi
+
   log_success "hyprnosis bootloader logo configured"
 }
 
