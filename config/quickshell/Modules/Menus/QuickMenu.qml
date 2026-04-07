@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Components
@@ -12,6 +13,20 @@ PopupWindow {
     implicitWidth: 200
     implicitHeight: 200
     color: "transparent"
+  
+    HyprlandFocusGrab {
+        id: focusGrab
+        windows: [quickMenuRoot]
+        onCleared: quickMenuRoot.visible = false
+    }
+
+    onVisibleChanged: {
+        if (visible) {
+            focusGrab.active = true
+        } else {
+            focusGrab.active = false
+        }
+    }
 
     Rectangle {
         id: container
@@ -20,6 +35,8 @@ PopupWindow {
         color: Theme.colBg
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
         focus: true
+
+        Keys.onEscapePressed: quickMenuRoot.visible = false
 
         Behavior on opacity {
             NumberAnimation {
