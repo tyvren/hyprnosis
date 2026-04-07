@@ -51,16 +51,16 @@ Variants {
                         MouseArea {
                             id: clockAreaTop
                             anchors.fill: clockButtonTop
-                            onClicked: calendarLoader.item.visible = !calendarLoader.item.visible
+                            onClicked: centerMenuLoader.item.visible = !centerMenuLoader.item.visible
                         }
                     }
 
                     LazyLoader {
-                        id: calendarLoader
+                        id: centerMenuLoader
                         loading: true
 
-                        Calendar {
-                            id: topCalendar
+                        CenterMenu {
+                            id: topCenterMenu
                             anchor.window: topBar
                             anchor.rect.x: topBar.width / 2 - width / 2
                             anchor.rect.y: topBar.height + 10
@@ -170,16 +170,16 @@ Variants {
                         MouseArea {
                             id: clockAreaBottom
                             anchors.fill: clockButtonBottom
-                            onClicked: calendarLoaderB.item.visible = !calendarLoaderB.item.visible
+                            onClicked: centerMenuLoaderB.item.visible = !centerMenuLoaderB.item.visible
                         }
                     }
 
                     LazyLoader {
-                        id: calendarLoaderB
+                        id: centerMenuLoaderB
                         loading: true
 
-                        Calendar {
-                            id: bottomCalendar
+                        CenterMenu {
+                            id: bottomCenterMenu
                             anchor.window: bottomBar
                             anchor.rect.x: bottomBar.width / 2 - width / 2
                             anchor.rect.y: -235
@@ -287,16 +287,16 @@ Variants {
                         MouseArea {
                             id: clockAreaLeft
                             anchors.fill: clockButtonLeft
-                            onClicked: calendarLoaderL.item.visible = !calendarLoaderL.item.visible
+                            onClicked: centerMenuLoaderL.item.visible = !centerMenuLoaderL.item.visible
                         }
                     }
 
                     LazyLoader {
-                        id: calendarLoaderL
+                        id: centerMenuLoaderL
                         loading: true
 
-                        Calendar {
-                            id: leftCalendar
+                        CenterMenu {
+                            id: leftCenterMenu
                             anchor.window: leftBar
                             anchor.rect.x: 41
                             anchor.rect.y: leftBar.height / 2 - height / 2 
@@ -403,16 +403,16 @@ Variants {
                         MouseArea {
                             id: clockAreaRight
                             anchors.fill: clockButtonRight
-                            onClicked: calendarLoaderR.item.visible = !calendarLoaderR.item.visible
+                            onClicked: centerMenuLoaderR.item.visible = !centerMenuLoaderR.item.visible
                         }
                     }
                     
                     LazyLoader {
-                        id: calendarLoaderR
+                        id: centerMenuLoaderR
                         loading: true
 
-                        Calendar {
-                            id: rightCalendar
+                        CenterMenu {
+                            id: rightCenterMenu
                             anchor.window: rightBar
                             anchor.rect.x: -360
                             anchor.rect.y: rightBar.height / 2 - height / 2 
