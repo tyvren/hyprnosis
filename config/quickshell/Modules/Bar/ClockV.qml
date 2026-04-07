@@ -10,11 +10,10 @@ Item {
 
     Text {
         id: clock
-        text: TimeH.time
+        text: Time.time
         font.family: Theme.fontFamily
         font.pixelSize: Theme.fontSize
         font.bold: true
         color: Theme.colAccent
     }
 }
-

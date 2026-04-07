@@ -6,11 +6,11 @@ import Quickshell.Wayland
 import qs.Components
 import qs.Themes
 
-ColumnLayout {
+RowLayout {
     spacing: 15
 
     Repeater {
-        model: 6
+        model: 9
 
         Item {
             id: wsbutton
@@ -30,6 +30,20 @@ ColumnLayout {
                 visible: false
             }
 
+            Image {
+                id: workspaceLogo
+                width: 25
+                height: 25
+                y: -3
+                x: -5
+                source: Theme.logoPath
+                mipmap: true
+                asynchronous: true
+                fillMode: Image.PreserveAspectFit
+                layer.enabled: true
+                visible: false
+            }
+
             MultiEffect {
                 anchors.fill: parent
                 source: icon
@@ -45,3 +59,4 @@ ColumnLayout {
         }
     }
 }
+

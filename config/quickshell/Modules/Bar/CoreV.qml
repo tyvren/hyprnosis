@@ -7,53 +7,53 @@ import qs.Components
 import qs.Themes
 
 PanelWindow {
-    id: coreH
+    id: core 
     anchors {
-        top: true
+        left: true
     }
     color: "transparent"
-    implicitWidth: 240
-    implicitHeight: 110
-    exclusionMode: ExclusionMode.Ignore 
+    implicitWidth: 110
+    implicitHeight: 240
+    exclusionMode: ExclusionMode.Ignore
     
     mask: Region { 
-        item: interactiveContentH
+        item: interactiveContent
     }
 
     property bool open: false
     property bool showButtons: false
 
     Item {
-        id: interactiveContentH
-        anchors.horizontalCenter: parent.horizontalCenter
+        id: interactiveContent
+        anchors.verticalCenter: parent.verticalCenter
         height: parent.height
-        width: coreH.open ? parent.width : 30
+        width: core.open ? parent.width : 30
 
         RectangularShadow {
-            id: coreAreaShadowH
-            anchors.fill: coreAreaH
+            id: coreAreaShadow
+            anchors.fill: coreArea
             color: Theme.colAccent
-            height: coreAreaH.height
-            width: coreAreaH.width
+            height: coreArea.height
+            width: coreArea.width
             radius: 150
             blur: 5
             spread: 1
         }
 
         Rectangle {
-            id: coreAreaH
+            id: coreArea
             color: Theme.colBg
             border.color: Theme.colAccent
             border.width: 1
-            anchors.horizontalCenter: parent.horizontalCenter
-            y: -52
+            anchors.verticalCenter: parent.verticalCenter
+            x: -52
             width: 80
             height: 80
             radius: 150
             scale: 1
 
             RotationAnimation on rotation {
-                id: spinAnimH
+                id: spinAnim
                 running: false
                 loops: 1
                 from: 0
@@ -62,7 +62,7 @@ PanelWindow {
             }
 
             RotationAnimation on rotation {
-                id: infiniteSpinAnimH
+                id: infiniteSpinAnim
                 running: false
                 loops: Animation.Infinite
                 from: 0
@@ -71,8 +71,8 @@ PanelWindow {
             }
 
             Image {
-                id: logoH
-                anchors.fill: coreAreaH
+                id: logo
+                anchors.fill: coreArea
                 source: Theme.logoPath
                 mipmap: true
                 asynchronous: true
@@ -80,33 +80,33 @@ PanelWindow {
             }
 
             MouseArea {
-                id: coreAreaMouseH
-                anchors.fill: coreAreaH
+                id: coreAreaMouse
+                anchors.fill: coreArea
                 hoverEnabled: true
                 onEntered: {
-                    if (!coreH.open) {
-                        spinAnimH.start()
+                    if (!core.open) {
+                        spinAnim.start()
                     }
                 }
                 onClicked: {
-                    coreH.open = !coreH.open
+                    core.open = !core.open
                 }
             }
 
             states: [
                 State {
                     name: "closed"
-                    when: !coreH.open
+                    when: !core.open
                     PropertyChanges {
-                        target: coreAreaH
+                        target: coreArea
                         scale: 1
                     }
                 },
                 State {
                     name: "open"
-                    when: coreH.open
+                    when: core.open
                     PropertyChanges {
-                        target: coreAreaH
+                        target: coreArea
                         scale: 3
                     }
                 }
@@ -119,7 +119,7 @@ PanelWindow {
                     SequentialAnimation {
                         ScriptAction {
                             script: { 
-                                infiniteSpinAnimH.start()
+                                infiniteSpinAnim.start()
                             }
                         }
                         NumberAnimation {
@@ -129,7 +129,7 @@ PanelWindow {
                         }
                         ScriptAction {
                             script: {
-                                coreH.showButtons = true
+                                core.showButtons = true
                             }
                         }
                     }
@@ -140,9 +140,9 @@ PanelWindow {
                     SequentialAnimation {
                         ScriptAction {
                             script: {
-                                infiniteSpinAnimH.stop()
-                                spinAnimH.start()
-                                coreH.showButtons = false
+                                infiniteSpinAnim.stop()
+                                spinAnim.start()
+                                core.showButtons = false
                             }
                         }
                         NumberAnimation {
@@ -156,104 +156,105 @@ PanelWindow {
         }
 
         Loader {
-            id: buttonLoaderH
-            active: coreH.showButtons
+            id: buttonLoader
+            active: core.showButtons
             anchors.fill: parent
             sourceComponent: Component {
                 Item {
-                    id: buttonsH
+                    id: buttons
                     property bool ready: false
                     Component.onCompleted: ready = true
 
                     StyledButton {
-                        id: appsButtonH
+                        id: appsButton
                         anchors.top: parent.top
-                        anchors.topMargin: 2
-                        anchors.right: parent.right
-                        anchors.rightMargin: 15
+                        anchors.topMargin: 15
+                        anchors.left: parent.left
+                        anchors.leftMargin: 2
                         text: ""
                         onClicked: {
-                            coreH.open = false
-                            appsProcessH.startDetached()
+                            core.open = false
+                            appsProcess.startDetached()
                         }
-                        opacity: (buttonsH.ready && coreH.open && coreAreaH.scale === 3) ? 1 : 0
+                        opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
                         Behavior on opacity {
                             NumberAnimation { duration: 250 }
                         }
                     }
 
                     StyledButton {
-                        id: lockButtonH
+                        id: lockButton
                         anchors.top: parent.top
-                        anchors.topMargin: 40
+                        anchors.topMargin: 48
                         anchors.left: parent.left
-                        anchors.leftMargin: 50
+                        anchors.leftMargin: 40
                         text: ""
                         onClicked: {
-                            coreH.open = false
-                            lockProcessH.startDetached()
+                            core.open = false
+                            lockProcess.startDetached()
                         }
-                        opacity: (buttonsH.ready && coreH.open && coreAreaH.scale === 3) ? 1 : 0
+                        opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
                         Behavior on opacity {
                             NumberAnimation { duration: 250 }
                         }
                     }
 
                     StyledButton {
-                        id: shutdownButtonH
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 10
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        id: shutdownButton
+                        anchors.top: parent.top
+                        anchors.topMargin: 96
+                        anchors.left: parent.left
+                        anchors.leftMargin: 56
                         text: ""
                         onClicked: {
-                            coreH.open = false
-                            shutdownProcessH.startDetached()
+                            core.open = false
+                            shutdownProcess.startDetached()
                         }
-                        opacity: (buttonsH.ready && coreH.open && coreAreaH.scale === 3) ? 1 : 0
+                        opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
                         Behavior on opacity {
                             NumberAnimation { duration: 250 }
                         }
                     }
 
                     StyledButton {
-                        id: restartButtonH
+                        id: restartButton
                         anchors.top: parent.top
-                        anchors.topMargin: 40
-                        anchors.right: parent.right
-                        anchors.rightMargin: 50
+                        anchors.topMargin: 145
+                        anchors.left: parent.left
+                        anchors.leftMargin: 40
                         text: ""
                         onClicked: { 
-                            coreH.open = false
-                            restartProcessH.startDetached()
+                            core.open = false
+                            restartProcess.startDetached()
                         }
-                        opacity: (buttonsH.ready && coreH.open && coreAreaH.scale === 3) ? 1 : 0
+                        opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
                         Behavior on opacity {
                             NumberAnimation { duration: 250 }
                         }
                     }
 
                     StyledButton {
-                        id: settingsButtonH
+                        id: settingsButton
                         anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.topMargin: 180
                         anchors.left: parent.left
-                        anchors.leftMargin: 15
+                        anchors.leftMargin: 2
                         text: "󰍜"
                         onClicked: {
-                            coreH.open = false
-                            settingsProcessH.startDetached()
+                            core.open = false
+                            settingsProcess.startDetached()
                         }
-                        opacity: (buttonsH.ready && coreH.open && coreAreaH.scale === 3) ? 1 : 0
+                        opacity: (buttons.ready && core.open && coreArea.scale === 3) ? 1 : 0
                         Behavior on opacity {
                             NumberAnimation { duration: 250 }
                         }
                     }
                 
-                    Process { id: appsProcessH; command: ["sh", "-c", "qs ipc call launcher-menu toggle"]}
-                    Process { id: lockProcessH; command: ["hyprlock"] }
-                    Process { id: restartProcessH; command: ["systemctl", "reboot"] }
-                    Process { id: shutdownProcessH; command: ["systemctl", "poweroff"] }
-                    Process { id: settingsProcessH; command: ["sh", "-c", "qs ipc call settingsMenu toggle"]}
+                    Process { id: appsProcess; command: ["sh", "-c", "qs ipc call launcher-menu toggle"]}
+                    Process { id: lockProcess; command: ["hyprlock"] }
+                    Process { id: restartProcess; command: ["systemctl", "reboot"] }
+                    Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
+                    Process { id: settingsProcess; command: ["sh", "-c", "qs ipc call settingsMenu toggle"]}
                 }
             }
         }

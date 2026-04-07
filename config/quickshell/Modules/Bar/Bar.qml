@@ -45,7 +45,7 @@ Variants {
                     anchors.fill: parent
                     anchors.topMargin: 2.5
 
-                    ClockH {
+                    Clock {
                         id: clockButtonTop
                         anchors.centerIn: parent
                         MouseArea {
@@ -92,7 +92,7 @@ Variants {
                         }
                     }
 
-                    WorkspacesH {
+                    Workspaces {
                         id: workspacesButtonTop
                         anchors.left: parent.left
                         anchors.leftMargin: 80
@@ -164,7 +164,7 @@ Variants {
                     anchors.fill: parent
                     anchors.bottomMargin: 2.5
 
-                    ClockH {
+                    Clock {
                         id: clockButtonBottom
                         anchors.centerIn: parent
                         MouseArea {
@@ -210,7 +210,7 @@ Variants {
                         }
                     }
 
-                    WorkspacesH {
+                    Workspaces {
                         anchors.left: parent.left
                         anchors.leftMargin: 80
                         anchors.verticalCenter: parent.verticalCenter
@@ -281,7 +281,7 @@ Variants {
                     anchors.fill: parent
                     anchors.bottomMargin: 2.5
 
-                    Clock {
+                    ClockV {
                         id: clockButtonLeft
                         anchors.centerIn: parent
                         MouseArea {
@@ -327,7 +327,7 @@ Variants {
                         }
                     }  
 
-                    Workspaces {
+                    WorkspacesV {
                         anchors.top: parent.top
                         anchors.topMargin: 80
                         x: 9
@@ -443,7 +443,7 @@ Variants {
                         }
                     }
 
-                    Workspaces {
+                    WorkspacesV {
                         anchors.top: parent.top
                         anchors.topMargin: 80
                         x: 7
