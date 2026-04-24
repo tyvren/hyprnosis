@@ -63,9 +63,112 @@ PanelWindow {
             anchors.margins: 20
             spacing: 15
 
+            Rectangle {
+                Layout.fillWidth: true
+                height: controlsColumn.implicitHeight + 24
+                color: Theme.colMuted
+                radius: 12
+
+                ColumnLayout {
+                    id: controlsColumn
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.margins: 14
+                    spacing: 12
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 10
+
+                        Text {
+                            text: {
+                                const b = Brightness.brightness
+                                if (b < 0.25) return "󰃞"
+                                if (b < 0.6)  return "󰃟"
+                                return "󰃠"
+                            }
+                            color: Theme.colAccent
+                            font.family: Theme.fontFamily
+                            font.pointSize: 13
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                            height: 20
+
+                            Rectangle {
+                                id: trackBg
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: parent.width
+                                height: 5
+                                radius: 3
+                                color: Qt.rgba(1, 1, 1, 0.12)
+                            }
+
+                            Rectangle {
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.left: trackBg.left
+                                width: trackBg.width * Brightness.brightness
+                                height: 5
+                                radius: 3
+                                color: Theme.colAccent
+
+                                Behavior on width {
+                                    NumberAnimation { duration: 80; easing.type: Easing.OutQuad }
+                                }
+                            }
+
+                            Rectangle {
+                                id: thumb
+                                anchors.verticalCenter: parent.verticalCenter
+                                x: (trackBg.width * Brightness.brightness) - (width / 2)
+                                width: 14
+                                height: 14
+                                radius: 7
+                                color: Theme.colAccent
+                                border.color: Theme.colBg
+                                border.width: 2
+
+                                Behavior on x {
+                                    NumberAnimation { duration: 80; easing.type: Easing.OutQuad }
+                                }
+                            }
+
+                            MouseArea {
+                                anchors.fill: trackBg
+                                anchors.margins: -8
+                                hoverEnabled: true
+                                preventStealing: true
+
+                                function updateBrightness(mouse) {
+                                    const val = Math.max(0, Math.min(1, mouse.x / trackBg.width))
+                                    Brightness.setBrightness(val)
+                                }
+
+                                onPressed: (mouse) => updateBrightness(mouse)
+                                onPositionChanged: (mouse) => {
+                                    if (pressed) updateBrightness(mouse)
+                                }
+                            }
+                        }
+
+                        Text {
+                            text: Math.round(Brightness.brightness * 100) + "%"
+                            color: Theme.colAccent
+                            font.family: Theme.fontFamily
+                            font.pointSize: 9
+                            opacity: 0.75
+                            horizontalAlignment: Text.AlignRight
+                            Layout.minimumWidth: 32
+                        }
+                    }
+                }
+            }
+
             RowLayout {
                 Layout.fillWidth: true
-                
+
                 Text {
                     text: "Notifications"
                     color: Theme.colAccent
@@ -81,7 +184,7 @@ PanelWindow {
                     height: 30
                     radius: 8
                     color: clearMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                    
+
                     Text {
                         anchors.centerIn: parent
                         text: "Clear All"
@@ -111,7 +214,7 @@ PanelWindow {
                 model: Notifications.notifications
                 spacing: -70
                 clip: false
-                
+
                 delegate: Rectangle {
                     id: notifDelegate
                     visible: index < 3
@@ -121,14 +224,14 @@ PanelWindow {
                     color: Theme.colMuted
                     radius: 10
                     z: (notifList.count - index)
-                    
+
                     RectangularShadow {
                         anchors.fill: parent
                         color: Qt.rgba(0, 0, 0, 0.3)
                         blur: 15
                         radius: 12
                     }
-                    
+
                     ColumnLayout {
                         anchors.left: parent.left
                         anchors.right: parent.right
@@ -138,7 +241,7 @@ PanelWindow {
 
                         RowLayout {
                             Layout.fillWidth: true
-                            
+
                             Text {
                                 text: modelData.summary
                                 color: Theme.colAccent
@@ -155,7 +258,7 @@ PanelWindow {
                                 font.family: Theme.fontFamily
                                 font.pointSize: 12
                                 opacity: dismissMa.containsMouse ? 1.0 : 0.6
-                                
+
                                 MouseArea {
                                     id: dismissMa
                                     anchors.fill: parent
