@@ -68,15 +68,24 @@ Variants {
                     }
 
                     MainMenuBtn {
+                        id: mainMenuButtonTop
                         anchors.left: parent.left
                         anchors.leftMargin: 25
                         anchors.verticalCenter: parent.verticalCenter
 
                         BarButton {
                             icon: "   "
-                            onClicked: {
-                                quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
-                            }
+                            onClicked: quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
+                            onEntered: spinAnimTop.start()
+                        }
+
+                        RotationAnimation on rotation {
+                            id: spinAnimTop
+                            running: false
+                            loops: 1
+                            from: 0
+                            to: -360
+                            duration: 6000
                         }
                     }
 
@@ -187,15 +196,24 @@ Variants {
                     }
 
                     MainMenuBtn {
+                        id: mainMenuButtonBottom
                         anchors.left: parent.left
                         anchors.leftMargin: 25
                         anchors.verticalCenter: parent.verticalCenter
 
                         BarButton {
                             icon: "   "
-                            onClicked: {
-                                quickMenuLoaderB.item.visible = !quickMenuLoaderB.item.visible 
-                            }
+                            onClicked: quickMenuLoaderB.item.visible = !quickMenuLoaderB.item.visible 
+                            onEntered: spinAnimBottom.start()
+                        }
+
+                        RotationAnimation on rotation {
+                            id: spinAnimBottom
+                            running: false
+                            loops: 1
+                            from: 0
+                            to: -360
+                            duration: 6000
                         }
                     }
 
@@ -304,15 +322,24 @@ Variants {
                     }
 
                     MainMenuBtn {
+                        id: mainMenuButtonLeft
                         anchors.top: parent.top
                         anchors.topMargin: 25
                         x: 3.5
 
                         BarButton {
                             icon: "   "
-                            onClicked: {
-                                quickMenuLoaderL.item.visible = !quickMenuLoaderL.item.visible 
-                            }
+                            onClicked: quickMenuLoaderL.item.visible = !quickMenuLoaderL.item.visible 
+                            onEntered: spinAnimLeft.start()
+                        }
+
+                        RotationAnimation on rotation {
+                            id: spinAnimLeft
+                            running: false
+                            loops: 1
+                            from: 0
+                            to: -360
+                            duration: 6000
                         }
                     }
                     
@@ -420,15 +447,24 @@ Variants {
                     }
 
                     MainMenuBtn {
+                        id: mainMenuButtonRight
                         anchors.top: parent.top
                         anchors.topMargin: 25
                         x: 1.5
 
                         BarButton {
                             icon: "   "
-                            onClicked: {
-                                quickMenuLoaderR.item.visible = !quickMenuLoaderR.item.visible 
-                            }
+                            onClicked: quickMenuLoaderR.item.visible = !quickMenuLoaderR.item.visible 
+                            onEntered: spinAnimRight.start()
+                        }
+
+                        RotationAnimation on rotation {
+                            id: spinAnimRight
+                            running: false
+                            loops: 1
+                            from: 0
+                            to: -360
+                            duration: 6000
                         }
                     }
 

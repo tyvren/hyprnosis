@@ -8,6 +8,7 @@ Item {
     property bool isActive: false
     property alias containsMouse: mouseArea.containsMouse
     signal clicked()
+    signal entered()
     
     implicitWidth: iconText.implicitWidth
     implicitHeight: iconText.implicitHeight
@@ -32,5 +33,6 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: root.clicked()
+        onEntered: root.entered()
     }
 }
