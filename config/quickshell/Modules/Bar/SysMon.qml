@@ -3,8 +3,9 @@ import qs.Services
 import qs.Themes
 
 Row {
-    id: root
+    id: sysMon
     spacing: 14
+    visible: Config.data.sysMonitor === "true"
 
     Column {
         spacing: -2

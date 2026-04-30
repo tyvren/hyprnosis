@@ -29,6 +29,7 @@
     "rounding": 15,
     "screenshot": "PRINT",
     "shadowEnabled": true,
+    "sysMonitor": "true",
     "terminal": "RETURN",
     "theme": "hyprnosis",
     "toggleFloating": "F",

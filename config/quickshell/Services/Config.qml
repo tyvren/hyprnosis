@@ -49,6 +49,7 @@ Singleton {
             property int blurPasses: 2
             property bool disableHyprlandLogo: true
             property int forceDefaultWallpaper: 0
+            property string sysMonitor: "true"
 
             property string mainMod: ""
             property string terminal: ""

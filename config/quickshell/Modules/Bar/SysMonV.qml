@@ -6,6 +6,7 @@ import qs.Themes
 Column {
     id: root
     spacing: 14
+    visible: Config.data.sysMonitor === "true"
 
     ColumnLayout {
         spacing: 5

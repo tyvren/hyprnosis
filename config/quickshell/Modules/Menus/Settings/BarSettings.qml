@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
@@ -13,6 +14,7 @@ ColumnLayout {
     property string barLayout: Config.data.barLayout
     property int barRadius: Config.data.barRadius
     property int barMargin: Config.data.barMargin
+    property bool sysMonitor: Config.data.sysMonitor === "true"
 
     Text {
         text: "Bar Layout"
@@ -133,6 +135,58 @@ ColumnLayout {
             StyledInput { 
                 text: barSettings.barMargin.toString()
                 onUserEdited: (val) => Config.data.barMargin = parseInt(val) 
+            }
+        }
+    }
+
+    ColumnLayout {
+        spacing: 15
+        Layout.fillWidth: true
+        Layout.topMargin: 10
+
+        Text { 
+            text: "System Monitor" 
+            color: Theme.colAccent
+            font.pointSize: 10
+            font.family: Theme.fontFamily 
+            font.bold: true
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            
+            Text {
+                text: "Enable Monitor"
+                color: Theme.colText
+                font.family: Theme.fontFamily
+                Layout.fillWidth: true
+            }
+
+            Switch {
+                id: sysMonitorToggle
+                checked: barSettings.sysMonitor
+                onToggled: {
+                    barSettings.sysMonitor = checked
+                    Config.data.sysMonitor = checked ? "true" : "false"
+                }
+
+                indicator: Rectangle {
+                    implicitWidth: 48
+                    implicitHeight: 24
+                    radius: 12
+                    color: sysMonitorToggle.checked ? Theme.colAccent : Theme.colMuted
+                    opacity: sysMonitorToggle.checked ? 1.0 : 0.3
+
+                    Rectangle {
+                        x: sysMonitorToggle.checked ? parent.width - width - 4 : 4
+                        y: 4
+                        width: 16
+                        height: 16
+                        radius: 8
+                        color: sysMonitorToggle.checked ? Theme.colBg : Theme.colAccent
+                        Behavior on x { NumberAnimation { duration: 200 } }
+                    }
+                }
             }
         }
     }
