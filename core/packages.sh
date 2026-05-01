@@ -36,6 +36,7 @@ files_disk_management=(
   thunar-volman
   tumbler
   7zip
+  unzip
   xarchiver
   dosfstools
   ntfs-3g
