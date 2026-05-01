@@ -26,29 +26,11 @@ Item {
 
             Item { Layout.fillWidth: true }
             
-            Switch {
+            StyledSwitch {
                 id: btToggle
                 checked: Bluetooth.enabled
                 onToggled: Bluetooth.togglePower()
                 Layout.alignment: Qt.AlignVCenter
-                
-                indicator: Rectangle {
-                    implicitWidth: 48 
-                    implicitHeight: 24 
-                    radius: 12
-                    color: btToggle.checked ? Theme.colAccent : Theme.colMuted
-                    opacity: btToggle.checked ? 1.0 : 0.3
-
-                    Rectangle {
-                        x: btToggle.checked ? parent.width - width - 4 : 4 
-                        y: 4
-                        width: 16 
-                        height: 16 
-                        radius: 8
-                        color: btToggle.checked ? Theme.colBg : Theme.colAccent
-                        Behavior on x { NumberAnimation { duration: 200 } }
-                    }
-                }
             }
         }
 

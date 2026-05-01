@@ -83,28 +83,10 @@ Item {
 
             Item { Layout.fillWidth: true }
 
-            Switch {
+            StyledSwitch {
                 id: wifiToggle
                 checked: Network.wifiEnabled
                 onToggled: Network.setWifiEnabled(checked)
-
-                indicator: Rectangle {
-                    implicitWidth: 48
-                    implicitHeight: 24
-                    radius: 12
-                    color: wifiToggle.checked ? Theme.colAccent : Theme.colMuted
-                    opacity: wifiToggle.checked ? 1.0 : 0.3
-
-                    Rectangle {
-                        x: wifiToggle.checked ? parent.width - width - 4 : 4
-                        y: 4
-                        width: 16
-                        height: 16
-                        radius: 8
-                        color: wifiToggle.checked ? Theme.colBg : Theme.colAccent
-                        Behavior on x { NumberAnimation { duration: 200 } }
-                    }
-                }
             }
         }
 
