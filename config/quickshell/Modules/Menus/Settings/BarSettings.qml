@@ -156,36 +156,18 @@ ColumnLayout {
             Layout.fillWidth: true
             
             Text {
-                text: "Enable Monitor"
+                text: "Enable Monitoring"
                 color: Theme.colText
                 font.family: Theme.fontFamily
                 Layout.fillWidth: true
             }
 
-            Switch {
+            StyledSwitch {
                 id: sysMonitorToggle
                 checked: barSettings.sysMonitor
                 onToggled: {
                     barSettings.sysMonitor = checked
                     Config.data.sysMonitor = checked ? "true" : "false"
-                }
-
-                indicator: Rectangle {
-                    implicitWidth: 48
-                    implicitHeight: 24
-                    radius: 12
-                    color: sysMonitorToggle.checked ? Theme.colAccent : Theme.colMuted
-                    opacity: sysMonitorToggle.checked ? 1.0 : 0.3
-
-                    Rectangle {
-                        x: sysMonitorToggle.checked ? parent.width - width - 4 : 4
-                        y: 4
-                        width: 16
-                        height: 16
-                        radius: 8
-                        color: sysMonitorToggle.checked ? Theme.colBg : Theme.colAccent
-                        Behavior on x { NumberAnimation { duration: 200 } }
-                    }
                 }
             }
         }
