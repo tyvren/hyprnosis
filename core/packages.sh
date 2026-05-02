@@ -40,6 +40,7 @@ files_disk_management=(
   xarchiver
   dosfstools
   ntfs-3g
+  nfs-utils
   gvfs
   gvfs-smb
 )
