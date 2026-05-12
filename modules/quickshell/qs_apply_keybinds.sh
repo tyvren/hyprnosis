@@ -17,28 +17,27 @@ FR=${14}
 FU=${15}
 FD=${16}
 
-CONF_FILE="$HOME/.config/hypr/settings/keybinds.conf"
+CONF_FILE="$HOME/.config/hypr/settings/keybinds.lua"
 
-sed -i "s/^\$mainMod = .*/\$mainMod = $MOD/" "$CONF_FILE"
+sed -i "s/local mainMod = .*/local mainMod = \"$MOD\"/" "$CONF_FILE"
 
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, exec, uwsm app -- \$terminal\)/\1$TERM\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, exec, uwsm app -- \$fileManager\)/\1$FM\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, exec, uwsm app -- \$menu\)/\1$MENU\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.exec_cmd(terminal)\)/\1$TERM\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.exec_cmd(fileManager)\)/\1$FM\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.exec_cmd(menu)\)/\1$MENU\2/" "$CONF_FILE"
 
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, killactive,\)/\1$KILL\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, togglefloating,\)/\1$FLOAT\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, togglesplit,\)/\1$SPLIT\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, pseudo,\)/\1$PSDO\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.window.close()\)/\1$KILL\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.window.float({ action = \"toggle\" })\)/\1$FLOAT\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.layout(\"togglesplit\")\)/\1$SPLIT\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hl.dsp.window.pseudo()\)/\1$PSDO\2/" "$CONF_FILE"
 
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, exec, uwsm app -- hyprlock\)/\1$LOCK\2/" "$CONF_FILE"
-sed -i "s/\(bind = , \)[^,]*\(, exec, uwsm app -- hyprshot\)/\1$SHOT\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"left\"\)/\1$FL\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"right\"\)/\1$FR\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"up\"\)/\1$FU\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"down\"\)/\1$FD\2/" "$CONF_FILE"
 
-sed -i "s/\(bind = \$mainMod SHIFT, \)[^,]*\(, exec, uwsm app -- hyprctl dispatch exec \"hypridle &\".*\)/\1$EIDL\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, exec, uwsm app -- hyprctl dispatch exec \"pkill hypridle\".*\)/\1$DIDL\2/" "$CONF_FILE"
-
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, movefocus, l\)/\1$FL\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, movefocus, r\)/\1$FR\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, movefocus, u\)/\1$FU\2/" "$CONF_FILE"
-sed -i "s/\(bind = \$mainMod, \)[^,]*\(, movefocus, d\)/\1$FD\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hyprlock\)/\1$LOCK\2/" "$CONF_FILE"
+sed -i "s/\(\" \+ \)[^\"]*\(.*hyprshot\)/\1$SHOT\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + SHIFT + \)[^\"]*\(.*hypridle &\)/\1$EIDL\2/" "$CONF_FILE"
+sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*pkill hypridle\)/\1$DIDL\2/" "$CONF_FILE"
 
 hyprctl reload

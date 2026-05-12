@@ -1,40 +1,41 @@
 #!/bin/bash
 
-WAWCONF="$HOME/.config/hypr/settings/windows-and-workspaces.conf"
-KEYCONF="$HOME/.config/hypr/settings/keybinds.conf"
+# Updated file paths
+LOOK_FEEL="$HOME/.config/hypr/settings/look-and-feel.lua"
+KEYBIND_LUA="$HOME/.config/hypr/settings/keybinds.lua"
 JSON="$HOME/.config/quickshell/config.json"
 
-get_conf() {
-  grep -P "^\s*$1\s*=" "$WAWCONF" | awk -F'[=#]' '{print $2}' | xargs | head -n 1
+get_look() {
+  grep -P "^\s*$1\s*=" "$LOOK_FEEL" | awk -F'[=,]' '{print $2}' | xargs | head -n 1
 }
 
 get_blur() {
-  sed -n '/blur {/,/}/p' "$WAWCONF" | grep -P "^\s*$1\s*=" | awk -F'[=#]' '{print $2}' | xargs
+  sed -n '/blur = {/,/}/p' "$LOOK_FEEL" | grep -P "^\s*$1\s*=" | awk -F'[=,]' '{print $2}' | xargs
 }
 
 get_shadow() {
-  sed -n '/shadow {/,/}/p' "$WAWCONF" | grep -P "^\s*$1\s*=" | awk -F'[=#]' '{print $2}' | xargs
+  sed -n '/shadow = {/,/}/p' "$LOOK_FEEL" | grep -P "^\s*$1\s*=" | awk -F'[=,]' '{print $2}' | xargs
 }
 
 get_misc() {
-  sed -n '/misc {/,/}/p' "$WAWCONF" | grep -P "^\s*$1\s*=" | awk -F'[=#]' '{print $2}' | xargs
+  sed -n '/misc = {/,/}/p' "$LOOK_FEEL" | grep -P "^\s*$1\s*=" | awk -F'[=,]' '{print $2}' | xargs
 }
 
-get_mod() {
-  grep -P "^\s*\\\$mainMod\s*=" "$KEYCONF" | awk -F'=' '{print $2}' | xargs | head -n 1
+get_var() {
+  grep -P "local $1\s*=" "$KEYBIND_LUA" | awk -F'"' '{print $2}' | xargs
 }
 
-get_key() {
-  grep -i "$1" "$KEYCONF" | head -n 1 | awk -F',' '{print $2}' | xargs
+get_bind() {
+  grep -P "hl\.bind.*$1" "$KEYBIND_LUA" | awk -F'[+"]' '{print $2}' | xargs
 }
 
-GI=$(get_conf "gaps_in")
-GO=$(get_conf "gaps_out")
-BS=$(get_conf "border_size")
-RN=$(get_conf "rounding")
-AO=$(get_conf "active_opacity")
-IO=$(get_conf "inactive_opacity")
-TR=$(get_conf "allow_tearing")
+GI=$(get_look "gaps_in")
+GO=$(get_look "gaps_out")
+BS=$(get_look "border_size")
+RN=$(get_look "rounding")
+AO=$(get_look "active_opacity")
+IO=$(get_look "inactive_opacity")
+TR=$(get_look "allow_tearing")
 SH=$(get_shadow "enabled")
 BE=$(get_blur "enabled")
 BSZ=$(get_blur "size")
@@ -42,22 +43,25 @@ BPS=$(get_blur "passes")
 LG=$(get_misc "disable_hyprland_logo")
 FW=$(get_misc "force_default_wallpaper")
 
-MOD=$(get_mod)
-TERM=$(get_key "\\\$terminal")
-FM=$(get_key "\\\$fileManager")
-MENU=$(get_key "\\\$menu")
-KILL=$(get_key "killactive")
-FLOAT=$(get_key "togglefloating")
-SPLIT=$(get_key "togglesplit")
-PSDO=$(get_key "pseudo")
-LOCK=$(get_key "hyprlock")
-SHOT=$(get_key "hyprshot")
-EIDL=$(get_key "hypridle &")
-DIDL=$(get_key "pkill hypridle")
-FL=$(get_key "movefocus, l")
-FR=$(get_key "movefocus, r")
-FU=$(get_key "movefocus, u")
-FD=$(get_key "movefocus, d")
+MOD=$(get_var "mainMod")
+TERM=$(get_var "terminal")
+FM=$(get_var "fileManager")
+MENU=$(get_var "menu")
+
+KILL=$(get_bind "window\.close")
+FLOAT=$(get_bind "window\.float")
+SPLIT=$(get_bind "layout")
+PSDO=$(get_bind "window\.pseudo")
+
+FL=$(get_bind "direction = \"left\"")
+FR=$(get_bind "direction = \"right\"")
+FU=$(get_bind "direction = \"up\"")
+FD=$(get_bind "direction = \"down\"")
+
+LOCK=$(get_bind "hyprlock")
+SHOT=$(get_bind "hyprshot")
+EIDL=$(get_bind "hypridle &")
+DIDL=$(get_bind "pkill hypridle")
 
 jq --arg gi "$GI" --arg go "$GO" --arg bs "$BS" --arg rn "$RN" \
   --arg ao "$AO" --arg io "$IO" --arg tr "$TR" --arg sh "$SH" \
