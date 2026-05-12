@@ -28,47 +28,4 @@ fi
 
 cp -r "$THEME_PATH/"* "$HOME/.config/"
 
-case "$SELECTED_THEME" in
-"Hyprnosis")
-  GTK="catppuccin-mocha-sapphire-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-sapphire-cursors"
-  ;;
-"Mocha")
-  GTK="catppuccin-mocha-lavender-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-lavender-cursors"
-  ;;
-"Emberforge")
-  GTK="catppuccin-mocha-orange-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-orange-cursors"
-  ;;
-"Dracula")
-  GTK="Dracula"
-  ICONS="Tela-circle-dracula"
-  CURSOR="catppuccin-mocha-green-cursors"
-  ;;
-"Arcadia")
-  GTK="catppuccin-mocha-pink-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-pink-cursors"
-  ;;
-"Eden")
-  GTK="catppuccin-mocha-green-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-dark-cursors"
-  ;;
-*)
-  GTK="catppuccin-mocha-blue-standard+default"
-  ICONS="Tela-circle-black"
-  CURSOR="catppuccin-mocha-dark-cursors"
-  ;;
-esac
-
-gsettings set org.gnome.desktop.interface gtk-theme "$GTK"
-gsettings set org.gnome.desktop.interface icon-theme "$ICONS"
-gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR"
-hyprctl setcursor "$CURSOR" 24
-
 notify-send "Theme Changed" "System theme '$SELECTED_THEME' applied."
