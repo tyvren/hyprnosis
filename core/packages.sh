@@ -24,6 +24,7 @@ system_utils=(
   plymouth
   pacman-contrib
   upower
+  flameshot
 )
 
 development=(
@@ -81,7 +82,6 @@ themes_fonts_packages=(
 
 hypr_packages=(
   hyprland
-  hyprshot
   hyprlock
   hypridle
   hyprpicker
