@@ -14,13 +14,18 @@ local menu = "uwsm app -- qs ipc call launcher-menu toggle"
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
+-- Terminal
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
+-- FileManager
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+-- Float toggle
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+-- AppLauncher
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
+-- Pseudo
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+-- Toggle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
@@ -50,6 +55,11 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 hl.bind("Print", hl.dsp.exec_cmd("uwsm app -- flameshot gui"))
+
+-- Lock screen and idle
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("pkill hypridle"))
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("hypridle &"))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(

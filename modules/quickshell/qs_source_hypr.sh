@@ -26,7 +26,19 @@ get_var() {
 }
 
 get_bind() {
-  grep -P "hl\.bind.*$1" "$KEYBIND_LUA" | awk -F'[+"]' '{print $2}' | xargs
+    local line
+    line=$(grep -P "hl\.bind.*$1" "$KEYBIND_LUA" | head -n 1)
+    if [ -z "$line" ]; then
+        echo ""
+        return
+    fi
+    local key
+    key=$(echo "$line" | grep -oP 'mainMod \.\. "\s*\+\s*\K[^"]+' 2>/dev/null)
+    if [ -n "$key" ]; then
+        echo "$key" | sed 's/^SHIFT + //'
+    else
+        echo "$line" | grep -oP 'hl\.bind\("\K[^"]+' | xargs
+    fi
 }
 
 GI=$(get_look "gaps_in")
@@ -44,9 +56,9 @@ LG=$(get_misc "disable_hyprland_logo")
 FW=$(get_misc "force_default_wallpaper")
 
 MOD=$(get_var "mainMod")
-TERM=$(get_var "terminal")
-FM=$(get_var "fileManager")
-MENU=$(get_var "menu")
+TERM=$(get_bind "terminal")
+FM=$(get_bind "fileManager")
+MENU=$(get_bind "menu")
 
 KILL=$(get_bind "window\.close")
 FLOAT=$(get_bind "window\.float")
@@ -59,7 +71,7 @@ FU=$(get_bind "direction = \"up\"")
 FD=$(get_bind "direction = \"down\"")
 
 LOCK=$(get_bind "hyprlock")
-SHOT=$(get_bind "hyprshot")
+SHOT=$(get_bind "flameshot")
 EIDL=$(get_bind "hypridle &")
 DIDL=$(get_bind "pkill hypridle")
 
