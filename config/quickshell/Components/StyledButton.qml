@@ -9,34 +9,47 @@ Item {
     property string text: ""
     property bool active: false
     signal clicked()
+
     implicitWidth: 180
     implicitHeight: 40
 
-    Rectangle {
-        anchors.fill: parent
-        radius: 15
-        color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : "transparent"
+    MultiEffect {
+        anchors.fill: button
+        source: button
+        shadowEnabled: true
+        shadowBlur: 0.2
+        shadowColor: Theme.colAccent
+        shadowVerticalOffset: 1
+        shadowHorizontalOffset: 0
+        opacity: 0.8
+    }
 
-        Text {
-            id: iconText
+    Rectangle {
+        id: button
+        anchors.fill: parent
+        radius: 10
+        color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colMuted
+
+        Row {
             anchors.left: parent.left
-            anchors.leftMargin: 10
+            anchors.leftMargin: 16
             anchors.verticalCenter: parent.verticalCenter
-            text: root.icon
-            font.family: Theme.fontFamily
-            font.pointSize: 12
-            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colAccent
+            spacing: 12
+
+            Text {
+                text: root.icon
+                font.family: Theme.fontFamily
+                font.pointSize: 12
+                color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colText
+            }
         }
 
         Text {
-            id: text
-            anchors.left: iconText.right 
-            anchors.leftMargin: 15
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.centerIn: parent
             text: root.text
             font.family: Theme.fontFamily
             font.pointSize: 12
-            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colAccent
+            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colText
         }
 
         MouseArea {

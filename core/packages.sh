@@ -82,7 +82,6 @@ themes_fonts_packages=(
 
 hypr_packages=(
   hyprland
-  hyprlock
   hypridle
   hyprpicker
   xdg-desktop-portal-hyprland

@@ -156,7 +156,7 @@ PopupWindow {
         }
     }
 
-    Process { id: lockProcess; command: ["hyprlock"] }
+    Process { id: lockProcess; command: ["sh", "-c", "qs ipc call lockscreen lock"] }
     Process { id: restartProcess; command: ["systemctl", "reboot"] }
     Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
     Process { id: settingsProcess; command: ["sh", "-c", "qs ipc call settingsMenu toggle"] }

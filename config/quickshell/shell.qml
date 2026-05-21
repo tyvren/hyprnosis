@@ -12,4 +12,5 @@ ShellRoot {
      Launcher {}
      Settings {}
      SidePane {}
+     LockScreen {}
 }

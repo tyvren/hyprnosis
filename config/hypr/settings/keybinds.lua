@@ -57,7 +57,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("Print", hl.dsp.exec_cmd("uwsm app -- flameshot gui"))
 
 -- Lock screen and idle
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("uwsm app -- qs ipc call lockscreen lock"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("pkill hypridle"))
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("hypridle &"))
 

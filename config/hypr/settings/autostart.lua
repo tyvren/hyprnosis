@@ -8,7 +8,7 @@
 -- Or execute your favorite apps at launch like this:
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("uwsm app -- hyprlock")
 	hl.exec_cmd("uwsm app -- hypridle")
 	hl.exec_cmd("uwsm app -- qs")
+	hl.exec_cmd("uwsm app -- qs ipc call lockscreen lock")
 end)
