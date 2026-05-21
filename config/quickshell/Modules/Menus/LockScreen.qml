@@ -16,10 +16,6 @@ Item {
     property bool isLocked: false
     property string pendingPassword: ""
 
-    Component.onCompleted: {
-        root.isLocked = true
-    }
-
     IpcHandler {
         target: "lockscreen"
 
