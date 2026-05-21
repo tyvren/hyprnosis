@@ -1,5 +1,4 @@
-import QtQuick
-import QtQuick.Controls
+import QtQuick 
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
@@ -11,9 +10,9 @@ import qs.Themes
 PopupWindow {
     id: quickMenuRoot
     implicitWidth: 200
-    implicitHeight: 200
+    implicitHeight: 220
     color: "transparent"
-  
+
     HyprlandFocusGrab {
         id: focusGrab
         windows: [quickMenuRoot]
@@ -47,31 +46,17 @@ PopupWindow {
         ColumnLayout {
             id: menuLayout
             anchors.fill: parent
-            anchors.leftMargin: 10
-            anchors.rightMargin: 10
+            anchors.margins: 10
+            spacing: 6
 
-            Rectangle {
+            StyledButton {
+                text: "Settings"
+                icon: ""
                 Layout.fillWidth: true
-                implicitHeight: 25
-                color: settingsArea.containsMouse ? Theme.colAccent : "transparent"
-                radius: 10
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "  Settings"
-                    font.family: Theme.fontFamily
-                    font.pointSize: 11
-                    color: settingsArea.containsMouse ? Theme.colBg : Theme.colAccent
-                }
-                MouseArea {
-                    id: settingsArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        settingsProcess.startDetached()
-                        quickMenuRoot.visible = false
-                    }
+                Layout.preferredHeight: 36
+                onClicked: {
+                    settingsProcess.startDetached()
+                    quickMenuRoot.visible = false
                 }
             }
 
@@ -79,78 +64,36 @@ PopupWindow {
                 Layout.fillWidth: true
             }
 
-            Rectangle {
+            StyledButton {
+                text: "Lock"
+                icon: "󰌾"
                 Layout.fillWidth: true
-                implicitHeight: 25
-                color: lockArea.containsMouse ? Theme.colAccent : "transparent"
-                radius: 10
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "󰌾  Lock"
-                    font.family: Theme.fontFamily
-                    font.pointSize: 11
-                    color: lockArea.containsMouse ? Theme.colBg : Theme.colAccent
-                }
-                MouseArea {
-                    id: lockArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        lockProcess.startDetached()
-                        quickMenuRoot.visible = false
-                    }
+                Layout.preferredHeight: 36
+                onClicked: {
+                    lockProcess.startDetached()
+                    quickMenuRoot.visible = false
                 }
             }
 
-            Rectangle {
+            StyledButton {
+                text: "Restart"
+                icon: "󰜉"
                 Layout.fillWidth: true
-                implicitHeight: 25
-                color: restartArea.containsMouse ? Theme.colAccent : "transparent"
-                radius: 10
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "󰜉  Restart"
-                    font.family: Theme.fontFamily
-                    font.pointSize: 11
-                    color: restartArea.containsMouse ? Theme.colBg : Theme.colAccent
-                }
-                MouseArea {
-                    id: restartArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        restartProcess.startDetached()
-                        quickMenuRoot.visible = false
-                    }
+                Layout.preferredHeight: 36
+                onClicked: {
+                    restartProcess.startDetached()
+                    quickMenuRoot.visible = false
                 }
             }
 
-            Rectangle {
+            StyledButton {
+                text: "Shutdown"
+                icon: "󰐥"
                 Layout.fillWidth: true
-                implicitHeight: 25
-                color: shutdownArea.containsMouse ? Theme.colAccent : "transparent"
-                radius: 10
-                Text {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "󰐥  Shutdown"
-                    font.family: Theme.fontFamily
-                    font.pointSize: 11
-                    color: shutdownArea.containsMouse ? Theme.colBg : Theme.colAccent
-                }
-                MouseArea {
-                    id: shutdownArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        shutdownProcess.startDetached()
-                        quickMenuRoot.visible = false
-                    }
+                Layout.preferredHeight: 36
+                onClicked: {
+                    shutdownProcess.startDetached()
+                    quickMenuRoot.visible = false
                 }
             }
         }
