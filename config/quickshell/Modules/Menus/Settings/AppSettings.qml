@@ -31,7 +31,6 @@ ColumnLayout {
     }
 
     Text {
-        id: installHeader
         text: "Install"
         color: Theme.colAccent
         font.pointSize: 12
@@ -43,95 +42,27 @@ ColumnLayout {
     }
 
     RowLayout {
-        id: installRow
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter
         Layout.margins: 10
-        spacing: 40
+        spacing: 10
 
-        Item {
-            id: archInstallBtn
-            width: 180
-            height: 45
-            
-            RectangularShadow {
-                id: archBtnShadow
-                anchors.fill: parent
-                blur: 1
-                spread: 0
-                radius: 10
-                color: Theme.colAccent
-            }
-
-            Rectangle {
-                id: archBtn
-                anchors.fill: parent
-                color: archBtnArea.containsMouse ? Theme.colAccent : Theme.colBg
-                border.color: Theme.colAccent
-                border.width: 1
-                radius: 10
-
-                Text {
-                    id: archBtnTxt
-                    anchors.centerIn: parent
-                    color: archBtnArea.containsMouse ? Theme.colBg : Theme.colText
-                    font.pointSize: 12
-                    font.family: Theme.fontFamily
-                    text: "Install Arch App"
-                }
-                
-                MouseArea {
-                    id: archBtnArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"])
-                }
-            }
+        StyledButton {
+            text: "Install Arch App"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 45
+            onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_install.sh"])
         }
-        
-        Item {
-            id: aurInstallBtn
-            width: 180
-            height: 45
-            
-            RectangularShadow {
-                id: aurBtnShadow
-                anchors.fill: parent
-                blur: 1
-                spread: 0
-                radius: 10
-                color: Theme.colAccent
-            }
 
-            Rectangle {
-                id: aurBtn
-                anchors.fill: parent
-                color: aurBtnArea.containsMouse ? Theme.colAccent : Theme.colBg
-                border.color: Theme.colAccent
-                border.width: 1
-                radius: 10
-
-                Text {
-                    id: aurBtnTxt
-                    anchors.centerIn: parent
-                    color: aurBtnArea.containsMouse ? Theme.colBg : Theme.colText
-                    font.pointSize: 12
-                    font.family: Theme.fontFamily
-                    text: "Install AUR App"
-                }
-
-                MouseArea {
-                    id: aurBtnArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"])
-                }
-            }
+        StyledButton {
+            text: "Install AUR App"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 45
+            onClicked: Quickshell.execDetached(["sh", "-c", "ghostty -e ~/.config/hyprnosis/modules/packages/pkg_aur_install.sh"])
         }
     }
 
     Text {
-        id: uninstallHeader
         text: "Uninstall"
         color: Theme.colAccent
         font.pointSize: 12
@@ -143,7 +74,6 @@ ColumnLayout {
     }
 
     RowLayout {
-        id: uninstallRow
         Layout.fillWidth: true
         Layout.margins: 10
         spacing: 10
@@ -172,7 +102,7 @@ ColumnLayout {
                     font.pointSize: 12
                     clip: true
                     focus: true
-                    
+
                     onTextChanged: {
                         appPane.searchQuery = text.toLowerCase()
                         filterModel()
@@ -193,11 +123,11 @@ ColumnLayout {
                     }
 
                     RotationAnimation on rotation {
-                      from: 0
-                      to: 360
-                      duration: 1000
-                      running: loader.running
-                      loops: Animation.Infinite
+                        from: 0
+                        to: 360
+                        duration: 1000
+                        running: loader.running
+                        loops: Animation.Infinite
                     }
                 }
             }
@@ -236,9 +166,9 @@ ColumnLayout {
                 width: appView.width
                 height: 50
                 radius: 10
-                
+
                 property bool isHovered: rowMa.containsMouse || uninstallMa.containsMouse
-                
+
                 color: isHovered ? Theme.colMuted : Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
