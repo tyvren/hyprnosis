@@ -29,23 +29,6 @@ spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/m
 prompt "Updating Quickshell"
 cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
 
-if gum confirm "Update Hyprland config files to latest defaults?"; then
-  spin "Updating hyprland config files"
-
-  find "$LOCAL_CONFIG/hypr" -type f \
-    ! -path "*/hyprland.lua" \
-    ! -path "*/settings/monitors.lua" \
-    -delete
-
-  find "$LOCAL_CONFIG/hypr" -type d -empty -delete
-
-  cp -r "$CONFIG_DIR/hypr" "$INSTALL_DIR"
-
-  hyprctl reload
-else
-  gum log -l info "Skipping config file updates"
-fi
-
 if gum confirm "Update hyprnosis wallpapers?"; then
   spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
   rm -rf /tmp/wallpapers/.git
