@@ -29,7 +29,7 @@ spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/m
 prompt "Updating Quickshell"
 cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
 
-if gum confirm "Update Hyprland config files to latest defaults?"
+if gum confirm "Update Hyprland config files to latest defaults?"; then
   spin "Updating hyprland config files"
   rm -rf "$LOCAL_CONFIG/hypr"
   cp -r "$CONFIG_DIR/hypr" "$INSTALL_DIR"
