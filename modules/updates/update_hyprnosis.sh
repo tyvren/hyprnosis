@@ -26,8 +26,16 @@ header
 spin "Fetching updates for hyprnosis" git -C "$INSTALL_DIR" fetch origin
 spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/main
 
-prompt "Updating Quickshell config"
+prompt "Updating Quickshell"
 cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
+
+if gum confirm "Update Hyprland config files to latest defaults?"
+  spin "Updating hyprland config files"
+  rm -rf "$LOCAL_CONFIG/hypr"
+  cp -r "$CONFIG_DIR/hypr" "$INSTALL_DIR"
+else
+  gum confirm "Skipping config file updates"
+fi
 
 if gum confirm "Update hyprnosis wallpapers?"; then
   spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
