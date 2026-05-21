@@ -33,7 +33,7 @@ if gum confirm "Update Hyprland config files to latest defaults?"; then
   spin "Updating hyprland config files"
 
   find "$LOCAL_CONFIG/hypr" -type f \
-    ! -path "hyprland.lua" \
+    ! -path "*/hyprland.lua" \
     ! -path "*/settings/monitors.lua" \
     -delete
 
