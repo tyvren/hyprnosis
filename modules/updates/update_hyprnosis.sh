@@ -31,10 +31,16 @@ cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
 
 if gum confirm "Update Hyprland config files to latest defaults?"; then
   spin "Updating hyprland config files"
-  rm -rf "$LOCAL_CONFIG/hypr"
+
+  find "$LOCAL_CONFIG/hypr" -type f \
+    ! -path "*/settings/monitors.lua" \
+    -delete
+
+  find "$LOCAL_CONFIG/hypr" -type d -empty -delete
+
   cp -r "$CONFIG_DIR/hypr" "$INSTALL_DIR"
 else
-  gum confirm "Skipping config file updates"
+  gum log -l info "Skipping config file updates"
 fi
 
 if gum confirm "Update hyprnosis wallpapers?"; then
