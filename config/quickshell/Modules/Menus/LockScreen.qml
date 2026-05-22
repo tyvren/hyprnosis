@@ -57,8 +57,6 @@ Item {
                 anchors.fill: parent
                 color: Theme.colBg
 
-                onVisibleChanged: if (visible) passwordIn.forceActiveFocus()
-
                 Image {
                     id: wallpaper
                     anchors.fill: parent
@@ -71,40 +69,29 @@ Item {
                 Rectangle {
                     anchors.centerIn: parent
                     width: 450
-                    height: 440
+                    height: 450
                     color: Theme.colBg
                     border.color: Theme.colAccent
-                    radius: 10
+                    radius: 15
 
                     ColumnLayout {
                         anchors.fill: parent
                         anchors.margins: 40
-                        spacing: 20
+                        spacing: 15
 
                         StyledInput {
                             id: passwordIn
-                            Layout.preferredWidth: 320
-                            Layout.preferredHeight: 50
+                            Layout.preferredWidth: 340
+                            Layout.preferredHeight: 60
                             Layout.alignment: Qt.AlignHCenter
                             echoMode: TextInput.Password
-                            placeholderText: "Password..."
+                            placeholderText: "Enter Password"
                             placeholderTextColor: Theme.colMuted
-                            focus: true
+                            focus: false
                             font.pointSize: 16
                             color: Theme.colAccent
-
+                            
                             onAccepted: unlockButton.unlock()
-                        }
-
-                        Text {
-                            text: pam.messageIsError ? pam.message : "Enter your password to log in"
-                            color: pam.messageIsError ? "#ff5555" : "#888888"
-                            font.family: Theme.fontFamily
-                            font.pixelSize: 13
-                            Layout.alignment: Qt.AlignHCenter
-                            horizontalAlignment: Text.AlignHCenter
-                            wrapMode: Text.Wrap
-                            Layout.preferredWidth: 320
                         }
 
                         StyledButton {
