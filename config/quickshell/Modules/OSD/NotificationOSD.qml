@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
+import qs.Components
 import qs.Services
 import qs.Themes
 
@@ -32,56 +33,38 @@ Scope {
     LazyLoader {
         active: root.shouldShowOsd
 
-        PanelWindow {
-            anchors.top: true
-            anchors.right: true
-            margins.top: 10
-            margins.right: 10 
-            implicitWidth: 300
-            implicitHeight: 80
-            color: "transparent"
-            mask: Region {}
-
-            Item {
+        OSD {
+            RowLayout {
                 anchors.fill: parent
+                anchors.leftMargin: 15
+                anchors.rightMargin: 15
+                spacing: 12
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: 50
-                    color: Theme.colBg
-                    border.color: Theme.colAccent
-                    border.width: 1
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                    spacing: 4
 
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: 15
-                        anchors.rightMargin: 15
-                        spacing: 12
+                    Text {
+                        text: root.currentSummary
+                        color: Theme.colText
+                        font.bold: true
+                        font.pointSize: 12
+                        elide: Text.ElideRight
+                        maximumLineCount: 2
+                        wrapMode: Text.Wrap
+                        Layout.fillWidth: true
+                    }
 
-                        ColumnLayout {
-                            Layout.fillWidth: true
-                            Layout.alignment: Qt.AlignVCenter
-                            spacing: 4
-
-                            Text {
-                                text: root.currentSummary
-                                color: Theme.colText
-                                font.bold: true
-                                font.pointSize: 12
-                                elide: Text.ElideRight
-                                Layout.fillWidth: true
-                            }
-
-                            Text {
-                                text: root.currentBody
-                                color: Theme.colText
-                                font.pointSize: 11
-                                elide: Text.ElideRight
-                                maximumLineCount: 1
-                                Layout.fillWidth: true
-                                visible: text !== ""
-                            }
-                        }
+                    Text {
+                        text: root.currentBody
+                        color: Theme.colText
+                        font.pointSize: 11
+                        elide: Text.ElideRight
+                        maximumLineCount: 2
+                        wrapMode: Text.Wrap
+                        Layout.fillWidth: true
+                        visible: text !== ""
                     }
                 }
             }
