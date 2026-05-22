@@ -8,7 +8,7 @@ QtObject {
     id: theme
 
     readonly property string activeId: Config.data.theme
-    readonly property string fontFamily: "JetBrainsMono Nerd Font"
+    readonly property string fontFamily: "Roboto"
     readonly property int fontSize: 14
 
     readonly property real currentAlpha: 1.0 - ((Config.data.qsTransparency ?? 0.0) * 0.75)

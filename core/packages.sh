@@ -73,6 +73,9 @@ desktop_environment=(
 themes_fonts_packages=(
   ttf-font-awesome
   ttf-jetbrains-mono-nerd
+  ttf-roboto
+  ttf-firacode-nerd
+  ttf-mononoki-nerd
   catppuccin-cursors-mocha
   catppuccin-gtk-theme-mocha
   dracula-gtk-theme
