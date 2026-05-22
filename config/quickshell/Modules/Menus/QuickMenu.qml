@@ -46,7 +46,7 @@ PopupWindow {
         ColumnLayout {
             id: menuLayout
             anchors.fill: parent
-            anchors.margins: 10
+            anchors.margins: 15
             spacing: 6
 
             StyledButton {

@@ -98,7 +98,7 @@ Item {
                             id: unlockButton
                             text: "Unlock"
                             icon: "󰌾"
-                            Layout.preferredWidth: 140
+                            Layout.preferredWidth: 180
                             Layout.preferredHeight: 40
                             Layout.alignment: Qt.AlignHCenter
 
@@ -129,7 +129,7 @@ Item {
                             StyledButton {
                                 text: "Restart"
                                 icon: "󰜉"
-                                Layout.preferredWidth: 140
+                                Layout.preferredWidth: 180
                                 Layout.preferredHeight: 40
                                 onClicked: restartProcess.startDetached()
                             }
@@ -137,7 +137,7 @@ Item {
                             StyledButton {
                                 text: "Shutdown"
                                 icon: "󰐥"
-                                Layout.preferredWidth: 140
+                                Layout.preferredWidth: 180
                                 Layout.preferredHeight: 40
                                 onClicked: shutdownProcess.startDetached()
                             }
