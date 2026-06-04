@@ -80,8 +80,8 @@ Item {
                     shadowEnabled: true
                     shadowBlur: 0.4
                     shadowColor: Theme.colAccent
-                    shadowVerticalOffset: 3
-                    shadowHorizontalOffset: 0
+                    shadowVerticalOffset: 1
+                    shadowHorizontalOffset: 1
                 }
 
                 Rectangle {
