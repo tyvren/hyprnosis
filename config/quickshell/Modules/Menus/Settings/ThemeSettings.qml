@@ -36,67 +36,38 @@ ColumnLayout {
             { name: "Ghost",      themeId: "ghost",      script: "Ghost" }
         ]
 
-        Item {
+        StyledButton {
+            id: btnShell
             Layout.fillWidth: true
             Layout.preferredHeight: 45
+            text: modelData.name
+            active: themeSettings.theme === modelData.themeId
 
-            MultiEffect {
-                anchors.fill: themeButtons
-                source: themeButtons
-                shadowEnabled: true
-                shadowBlur: 0.2
-                shadowColor: Theme.colAccent
-                shadowVerticalOffset: 1
-                shadowHorizontalOffset: 0
-                opacity: 0.8
+            onClicked: {
+                Config.updateTheme(modelData.themeId, modelData.script)
+                Config.updateWallpaper("")
             }
 
-            Rectangle {
-                id: themeButtons
-                anchors.fill: parent
-                radius: 10
-                color: (themeSettings.theme === modelData.themeId || themeArea.containsMouse) ? Theme.colAccent : Theme.colMuted
+            Row {
+                anchors.left: parent.left
+                anchors.leftMargin: 22
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 4
 
-                Row {
-                    id: colorRow
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.verticalCenter: parent.verticalCenter
-                    spacing: 4
+                Repeater {
+                    model: [ 
+                        Theme.themes[modelData.themeId].colBg, 
+                        Theme.themes[modelData.themeId].colAccent, 
+                        Theme.themes[modelData.themeId].colHilight 
+                    ]
 
-                    Repeater {
-                        model: [ 
-                            Theme.themes[modelData.themeId].colBg, 
-                            Theme.themes[modelData.themeId].colAccent, 
-                            Theme.themes[modelData.themeId].colHilight 
-                        ]
-
-                        Rectangle {
-                            width: 15
-                            height: 15
-                            radius: 15
-                            color: modelData
-                            border.color: "white"
-                            border.width: 1
-                        }
-                    }
-                }
-
-                Text {
-                    anchors.centerIn: parent
-                    text: modelData.name
-                    color: (themeSettings.theme === modelData.themeId || themeArea.containsMouse) ? Theme.colBg : Theme.colText
-                    font.pointSize: 12
-                    font.family: Theme.fontFamily
-                }
-
-                MouseArea {
-                    id: themeArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        Config.updateTheme(modelData.themeId, modelData.script)
-                        Config.updateWallpaper("")
+                    Rectangle {
+                        width: 15
+                        height: 15
+                        radius: 15
+                        color: modelData
+                        border.color: "white"
+                        border.width: 1
                     }
                 }
             }
@@ -128,26 +99,14 @@ ColumnLayout {
                 { label: "75%",  value: 0.75 }
             ]
 
-            Rectangle {
+            StyledButton {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 35
-                radius: 8
-                color: (Config.data.qsTransparency == modelData.value) ? Theme.colAccent : Theme.colMuted
-                border.width: 1
-                border.color: (Config.data.qsTransparency == modelData.value) ? Theme.colAccent : "transparent"
+                text: modelData.label
+                active: Config.data.qsTransparency == modelData.value
 
-                Text {
-                    anchors.centerIn: parent
-                    text: modelData.label
-                    color: (Config.data.qsTransparency == modelData.value) ? Theme.colBg : Theme.colText
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 12
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: Config.data.qsTransparency = modelData.value
+                onClicked: {
+                    Config.data.qsTransparency = modelData.value
                 }
             }
         }

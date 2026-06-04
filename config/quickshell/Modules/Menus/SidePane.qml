@@ -20,7 +20,7 @@ PanelWindow {
     anchors.bottom: true
     anchors.right: true
     implicitWidth: 350
-    margins.right: 35
+    margins.right: 10
     margins.top: 35
     margins.bottom: 35
 
@@ -52,7 +52,7 @@ PanelWindow {
         id: paneRoot
         anchors.fill: parent
         color: Theme.colBg
-        radius: 20
+        radius: 10
         border.color: Theme.colAccent
         border.width: 1
 

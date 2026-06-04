@@ -25,7 +25,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        radius: 50
+        radius: 15
         color: root.isActive || root.containsMouse ? Theme.colSelect : Theme.colBg
         border.width: 2
         border.color: Theme.colAccent

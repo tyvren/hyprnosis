@@ -33,7 +33,7 @@ Item {
             Layout.preferredHeight: 50 
             color: Network.ethernetConnected ? Theme.colMuted : Theme.colAccent
             opacity: Network.ethernetConnected ? 1 : 0.2
-            radius: 10
+            radius: 5
             visible: Network.ethernetConnected
 
             Item {
@@ -107,7 +107,7 @@ Item {
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : Theme.colMuted
                         opacity: modelData.connected ? 0.2 : 0.1
-                        radius: 10
+                        radius: 5
                     }
 
                     contentItem: Item {
@@ -145,36 +145,16 @@ Item {
                             }
                         }
 
-                        Item {
+                        StyledButton {
                             visible: modelData.connected
-                            width: 70
+                            width: 80
                             height: 24
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
+                            text: "Forget"
 
-                            Rectangle {
-                                id: forgetBtnRect
-                                anchors.fill: parent
-                                radius: 5
-                                color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
-                                border.color: Theme.colAccent
-                                border.width: 1
-
-                                Text {
-                                    anchors.centerIn: parent
-                                    text: "Forget"
-                                    font.pointSize: 8
-                                    color: forgetMa.containsMouse ? Theme.colBg : Theme.colText
-                                }
-
-                                MouseArea {
-                                    id: forgetMa
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onClicked: Network.forget(modelData.ssid)
-                                }
-                            }
+                            onClicked: Network.forget(modelData.ssid)
                         }
 
                         Text {
@@ -201,44 +181,14 @@ Item {
             }
         }
 
-        Item {
+        StyledButton {
             Layout.alignment: Qt.AlignRight
             Layout.preferredWidth: 100
             Layout.preferredHeight: 35
+            text: Network.scanning ? "..." : "Rescan"
+            active: Network.scanning
 
-            MultiEffect {
-                anchors.fill: scanBtnRect
-                source: scanBtnRect
-                shadowEnabled: true
-                shadowBlur: 0.2
-                shadowColor: Theme.colAccent
-                shadowVerticalOffset: 1
-                shadowHorizontalOffset: 0
-                opacity: selectedNetwork === null ? 0.8 : 0.4
-            }
-
-            Rectangle {
-                id: scanBtnRect
-                anchors.fill: parent
-                radius: 10
-                color: (scanMa.containsMouse && selectedNetwork === null) ? Theme.colAccent : Theme.colMuted
-                opacity: selectedNetwork === null ? 1.0 : 0.5
-
-                Text {
-                    anchors.centerIn: parent
-                    text: Network.scanning ? "..." : "Rescan"
-                    color: scanMa.containsMouse ? Theme.colBg : Theme.colText
-                    font.bold: true
-                    font.family: Theme.fontFamily
-                }
-
-                MouseArea {
-                    id: scanMa
-                    anchors.fill: parent
-                    hoverEnabled: selectedNetwork === null
-                    onClicked: Network.scan()
-                }
-            }
+            onClicked: Network.scan()
         }
     }
 
@@ -249,7 +199,7 @@ Item {
         height: 260
         color: Theme.colBg
         visible: selectedNetwork !== null
-        radius: 15
+        radius: 5
         border.color: Theme.colAccent
         border.width: 1
 
@@ -288,11 +238,11 @@ Item {
                 background: Rectangle {
                     color: Theme.colMuted
                     opacity: 0.1
-                    radius: 8
+                    radius: 5
                     border.color: Theme.colAccent
                     border.width: 1
                 }
-                onAccepted: if (!Network.connecting) connectMa.onClicked()
+                onAccepted: if (!Network.connecting) Network.connect(selectedNetwork.ssid, passInput.text)
             }
 
             Text {
@@ -307,84 +257,28 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 15
 
-                Item {
-                    width: 110; height: 40
+                StyledButton {
+                    Layout.preferredWidth: 110
+                    Layout.preferredHeight: 40
                     enabled: !Network.connecting
-                    opacity: enabled ? 1.0 : 0.5
+                    text: "Cancel"
 
-                    MultiEffect {
-                        anchors.fill: cancelBtnRect
-                        source: cancelBtnRect
-                        shadowEnabled: true
-                        shadowBlur: 0.2
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 1
-                        shadowHorizontalOffset: 0
-                        opacity: 0.8
-                    }
-
-                    Rectangle {
-                        id: cancelBtnRect
-                        anchors.fill: parent
-                        radius: 10
-                        color: cancelMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: "Cancel"
-                            color: cancelMa.containsMouse ? Theme.colBg : Theme.colAccent
-                            font.bold: true
-                        }
-
-                        MouseArea {
-                            id: cancelMa
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: {
-                                networkRoot.selectedNetwork = null
-                                Network.errorMessage = ""
-                                passInput.text = ""
-                            }
-                        }
+                    onClicked: {
+                        networkRoot.selectedNetwork = null
+                        Network.errorMessage = ""
+                        passInput.text = ""
                     }
                 }
 
-                Item {
-                    width: 110; height: 40
+                StyledButton {
+                    Layout.preferredWidth: 110
+                    Layout.preferredHeight: 40
+                    text: Network.connecting ? "..." : "Connect"
+                    active: Network.connecting
 
-                    MultiEffect {
-                        anchors.fill: connectBtnRect
-                        source: connectBtnRect
-                        shadowEnabled: true
-                        shadowBlur: 0.2
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 1
-                        shadowHorizontalOffset: 0
-                        opacity: 0.8
-                    }
-
-                    Rectangle {
-                        id: connectBtnRect
-                        anchors.fill: parent
-                        radius: 10
-                        color: (connectMa.containsMouse || Network.connecting) ? Theme.colAccent : Theme.colMuted
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: Network.connecting ? "..." : "Connect"
-                            color: (connectMa.containsMouse || Network.connecting) ? Theme.colBg : Theme.colText
-                            font.bold: true
-                        }
-
-                        MouseArea {
-                            id: connectMa
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: {
-                                if (Network.connecting) return
-                                Network.connect(selectedNetwork.ssid, passInput.text)
-                            }
-                        }
+                    onClicked: {
+                        if (Network.connecting) return
+                        Network.connect(selectedNetwork.ssid, passInput.text)
                     }
                 }
             }

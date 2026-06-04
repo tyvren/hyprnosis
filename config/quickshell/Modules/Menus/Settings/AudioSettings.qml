@@ -37,7 +37,8 @@ ColumnLayout {
             deviceList: Audio.sinkNodes
             volume: Audio.sinkVolume
             isMuted: Audio.sinkMuted
-            icon: Audio.sinkMuted ? "󰝟" : "󰓃"
+            muteIcon: "󰝟"
+            unmuteIcon: "󰓃"
             onVolumeSet: (val) => Audio.setSinkVolume(val)
             onToggleMute: Audio.toggleSinkMute()
             onDeviceSelected: (node) => Audio.selectSink(node)
@@ -53,7 +54,8 @@ ColumnLayout {
             deviceList: Audio.sourceNodes
             volume: Audio.sourceVolume
             isMuted: Audio.sourceMuted
-            icon: Audio.sourceMuted ? "󰍭" : "󰍬"
+            muteIcon: "󰍭"
+            unmuteIcon: "󰍬"
             onVolumeSet: (val) => Audio.setSourceVolume(val)
             onToggleMute: Audio.toggleSourceMute()
             onDeviceSelected: (node) => Audio.selectSource(node)
@@ -68,7 +70,8 @@ ColumnLayout {
         property var deviceList
         property real volume
         property bool isMuted
-        property string icon
+        property string muteIcon
+        property string unmuteIcon
         
         signal volumeSet(real val)
         signal toggleMute()
@@ -126,7 +129,7 @@ ColumnLayout {
 
                             background: Rectangle {
                                 color: highlighted ? Theme.colAccent : "transparent"
-                                radius: 10
+                                radius: 5
                             }
                         }
 
@@ -145,7 +148,7 @@ ColumnLayout {
                             id: comboBackground
                             color: Theme.colMuted
                             opacity: 0.2
-                            radius: 10
+                            radius: 5
                             border.color: deviceSelector.activeFocus ? Theme.colAccent : "transparent"
                             border.width: 1
                         }
@@ -168,7 +171,7 @@ ColumnLayout {
                                 color: Theme.colBg
                                 border.color: Theme.colAccent
                                 border.width: 1
-                                radius: 10
+                                radius: 5
                             }
                         }
                     }
@@ -192,41 +195,13 @@ ColumnLayout {
             spacing: 15
             Layout.fillWidth: true
 
-            Item {
-                Layout.preferredWidth: 45
+            StyledButton {
+                Layout.preferredWidth: 55
                 Layout.preferredHeight: 45
+                icon: isMuted ? muteIcon : unmuteIcon
+                active: isMuted
 
-                MultiEffect {
-                    anchors.fill: muteBtnBg
-                    source: muteBtnBg
-                    shadowEnabled: true
-                    shadowBlur: 0.2
-                    shadowColor: Theme.colAccent
-                    shadowVerticalOffset: 1
-                    shadowHorizontalOffset: 0
-                    opacity: 0.8
-                }
-
-                Rectangle {
-                    id: muteBtnBg
-                    anchors.fill: parent
-                    radius: 10
-                    color: muteMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                    
-                    Text {
-                        anchors.centerIn: parent
-                        text: icon
-                        font.pointSize: 16
-                        color: muteMa.containsMouse ? Theme.colBg : (isMuted ? Theme.colMuted : Theme.colAccent)
-                    }
-
-                    MouseArea {
-                        id: muteMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: toggleMute()
-                    }
-                }
+                onClicked: toggleMute()
             }
 
             Slider {
@@ -260,7 +235,7 @@ ColumnLayout {
                     y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
                     implicitWidth: 16
                     implicitHeight: 16
-                    radius: 8
+                    radius: 5
                     color: volSlider.pressed ? Theme.colAccent : Theme.colBg
                     border.color: Theme.colAccent
                     border.width: 2

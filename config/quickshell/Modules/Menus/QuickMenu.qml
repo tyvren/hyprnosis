@@ -30,7 +30,7 @@ PopupWindow {
     Rectangle {
         id: container
         anchors.fill: parent
-        radius: 15
+        radius: 2
         color: Theme.colBg
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
         focus: true
@@ -51,7 +51,7 @@ PopupWindow {
 
             StyledButton {
                 text: "Settings"
-                icon: ""
+                icon: ""
                 Layout.fillWidth: true
                 Layout.preferredHeight: 36
                 onClicked: {

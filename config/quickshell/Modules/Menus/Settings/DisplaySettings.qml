@@ -89,7 +89,7 @@ ColumnLayout {
                 Rectangle {
                     id: monitorRect
                     anchors.fill: parent
-                    radius: 12
+                    radius: 5
                     color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
                     border.color: Theme.colAccent
                     border.width: 1
@@ -200,7 +200,7 @@ ColumnLayout {
                             opacity: 0.2
                             border.color: Theme.colAccent
                             border.width: 1
-                            radius: 10
+                            radius: 5
                         }
                     }
 
@@ -217,7 +217,7 @@ ColumnLayout {
                         id: modeSelectorBackground
                         color: Theme.colMuted
                         opacity: 0.2
-                        radius: 10
+                        radius: 5
                     }
 
                     popup: Popup {
@@ -237,7 +237,7 @@ ColumnLayout {
                         background: Rectangle {
                             color: Theme.colBg
                             border.color: Theme.colAccent
-                            radius: 10
+                            radius: 5
                         }
                     }
                 }
@@ -264,42 +264,13 @@ ColumnLayout {
                 Repeater {
                     model: ["auto", "left", "right"]
 
-                    Item {
+                    StyledButton {
                         Layout.preferredWidth: 70
                         Layout.preferredHeight: 35
+                        text: modelData
+                        active: displayPane.currentPos === modelData
 
-                        MultiEffect {
-                            anchors.fill: posBtnRect
-                            source: posBtnRect
-                            shadowEnabled: true
-                            shadowBlur: 0.2
-                            shadowColor: Theme.colAccent
-                            shadowVerticalOffset: 1
-                            shadowHorizontalOffset: 0
-                            opacity: 0.8
-                        }
-
-                        Rectangle {
-                            id: posBtnRect
-                            anchors.fill: parent
-                            radius: 10
-                            color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colAccent : Theme.colMuted
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: modelData
-                                color: (displayPane.currentPos === modelData || posMa.containsMouse) ? Theme.colBg : Theme.colText
-                                font.pointSize: 9
-                                font.family: Theme.fontFamily
-                            }
-
-                            MouseArea {
-                                id: posMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: displayPane.currentPos = modelData
-                            }
-                        }
+                        onClicked: displayPane.currentPos = modelData
                     }
                 }
             }
@@ -325,42 +296,13 @@ ColumnLayout {
                 Repeater {
                     model: ["1", "1.5", "2"]
 
-                    Item {
+                    StyledButton {
                         Layout.preferredWidth: 70
                         Layout.preferredHeight: 35
+                        text: modelData
+                        active: displayPane.currentScale === modelData
 
-                        MultiEffect {
-                            anchors.fill: scaleBtnRect
-                            source: scaleBtnRect
-                            shadowEnabled: true
-                            shadowBlur: 0.2
-                            shadowColor: Theme.colAccent
-                            shadowVerticalOffset: 1
-                            shadowHorizontalOffset: 0
-                            opacity: 0.8
-                        }
-
-                        Rectangle {
-                            id: scaleBtnRect
-                            anchors.fill: parent
-                            radius: 10
-                            color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colAccent : Theme.colMuted
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: modelData
-                                color: (displayPane.currentScale === modelData || scaleMa.containsMouse) ? Theme.colBg : Theme.colText
-                                font.pointSize: 9
-                                font.family: Theme.fontFamily
-                            }
-
-                            MouseArea {
-                                id: scaleMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: displayPane.currentScale = modelData
-                            }
-                        }
+                        onClicked: displayPane.currentScale = modelData
                     }
                 }
             }
@@ -386,42 +328,13 @@ ColumnLayout {
                 Repeater {
                     model: ["1", "2"]
 
-                    Item {
+                    StyledButton {
                         Layout.preferredWidth: 70
                         Layout.preferredHeight: 35
+                        text: modelData + "x"
+                        active: displayPane.currentGdk === modelData
 
-                        MultiEffect {
-                            anchors.fill: gdkBtnRect
-                            source: gdkBtnRect
-                            shadowEnabled: true
-                            shadowBlur: 0.2
-                            shadowColor: Theme.colAccent
-                            shadowVerticalOffset: 1
-                            shadowHorizontalOffset: 0
-                            opacity: 0.8
-                        }
-
-                        Rectangle {
-                            id: gdkBtnRect
-                            anchors.fill: parent
-                            radius: 10
-                            color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colAccent : Theme.colMuted
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: modelData + "x"
-                                color: (displayPane.currentGdk === modelData || gdkMa.containsMouse) ? Theme.colBg : Theme.colText
-                                font.pointSize: 9
-                                font.family: Theme.fontFamily
-                            }
-
-                            MouseArea {
-                                id: gdkMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: displayPane.currentGdk = modelData
-                            }
-                        }
+                        onClicked: displayPane.currentGdk = modelData
                     }
                 }
             }
@@ -433,53 +346,23 @@ ColumnLayout {
         Layout.fillHeight: true
     }
 
-    Item {
+    StyledButton {
         id: applyBtn
         Layout.alignment: Qt.AlignRight
         Layout.preferredWidth: 90
         Layout.preferredHeight: 35
+        text: "Apply"
 
-        MultiEffect {
-            anchors.fill: applyBtnRect
-            source: applyBtnRect
-            shadowEnabled: true
-            shadowBlur: 0.2
-            shadowColor: Theme.colAccent
-            shadowVerticalOffset: 1
-            shadowHorizontalOffset: 0
-            opacity: 0.8
-        }
-
-        Rectangle {
-            id: applyBtnRect
-            anchors.fill: parent
-            radius: 10
-            color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-            Text {
-                anchors.centerIn: parent
-                text: "Apply"
-                color: applyMa.containsMouse ? Theme.colBg : Theme.colText
-                font.bold: true
-                font.family: Theme.fontFamily
-            }
-
-            MouseArea {
-                id: applyMa
-                anchors.fill: parent
-                hoverEnabled: true
-                onClicked: {
-                    let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
-                    Quickshell.execDetached([
-                        Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_monitors.sh",
-                        monitor.name,
-                        displayPane.currentMode,
-                        displayPane.currentPos,
-                        displayPane.currentScale,
-                        displayPane.currentGdk
-                    ]);
-                }
-            }
+        onClicked: {
+            let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
+            Quickshell.execDetached([
+                Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_monitors.sh",
+                monitor.name,
+                displayPane.currentMode,
+                displayPane.currentPos,
+                displayPane.currentScale,
+                displayPane.currentGdk
+            ]);
         }
     }
 }

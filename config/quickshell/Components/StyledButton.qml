@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Effects
+import QtQuick.Layouts
 import Quickshell
 import qs.Themes
 
@@ -14,42 +15,52 @@ Item {
     implicitHeight: 40
 
     MultiEffect {
-        anchors.fill: button
-        source: button
+        anchors.fill: buttonBackground
+        source: buttonBackground
         shadowEnabled: true
-        shadowBlur: 0.2
+        shadowBlur: (root.active || mouseArea.containsMouse) ? 0.8 : 0
         shadowColor: Theme.colAccent
-        shadowVerticalOffset: 1
+        shadowVerticalOffset: 0
         shadowHorizontalOffset: 0
-        opacity: 0.8
+        opacity: (root.active || mouseArea.containsMouse) ? 1 : 1
+        
+        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
+        Behavior on opacity { NumberAnimation { duration: 150 } }
     }
 
     Rectangle {
-        id: button
+        id: buttonBackground
         anchors.fill: parent
-        radius: 10
-        color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colMuted
+        radius: 5
+        color: Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 1
 
-        Row {
-            anchors.left: parent.left
-            anchors.leftMargin: 16
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 12
+        Behavior on color { ColorAnimation { duration: 150 } }
+        Behavior on border.color { ColorAnimation { duration: 150 } }
+
+        RowLayout {
+            anchors.centerIn: parent
+            spacing: 8
 
             Text {
                 text: root.icon
                 font.family: Theme.fontFamily
                 font.pointSize: 12
-                color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colText
+                color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
+                visible: root.icon !== ""
+                
+                Behavior on color { ColorAnimation { duration: 150 } }
             }
-        }
 
-        Text {
-            anchors.centerIn: parent
-            text: root.text
-            font.family: Theme.fontFamily
-            font.pointSize: 12
-            color: (root.active || mouseArea.containsMouse) ? Theme.colBg : Theme.colText
+            Text {
+                text: root.text
+                font.family: Theme.fontFamily
+                font.pointSize: 12
+                color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
+
+                Behavior on color { ColorAnimation { duration: 150 } }
+            }
         }
 
         MouseArea {

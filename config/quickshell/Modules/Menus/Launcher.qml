@@ -127,8 +127,8 @@ PanelWindow {
             id: mainBackground
             anchors.fill: parent
             anchors.topMargin: 20
-            topLeftRadius: 15
-            topRightRadius: 15
+            topLeftRadius: 5
+            topRightRadius: 5
             color: Theme.colBg
             clip: true
 
@@ -182,7 +182,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 width: 440
                 height: 35
-                radius: 50
+                radius: 5
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -257,23 +257,29 @@ PanelWindow {
                     height: 80
                     property bool isHighlighted: GridView.isCurrentItem || mouseArea.containsMouse
 
-                    RectangularShadow {
-                        anchors.centerIn: parent
-                        width: appDelegate.width
-                        height: appDelegate.height
-                        blur: 2
-                        spread: 1
-                        radius: appDelegate.width
-                        color: Theme.colAccent
-                        visible: isHighlighted
+                    MultiEffect {
+                        anchors.fill: delegateRectangle
+                        source: delegateRectangle
+                        shadowEnabled: true
+                        shadowBlur: appDelegate.isHighlighted ? 0.8 : 0
+                        shadowColor: Theme.colAccent
+                        shadowVerticalOffset: 1
+                        shadowHorizontalOffset: 1
+                        opacity: appDelegate.isHighlighted ? 1 : 1
+                        
+                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
+                        Behavior on opacity { NumberAnimation { duration: 150 } }
                     }
 
                     Rectangle {
+                        id: delegateRectangle
                         anchors.fill: parent
-                        radius: width
-                        color: isHighlighted ? Theme.colSelect : Theme.colBg
+                        radius: 5
+                        color: Theme.colBg 
                         border.color: Theme.colAccent
-                        border.width: 2
+                        border.width: 1
+                        
+                        Behavior on border.color { ColorAnimation { duration: 150 } }
                         
                         ColumnLayout {
                             anchors.centerIn: parent

@@ -9,11 +9,13 @@ Singleton {
     id: root
     readonly property list<MprisPlayer> players: Mpris.players.values
     property MprisPlayer manualActive
+    
     readonly property MprisPlayer active:
         manualActive
         ?? Mpris.activePlayer
-        ?? players[0]
-        ?? null
+        ?? (players.length > 0 ? players[0] : null)
+
+    readonly property string currentTrackArt: active ? active.trackArtUrl : ""
 
     function identity(player: MprisPlayer): string {
         return player?.identity ?? ""

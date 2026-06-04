@@ -1,12 +1,8 @@
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Quickshell.Widgets
 import qs.Components
-import qs.Services
 import qs.Themes
 
 ColumnLayout {
@@ -37,47 +33,18 @@ ColumnLayout {
                 { name: "Hyprnosis", script: "update_hyprnosis.sh" }
             ]
 
-            Item {
+            StyledButton {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
+                text: "Update " + modelData.name
 
-                MultiEffect {
-                    anchors.fill: btnRect
-                    source: btnRect
-                    shadowEnabled: true
-                    shadowBlur: 0.2
-                    shadowColor: Theme.colAccent
-                    shadowVerticalOffset: 1
-                    opacity: 0.8
+                onClicked: {
+                    proc.startDetached()
                 }
 
-                Rectangle {
-                    id: btnRect
-                    anchors.fill: parent
-                    radius: 10
-                    color: btnMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "Update " + modelData.name
-                        color: btnMa.containsMouse ? Theme.colBg : Theme.colAccent
-                        font.pointSize: 12
-                        font.family: Theme.fontFamily
-                    }
-
-                    MouseArea {
-                        id: btnMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: {
-                            proc.startDetached()
-                        }
-                    }
-
-                    Process {
-                        id: proc
-                        command: ["sh", "-c", "ghostty -e " + updatePane.scriptDir + modelData.script]
-                    }
+                Process {
+                    id: proc
+                    command: ["sh", "-c", "ghostty -e " + updatePane.scriptDir + modelData.script]
                 }
             }
         }

@@ -1,28 +1,87 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
 import qs.Themes
 
-PanelWindow {
-    anchors.top: true
-    anchors.right: true
-    margins.top: 10
-    margins.right: 10 
-    implicitWidth: 300
-    implicitHeight: 80
-    color: "transparent"
-    mask: Region {}
+Item {
+    id: osdRoot
 
-    Item {
-        anchors.fill: parent
+    property bool active: false
+    default property alias data: osdContainer.data
 
-        Rectangle {
-            anchors.fill: parent
-            radius: 15
-            color: Theme.colBg
-            border.color: Theme.colAccent
-            border.width: 1
+    onActiveChanged: {
+        if (active) {
+            osdRoot.visible = true
         }
+    }
+
+    MultiEffect {
+        anchors.fill: osdContainer
+        source: osdContainer
+        shadowEnabled: true
+        shadowBlur: 0.1
+        shadowColor: Theme.colAccent
+        shadowVerticalOffset: 0
+        shadowHorizontalOffset: 0
+        opacity: osdContainer.opacity
+    }
+
+    Rectangle {
+        id: osdContainer
+        anchors.fill: parent
+        radius: 5
+        color: Theme.colBg
+        border.color: Theme.colAccent
+        border.width: 0.7
+        state: osdRoot.active ? "visible" : "hidden"
+
+        states: [
+            State {
+                name: "hidden"
+                PropertyChanges {
+                    target: osdContainer
+                    opacity: 0
+                    y: -25
+                }
+            },
+            State {
+                name: "visible"
+                PropertyChanges {
+                    target: osdContainer
+                    opacity: 1
+                    y: 0
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                from: "hidden"
+                to: "visible"
+                SequentialAnimation {
+                    NumberAnimation {
+                        properties: "opacity, y"
+                        duration: 200
+                        easing.type: Easing.OutBack
+                    }
+                }
+            },
+            Transition {
+                from: "visible"
+                to: "hidden"
+                SequentialAnimation {
+                    NumberAnimation {
+                        properties: "opacity, y"
+                        duration: 250
+                        easing.type: Easing.InBack
+                    }
+                    ScriptAction { 
+                        script: { osdRoot.visible = false } 
+                    }
+                }
+            }
+        ]
     }
 }

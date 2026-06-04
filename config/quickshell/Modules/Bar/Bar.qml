@@ -8,6 +8,7 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.Components
 import qs.Modules.Menus
+import qs.Modules.OSD
 import qs.Themes
 import qs.Services
 
@@ -29,25 +30,77 @@ Variants {
                     right: true
                 }
 
+                Shape {
+                    width: topBar.width
+                    height: topBar.height
+                    anchors.fill: parent
+
+                    ShapePath {
+                        strokeWidth: 1
+                        strokeColor: Theme.colAccent
+                        fillColor: Theme.colBg
+                        startX: -5
+                        PathLine { x: 0; y: topBar.height }
+                        PathLine { x: (topBar.width / 2); y: topBar.height }
+                        PathLine { x: (topBar.width / 2) + 30; y: 0 }
+                        PathLine { x: -5; y: 0 }
+                    }
+
+                    ShapePath {
+                        strokeWidth: 1
+                        strokeColor: Theme.colAccent
+                        fillColor: Theme.colBg
+                        startX: topBar.width - 500
+                        PathLine { x: topBar.width - 470; y: topBar.height }
+                        PathLine { x: topBar.width + 5; y: topBar.height }
+                        PathLine { x: topBar.width + 5; y: 0 }
+                        PathLine { x: topBar.width - 500; y: 0 }
+                    }
+                }
+
                 Rectangle {
                     id: topBarRect
-                    color: Theme.colBg
+                    color: "transparent"
                     anchors.fill: parent
-                    anchors.topMargin: 2
                     anchors.leftMargin: Config.data.barMargin
                     anchors.rightMargin: Config.data.barMargin
                     radius: Config.data.barRadius
-                    border.color: Theme.colAccent
                 }
 
                 Item {
                     id: topBarContent
                     anchors.fill: parent
-                    anchors.topMargin: 2.5
+
+                    BarMediaPlayer {
+                        id: barMedia
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.right: parent.right
+                        anchors.rightMargin: 885
+                    }
+
+                    NotificationOSD {
+                        id: notificationOSD
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.right: parent.right
+                        anchors.rightMargin: 515
+                    }
+
+                    VolumeOSD {
+                        id: volumeOSD
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.right: parent.right
+                        anchors.rightMargin: 515
+                    }
 
                     Clock {
                         id: clockButtonTop
-                        anchors.centerIn: parent
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 350
+
                         MouseArea {
                             id: clockAreaTop
                             anchors.fill: clockButtonTop
@@ -62,7 +115,7 @@ Variants {
                         CenterMenu {
                             id: topCenterMenu
                             anchor.window: topBar
-                            anchor.rect.x: topBar.width / 2 - width / 2
+                            anchor.rect.x: (topBar.width / 2) - width / 2
                             anchor.rect.y: topBar.height + 10
                         }
                     }
@@ -70,11 +123,11 @@ Variants {
                     MainMenuBtn {
                         id: mainMenuButtonTop
                         anchors.left: parent.left
-                        anchors.leftMargin: 25
+                        anchors.leftMargin: 10
                         anchors.verticalCenter: parent.verticalCenter
 
                         BarButton {
-                            icon: "   "
+                            icon: "    "
                             onClicked: quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
                             onEntered: spinAnimTop.start()
                         }
@@ -96,8 +149,8 @@ Variants {
                         QuickMenu {
                             id: quickMenu
                             anchor.window: topBar
-                            anchor.rect.x: 10
-                            anchor.rect.y: 31
+                            anchor.rect.x: 2
+                            anchor.rect.y: 32
                         }
                     }
 
@@ -111,40 +164,40 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 235
+                        anchors.rightMargin: 220
                     }
 
                     SysMon {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 170
+                        anchors.rightMargin: 150
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 135
+                        anchors.rightMargin: 110
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 105
+                        anchors.rightMargin: 80
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 65
+                        anchors.rightMargin: 40
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 35
+                       anchors.rightMargin: 10
                     }
                 }
-            }
+            } 
 
             PanelWindow {
                 id: bottomBar
@@ -155,55 +208,107 @@ Variants {
                     bottom: true
                     left: true
                     right: true
-                } 
+                }
+
+                Shape {
+                    width: bottomBar.width
+                    height: bottomBar.height
+                    anchors.fill: parent
+
+                    ShapePath {
+                        strokeWidth: 1
+                        strokeColor: Theme.colAccent
+                        fillColor: Theme.colBg
+                        startX: -5
+                        PathLine { x: 0; y: 0 }
+                        PathLine { x: (bottomBar.width / 2); y: 0 }
+                        PathLine { x: (bottomBar.width / 2) + 30; y: bottomBar.height }
+                        PathLine { x: -5; y: bottomBar.height }
+                    }
+
+                    ShapePath {
+                        strokeWidth: 1
+                        strokeColor: Theme.colAccent
+                        fillColor: Theme.colBg
+                        startX: bottomBar.width - 470
+                        PathLine { x: bottomBar.width - 500; y: bottomBar.height }
+                        PathLine { x: bottomBar.width + 5; y: bottomBar.height }
+                        PathLine { x: bottomBar.width + 5; y: 0 }
+                        PathLine { x: bottomBar.width - 470; y: 0 }
+                    }
+                }
 
                 Rectangle {
                     id: bottomBarRect
-                    color: Theme.colBg
+                    color: "transparent"
                     anchors.fill: parent
-                    anchors.bottomMargin: 2
                     anchors.leftMargin: Config.data.barMargin
                     anchors.rightMargin: Config.data.barMargin
                     radius: Config.data.barRadius
-                    border.color: Theme.colAccent
                 }
 
                 Item {
                     id: bottomBarContent
                     anchors.fill: parent
-                    anchors.bottomMargin: 2.5
+
+                    BarMediaPlayer {
+                        id: barMediaBottom
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 1
+                        anchors.right: parent.right
+                        anchors.rightMargin: 885
+                    }
+
+                    NotificationOSD {
+                        id: notificationOSDBottom
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 1
+                        anchors.right: parent.right
+                        anchors.rightMargin: 515
+                    }
+
+                    VolumeOSD {
+                        id: volumeOSDBottom
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 1
+                        anchors.right: parent.right
+                        anchors.rightMargin: 515
+                    }
 
                     Clock {
                         id: clockButtonBottom
-                        anchors.centerIn: parent
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 350
+
                         MouseArea {
                             id: clockAreaBottom
                             anchors.fill: clockButtonBottom
-                            onClicked: centerMenuLoaderB.item.visible = !centerMenuLoaderB.item.visible
+                            onClicked: centerMenuLoaderBottom.item.visible = !centerMenuLoaderBottom.item.visible
                         }
                     }
 
                     LazyLoader {
-                        id: centerMenuLoaderB
+                        id: centerMenuLoaderBottom
                         loading: true
 
                         CenterMenu {
                             id: bottomCenterMenu
                             anchor.window: bottomBar
-                            anchor.rect.x: bottomBar.width / 2 - width / 2
-                            anchor.rect.y: -235
+                            anchor.rect.x: (bottomBar.width / 2) - width / 2
+                            anchor.rect.y: -height - 10
                         }
                     }
 
                     MainMenuBtn {
                         id: mainMenuButtonBottom
                         anchors.left: parent.left
-                        anchors.leftMargin: 25
+                        anchors.leftMargin: 10
                         anchors.verticalCenter: parent.verticalCenter
 
                         BarButton {
-                            icon: "   "
-                            onClicked: quickMenuLoaderB.item.visible = !quickMenuLoaderB.item.visible 
+                            icon: "    "
+                            onClicked: quickMenuLoaderBottom.item.visible = !quickMenuLoaderBottom.item.visible 
                             onEntered: spinAnimBottom.start()
                         }
 
@@ -218,17 +323,19 @@ Variants {
                     }
 
                     LazyLoader {
-                        id: quickMenuLoaderB
+                        id: quickMenuLoaderBottom
                         loading: true
 
                         QuickMenu {
+                            id: quickMenuBottom
                             anchor.window: bottomBar
-                            anchor.rect.x: 10
-                            anchor.rect.y: -201
+                            anchor.rect.x: 2
+                            anchor.rect.y: -quickMenuBottom.height - 2
                         }
                     }
 
                     Workspaces {
+                        id: workspacesButtonBottom
                         anchors.left: parent.left
                         anchors.leftMargin: 80
                         anchors.verticalCenter: parent.verticalCenter
@@ -237,288 +344,37 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 225
+                        anchors.rightMargin: 220
                     }
 
                     SysMon {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 170
+                        anchors.rightMargin: 150
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 135
+                        anchors.rightMargin: 110
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 105
+                        anchors.rightMargin: 80
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 65
+                        anchors.rightMargin: 40
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 35
-                    }
-                }
-            }
-
-            PanelWindow {
-                id: leftBar
-                color: "transparent"
-                visible: Config.data.barLayout === "left"
-                implicitWidth: 30
-                anchors {
-                    left: true
-                    top: true
-                    bottom: true
-                }
-
-                Rectangle {
-                    id: leftBarRect
-                    color: Theme.colBg
-                    anchors.fill: parent
-                    anchors.leftMargin: 2
-                    anchors.topMargin: Config.data.barMargin
-                    anchors.bottomMargin: Config.data.barMargin
-                    radius: Config.data.barRadius
-                    border.color: Theme.colAccent
-                }
-
-                Item {
-                    id: leftBarContent
-                    anchors.fill: parent
-                    anchors.bottomMargin: 2.5
-
-                    ClockV {
-                        id: clockButtonLeft
-                        anchors.centerIn: parent
-                        MouseArea {
-                            id: clockAreaLeft
-                            anchors.fill: clockButtonLeft
-                            onClicked: centerMenuLoaderL.item.visible = !centerMenuLoaderL.item.visible
-                        }
-                    }
-
-                    LazyLoader {
-                        id: centerMenuLoaderL
-                        loading: true
-
-                        CenterMenu {
-                            id: leftCenterMenu
-                            anchor.window: leftBar
-                            anchor.rect.x: 41
-                            anchor.rect.y: leftBar.height / 2 - height / 2 
-                        }
-                    }
-
-                    MainMenuBtn {
-                        id: mainMenuButtonLeft
-                        anchors.top: parent.top
-                        anchors.topMargin: 25
-                        x: 3.5
-
-                        BarButton {
-                            icon: "   "
-                            onClicked: quickMenuLoaderL.item.visible = !quickMenuLoaderL.item.visible 
-                            onEntered: spinAnimLeft.start()
-                        }
-
-                        RotationAnimation on rotation {
-                            id: spinAnimLeft
-                            running: false
-                            loops: 1
-                            from: 0
-                            to: -360
-                            duration: 6000
-                        }
-                    }
-                    
-                    LazyLoader {
-                        id: quickMenuLoaderL
-                        loading: true
-
-                        QuickMenu {
-                            anchor.window: leftBar
-                            anchor.rect.x: 31
-                            anchor.rect.y: 10
-                        }
-                    }  
-
-                    WorkspacesV {
-                        anchors.top: parent.top
-                        anchors.topMargin: 80
-                        x: 9
-                    }
-
-                    BatteryBtnV {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 240
-                        x: 5
-                    }
-
-                    SysMonV {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 160
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    AudioBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 125
-                        x: 8  
-                    }
-
-                    BluetoothBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 95
-                        x: 11
-                    }
-
-                    NetworkBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 65
-                        x: 8
-                    }
-
-                    SidePaneBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 35
-                        x: 10 
-                    }
-                }
-            }
-
-            PanelWindow {
-                id: rightBar
-                color: "transparent"
-                visible: Config.data.barLayout === "right"
-                implicitWidth: 30
-                anchors {
-                    right: true
-                    top: true
-                    bottom: true
-                }
-
-                Rectangle {
-                    id: rightBarRect
-                    color: Theme.colBg
-                    anchors.fill: parent
-                    anchors.rightMargin: 2
-                    anchors.topMargin: Config.data.barMargin
-                    anchors.bottomMargin: Config.data.barMargin
-                    radius: Config.data.barRadius
-                    border.color: Theme.colAccent
-                }
-
-                Item {
-                    id: rightBarContent
-                    anchors.fill: parent
-
-                    Clock {
-                        id: clockButtonRight
-                        anchors.centerIn: parent
-                        MouseArea {
-                            id: clockAreaRight
-                            anchors.fill: clockButtonRight
-                            onClicked: centerMenuLoaderR.item.visible = !centerMenuLoaderR.item.visible
-                        }
-                    }
-                    
-                    LazyLoader {
-                        id: centerMenuLoaderR
-                        loading: true
-
-                        CenterMenu {
-                            id: rightCenterMenu
-                            anchor.window: rightBar
-                            anchor.rect.x: -360
-                            anchor.rect.y: rightBar.height / 2 - height / 2 
-                        }
-                    }
-
-                    MainMenuBtn {
-                        id: mainMenuButtonRight
-                        anchors.top: parent.top
-                        anchors.topMargin: 25
-                        x: 1.5
-
-                        BarButton {
-                            icon: "   "
-                            onClicked: quickMenuLoaderR.item.visible = !quickMenuLoaderR.item.visible 
-                            onEntered: spinAnimRight.start()
-                        }
-
-                        RotationAnimation on rotation {
-                            id: spinAnimRight
-                            running: false
-                            loops: 1
-                            from: 0
-                            to: -360
-                            duration: 6000
-                        }
-                    }
-
-                    LazyLoader {
-                        id: quickMenuLoaderR
-                        loading: true
-
-                        QuickMenu {
-                            anchor.window: rightBar
-                            anchor.rect.x: -152
-                            anchor.rect.y: 10
-                        }
-                    }
-
-                    WorkspacesV {
-                        anchors.top: parent.top
-                        anchors.topMargin: 80
-                        x: 7
-                    }
-
-                    BatteryBtnV {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 240
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    SysMonV {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 160
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    AudioBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 125
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    BluetoothBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 95
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    NetworkBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 65
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    SidePaneBtn {
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 35
-                        anchors.horizontalCenter: parent.horizontalCenter
+                       anchors.rightMargin: 10
                     }
                 }
             }

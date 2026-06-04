@@ -165,7 +165,7 @@ ColumnLayout {
                 id: appRow
                 width: appView.width
                 height: 50
-                radius: 10
+                radius: 5
 
                 property bool isHovered: rowMa.containsMouse || uninstallMa.containsMouse
 
@@ -204,7 +204,7 @@ ColumnLayout {
                         Rectangle {
                             id: uninstallBtnRect
                             anchors.fill: parent
-                            radius: 6
+                            radius: 2
                             color: uninstallMa.containsMouse ? Theme.colAccent : "transparent"
                             border.color: Theme.colAccent
                             border.width: 1

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
@@ -96,26 +97,13 @@ ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 10
 
-            Rectangle {
-                width: 140
-                height: 40
-                radius: 8
-                color: ghMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                
-                Text {
-                    anchors.centerIn: parent
-                    text: "󰊤 GitHub"
-                    color: ghMa.containsMouse ? Theme.colBg : Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.bold: true
-                }
+            StyledButton {
+                Layout.preferredWidth: 140
+                Layout.preferredHeight: 40
+                text: "GitHub"
+                icon: "󰊤"
 
-                MouseArea {
-                    id: ghMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: Qt.openUrlExternally("https://github.com/tyvren/hyprnosis")
-                }
+                onClicked: Qt.openUrlExternally("https://github.com/tyvren/hyprnosis")
             }
         }
     }

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
@@ -66,29 +67,48 @@ Item {
                     fillMode: Image.PreserveAspectCrop
                 }
 
+                MultiEffect {
+                    anchors.fill: wallpaper
+                    source: wallpaper
+                    brightness: -0.1
+                    contrast: -0.1
+                }
+
+                MultiEffect {
+                    anchors.fill: dialogContainer
+                    source: dialogContainer
+                    shadowEnabled: true
+                    shadowBlur: 0.4
+                    shadowColor: Theme.colAccent
+                    shadowVerticalOffset: 3
+                    shadowHorizontalOffset: 0
+                }
+
                 Rectangle {
+                    id: dialogContainer
                     anchors.centerIn: parent
-                    width: 450
-                    height: 450
+                    width: 440
+                    height: 340
                     color: Theme.colBg
                     border.color: Theme.colAccent
-                    radius: 15
+                    border.width: 1
+                    radius: 5
 
                     ColumnLayout {
                         anchors.fill: parent
-                        anchors.margins: 40
-                        spacing: 15
+                        anchors.margins: 30
+                        spacing: 18
 
                         StyledInput {
                             id: passwordIn
-                            Layout.preferredWidth: 340
-                            Layout.preferredHeight: 60
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 45
                             Layout.alignment: Qt.AlignHCenter
                             echoMode: TextInput.Password
                             placeholderText: "Enter Password"
                             placeholderTextColor: Theme.colMuted
                             focus: false
-                            font.pointSize: 16
+                            font.pointSize: 13
                             color: Theme.colAccent
                             
                             onAccepted: unlockButton.unlock()
@@ -98,7 +118,7 @@ Item {
                             id: unlockButton
                             text: "Unlock"
                             icon: "󰌾"
-                            Layout.preferredWidth: 180
+                            Layout.fillWidth: true
                             Layout.preferredHeight: 40
                             Layout.alignment: Qt.AlignHCenter
 
@@ -118,18 +138,18 @@ Item {
                         }
 
                         DividerLine {
-                            Layout.preferredWidth: 320
+                            Layout.fillWidth: true
                             Layout.alignment: Qt.AlignHCenter
                         }
 
                         RowLayout {
-                            Layout.alignment: Qt.AlignHCenter
-                            spacing: 15
+                            Layout.fillWidth: true
+                            spacing: 12
 
                             StyledButton {
                                 text: "Restart"
                                 icon: "󰜉"
-                                Layout.preferredWidth: 180
+                                Layout.fillWidth: true
                                 Layout.preferredHeight: 40
                                 onClicked: restartProcess.startDetached()
                             }
@@ -137,7 +157,7 @@ Item {
                             StyledButton {
                                 text: "Shutdown"
                                 icon: "󰐥"
-                                Layout.preferredWidth: 180
+                                Layout.fillWidth: true
                                 Layout.preferredHeight: 40
                                 onClicked: shutdownProcess.startDetached()
                             }

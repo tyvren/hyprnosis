@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
+import Quickshell
 import qs.Components
 import qs.Services
 import qs.Themes
@@ -43,12 +44,19 @@ Item {
                 model: Bluetooth.devices
                 spacing: 8
                 delegate: ItemDelegate {
+                    id: deviceDelegate
                     width: parent.width
                     height: 55
+
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : Theme.colMuted
                         opacity: modelData.connected ? 0.2 : 0.1
-                        radius: 10
+                        radius: 5
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: Bluetooth.connectDevice(modelData)
+                        }
                     }
 
                     contentItem: Item {
@@ -84,81 +92,31 @@ Item {
                                 font.family: Theme.fontFamily
                             }
                         }
-                        
-                        Item { Layout.fillWidth: true }
 
-                        Item {
+                        StyledButton {
                             visible: modelData.paired || modelData.connected
-                            width: 70; height: 26
+                            width: 75
+                            height: 26
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
-
-                            Rectangle {
-                                id: forgetBtnRect
-                                anchors.fill: parent
-                                radius: 6
-                                color: forgetMa.containsMouse ? Theme.colAccent : "transparent"
-                                border.color: Theme.colAccent; border.width: 1
-
-                                Text {
-                                    anchors.centerIn: parent
-                                    text: "Forget"
-                                    font.pointSize: 8
-                                    color: forgetMa.containsMouse ? Theme.colBg : Theme.colText
-                                }
-
-                                MouseArea {
-                                    id: forgetMa
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onClicked: Bluetooth.forgetDevice(modelData)
-                                }
-                            }
+                            text: "Forget"
+                            
+                            onClicked: Bluetooth.forgetDevice(modelData)
                         }
                     }
-                    onClicked: Bluetooth.connectDevice(modelData)
                 }
             }
         }
 
-        Item {
+        StyledButton {
             Layout.alignment: Qt.AlignRight
             Layout.preferredWidth: 100
             Layout.preferredHeight: 35
+            text: Bluetooth.scanning ? "..." : "Scan"
+            active: Bluetooth.scanning
 
-            MultiEffect {
-                anchors.fill: scanBtnRect
-                source: scanBtnRect
-                shadowEnabled: true
-                shadowBlur: 0.2
-                shadowColor: Theme.colAccent
-                shadowVerticalOffset: 1
-                shadowHorizontalOffset: 0
-                opacity: 0.8
-            }
-
-            Rectangle {
-                id: scanBtnRect
-                anchors.fill: parent
-                radius: 10
-                color: scanMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                
-                Text {
-                    anchors.centerIn: parent
-                    text: Bluetooth.scanning ? "..." : "Scan"
-                    color: scanMa.containsMouse ? Theme.colBg : Theme.colText
-                    font.bold: true
-                    font.family: Theme.fontFamily
-                }
-                
-                MouseArea {
-                    id: scanMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: Bluetooth.toggleScan()
-                }
-            }
+            onClicked: Bluetooth.toggleScan()
         }
     }
 }

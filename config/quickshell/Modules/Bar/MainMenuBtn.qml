@@ -12,7 +12,7 @@ Item {
 
     BarButton {
         id: mainMenuComponent
-        icon: "   "
+        icon: "     "
         onClicked: {
             quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
         }
