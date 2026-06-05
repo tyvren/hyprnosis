@@ -295,7 +295,7 @@ PanelWindow {
 
                             Text {
                                 text: modelData.name
-                                color: Theme.colAccent
+                                color: mouseArea.containsMouse ? Theme.colAccent : Theme.colText
                                 font.family: Theme.fontFamily
                                 font.pointSize: 7
                                 Layout.fillWidth: true
