@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import qs.Components
 import qs.Services
 import qs.Themes
@@ -10,6 +11,11 @@ import qs.Themes
 ColumnLayout {
     id: audioPane
     spacing: 25
+
+    Process {
+        id: openAudio
+        command: ["pavucontrol"]
+    }
 
     ColumnLayout {
         spacing: 10
@@ -63,6 +69,18 @@ ColumnLayout {
     }
 
     Item { Layout.fillHeight: true }
+
+    RowLayout {
+        Layout.fillWidth: true
+        
+        StyledButton {
+            text: "Additional Settings"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 40
+
+            onClicked: openAudio.startDetached()
+        }
+    }
 
     component AudioControlRow : ColumnLayout {
         property string title
