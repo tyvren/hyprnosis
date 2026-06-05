@@ -1,10 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import Quickshell
-import Quickshell.Services.Pipewire
 import Quickshell.Widgets
 import qs.Components
 import qs.Themes
+import qs.Services
 
 Item {
     id: root
@@ -13,19 +14,18 @@ Item {
 
     property bool shouldShowOsd: false
 
-    Scope {
-        id: audioScope
+    function requestShow(customInterval) {
+        root.shouldShowOsd = true
+        hideTimer.interval = customInterval || 1500
+        hideTimer.restart()
+    }
 
-        PwObjectTracker {
-            objects: [ Pipewire.defaultAudioSink ]
-        }
+    Connections {
+        target: Audio
 
-        Connections {
-            target: Pipewire.defaultAudioSink?.audio
-
-            function onVolumeChanged() {
-                root.shouldShowOsd = true
-                hideTimer.restart()
+        function onSinkVolumeChanged() {
+            if (!volSlider.pressed) {
+                root.requestShow(1500)
             }
         }
     }
@@ -44,26 +44,54 @@ Item {
             anchors.fill: parent
             anchors.leftMargin: 15
             anchors.rightMargin: 15
+            spacing: 10
 
             Text {
                 color: Theme.colAccent
                 font.pointSize: 14
-                text: ""
+                text: Audio.sinkMuted ? "󰝟" : ""
             }
 
-            Rectangle {
+            Slider {
+                id: volSlider
                 Layout.fillWidth: true
-                implicitHeight: 8
-                radius: 10
-                color: Theme.colMuted
+                value: Audio.sinkVolume
+                from: 0
+                to: 1
+                
+                background: Rectangle {
+                    x: volSlider.leftPadding
+                    y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
+                    implicitWidth: 200
+                    implicitHeight: 6
+                    width: volSlider.availableWidth
+                    height: implicitHeight
+                    radius: 3
+                    color: Theme.colMuted
+                    opacity: 0.5
 
-                Rectangle {
-                    color: Theme.colAccent
-                    anchors.left: parent.left
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
-                    radius: parent.radius
+                    Rectangle {
+                        width: volSlider.visualPosition * parent.width
+                        height: parent.height
+                        color: Audio.sinkMuted ? Theme.colMuted : Theme.colAccent
+                        radius: 3
+                    }
+                }
+
+                handle: Rectangle {
+                    x: volSlider.leftPadding + volSlider.visualPosition * (volSlider.availableWidth - width)
+                    y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
+                    implicitWidth: 16
+                    implicitHeight: 16
+                    radius: 5
+                    color: volSlider.pressed ? Theme.colAccent : Theme.colBg
+                    border.color: Theme.colAccent
+                    border.width: 2
+                }
+
+                onMoved: {
+                    Audio.setSinkVolume(volSlider.value)
+                    root.requestShow(4000)
                 }
             }
         }
