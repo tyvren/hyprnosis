@@ -180,18 +180,25 @@ PanelWindow {
                 Item { Layout.fillWidth: true }
 
                 Rectangle {
+                    id: clearButton
                     width: 80
                     height: 30
                     radius: 8
                     color: clearMa.containsMouse ? Theme.colAccent : Theme.colMuted
+                    border.color: Theme.colAccent
+                    border.width: 1
+
+                    Behavior on color { ColorAnimation { duration: 150 } }
 
                     Text {
                         anchors.centerIn: parent
                         text: "Clear All"
-                        color: clearMa.containsMouse ? Theme.colBg : Theme.colAccent
+                        color: clearMa.containsMouse ? Theme.colBg : Theme.colText
                         font.family: Theme.fontFamily
                         font.bold: true
                         font.pointSize: 10
+
+                        Behavior on color { ColorAnimation { duration: 150 } }
                     }
 
                     MouseArea {
@@ -212,71 +219,120 @@ PanelWindow {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 model: Notifications.notifications
-                spacing: -70
-                clip: false
+                spacing: 12
+                clip: true
 
-                delegate: Rectangle {
+                delegate: Item {
                     id: notifDelegate
-                    visible: index < 3
-                    width: notifList.width * (1 - (index * 0.03))
-                    anchors.horizontalCenter: notifList.horizontalCenter
-                    height: 100
-                    color: Theme.colMuted
-                    radius: 10
-                    z: (notifList.count - index)
+                    width: notifList.width
+                    height: contentLayout.implicitHeight + 30
 
-                    RectangularShadow {
-                        anchors.fill: parent
-                        color: Qt.rgba(0, 0, 0, 0.3)
-                        blur: 15
-                        radius: 12
+                    MultiEffect {
+                        anchors.fill: cardBackground
+                        source: cardBackground
+                        shadowEnabled: true
+                        shadowBlur: cardMouseArea.containsMouse ? 0.8 : 0
+                        shadowColor: Theme.colAccent
+                        shadowVerticalOffset: 0
+                        shadowHorizontalOffset: 0
+                        
+                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
                     }
 
-                    ColumnLayout {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.margins: 15
-                        spacing: 5
+                    Rectangle {
+                        id: cardBackground
+                        anchors.fill: parent
+                        color: Theme.colMuted
+                        radius: 8
+                        border.color: cardMouseArea.containsMouse ? Theme.colAccent : Qt.rgba(0, 0, 0, 0)
+                        border.width: 1
 
-                        RowLayout {
-                            Layout.fillWidth: true
+                        Behavior on border.color { ColorAnimation { duration: 150 } }
 
-                            Text {
-                                text: modelData.summary
-                                color: Theme.colAccent
-                                font.family: Theme.fontFamily
-                                font.bold: true
-                                font.pointSize: 11
+                        ColumnLayout {
+                            id: contentLayout
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.margins: 15
+                            spacing: 8
+
+                            RowLayout {
                                 Layout.fillWidth: true
-                                elide: Text.ElideRight
+                                spacing: 8
+
+                                Image {
+                                    source: modelData.appIcon !== "" ? Quickshell.iconPath(modelData.appIcon, true) : ""
+                                    sourceSize.width: 18
+                                    sourceSize.height: 18
+                                    Layout.maximumWidth: 18
+                                    Layout.maximumHeight: 18
+                                    visible: modelData.appIcon !== ""
+                                    fillMode: Image.PreserveAspectFit
+                                }
+
+                                Text {
+                                    text: modelData.summary
+                                    color: cardMouseArea.containsMouse ? Theme.colAccent : Theme.colText
+                                    font.family: Theme.fontFamily
+                                    font.bold: true
+                                    font.pointSize: 11
+                                    Layout.fillWidth: true
+                                    elide: Text.ElideRight
+
+                                    Behavior on color { ColorAnimation { duration: 150 } }
+                                }
+
+                                Text {
+                                    text: "󰅖"
+                                    color: dismissMa.containsMouse ? Theme.colAccent : Theme.colText
+                                    font.family: Theme.fontFamily
+                                    font.pointSize: 12
+                                    opacity: dismissMa.containsMouse ? 1.0 : 0.6
+
+                                    Behavior on color { ColorAnimation { duration: 150 } }
+
+                                    MouseArea {
+                                        id: dismissMa
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onClicked: modelData.dismiss()
+                                    }
+                                }
                             }
 
-                            Text {
-                                text: "󰅖"
-                                color: Theme.colAccent
-                                font.family: Theme.fontFamily
-                                font.pointSize: 12
-                                opacity: dismissMa.containsMouse ? 1.0 : 0.6
+                            RowLayout {
+                                Layout.fillWidth: true
+                                spacing: 12
 
-                                MouseArea {
-                                    id: dismissMa
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onClicked: modelData.dismiss()
+                                Image {
+                                    source: modelData.image !== "" ? modelData.image : ""
+                                    sourceSize.width: 45
+                                    sourceSize.height: 45
+                                    Layout.maximumWidth: 45
+                                    Layout.maximumHeight: 45
+                                    Layout.alignment: Qt.AlignTop
+                                    visible: modelData.image !== ""
+                                    fillMode: Image.PreserveAspectFit
+                                }
+
+                                Text {
+                                    text: modelData.body
+                                    color: Theme.colText
+                                    font.family: Theme.fontFamily
+                                    font.pointSize: 10
+                                    wrapMode: Text.WordWrap
+                                    Layout.fillWidth: true
+                                    opacity: 0.85
+                                    visible: text !== ""
                                 }
                             }
                         }
 
-                        Text {
-                            text: modelData.body
-                            color: Theme.colAccent
-                            font.family: Theme.fontFamily
-                            font.pointSize: 10
-                            wrapMode: Text.WordWrap
-                            Layout.fillWidth: true
-                            opacity: 0.8
-                            visible: text !== ""
+                        MouseArea {
+                            id: cardMouseArea
+                            anchors.fill: parent
+                            hoverEnabled: true
                         }
                     }
                 }

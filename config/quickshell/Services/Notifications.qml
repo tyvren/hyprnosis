@@ -22,7 +22,7 @@ Singleton {
         actionsSupported: false
         bodySupported: true
         bodyMarkupSupported: true
-        bodyImagesSupported: false
+        bodyImagesSupported: true // Changed to true for embedded image/emoji markup
         bodyHyperlinksSupported: false
         persistenceSupported: false
         imageSupported: true
