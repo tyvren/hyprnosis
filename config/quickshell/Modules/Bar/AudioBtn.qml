@@ -13,9 +13,9 @@ Item {
     BarButton {
         id: button
         icon: {
-            if (Audio.sinkMuted) return " "
-            if (Audio.sinkVolume < 0.25) return " "
-            if (Audio.sinkVolume < 0.50) return " "
+            if (Audio.sinkMuted) return ""
+            if (Audio.sinkVolume < 0.25) return ""
+            if (Audio.sinkVolume < 0.50) return ""
             return ""
         }
         
