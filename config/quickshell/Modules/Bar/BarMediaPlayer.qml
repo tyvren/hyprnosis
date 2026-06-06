@@ -11,7 +11,7 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 350
+    implicitWidth: 400
     implicitHeight: 28
 
     OSD {

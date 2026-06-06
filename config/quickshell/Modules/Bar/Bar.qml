@@ -41,8 +41,8 @@ Variants {
                         fillColor: Theme.colBg
                         startX: -5
                         PathLine { x: 0; y: topBar.height }
-                        PathLine { x: (topBar.width / 2); y: topBar.height }
-                        PathLine { x: (topBar.width / 2) + 30; y: 0 }
+                        PathLine { x: (topBar.width / 2) - 290; y: topBar.height }
+                        PathLine { x: (topBar.width / 2) - 250; y: 0 }
                         PathLine { x: -5; y: 0 }
                     }
 
@@ -50,11 +50,11 @@ Variants {
                         strokeWidth: 1
                         strokeColor: Theme.colAccent
                         fillColor: Theme.colBg
-                        startX: topBar.width - 500
-                        PathLine { x: topBar.width - 470; y: topBar.height }
+                        startX: (topBar.width / 2) + 250
+                        PathLine { x: (topBar.width / 2) + 290; y: topBar.height }
                         PathLine { x: topBar.width + 5; y: topBar.height }
                         PathLine { x: topBar.width + 5; y: 0 }
-                        PathLine { x: topBar.width - 500; y: 0 }
+                        PathLine { x: (topBar.width / 2) + 250; y: 0 }
                     }
                 }
 
@@ -75,31 +75,28 @@ Variants {
                         id: barMedia
                         anchors.top: parent.top
                         anchors.topMargin: 2
-                        anchors.right: parent.right
-                        anchors.rightMargin: 885
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NotificationOSD {
                         id: notificationOSD
                         anchors.top: parent.top
                         anchors.topMargin: 2
-                        anchors.right: parent.right
-                        anchors.rightMargin: 515
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
                         id: volumeOSD
                         anchors.top: parent.top
                         anchors.topMargin: 2
-                        anchors.right: parent.right
-                        anchors.rightMargin: 515
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     Clock {
                         id: clockButtonTop
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        anchors.rightMargin: 350
+                        anchors.rightMargin: 225
 
                         MouseArea {
                             id: clockAreaTop
@@ -220,21 +217,21 @@ Variants {
                         strokeColor: Theme.colAccent
                         fillColor: Theme.colBg
                         startX: -5
-                        PathLine { x: 0; y: 0 }
-                        PathLine { x: (bottomBar.width / 2); y: 0 }
-                        PathLine { x: (bottomBar.width / 2) + 30; y: bottomBar.height }
-                        PathLine { x: -5; y: bottomBar.height }
+                        PathLine { x: 0; y: bottomBar.height }
+                        PathLine { x: (bottomBar.width / 2) - 250; y: bottomBar.height }
+                        PathLine { x: (bottomBar.width / 2) - 290; y: 0 }
+                        PathLine { x: -5; y: 0 }
                     }
 
                     ShapePath {
                         strokeWidth: 1
                         strokeColor: Theme.colAccent
                         fillColor: Theme.colBg
-                        startX: bottomBar.width - 470
-                        PathLine { x: bottomBar.width - 500; y: bottomBar.height }
+                        startX: (bottomBar.width / 2) + 290
+                        PathLine { x: (bottomBar.width / 2) + 250; y: bottomBar.height }
                         PathLine { x: bottomBar.width + 5; y: bottomBar.height }
                         PathLine { x: bottomBar.width + 5; y: 0 }
-                        PathLine { x: bottomBar.width - 470; y: 0 }
+                        PathLine { x: (bottomBar.width / 2) + 290; y: 0 }
                     }
                 }
 
@@ -255,24 +252,21 @@ Variants {
                         id: barMediaBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 1
-                        anchors.right: parent.right
-                        anchors.rightMargin: 885
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NotificationOSD {
                         id: notificationOSDBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 1
-                        anchors.right: parent.right
-                        anchors.rightMargin: 515
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
                         id: volumeOSDBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 1
-                        anchors.right: parent.right
-                        anchors.rightMargin: 515
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     Clock {

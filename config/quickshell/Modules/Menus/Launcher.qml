@@ -6,14 +6,15 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
+import qs.Services
 import qs.Themes
 
 PanelWindow {
     id: launcherMenu
     visible: false
     focusable: true
-    implicitWidth: 540
-    implicitHeight: 520
+    implicitWidth: 400
+    implicitHeight: 400
     color: "transparent"
     property string query: ""
     property var filteredApps: DesktopEntries.applications.values
@@ -22,8 +23,11 @@ PanelWindow {
     property bool open: false
     property bool showContent: false
 
+    required property var modelData
+
     anchors {
-        bottom: true
+        top: Config.data.barLayout === "top" ? true : false
+        bottom: Config.data.barLayout === "bottom" ? true : false
     }
 
     onVisibleChanged: {
@@ -65,8 +69,8 @@ PanelWindow {
 
     Item {
         id: launcherContainer
-        width: 520
-        height: 520
+        width: 400
+        height: 400
         anchors.horizontalCenter: parent.horizontalCenter
         state: launcherMenu.open ? "open" : "closed"
 
@@ -77,8 +81,8 @@ PanelWindow {
                 name: "closed"
                 PropertyChanges {
                     target: launcherContainer
-                    opacity: 0
-                    y: 520
+                    opacity: 0.5
+                    y: Config.data.barLayout === "top" ? -369 : 369
                 }
             },
             State {
@@ -86,7 +90,7 @@ PanelWindow {
                 PropertyChanges {
                     target: launcherContainer
                     opacity: 1
-                    y: 0
+                    y: Config.data.barLayout === "top" ? -30 : 30
                 }
             }
         ]
@@ -115,7 +119,7 @@ PanelWindow {
                     ScriptAction { script: launcherMenu.showContent = false }
                     NumberAnimation {
                         properties: "opacity, y"
-                        duration: 300
+                        duration: 250
                         easing.type: Easing.InQuart
                     }
                     ScriptAction { script: launcherMenu.visible = false }
@@ -123,44 +127,101 @@ PanelWindow {
             }
         ]
 
-        Rectangle {
-            id: mainBackground
+        Item {
+            id: topBackgroundContainer
             anchors.fill: parent
-            anchors.topMargin: 20
-            topLeftRadius: 5
-            topRightRadius: 5
-            color: Theme.colBg
-            clip: true
+            visible: Config.data.barLayout === "top"
+        
 
-            Image {
-                id: logoImage
-                anchors.centerIn: parent
-                width: 520
-                height: 500
-                source: Theme.logoPath
-                mipmap: true
-                asynchronous: true
-                fillMode: Image.PreserveAspectFit
-                opacity: 0.3
+            Rectangle {
+                id: topBackground
+                anchors.fill: parent
+                anchors.topMargin: 30
+                radius: 5 
+                color: Theme.colBg
+                border.color: Theme.colAccent
+                border.width: 1
+                clip: true
+                visible: Config.data.barLayout === "top"
+
+                Image {
+                    id: logoImage
+                    anchors.centerIn: parent
+                    width: 400
+                    height: 375
+                    source: Theme.logoPath
+                    mipmap: true
+                    asynchronous: true
+                    fillMode: Image.PreserveAspectFit
+                    opacity: 0.3
+                }
+
+                Loader {
+                    id: topContentLoader
+                    anchors.fill: parent
+                    active: launcherMenu.showContent
+                    focus: true
+                    sourceComponent: launcherContent
+                }
             }
 
-            Loader {
-                id: contentLoader
-                anchors.fill: parent
-                active: launcherMenu.showContent
-                focus: true
-                sourceComponent: launcherContent
+            MultiEffect {
+                id: topLauncherShadow
+                anchors.fill: topBackground
+                source: topBackground
+                shadowEnabled: true
+                shadowColor: Theme.colAccent
+                shadowBlur: 0.2
+                z: -1
             }
         }
 
-        MultiEffect {
-            id: launcherShadow
-            anchors.fill: mainBackground
-            source: mainBackground
-            shadowEnabled: true
-            shadowColor: Theme.colAccent
-            shadowBlur: 0.2
-            z: -1
+        Item {
+            id: bottomBackgroundContainer
+            anchors.fill: parent
+            visible: Config.data.barLayout === "bottom"
+            
+            Rectangle {
+                id: bottomBackground
+                anchors.fill: parent
+                anchors.bottomMargin: 30
+                radius: 5 
+                color: Theme.colBg
+                border.color: Theme.colAccent
+                border.width: 1
+                clip: true
+                visible: Config.data.barLayout === "bottom"
+
+                Image {
+                    id: bottomLogoImage
+                    anchors.centerIn: parent
+                    width: 400
+                    height: 375
+                    source: Theme.logoPath
+                    mipmap: true
+                    asynchronous: true
+                    fillMode: Image.PreserveAspectFit
+                    opacity: 0.3
+                }
+
+                Loader {
+                    id: bottomContentLoader
+                    anchors.fill: parent
+                    active: launcherMenu.showContent
+                    focus: true
+                    sourceComponent: launcherContent
+                }
+            }
+
+            MultiEffect {
+                id: bottomLauncherShadow
+                anchors.fill: bottomBackground
+                source: bottomBackground
+                shadowEnabled: true
+                shadowColor: Theme.colAccent
+                shadowBlur: 0.2
+                z: 0
+            }
         }
     }
 
@@ -168,9 +229,9 @@ PanelWindow {
         id: launcherContent
         ColumnLayout {
             anchors.fill: parent
-            anchors.topMargin: 20
-            anchors.bottomMargin: 10
-            spacing: 15
+            anchors.topMargin: Config.data.barLayout === "top" ? 2 : 10
+            anchors.bottomMargin: Config.data.barLayout === "top" ? 10 : 2
+            spacing: 5
             opacity: 0
             Component.onCompleted: {
                 opacity = 1
@@ -179,9 +240,10 @@ PanelWindow {
             Behavior on opacity { NumberAnimation { duration: 250 } }
 
             Rectangle {
+                Layout.row: Config.data.barLayout === "top" ? 0 : 1
                 Layout.alignment: Qt.AlignHCenter
-                width: 440
-                height: 35
+                Layout.preferredWidth: parent.width - 50
+                height: 28
                 radius: 5
                 color: Theme.colBg
                 border.color: Theme.colAccent
@@ -189,8 +251,10 @@ PanelWindow {
 
                 TextField {
                     id: searchField
-                    anchors.fill: parent
-                    anchors.leftMargin: 15
+                    anchors.centerIn: parent
+                    width: parent.width - 20
+                    height: parent.height - 2
+                    verticalAlignment: TextInput.AlignVCenter
                     placeholderText: "Search apps..."
                     placeholderTextColor: Theme.colAccent
                     color: Theme.colAccent
@@ -224,10 +288,10 @@ PanelWindow {
 
             GridView {
                 id: gridview
+                Layout.row: Config.data.barLayout === "top" ? 1 : 0
                 Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.leftMargin: 25
-                Layout.rightMargin: 25
+                Layout.preferredWidth: 376
+                Layout.alignment: Qt.AlignHCenter
                 model: launcherMenu.filteredApps
                 clip: true
                 keyNavigationEnabled: true
@@ -253,8 +317,8 @@ PanelWindow {
 
                 delegate: Item {
                     id: appDelegate
-                    width: 80
-                    height: 80
+                    width: 94
+                    height: 105
                     property bool isHighlighted: GridView.isCurrentItem || mouseArea.containsMouse
 
                     MultiEffect {
@@ -273,7 +337,9 @@ PanelWindow {
 
                     Rectangle {
                         id: delegateRectangle
-                        anchors.fill: parent
+                        width: 80
+                        height: 80
+                        anchors.centerIn: parent
                         radius: 5
                         color: Theme.colBg 
                         border.color: Theme.colAccent
