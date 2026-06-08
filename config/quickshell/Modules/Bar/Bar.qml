@@ -96,7 +96,7 @@ Variants {
                         id: clockButtonTop
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        anchors.rightMargin: 225
+                        anchors.rightMargin: 10
 
                         MouseArea {
                             id: clockAreaTop
@@ -158,40 +158,40 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
+                    SysMon {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 280
+                    }
+
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.rightMargin: 220
                     }
 
-                    SysMon {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 150
-                    }
-
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 110
+                        anchors.rightMargin: 190
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 80
+                        anchors.rightMargin: 160
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 40
+                        anchors.rightMargin: 120
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 10
+                       anchors.rightMargin: 90
                     }
                 }
             } 
@@ -273,7 +273,7 @@ Variants {
                         id: clockButtonBottom
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        anchors.rightMargin: 350
+                        anchors.rightMargin: 10
 
                         MouseArea {
                             id: clockAreaBottom
@@ -335,40 +335,40 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
+                    SysMon {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 280
+                    }
+
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.rightMargin: 220
                     }
 
-                    SysMon {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 150
-                    }
-
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 110
+                        anchors.rightMargin: 190
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 80
+                        anchors.rightMargin: 160
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 40
+                        anchors.rightMargin: 120
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 10
+                       anchors.rightMargin: 90
                     }
                 }
             }
