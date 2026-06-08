@@ -53,7 +53,7 @@ Item {
 
             RowLayout {
                 id: playerControls
-                spacing: 14
+                spacing: 10
 
                 MouseArea {
                     id: prevBtn
@@ -159,14 +159,25 @@ Item {
             }
 
             Text {
-                id: trackText
+                id: artistText
+                Layout.alignment: Qt.AlignVCenter
+                color: Theme.colAccent
+                font.pointSize: 10
+                font.bold: false
+                font.family: Theme.fontFamily
+                text: Players.active ? (Players.active.trackArtist) : ""
+                elide: Text.ElideRight
+            }
+
+            Text {
+                id: titleText
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 color: Theme.colAccent
                 font.pointSize: 10
                 font.bold: true
                 font.family: Theme.fontFamily
-                text: Players.active ? (Players.active.trackTitle + " — " + Players.active.trackArtist) : ""
+                text: Players.active ? (Players.active.trackTitle) : ""
                 elide: Text.ElideRight
             }
         }
