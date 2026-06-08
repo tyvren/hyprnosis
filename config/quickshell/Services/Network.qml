@@ -8,6 +8,7 @@ Singleton {
     id: root
 
     property var networks: ({})
+    property string connectedSsid: ""
     property bool scanning: false
     property bool connecting: false
     property bool wifiEnabled: false
@@ -47,10 +48,11 @@ Singleton {
     }
 
     function signalIcon(signal) {
-        if (signal >= 80) return "󰤨"
-        if (signal >= 60) return "󰤥"
-        if (signal >= 40) return "󰤢"
-        if (signal >= 20) return "󰤟"
+        const norm = signal / 100
+        if (norm >= 0.8) return "󰤨"
+        if (norm >= 0.6) return "󰤥"
+        if (norm >= 0.4) return "󰤢"
+        if (norm >= 0.2) return "󰤟"
         return "󰤯"
     }
 
@@ -111,19 +113,25 @@ Singleton {
             onStreamFinished: {
                 const lines = text.split("\n")
                 let map = {}
+                let activeSsid = ""
                 for (let line of lines) {
                     const parts = line.split(":")
                     if (parts.length >= 3 && parts[0] !== "") {
                         const ssid = parts[0]
+                        const isConnected = parts[2] === "*"
+                        if (isConnected) {
+                            activeSsid = ssid
+                        }
                         map[ssid] = {
                             ssid: ssid,
                             signal: parseInt(parts[1]),
-                            connected: parts[2] === "*",
+                            connected: isConnected,
                             secured: parts[3] !== "" && parts[3] !== "--"
                         }
                     }
                 }
                 root.networks = map
+                root.connectedSsid = activeSsid
                 root.scanning = false
             }
         }
@@ -157,7 +165,7 @@ Singleton {
     }
 
     Timer {
-        interval: 10000
+        interval: 2000
         running: true
         repeat: true
         triggeredOnStart: true

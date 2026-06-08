@@ -167,19 +167,19 @@ Variants {
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 220
+                        anchors.rightMargin: 220 
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 190
+                        anchors.rightMargin: 185
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 160
+                        anchors.rightMargin: 155
                     }
 
                     NetworkBtn {
@@ -350,13 +350,13 @@ Variants {
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 190
+                        anchors.rightMargin: 185
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 160
+                        anchors.rightMargin: 155
                     }
 
                     NetworkBtn {

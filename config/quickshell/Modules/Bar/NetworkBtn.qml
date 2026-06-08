@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.Components
+import qs.Services
 import qs.Themes
 
 Item {
@@ -11,7 +12,19 @@ Item {
 
     BarButton {
         id: button
-        icon: ""
+        icon: {
+            if (Network.ethernetConnected) {
+                return "󰈀"
+            }
+            if (!Network.wifiEnabled) {
+                return "󰤮"
+            }
+            const activeNet = Network.networks[Network.connectedSsid]
+            if (activeNet) {
+                return Network.signalIcon(activeNet.signal)
+            }
+            return "󰤯"
+        }
         onClicked: {
             Quickshell.execDetached(["qs", "ipc", "call", "settingsMenu", "openTo", "4"])
         }
