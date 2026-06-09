@@ -26,7 +26,7 @@ Item {
             anchors.bottomMargin: 2
             anchors.rightMargin: 2
             anchors.leftMargin: 2
-            opacity: 0.2
+            opacity: 0.1
             radius: 2
             color: "transparent"
 
