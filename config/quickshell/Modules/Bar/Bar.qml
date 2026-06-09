@@ -104,18 +104,6 @@ Variants {
                         }
                     }
 
-                    LazyLoader {
-                        id: centerMenuLoader
-                        loading: true
-
-                        CenterMenu {
-                            id: topCenterMenu
-                            anchor.window: topBar
-                            anchor.rect.x: (topBar.width / 2) - width / 2
-                            anchor.rect.y: topBar.height + 10
-                        }
-                    }
-
                     MainMenuBtn {
                         id: mainMenuButtonTop
                         anchors.left: parent.left
@@ -277,18 +265,6 @@ Variants {
                         MouseArea {
                             id: clockAreaBottom
                             anchors.fill: clockButtonBottom
-                        }
-                    }
-
-                    LazyLoader {
-                        id: centerMenuLoaderBottom
-                        loading: true
-
-                        CenterMenu {
-                            id: bottomCenterMenu
-                            anchor.window: bottomBar
-                            anchor.rect.x: (bottomBar.width / 2) - width / 2
-                            anchor.rect.y: -height - 10
                         }
                     }
 
