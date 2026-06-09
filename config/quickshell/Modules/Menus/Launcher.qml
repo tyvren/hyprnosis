@@ -220,7 +220,7 @@ PanelWindow {
                 shadowEnabled: true
                 shadowColor: Theme.colAccent
                 shadowBlur: 0.2
-                z: 0
+                z: -1
             }
         }
     }
@@ -229,8 +229,8 @@ PanelWindow {
         id: launcherContent
         ColumnLayout {
             anchors.fill: parent
-            anchors.topMargin: Config.data.barLayout === "top" ? 2 : 10
-            anchors.bottomMargin: Config.data.barLayout === "top" ? 10 : 2
+            anchors.topMargin: Config.data.barLayout === "top" ? 6 : 10
+            anchors.bottomMargin: Config.data.barLayout === "top" ? 10 : 6
             spacing: 5
             opacity: 0
             Component.onCompleted: {
