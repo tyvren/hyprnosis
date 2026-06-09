@@ -15,8 +15,42 @@ Item {
     implicitHeight: 28
 
     OSD {
+        id: playerMain
         anchors.fill: parent
         active: Players.active !== null
+
+        ClippingRectangle {
+            id: bgImageContainer
+            anchors.fill: parent 
+            anchors.topMargin: 2
+            anchors.bottomMargin: 2
+            anchors.rightMargin: 2
+            anchors.leftMargin: 2
+            opacity: 0.2
+            radius: 2
+            color: "transparent"
+
+            Image {
+                id: backgroundImage
+                anchors.fill: parent
+                asynchronous: true
+                fillMode: Image.PreserveAspectCrop
+                visible: false
+                source: {
+                    const url = Players.active?.trackArtUrl;
+                    if (!url) return "";
+                    return (url.startsWith("/") && !url.startsWith("file://")) ? "file://" + url : url;
+                }
+            }
+
+            MultiEffect {
+                id: bgImageEffect
+                anchors.fill: parent
+                source: backgroundImage
+                blurEnabled: true
+                blur: 0.5
+            }
+        }
 
         RowLayout {
             anchors.fill: parent
