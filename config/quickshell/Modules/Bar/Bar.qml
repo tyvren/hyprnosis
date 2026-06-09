@@ -97,11 +97,10 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                         anchors.rightMargin: 10
-
+                        
                         MouseArea {
                             id: clockAreaTop
                             anchors.fill: clockButtonTop
-                            onClicked: centerMenuLoader.item.visible = !centerMenuLoader.item.visible
                         }
                     }
 
@@ -278,7 +277,6 @@ Variants {
                         MouseArea {
                             id: clockAreaBottom
                             anchors.fill: clockButtonBottom
-                            onClicked: centerMenuLoaderBottom.item.visible = !centerMenuLoaderBottom.item.visible
                         }
                     }
 
