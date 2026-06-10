@@ -8,6 +8,7 @@ Item {
     id: root
     property string icon: ""
     property string text: ""
+    property int textSize: 12
     property bool active: false
     signal clicked()
 
@@ -46,7 +47,7 @@ Item {
             Text {
                 text: root.icon
                 font.family: Theme.fontFamily
-                font.pointSize: 12
+                font.pointSize: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
                 visible: root.icon !== ""
                 
@@ -56,7 +57,7 @@ Item {
             Text {
                 text: root.text
                 font.family: Theme.fontFamily
-                font.pointSize: 12
+                font.pointSize: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
 
                 Behavior on color { ColorAnimation { duration: 150 } }

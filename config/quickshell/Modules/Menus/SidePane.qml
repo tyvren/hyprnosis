@@ -179,34 +179,11 @@ PanelWindow {
 
                 Item { Layout.fillWidth: true }
 
-                Rectangle {
-                    id: clearButton
-                    width: 80
-                    height: 30
-                    radius: 8
-                    color: clearMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                    border.color: Theme.colAccent
-                    border.width: 1
-
-                    Behavior on color { ColorAnimation { duration: 150 } }
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "Clear All"
-                        color: clearMa.containsMouse ? Theme.colBg : Theme.colText
-                        font.family: Theme.fontFamily
-                        font.bold: true
-                        font.pointSize: 10
-
-                        Behavior on color { ColorAnimation { duration: 150 } }
-                    }
-
-                    MouseArea {
-                        id: clearMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: Notifications.clearAll()
-                    }
+                StyledButton {
+                    text: "Clear All"
+                    implicitWidth: 80
+                    implicitHeight: 30
+                    onClicked: Notifications.clearAll()
                 }
             }
 
@@ -227,27 +204,8 @@ PanelWindow {
                     width: notifList.width
                     height: contentLayout.implicitHeight + 30
 
-                    MultiEffect {
-                        anchors.fill: cardBackground
-                        source: cardBackground
-                        shadowEnabled: true
-                        shadowBlur: cardMouseArea.containsMouse ? 0.8 : 0
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 0
-                        shadowHorizontalOffset: 0
-                        
-                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
-                    }
-
-                    Rectangle {
-                        id: cardBackground
+                    StyledButton {
                         anchors.fill: parent
-                        color: Theme.colMuted
-                        radius: 8
-                        border.color: cardMouseArea.containsMouse ? Theme.colAccent : Qt.rgba(0, 0, 0, 0)
-                        border.width: 1
-
-                        Behavior on border.color { ColorAnimation { duration: 150 } }
 
                         ColumnLayout {
                             id: contentLayout
@@ -273,24 +231,34 @@ PanelWindow {
 
                                 Text {
                                     text: modelData.summary
-                                    color: cardMouseArea.containsMouse ? Theme.colAccent : Theme.colText
+                                    color: Theme.colText
                                     font.family: Theme.fontFamily
                                     font.bold: true
                                     font.pointSize: 11
                                     Layout.fillWidth: true
                                     elide: Text.ElideRight
-
-                                    Behavior on color { ColorAnimation { duration: 150 } }
                                 }
 
-                                Text {
-                                    text: "󰅖"
-                                    color: dismissMa.containsMouse ? Theme.colAccent : Theme.colText
-                                    font.family: Theme.fontFamily
-                                    font.pointSize: 12
-                                    opacity: dismissMa.containsMouse ? 1.0 : 0.6
+                                Rectangle {
+                                    id: dismissBox
+                                    Layout.preferredWidth: 15
+                                    Layout.preferredHeight: 15
+                                    radius: 3
+                                    color: Theme.colBg
+                                    border.color: dismissMa.containsMouse ? Theme.colAccent : Theme.colMuted
+                                    border.width: 1
 
-                                    Behavior on color { ColorAnimation { duration: 150 } }
+                                    Behavior on border.color { ColorAnimation { duration: 150 } }
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: ""
+                                        font.family: Theme.fontFamily
+                                        font.pointSize: 7
+                                        color: dismissMa.containsMouse ? Theme.colAccent : Theme.colText
+
+                                        Behavior on color { ColorAnimation { duration: 150 } }
+                                    }
 
                                     MouseArea {
                                         id: dismissMa
@@ -327,12 +295,6 @@ PanelWindow {
                                     visible: text !== ""
                                 }
                             }
-                        }
-
-                        MouseArea {
-                            id: cardMouseArea
-                            anchors.fill: parent
-                            hoverEnabled: true
                         }
                     }
                 }
