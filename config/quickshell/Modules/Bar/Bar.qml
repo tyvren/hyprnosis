@@ -132,9 +132,15 @@ Variants {
 
                         QuickMenu {
                             id: quickMenu
-                            anchor.window: topBar
-                            anchor.rect.x: 2
-                            anchor.rect.y: 32
+                            anchors {
+                              top: true
+                              left: true
+                            }
+
+                            margins {
+                              top: 5
+                              left: 5
+                            }
                         }
                     }
 
@@ -296,9 +302,15 @@ Variants {
 
                         QuickMenu {
                             id: quickMenuBottom
-                            anchor.window: bottomBar
-                            anchor.rect.x: 2
-                            anchor.rect.y: -quickMenuBottom.height - 2
+                            anchors {
+                              bottom: true
+                              left: true
+                            }
+
+                            margins {
+                              top: 5
+                              left: 5
+                            }
                         }
                     }
 

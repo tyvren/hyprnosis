@@ -7,11 +7,12 @@ import Quickshell.Widgets
 import qs.Components
 import qs.Themes
 
-PopupWindow {
+PanelWindow {
     id: quickMenuRoot
     implicitWidth: 200
     implicitHeight: 220
     color: "transparent"
+    visible: false
 
     HyprlandFocusGrab {
         id: focusGrab
@@ -20,7 +21,7 @@ PopupWindow {
     }
 
     onVisibleChanged: {
-        if (visible) {
+          if (visible) {
             focusGrab.active = true
         } else {
             focusGrab.active = false
@@ -32,6 +33,7 @@ PopupWindow {
         anchors.fill: parent
         radius: 2
         color: Theme.colBg
+        border.color: Theme.colAccent
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
         focus: true
 
