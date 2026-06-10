@@ -111,12 +111,10 @@ Item {
                         Behavior on opacity { NumberAnimation { duration: 150 } }
                     }
 
-                    Text {
+                    StyledText {
                         id: prevText
                         anchors.centerIn: parent
                         text: "󰒮"
-                        font.family: Theme.fontFamily
-                        font.pointSize: 11
                         color: prevBtn.containsMouse ? Theme.colAccent : Theme.colText
 
                         Behavior on color { ColorAnimation { duration: 150 } }
@@ -145,12 +143,10 @@ Item {
                         Behavior on opacity { NumberAnimation { duration: 150 } }
                     }
 
-                    Text {
+                    StyledText {
                         id: playText
                         anchors.centerIn: parent
                         text: Players.active && Players.active.isPlaying ? "" : ""
-                        font.family: Theme.fontFamily
-                        font.pointSize: 11
                         color: playBtn.containsMouse ? Theme.colAccent : Theme.colText
 
                         Behavior on color { ColorAnimation { duration: 150 } }
@@ -179,12 +175,10 @@ Item {
                         Behavior on opacity { NumberAnimation { duration: 150 } }
                     }
 
-                    Text {
+                    StyledText {
                         id: nextText
                         anchors.centerIn: parent
                         text: "󰒭"
-                        font.family: Theme.fontFamily
-                        font.pointSize: 11
                         color: nextBtn.containsMouse ? Theme.colAccent : Theme.colText
 
                         Behavior on color { ColorAnimation { duration: 150 } }
@@ -192,25 +186,22 @@ Item {
                 }
             }
 
-            Text {
+            StyledText {
                 id: artistText
                 Layout.alignment: Qt.AlignVCenter
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.bold: false
-                font.family: Theme.fontFamily
+                textSize: 10
                 text: Players.active ? (Players.active.trackArtist) : ""
                 elide: Text.ElideRight
             }
 
-            Text {
+            StyledText {
                 id: titleText
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.bold: true
-                font.family: Theme.fontFamily
+                textSize: 10
+                bold: true
                 text: Players.active ? (Players.active.trackTitle) : ""
                 elide: Text.ElideRight
             }
