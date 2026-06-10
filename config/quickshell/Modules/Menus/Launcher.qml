@@ -6,6 +6,7 @@ import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
+import qs.Components
 import qs.Services
 import qs.Themes
 
@@ -249,18 +250,9 @@ PanelWindow {
                 border.color: Theme.colAccent
                 border.width: 1
 
-                TextField {
+                StyledInput {
                     id: searchField
-                    anchors.centerIn: parent
-                    width: parent.width - 20
-                    height: parent.height - 2
-                    verticalAlignment: TextInput.AlignVCenter
-                    placeholderText: "Search apps..."
-                    placeholderTextColor: Theme.colAccent
-                    color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pointSize: 14
-                    background: null
+                    anchors.fill: parent
                     text: launcherMenu.query
 
                     onTextChanged: {
