@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import qs.Components
 import qs.Themes
 
 Item {
@@ -44,22 +45,19 @@ Item {
             anchors.centerIn: parent
             spacing: 8
 
-            Text {
+            StyledText {
                 text: root.icon
-                font.family: Theme.fontFamily
-                font.pointSize: root.textSize
+                textSize: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
                 visible: root.icon !== ""
-                
                 Behavior on color { ColorAnimation { duration: 150 } }
             }
 
-            Text {
+            StyledText {
                 text: root.text
-                font.family: Theme.fontFamily
-                font.pointSize: root.textSize
+                textSize: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
-
+                visible: root.text !== ""
                 Behavior on color { ColorAnimation { duration: 150 } }
             }
         }
