@@ -445,81 +445,50 @@ ColumnLayout {
         Layout.fillHeight: true 
     }
 
-    Item {
-        id: applyBtn
+    StyledButton {
+        text: "Apply"
         Layout.alignment: Qt.AlignRight
         Layout.preferredWidth: 90
         Layout.preferredHeight: 35
+        textSize: 10
 
-        MultiEffect {
-            anchors.fill: applyBtnRect 
-            source: applyBtnRect
-            shadowEnabled: true 
-            shadowBlur: 0.2 
-            shadowColor: Theme.colAccent
-            shadowVerticalOffset: 1 
-            shadowHorizontalOffset: 0 
-            opacity: 0.8
-        }
+        onClicked: {
+            Config.data.mainMod = keybinds.mainMod
+            Config.data.terminal = keybinds.terminal
+            Config.data.fileManager = keybinds.fileManager
+            Config.data.appLauncher = keybinds.appLauncher
+            Config.data.killActive = keybinds.killActive
+            Config.data.toggleFloating = keybinds.toggleFloating
+            Config.data.toggleSplit = keybinds.toggleSplit
+            Config.data.pseudo = keybinds.pseudo
+            Config.data.lockScreen = keybinds.lockScreen
+            Config.data.screenshot = keybinds.screenshot
+            Config.data.enableIdle = keybinds.enableIdle
+            Config.data.disableIdle = keybinds.disableIdle
+            Config.data.focusLeft = keybinds.focusLeft
+            Config.data.focusRight = keybinds.focusRight
+            Config.data.focusUp = keybinds.focusUp
+            Config.data.focusDown = keybinds.focusDown
 
-        Rectangle {
-            id: applyBtnRect
-            anchors.fill: parent
-            radius: 10
-            color: applyMa.containsMouse ? Theme.colAccent : Theme.colMuted
-
-            Text {
-                anchors.centerIn: parent
-                text: "Apply"
-                color: applyMa.containsMouse ? Theme.colBg : Theme.colText
-                font.bold: true
-                font.family: Theme.fontFamily
-            }
-
-            MouseArea {
-                id: applyMa 
-                anchors.fill: parent 
-                hoverEnabled: true
-
-                onClicked: {
-                    Config.data.mainMod = keybinds.mainMod
-                    Config.data.terminal = keybinds.terminal
-                    Config.data.fileManager = keybinds.fileManager
-                    Config.data.appLauncher = keybinds.appLauncher
-                    Config.data.killActive = keybinds.killActive
-                    Config.data.toggleFloating = keybinds.toggleFloating
-                    Config.data.toggleSplit = keybinds.toggleSplit
-                    Config.data.pseudo = keybinds.pseudo
-                    Config.data.lockScreen = keybinds.lockScreen
-                    Config.data.screenshot = keybinds.screenshot
-                    Config.data.enableIdle = keybinds.enableIdle
-                    Config.data.disableIdle = keybinds.disableIdle
-                    Config.data.focusLeft = keybinds.focusLeft
-                    Config.data.focusRight = keybinds.focusRight
-                    Config.data.focusUp = keybinds.focusUp
-                    Config.data.focusDown = keybinds.focusDown
-
-                    Quickshell.execDetached([
-                        Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_keybinds.sh",
-                        keybinds.mainMod,
-                        keybinds.terminal,
-                        keybinds.fileManager,
-                        keybinds.appLauncher,
-                        keybinds.killActive,
-                        keybinds.toggleFloating,
-                        keybinds.toggleSplit,
-                        keybinds.pseudo,
-                        keybinds.lockScreen,
-                        keybinds.screenshot,
-                        keybinds.enableIdle,
-                        keybinds.disableIdle,
-                        keybinds.focusLeft,
-                        keybinds.focusRight,
-                        keybinds.focusUp,
-                        keybinds.focusDown
-                    ]);
-                }
-            }
+            Quickshell.execDetached([
+                Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_keybinds.sh",
+                keybinds.mainMod,
+                keybinds.terminal,
+                keybinds.fileManager,
+                keybinds.appLauncher,
+                keybinds.killActive,
+                keybinds.toggleFloating,
+                keybinds.toggleSplit,
+                keybinds.pseudo,
+                keybinds.lockScreen,
+                keybinds.screenshot,
+                keybinds.enableIdle,
+                keybinds.disableIdle,
+                keybinds.focusLeft,
+                keybinds.focusRight,
+                keybinds.focusUp,
+                keybinds.focusDown
+            ]);
         }
     }
 }
