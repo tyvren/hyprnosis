@@ -8,8 +8,15 @@ local gray_light = "rgb(b4b4b4)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { neon_orange, gunmetal }, angle = 45 },
-			inactive_border = gunmetal_dim,
+			active_border = { colors = { neon_orange, neon_orange }, angle = 45 },
+			inactive_border = neon_orange,
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = neon_orange,
+			range = 8,
 		},
 	},
 })

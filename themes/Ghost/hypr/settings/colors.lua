@@ -9,8 +9,15 @@ local transb = "rgba(00000080)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { hilight, accent }, angle = 45 },
-			inactive_border = transb,
+			active_border = { colors = { hilight, hilight }, angle = 45 },
+			inactive_border = hilight,
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = hilight,
+			range = 8,
 		},
 	},
 })

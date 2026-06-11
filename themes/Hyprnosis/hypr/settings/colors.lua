@@ -13,8 +13,15 @@ local black_alpha = "rgba(00000280)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { blue, gray_blue }, angle = 45 },
-			inactive_border = gray_blue_alpha,
+			active_border = { colors = { blue, blue }, angle = 45 },
+			inactive_border = blue,
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = blue,
+			range = 8,
 		},
 	},
 })

@@ -28,8 +28,15 @@ local crust = "rgb(11111b)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { lavender, overlay0 }, angle = 45 },
-			inactive_border = "rgba(7faecc20)",
+			active_border = { colors = { lavender, lavender }, angle = 45 },
+			inactive_border = lavender,
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = lavender,
+			range = 8,
 		},
 	},
 })

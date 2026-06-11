@@ -6,8 +6,15 @@ local granite = "rgb(49494d)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { crimson, granite }, angle = 45 },
-			inactive_border = granite,
+			active_border = { colors = { crimson, crimson }, angle = 45 },
+			inactive_border = crimson,
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = crimson,
+			range = 8,
 		},
 	},
 })

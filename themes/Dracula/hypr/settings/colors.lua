@@ -13,10 +13,17 @@ local pink = "rgb(FF79C6)"
 hl.config({
 	general = {
 		col = {
-			active_border = { colors = { selection, purple }, angle = 90 },
-			inactive_border = "rgba(44475aaa)",
+			active_border = { colors = { selection, selection }, angle = 90 },
+			inactive_border = selection,
 			nogroup_border = "rgba(282a36dd)",
 			nogroup_border_active = { colors = { purple, selection }, angle = 90 },
+		},
+	},
+	decoration = {
+		glow = {
+			enabled = true,
+			color = selection,
+			range = 8,
 		},
 	},
 })
