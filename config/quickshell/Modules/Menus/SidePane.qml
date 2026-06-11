@@ -178,6 +178,7 @@ PanelWindow {
 
                 StyledButton {
                     text: "Clear All"
+                    textSize: 9
                     implicitWidth: 80
                     implicitHeight: 30
                     onClicked: Notifications.clearAll()
