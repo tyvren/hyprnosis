@@ -81,7 +81,7 @@ PanelWindow {
                         Layout.fillWidth: true
                         spacing: 10
 
-                        Text {
+                        StyledText {
                             text: {
                                 const b = Brightness.brightness
                                 if (b < 0.25) return "󰃞"
@@ -89,8 +89,7 @@ PanelWindow {
                                 return "󰃠"
                             }
                             color: Theme.colAccent
-                            font.family: Theme.fontFamily
-                            font.pointSize: 13
+                            size: 13
                         }
 
                         Item {
@@ -153,11 +152,10 @@ PanelWindow {
                             }
                         }
 
-                        Text {
+                        StyledText {
                             text: Math.round(Brightness.brightness * 100) + "%"
                             color: Theme.colAccent
-                            font.family: Theme.fontFamily
-                            font.pointSize: 9
+                            size: 9
                             opacity: 0.75
                             horizontalAlignment: Text.AlignRight
                             Layout.minimumWidth: 32
@@ -169,12 +167,11 @@ PanelWindow {
             RowLayout {
                 Layout.fillWidth: true
 
-                Text {
+                StyledText {
                     text: "Notifications"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pointSize: 11
-                    font.bold: true
+                    size: 11
+                    bold: true
                 }
 
                 Item { Layout.fillWidth: true }
@@ -229,12 +226,10 @@ PanelWindow {
                                     fillMode: Image.PreserveAspectFit
                                 }
 
-                                Text {
+                                StyledText {
                                     text: modelData.summary
-                                    color: Theme.colText
-                                    font.family: Theme.fontFamily
-                                    font.bold: true
-                                    font.pointSize: 11
+                                    bold: true
+                                    size: 11
                                     Layout.fillWidth: true
                                     elide: Text.ElideRight
                                 }
@@ -250,11 +245,10 @@ PanelWindow {
 
                                     Behavior on border.color { ColorAnimation { duration: 150 } }
 
-                                    Text {
+                                    StyledText {
                                         anchors.centerIn: parent
-                                        text: ""
-                                        font.family: Theme.fontFamily
-                                        font.pointSize: 7
+                                        text: "" 
+                                        size: 7
                                         color: dismissMa.containsMouse ? Theme.colAccent : Theme.colText
 
                                         Behavior on color { ColorAnimation { duration: 150 } }
@@ -284,11 +278,9 @@ PanelWindow {
                                     fillMode: Image.PreserveAspectFit
                                 }
 
-                                Text {
+                                StyledText {
                                     text: modelData.body
-                                    color: Theme.colText
-                                    font.family: Theme.fontFamily
-                                    font.pointSize: 10
+                                    size: 10
                                     wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                     opacity: 0.85

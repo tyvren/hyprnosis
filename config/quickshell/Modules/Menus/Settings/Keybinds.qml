@@ -35,12 +35,10 @@ ColumnLayout {
         spacing: 10
         Layout.fillWidth: true
 
-        Text {
+        StyledText {
             text: "Keybinds"
             color: Theme.colAccent
-            font.pointSize: 16
-            font.family: Theme.fontFamily
-            antialiasing: true
+            size: 16
         }
 
         DividerLine { 
@@ -60,22 +58,21 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "General Bindings" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true
+                size: 10 
+                bold: true
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Main Modifier"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
+
                 StyledInput { 
                     text: keybinds.mainMod
                     onUserEdited: (val) => keybinds.mainMod = val 
@@ -84,19 +81,17 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Terminal"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+                
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
                 }
+                
                 StyledInput { 
                     text: keybinds.terminal
                     onUserEdited: (val) => keybinds.terminal = val 
@@ -105,19 +100,17 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "File Manager"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+                
+                StyledText {
                     text: "mainMod +"
-                    color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    color: Theme.colAccent 
                 }
+
                 StyledInput { 
                     text: keybinds.fileManager
                     onUserEdited: (val) => keybinds.fileManager = val 
@@ -126,19 +119,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
-                    text: "App Launcher"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
+                
+                StyledText { 
+                    text: "App Launcher" 
                     Layout.fillWidth: true 
                 }
-                Text {
+                
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.appLauncher
                     onUserEdited: (val) => keybinds.appLauncher = val 
@@ -151,29 +143,27 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "Window Management" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true
+                size: 10 
+                bold: true
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Kill Active"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11 
                 }
+
                 StyledInput { 
                     text: keybinds.killActive
                     onUserEdited: (val) => keybinds.killActive = val 
@@ -182,19 +172,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Toggle Floating"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.toggleFloating
                     onUserEdited: (val) => keybinds.toggleFloating = val 
@@ -203,19 +192,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Toggle Split"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.toggleSplit
                     onUserEdited: (val) => keybinds.toggleSplit = val 
@@ -224,19 +212,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Pseudo"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+                
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.pseudo
                     onUserEdited: (val) => keybinds.pseudo = val 
@@ -249,29 +236,27 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "System Controls" 
                 color: Theme.colAccent 
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true
+                size: 10 
+                bold: true
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Lock Screen"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.lockScreen
                     onUserEdited: (val) => keybinds.lockScreen = val 
@@ -280,19 +265,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Screenshot"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.screenshot
                     onUserEdited: (val) => keybinds.screenshot = val 
@@ -301,19 +285,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Enable Idle"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod + SHIFT +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.enableIdle
                     onUserEdited: (val) => keybinds.enableIdle = val 
@@ -322,19 +305,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Disable Idle"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.disableIdle
                     onUserEdited: (val) => keybinds.disableIdle = val 
@@ -347,29 +329,27 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "Navigation" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true
+                size: 10 
+                bold: true
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Focus Left"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.focusLeft
                     onUserEdited: (val) => keybinds.focusLeft = val 
@@ -378,19 +358,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Focus Right"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
-                    color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    color: Theme.colAccent 
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.focusRight
                     onUserEdited: (val) => keybinds.focusRight = val 
@@ -399,19 +378,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Focus Up"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
-                    color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    color: Theme.colAccent 
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.focusUp
                     onUserEdited: (val) => keybinds.focusUp = val 
@@ -420,19 +398,18 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { 
+                
+                StyledText { 
                     text: "Focus Down"
-                    color: Theme.colText
-                    font.family: Theme.fontFamily
                     Layout.fillWidth: true 
                 }
-                Text {
+
+                StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    font.family: Theme.fontFamily
-                    font.pixelSize: 11
-                    verticalAlignment: Text.AlignVCenter
+                    size: 11
                 }
+
                 StyledInput { 
                     text: keybinds.focusDown
                     onUserEdited: (val) => keybinds.focusDown = val 

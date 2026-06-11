@@ -14,11 +14,10 @@ ColumnLayout {
 
     property string theme: Config.data.theme
 
-    Text {
+    StyledText {
         text: "Themes"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {
@@ -76,11 +75,10 @@ ColumnLayout {
 
     Item { Layout.preferredHeight: 10 }
 
-    Text {
+    StyledText {
         text: "Transparency"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {

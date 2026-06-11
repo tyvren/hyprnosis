@@ -63,11 +63,11 @@ ColumnLayout {
 
                 RowLayout {
                     spacing: 10
-                    Text { 
+                    
+                    StyledText { 
                         text: "Current Wallpaper"
                         color: Theme.colAccent
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
+                        size: 11
                     }
                 }
   
@@ -113,17 +113,17 @@ ColumnLayout {
 
                 RowLayout {
                     spacing: 10
-                    Text { 
+                    
+                    StyledText { 
                         text: "Custom Wallpapers"
                         color: Theme.colAccent
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
+                        size: 11
                     }
-                    Text {
+                    
+                    StyledText {
                         text: "~/Pictures/wallpapers"
                         color: Theme.colMuted
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
+                        size: 11
                     }
                 }
                 DividerLine { Layout.fillWidth: true }
@@ -147,17 +147,17 @@ ColumnLayout {
 
                 RowLayout {
                     spacing: 10
-                    Text { 
+                    
+                    StyledText { 
                         text: "Theme Wallpapers"
                         color: Theme.colAccent
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
+                        size: 11
                     }
-                    Text {
+                    
+                    StyledText {
                         text: "hyprnosis/wallpapers/" + wallpaperPane.folderName
                         color: Theme.colMuted
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
+                        size: 11 
                     }
                 }
                 DividerLine { Layout.fillWidth: true }

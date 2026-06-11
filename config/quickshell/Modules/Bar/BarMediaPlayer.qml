@@ -190,7 +190,7 @@ Item {
                 id: artistText
                 Layout.alignment: Qt.AlignVCenter
                 color: Theme.colAccent
-                textSize: 10
+                size: 10
                 text: Players.active ? (Players.active.trackArtist) : ""
                 elide: Text.ElideRight
             }
@@ -200,7 +200,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 color: Theme.colAccent
-                textSize: 10
+                size: 10
                 bold: true
                 text: Players.active ? (Players.active.trackTitle) : ""
                 elide: Text.ElideRight

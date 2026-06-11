@@ -21,11 +21,10 @@ ColumnLayout {
         spacing: 10
         Layout.fillWidth: true
 
-        Text {
+        StyledText {
             text: "Audio Configuration"
             color: Theme.colAccent
-            font.pointSize: 16
-            font.family: Theme.fontFamily
+            size: 16
         }
 
         DividerLine {
@@ -198,12 +197,11 @@ ColumnLayout {
 
             Item { Layout.fillWidth: true }
 
-            Text {
+            StyledText {
                 text: Math.round(volume * 100) + "%"
                 color: isMuted ? Theme.colMuted : Theme.colAccent
-                font.pointSize: 11
-                font.family: Theme.fontFamily
-                font.bold: true
+                size: 11
+                bold: true
                 Layout.alignment: Qt.AlignBottom
                 Layout.bottomMargin: 10
             }

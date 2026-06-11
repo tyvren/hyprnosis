@@ -38,11 +38,10 @@ ColumnLayout {
         }
     }
 
-    Text {
+    StyledText {
         text: "About"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {
@@ -74,20 +73,17 @@ ColumnLayout {
             spacing: 5
             Layout.alignment: Qt.AlignHCenter
 
-            Text {
+            StyledText {
                 text: "hyprnosis"
-                font.family: Theme.fontFamily
-                font.pointSize: 24
-                font.bold: true
+                size: 24
+                bold: true
                 color: Theme.colAccent
                 Layout.alignment: Qt.AlignHCenter
             }
 
-            Text {
+            StyledText {
                 text: "A hyprland offering built with quickshell"
-                font.family: Theme.fontFamily
-                font.pointSize: 12
-                color: Theme.colText
+                size: 12
                 Layout.alignment: Qt.AlignHCenter
             }
         }

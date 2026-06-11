@@ -49,12 +49,10 @@ ColumnLayout {
         spacing: 10
         Layout.fillWidth: true
 
-        Text {
+        StyledText {
             text: "Display Configuration"
             color: Theme.colAccent
-            font.pointSize: 16
-            font.family: Theme.fontFamily
-            antialiasing: true
+            size: 16
         }
 
         DividerLine {
@@ -98,28 +96,25 @@ ColumnLayout {
                         anchors.centerIn: parent
                         spacing: 2
 
-                        Text {
+                        StyledText {
                             text: modelData.name
                             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
-                            font.bold: true
-                            font.pointSize: 11
-                            font.family: Theme.fontFamily
+                            bold: true
+                            size: 11
                             Layout.alignment: Qt.AlignHCenter
                         }
 
-                        Text {
+                        StyledText {
                             text: modelData.width + "x" + modelData.height
                             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
-                            font.pointSize: 9
-                            font.family: Theme.fontFamily
+                            size: 9
                             Layout.alignment: Qt.AlignHCenter
                         }
 
-                        Text {
+                        StyledText {
                             text: modelData.refreshRate.toFixed(2) + "Hz"
                             color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colBg : Theme.colText
-                            font.pointSize: 8
-                            font.family: Theme.fontFamily
+                            size: 8
                             opacity: 0.7
                             Layout.alignment: Qt.AlignHCenter
                         }
@@ -152,12 +147,11 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
 
-            Text {
+            StyledText {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Resolution & Refresh Rate"
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.family: Theme.fontFamily
+                size: 10
             }
 
             Item {
@@ -186,13 +180,11 @@ ColumnLayout {
                     delegate: ItemDelegate {
                         width: modeSelector.width
 
-                        contentItem: Text {
+                        contentItem: StyledText {
                             text: modelData
                             color: highlighted ? Theme.colBg : Theme.colText
-                            font.pointSize: 10
-                            font.family: Theme.fontFamily
+                            size: 10
                             verticalAlignment: Text.AlignVCenter
-                            horizontalAlignment: Text.AlignHCenter
                         }
 
                         background: Rectangle {
@@ -204,13 +196,9 @@ ColumnLayout {
                         }
                     }
 
-                    contentItem: Text {
+                    contentItem: StyledText {
                         text: modeSelector.displayText
-                        font.pointSize: 11
-                        font.family: Theme.fontFamily
-                        color: Theme.colText
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
+                        size: 11
                     }
 
                     background: Rectangle {
@@ -249,12 +237,11 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
 
-            Text {
+            StyledText {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Monitor Position"
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.family: Theme.fontFamily
+                size: 10
             }
 
             RowLayout {
@@ -281,12 +268,11 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
 
-            Text {
+            StyledText {
                 Layout.alignment: Qt.AlignHCenter
                 text: "Hyprland Scaling"
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.family: Theme.fontFamily
+                size: 10
             }
 
             RowLayout {
@@ -313,12 +299,11 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
 
-            Text {
+            StyledText {
                 Layout.alignment: Qt.AlignHCenter
                 text: "GDK App Scaling"
                 color: Theme.colAccent
-                font.pointSize: 10
-                font.family: Theme.fontFamily
+                size: 10
             }
 
             RowLayout {

@@ -14,11 +14,10 @@ ColumnLayout {
     property string barLayout: Config.data.barLayout
     property bool sysMonitor: Config.data.sysMonitor === "true"
 
-    Text {
+    StyledText {
         text: "Bar Layout"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {
@@ -59,21 +58,19 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.topMargin: 10
 
-        Text { 
+        StyledText { 
             text: "System Monitor" 
             color: Theme.colAccent
-            font.pointSize: 10
-            font.family: Theme.fontFamily 
-            font.bold: true
+            size: 10
+            bold: true
         }
 
         RowLayout {
             Layout.fillWidth: true
             
-            Text {
+            StyledText {
                 text: "Enable Monitoring"
                 color: Theme.colText
-                font.family: Theme.fontFamily
                 Layout.fillWidth: true
             }
 

@@ -351,11 +351,10 @@ PanelWindow {
                                 Layout.alignment: Qt.AlignHCenter
                             }
 
-                            Text {
+                            StyledText {
                                 text: modelData.name
                                 color: mouseArea.containsMouse ? Theme.colAccent : Theme.colText
-                                font.family: Theme.fontFamily
-                                font.pointSize: 7
+                                size: 7
                                 Layout.fillWidth: true
                                 horizontalAlignment: Text.AlignHCenter
                                 elide: Text.ElideRight

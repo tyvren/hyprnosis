@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import qs.Components
 import qs.Themes
 
 Item {
@@ -47,7 +46,7 @@ Item {
 
             StyledText {
                 text: root.icon
-                textSize: root.textSize
+                size: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
                 visible: root.icon !== ""
                 Behavior on color { ColorAnimation { duration: 150 } }
@@ -55,7 +54,7 @@ Item {
 
             StyledText {
                 text: root.text
-                textSize: root.textSize
+                size: root.textSize
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
                 visible: root.text !== ""
                 Behavior on color { ColorAnimation { duration: 150 } }

@@ -17,11 +17,10 @@ Item {
         RowLayout {
             Layout.fillWidth: true
 
-            Text { 
+            StyledText { 
                 text: "Bluetooth"
                 color: Theme.colAccent
-                font.pointSize: 14 
-                font.family: Theme.fontFamily
+                size: 14 
                 Layout.alignment: Qt.AlignVCenter
             }
 
@@ -62,11 +61,11 @@ Item {
                     contentItem: Item {
                         anchors.fill: parent
 
-                        Text { 
+                        StyledText { 
                             id: btIcon
                             text: Bluetooth.getIcon(modelData)
                             color: Theme.colAccent
-                            font.pointSize: 14 
+                            size: 14 
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
                             anchors.leftMargin: 15
@@ -79,17 +78,14 @@ Item {
                             anchors.leftMargin: 15
                             spacing: 0
 
-                            Text { 
+                            StyledText { 
                                 text: modelData.name
-                                color: Theme.colText
-                                font.bold: modelData.connected
-                                font.family: Theme.fontFamily
+                                bold: modelData.connected 
                             }
-                            Text { 
+                            StyledText { 
                                 text: modelData.connected ? "Connected" : (modelData.paired ? "Paired" : "Available")
                                 color: Theme.colMuted
-                                font.pointSize: 8
-                                font.family: Theme.fontFamily
+                                size: 8
                             }
                         }
 

@@ -11,11 +11,10 @@ ColumnLayout {
 
     property string scriptDir: Quickshell.env("HOME") + "/.config/hyprnosis/modules/updates/"
 
-    Text {
+    StyledText {
         text: "Updates"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {

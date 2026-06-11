@@ -35,12 +35,10 @@ ColumnLayout {
         spacing: 10
         Layout.fillWidth: true
 
-        Text {
+        StyledText {
             text: "Hyprland Configuration"
             color: Theme.colAccent
-            font.pointSize: 16
-            font.family: Theme.fontFamily
-            antialiasing: true
+            size: 16
         }
 
         DividerLine { 
@@ -60,17 +58,22 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "General Layout" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true
+                size: 10 
+                bold: true
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Gaps In"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+
+                StyledText { 
+                    text: "Gaps In"
+                    color: Theme.colText 
+                    Layout.fillWidth: true 
+                  }
+
                 StyledInput { 
                     text: Config.data.gapsIn.toString()
                     onUserEdited: (val) => { Config.data.gapsIn = parseInt(val); hyprPane.applyHypr(); }
@@ -79,7 +82,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Gaps Out"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+
+                StyledText { 
+                    text: "Gaps Out" 
+                    Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.gapsOut.toString()
                     onUserEdited: (val) => { Config.data.gapsOut = parseInt(val); hyprPane.applyHypr(); }
@@ -88,7 +96,11 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Border Size"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { text: "Border Size" 
+                    Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.borderSize.toString()
                     onUserEdited: (val) => { Config.data.borderSize = parseInt(val); hyprPane.applyHypr(); }
@@ -101,17 +113,21 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "Decoration" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily
-                font.bold: true 
+                size: 10 
+                bold: true 
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Rounding"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Rounding"
+                    Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.rounding.toString()
                     onUserEdited: (val) => { Config.data.rounding = parseInt(val); hyprPane.applyHypr(); }
@@ -120,7 +136,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Active Opacity"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Active Opacity"
+                    Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.activeOpacity.toString()
                     onUserEdited: (val) => { Config.data.activeOpacity = parseFloat(val); hyprPane.applyHypr(); }
@@ -129,7 +150,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Inactive Opacity"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Inactive Opacity"
+                    Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.inactiveOpacity.toString()
                     onUserEdited: (val) => { Config.data.inactiveOpacity = parseFloat(val); hyprPane.applyHypr(); }
@@ -142,17 +168,21 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "Blur Settings" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true 
+                size: 10 
+                bold: true 
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Blur Enabled"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                  text: "Blur Enabled"
+                  Layout.fillWidth: true 
+                }
+
                 StyledSwitch { 
                     checked: Config.data.blurEnabled
                     onToggled: { Config.data.blurEnabled = checked; hyprPane.applyHypr(); }
@@ -163,7 +193,12 @@ ColumnLayout {
                 Layout.fillWidth: true
                 opacity: Config.data.blurEnabled ? 1.0 : 0.4
                 enabled: Config.data.blurEnabled
-                Text { text: "Blur Size"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                  text: "Blur Size"
+                  Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.blurSize.toString()
                     onUserEdited: (val) => { Config.data.blurSize = parseInt(val); hyprPane.applyHypr(); }
@@ -174,7 +209,12 @@ ColumnLayout {
                 Layout.fillWidth: true
                 opacity: Config.data.blurEnabled ? 1.0 : 0.4
                 enabled: Config.data.blurEnabled
-                Text { text: "Blur Passes"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                  text: "Blur Passes"
+                  Layout.fillWidth: true 
+                }
+
                 StyledInput { 
                     text: Config.data.blurPasses.toString()
                     onUserEdited: (val) => { Config.data.blurPasses = parseInt(val); hyprPane.applyHypr(); }
@@ -187,17 +227,21 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignTop
 
-            Text { 
+            StyledText { 
                 text: "Miscellaneous" 
                 color: Theme.colAccent
-                font.pointSize: 10 
-                font.family: Theme.fontFamily 
-                font.bold: true 
+                size: 10
+                bold: true 
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Tearing"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Tearing"
+                    Layout.fillWidth: true 
+                }
+
                 StyledSwitch { 
                     checked: Config.data.allowTearing
                     onToggled: { Config.data.allowTearing = checked; hyprPane.applyHypr(); }
@@ -206,7 +250,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Shadows"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Shadows"
+                    Layout.fillWidth: true 
+                }
+
                 StyledSwitch {
                     checked: Config.data.shadowEnabled
                     onToggled: { Config.data.shadowEnabled = checked; hyprPane.applyHypr(); }
@@ -215,7 +264,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Hyprland Logo"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+                
+                StyledText { 
+                    text: "Hyprland Logo"
+                    Layout.fillWidth: true 
+                }
+
                 StyledSwitch { 
                     checked: !Config.data.disableHyprlandLogo
                     onToggled: { Config.data.disableHyprlandLogo = !checked; hyprPane.applyHypr(); }
@@ -224,7 +278,12 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "Force Default Wallpaper"; color: Theme.colText; font.family: Theme.fontFamily; Layout.fillWidth: true }
+
+                StyledText { 
+                    text: "Force Default Wallpaper"
+                    Layout.fillWidth: true 
+                }
+
                 StyledSwitch { 
                     checked: Config.data.forceDefaultWallpaper === 1
                     onToggled: { Config.data.forceDefaultWallpaper = checked ? 1 : 0; hyprPane.applyHypr(); }

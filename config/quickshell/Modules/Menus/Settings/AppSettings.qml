@@ -17,12 +17,11 @@ ColumnLayout {
     property var filteredList: []
     property string searchQuery: ""
 
-    Text {
+    StyledText {
         id: appMgtHeader
         text: "App Management"
         color: Theme.colAccent
-        font.pointSize: 16
-        font.family: Theme.fontFamily
+        size: 16
     }
 
     DividerLine {
@@ -30,11 +29,9 @@ ColumnLayout {
         Layout.bottomMargin: 30
     }
 
-    Text {
+    StyledText {
         text: "Install"
         color: Theme.colAccent
-        font.pointSize: 12
-        font.family: Theme.fontFamily
     }
 
     DividerLine {
@@ -62,11 +59,9 @@ ColumnLayout {
         }
     }
 
-    Text {
+    StyledText {
         text: "Uninstall"
         color: Theme.colAccent
-        font.pointSize: 12
-        font.family: Theme.fontFamily
     }
 
     DividerLine {
@@ -109,9 +104,9 @@ ColumnLayout {
                     }
                 }
 
-                Text {
+                StyledText {
                     text: "󰑐"
-                    font.pointSize: 14
+                    size: 14
                     color: refreshMa.containsMouse ? Theme.colAccent : Theme.colMuted
                     opacity: loader.running ? 0.5 : 1.0
 
@@ -132,14 +127,11 @@ ColumnLayout {
                 }
             }
 
-            Text {
+            StyledText {
                 anchors.fill: parent
                 anchors.leftMargin: 15
-                verticalAlignment: Text.AlignVCenter
                 text: "Search " + fullAppList.length + " installed apps..."
-                color: Theme.colText
                 opacity: 0.3
-                font.family: Theme.fontFamily
                 visible: !searchInput.text && !searchInput.focus
             }
         }
@@ -183,15 +175,14 @@ ColumnLayout {
                 Item {
                     anchors.fill: parent
 
-                    Text {
+                    StyledText {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
                         anchors.leftMargin: 20
                         text: modelData
                         color: Theme.colText
-                        font.family: Theme.fontFamily
-                        font.pointSize: 11
-                        font.bold: appRow.isHovered
+                        size: 11
+                        bold: appRow.isHovered
                     }
 
                     Item {
@@ -209,13 +200,12 @@ ColumnLayout {
                             border.color: Theme.colAccent
                             border.width: 1
 
-                            Text {
+                            StyledText {
                                 anchors.centerIn: parent
                                 text: "Uninstall"
-                                font.pointSize: 9
-                                font.family: Theme.fontFamily
+                                size: 9
                                 color: uninstallMa.containsMouse ? Theme.colBg : Theme.colAccent
-                                font.bold: true
+                                bold: true
                             }
 
                             MouseArea {

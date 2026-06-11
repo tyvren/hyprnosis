@@ -39,31 +39,27 @@ Item {
             Item {
                 anchors.fill: parent
 
-                Text {
+                StyledText {
                     id: ethIcon
                     text: "󰈀"
                     color: Theme.colAccent
-                    font.pointSize: 14
+                    size: 14
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
                     anchors.leftMargin: 15
                 }
 
-                Text {
+                StyledText {
                     text: "Ethernet (" + Network.ethernetInterface + ")"
-                    color: Theme.colText
-                    font.bold: true
-                    font.family: Theme.fontFamily
+                    bold: true
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: ethIcon.right
                     anchors.leftMargin: 10
                 }
 
-                Text {
+                StyledText {
                     text: "Connected"
-                    color: Theme.colText
-                    font.pointSize: 9
-                    font.family: Theme.fontFamily
+                    size: 9
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right
                     anchors.rightMargin: 15
@@ -74,11 +70,10 @@ Item {
         RowLayout {
             Layout.fillWidth: true
 
-            Text {
+            StyledText {
                 text: "Wi-Fi"
                 color: Theme.colAccent
-                font.pointSize: 14
-                font.family: Theme.fontFamily
+                size: 14
             }
 
             Item { Layout.fillWidth: true }
@@ -113,11 +108,11 @@ Item {
                     contentItem: Item {
                         anchors.fill: parent
 
-                        Text {
+                        StyledText {
                             id: signalIcon
                             text: Network.signalIcon(modelData.signal)
                             color: Theme.colAccent
-                            font.pointSize: 14
+                            size: 14
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
                             anchors.leftMargin: 15
@@ -130,18 +125,16 @@ Item {
                             anchors.leftMargin: 15
                             spacing: 0
 
-                            Text {
+                            StyledText {
                                 text: modelData.ssid
-                                color: Theme.colText
-                                font.bold: modelData.connected
-                                font.family: Theme.fontFamily
+                                bold: modelData.connected
                             }
-                            Text {
+
+                            StyledText {
                                 text: modelData.connected ? "Connected" : (modelData.secured ? "Secured" : "Open")
                                 color: modelData.connected ? Theme.colText : Theme.colMuted
-                                font.bold: modelData.connected
-                                font.pointSize: 8
-                                font.family: Theme.fontFamily
+                                bold: modelData.connected
+                                size: 8
                             }
                         }
 
@@ -157,11 +150,11 @@ Item {
                             onClicked: Network.forget(modelData.ssid)
                         }
 
-                        Text {
+                        StyledText {
                             visible: modelData.secured && !modelData.connected
                             text: "󰌾"
                             color: Theme.colMuted
-                            font.pointSize: 10
+                            size: 10
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
@@ -208,21 +201,19 @@ Item {
             anchors.margins: 25
             spacing: 15
 
-            Text {
+            StyledText {
                 Layout.fillWidth: true
                 text: "Authentication"
                 color: Theme.colAccent
-                font.pointSize: 14
-                font.family: Theme.fontFamily
+                size: 14
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            Text {
+            StyledText {
                 Layout.fillWidth: true
                 text: selectedNetwork ? selectedNetwork.ssid : ""
                 color: Theme.colMuted
-                font.pointSize: 10
-                font.family: Theme.fontFamily
+                size: 10
                 horizontalAlignment: Text.AlignHCenter
             }
 
@@ -245,11 +236,11 @@ Item {
                 onAccepted: if (!Network.connecting) Network.connect(selectedNetwork.ssid, passInput.text)
             }
 
-            Text {
+            StyledText {
                 visible: Network.errorMessage !== ""
                 text: Network.errorMessage
                 color: "#ff5555"
-                font.pointSize: 9
+                size: 9
                 Layout.alignment: Qt.AlignHCenter
             }
 
