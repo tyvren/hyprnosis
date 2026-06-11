@@ -59,7 +59,7 @@ FloatingWindow {
                 ColumnLayout {
                     anchors.fill: parent
                     anchors.margins: 10
-                    spacing: 20
+                    spacing: 10
 
                     Repeater {
                         model: [ 

@@ -44,13 +44,13 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 14
+            anchors.leftMargin: 8
             anchors.rightMargin: 14
-            spacing: 12
+            spacing: 16
 
             StyledText {
                 text: root.icon
-                size: root.textSize
+                size: 14
                 color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
                 visible: root.icon !== ""
                 Layout.preferredWidth: 24 
