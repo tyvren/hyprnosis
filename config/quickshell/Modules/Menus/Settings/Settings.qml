@@ -19,6 +19,10 @@ FloatingWindow {
     color: "transparent"
     property int activeIndex: 0
 
+    onClosed: (close) => {
+        visible = false
+    }
+
     IpcHandler {
         target: "settingsMenu"
     
