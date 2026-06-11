@@ -86,7 +86,9 @@ Item {
 
                 Rectangle {
                     id: dialogContainer
-                    anchors.centerIn: parent
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 150
+                    anchors.horizontalCenter: parent.horizontalCenter  
                     width: 440
                     height: 340
                     color: Theme.colBg
