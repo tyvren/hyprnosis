@@ -51,7 +51,7 @@ PanelWindow {
             anchors.margins: 15
             spacing: 6
 
-            StyledButton {
+            StyledButtonLeftText {
                 text: "Settings"
                 icon: ""
                 Layout.fillWidth: true
@@ -66,7 +66,7 @@ PanelWindow {
                 Layout.fillWidth: true
             }
 
-            StyledButton {
+            StyledButtonLeftText {
                 text: "Lock"
                 icon: "󰌾"
                 Layout.fillWidth: true
@@ -77,7 +77,7 @@ PanelWindow {
                 }
             }
 
-            StyledButton {
+            StyledButtonLeftText {
                 text: "Restart"
                 icon: "󰜉"
                 Layout.fillWidth: true
@@ -88,7 +88,7 @@ PanelWindow {
                 }
             }
 
-            StyledButton {
+            StyledButtonLeftText {
                 text: "Shutdown"
                 icon: "󰐥"
                 Layout.fillWidth: true

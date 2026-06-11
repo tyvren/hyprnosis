@@ -59,7 +59,7 @@ FloatingWindow {
                 ColumnLayout {
                     anchors.fill: parent
                     anchors.margins: 10
-                    spacing: 8
+                    spacing: 20
 
                     Repeater {
                         model: [ 
@@ -77,7 +77,7 @@ FloatingWindow {
                             {icon: "󰚰", text: "Updates"}
                         ]
 
-                        StyledButton {
+                        StyledButtonLeftText {
                             icon: modelData.icon
                             text: modelData.text
                             active: settingsMenu.activeIndex === index
@@ -91,7 +91,7 @@ FloatingWindow {
                         Layout.fillWidth: true
                     }
 
-                    StyledButton {
+                    StyledButtonLeftText {
                         icon: "" 
                         text: "Close"
                         onClicked: settingsMenu.visible = false
