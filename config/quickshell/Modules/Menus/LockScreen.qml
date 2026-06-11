@@ -122,6 +122,8 @@ Item {
                             icon: "󰌾"
                             Layout.fillWidth: true
                             Layout.preferredHeight: 40
+                            Layout.leftMargin: 40
+                            Layout.rightMargin: 40
                             Layout.alignment: Qt.AlignHCenter
 
                             function unlock() {
