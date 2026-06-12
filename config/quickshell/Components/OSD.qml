@@ -43,7 +43,7 @@ Item {
                 PropertyChanges {
                     target: osdContainer
                     opacity: 0
-                    y: 25
+                    y: 0
                 }
             },
             State {
@@ -51,7 +51,7 @@ Item {
                 PropertyChanges {
                     target: osdContainer
                     opacity: 1
-                    y: 0
+                    y: 28
                 }
             }
         ]
@@ -64,7 +64,7 @@ Item {
                     NumberAnimation {
                         properties: "opacity, y"
                         duration: 200
-                        easing.type: Easing.OutBack
+                        easing.type: Easing.InOutCubic
                     }
                 }
             },
@@ -75,7 +75,7 @@ Item {
                     NumberAnimation {
                         properties: "opacity, y"
                         duration: 250
-                        easing.type: Easing.InBack
+                        easing.type: Easing.InOutCubic
                     }
                     ScriptAction { 
                         script: { osdRoot.visible = false } 
