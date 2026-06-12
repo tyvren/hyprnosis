@@ -31,10 +31,10 @@ Item {
     Rectangle {
         id: osdContainer
         anchors.fill: parent
-        radius: 5
+        radius: 2
         color: Theme.colBg
         border.color: Theme.colAccent
-        border.width: 0.7
+        border.width: 0.8
         state: osdRoot.active ? "visible" : "hidden"
 
         states: [
