@@ -46,9 +46,9 @@ Item {
             anchors.rightMargin: 15
             spacing: 10
 
-            Text {
+            StyledText {
                 color: Theme.colAccent
-                font.pointSize: 14
+                size: 14
                 text: Audio.sinkMuted ? "󰝟" : ""
             }
 
