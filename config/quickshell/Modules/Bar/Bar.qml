@@ -62,9 +62,6 @@ Variants {
                     id: topBarRect
                     color: "transparent"
                     anchors.fill: parent
-                    anchors.leftMargin: Config.data.barMargin
-                    anchors.rightMargin: Config.data.barMargin
-                    radius: Config.data.barRadius
                 }
 
                 Item {
@@ -232,9 +229,6 @@ Variants {
                     id: bottomBarRect
                     color: "transparent"
                     anchors.fill: parent
-                    anchors.leftMargin: Config.data.barMargin
-                    anchors.rightMargin: Config.data.barMargin
-                    radius: Config.data.barRadius
                 }
 
                 Item {
@@ -244,21 +238,21 @@ Variants {
                     BarMediaPlayer {
                         id: barMediaBottom
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 1
+                        anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NotificationOSD {
                         id: notificationOSDBottom
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 1
+                        anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
                         id: volumeOSDBottom
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 1
+                        anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
