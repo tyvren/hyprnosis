@@ -47,20 +47,17 @@ Item {
             anchors.rightMargin: 15
             spacing: 12
 
-            Text {
+            StyledText {
                 text: root.currentSummary
-                color: Theme.colText
-                font.bold: true
-                font.pointSize: 12
+                bold: true
                 elide: Text.ElideRight
                 maximumLineCount: 1
                 wrapMode: Text.Wrap
             }
 
-            Text {
+            StyledText {
                 text: root.currentBody
-                color: Theme.colText
-                font.pointSize: 11
+                size: 11
                 elide: Text.ElideRight
                 maximumLineCount: 1
                 wrapMode: Text.Wrap
