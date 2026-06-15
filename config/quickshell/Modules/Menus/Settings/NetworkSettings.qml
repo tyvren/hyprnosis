@@ -74,6 +74,8 @@ Item {
                 text: "Wi-Fi"
                 color: Theme.colAccent
                 size: 14
+                Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 5
             }
 
             Item { Layout.fillWidth: true }
@@ -82,6 +84,8 @@ Item {
                 id: wifiToggle
                 checked: Network.wifiEnabled
                 onToggled: Network.setWifiEnabled(checked)
+                Layout.alignment: Qt.AlignVCenter
+                Layout.topMargin: 12
             }
         }
 

@@ -22,6 +22,7 @@ Item {
                 color: Theme.colAccent
                 size: 14 
                 Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 5
             }
 
             Item { Layout.fillWidth: true }
@@ -31,6 +32,7 @@ Item {
                 checked: Bluetooth.enabled
                 onToggled: Bluetooth.togglePower()
                 Layout.alignment: Qt.AlignVCenter
+                Layout.topMargin: 12
             }
         }
 
@@ -49,8 +51,10 @@ Item {
 
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : Theme.colMuted
-                        opacity: modelData.connected ? 0.2 : 0.1
-                        radius: 5
+                        border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
+                        border.width: 1
+                        opacity: modelData.connected ? 0.3 : 0.6
+                        radius: 3
 
                         MouseArea {
                             anchors.fill: parent
@@ -84,7 +88,6 @@ Item {
                             }
                             StyledText { 
                                 text: modelData.connected ? "Connected" : (modelData.paired ? "Paired" : "Available")
-                                color: Theme.colMuted
                                 size: 8
                             }
                         }
@@ -109,7 +112,7 @@ Item {
             Layout.alignment: Qt.AlignRight
             Layout.preferredWidth: 100
             Layout.preferredHeight: 35
-            text: Bluetooth.scanning ? "..." : "Scan"
+            text: Bluetooth.scanning ? "Scanning..." : "Scan"
             active: Bluetooth.scanning
 
             onClicked: Bluetooth.toggleScan()

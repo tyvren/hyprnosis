@@ -26,7 +26,7 @@ Item {
             return "󰤯"
         }
         onClicked: {
-            Quickshell.execDetached(["qs", "ipc", "call", "settingsMenu", "openTo", "4"])
+            Quickshell.execDetached(["qs", "ipc", "call", "barMenuNetwork", "toggle"])
         }
     }
 }
