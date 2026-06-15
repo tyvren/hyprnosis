@@ -33,7 +33,7 @@ Item {
             Layout.preferredHeight: 50 
             color: Network.ethernetConnected ? Theme.colMuted : Theme.colAccent
             opacity: Network.ethernetConnected ? 1 : 0.2
-            radius: 5
+            radius: 3
             visible: Network.ethernetConnected
 
             Item {
@@ -70,16 +70,16 @@ Item {
         RowLayout {
             Layout.fillWidth: true
 
-            StyledText {
+            StyledText { 
                 text: "Wi-Fi"
                 color: Theme.colAccent
-                size: 14
+                size: 14 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 5
             }
 
             Item { Layout.fillWidth: true }
-
+            
             StyledSwitch {
                 id: wifiToggle
                 checked: Network.wifiEnabled
@@ -100,23 +100,38 @@ Item {
 
                 delegate: ItemDelegate {
                     width: parent.width
-                    height: 50
+                    height: 55
                     enabled: selectedNetwork === null
 
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : Theme.colMuted
-                        opacity: modelData.connected ? 0.2 : 0.1
-                        radius: 5
+                        border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
+                        border.width: 1
+                        opacity: modelData.connected ? 0.3 : 0.6
+                        radius: 3
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                if (modelData.connected) return
+                                if (modelData.secured) {
+                                    Network.errorMessage = ""
+                                    networkRoot.selectedNetwork = modelData
+                                } else {
+                                    Network.connect(modelData.ssid)
+                                }
+                            }
+                        }
                     }
 
                     contentItem: Item {
                         anchors.fill: parent
 
-                        StyledText {
+                        StyledText { 
                             id: signalIcon
                             text: Network.signalIcon(modelData.signal)
                             color: Theme.colAccent
-                            size: 14
+                            size: 14 
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
                             anchors.leftMargin: 15
@@ -129,28 +144,25 @@ Item {
                             anchors.leftMargin: 15
                             spacing: 0
 
-                            StyledText {
+                            StyledText { 
                                 text: modelData.ssid
-                                bold: modelData.connected
+                                bold: modelData.connected 
                             }
-
-                            StyledText {
+                            StyledText { 
                                 text: modelData.connected ? "Connected" : (modelData.secured ? "Secured" : "Open")
-                                color: modelData.connected ? Theme.colText : Theme.colMuted
-                                bold: modelData.connected
                                 size: 8
                             }
                         }
 
                         StyledButton {
                             visible: modelData.connected
-                            width: 80
-                            height: 24
+                            width: 75
+                            height: 26
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
                             text: "Forget"
-
+                            
                             onClicked: Network.forget(modelData.ssid)
                         }
 
@@ -162,16 +174,6 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
-                        }
-                    }
-
-                    onClicked: {
-                        if (modelData.connected) return
-                        if (modelData.secured) {
-                            Network.errorMessage = ""
-                            networkRoot.selectedNetwork = modelData
-                        } else {
-                            Network.connect(modelData.ssid)
                         }
                     }
                 }
