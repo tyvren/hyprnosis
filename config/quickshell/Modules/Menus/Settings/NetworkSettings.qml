@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import qs.Components
 import qs.Services
@@ -99,29 +98,27 @@ Item {
                 spacing: 8
 
                 delegate: ItemDelegate {
+                    id: delegateItem
                     width: parent.width
                     height: 55
                     enabled: selectedNetwork === null
 
+                    onClicked: {
+                        if (modelData.connected) return
+                        if (modelData.secured) {
+                            Network.errorMessage = ""
+                            networkRoot.selectedNetwork = modelData
+                        } else {
+                            Network.connect(modelData.ssid)
+                        }
+                    }
+
                     background: Rectangle {
-                        color: modelData.connected ? Theme.colAccent : Theme.colMuted
+                        color: modelData.connected ? Theme.colAccent : (delegateItem.hovered ? Theme.colMuted : "transparent")
                         border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
                         border.width: 1
                         opacity: modelData.connected ? 0.3 : 0.6
                         radius: 3
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                if (modelData.connected) return
-                                if (modelData.secured) {
-                                    Network.errorMessage = ""
-                                    networkRoot.selectedNetwork = modelData
-                                } else {
-                                    Network.connect(modelData.ssid)
-                                }
-                            }
-                        }
                     }
 
                     contentItem: Item {
@@ -155,25 +152,23 @@ Item {
                         }
 
                         StyledButton {
-                            visible: modelData.connected
                             width: 75
                             height: 26
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
-                            text: "Forget"
+                            text: modelData.connected ? "Forget" : "Connect"
                             
-                            onClicked: Network.forget(modelData.ssid)
-                        }
-
-                        StyledText {
-                            visible: modelData.secured && !modelData.connected
-                            text: "󰌾"
-                            color: Theme.colMuted
-                            size: 10
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.right: parent.right
-                            anchors.rightMargin: 15
+                            onClicked: {
+                                if (modelData.connected) {
+                                    Network.forget(modelData.ssid)
+                                } else if (modelData.secured) {
+                                    Network.errorMessage = ""
+                                    networkRoot.selectedNetwork = modelData
+                                } else {
+                                    Network.connect(modelData.ssid)
+                                }
+                            }
                         }
                     }
                 }
@@ -184,7 +179,7 @@ Item {
             Layout.alignment: Qt.AlignRight
             Layout.preferredWidth: 100
             Layout.preferredHeight: 35
-            text: Network.scanning ? "..." : "Rescan"
+            text: Network.scanning ? "Scanning..." : "Rescan"
             active: Network.scanning
 
             onClicked: Network.scan()
@@ -223,7 +218,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            TextField {
+            StyledInput {
                 id: passInput
                 Layout.fillWidth: true
                 placeholderText: "Password..."
