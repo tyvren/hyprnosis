@@ -93,15 +93,15 @@ Item {
                         }
 
                         StyledButton {
-                            visible: modelData.paired || modelData.connected
+                            visible: true 
                             width: 75
                             height: 26
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.right: parent.right
                             anchors.rightMargin: 15
-                            text: "Forget"
+                            text: modelData.connected ? "Forget" : "Connect"
                             
-                            onClicked: Bluetooth.forgetDevice(modelData)
+                            onClicked: modelData.connected ? Bluetooth.forgetDevice(modelData) : Bluetooth.connectDevice(modelData)
                         }
                     }
                 }
