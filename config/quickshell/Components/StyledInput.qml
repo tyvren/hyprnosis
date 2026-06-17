@@ -16,7 +16,7 @@ TextField {
     background: Rectangle {
         implicitWidth: 80 
         implicitHeight: 30 
-        radius: 8 
+        radius: 3 
         color: Theme.colMuted 
         opacity: 0.3
         border.color: input.activeFocus ? Theme.colAccent : "transparent" 
