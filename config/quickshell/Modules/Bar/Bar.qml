@@ -58,12 +58,6 @@ Variants {
                     }
                 }
 
-                Rectangle {
-                    id: topBarRect
-                    color: "transparent"
-                    anchors.fill: parent
-                }
-
                 Item {
                     id: topBarContent
                     anchors.fill: parent
@@ -223,12 +217,6 @@ Variants {
                         PathLine { x: bottomBar.width + 5; y: 0 }
                         PathLine { x: (bottomBar.width / 2) + 290; y: 0 }
                     }
-                }
-
-                Rectangle {
-                    id: bottomBarRect
-                    color: "transparent"
-                    anchors.fill: parent
                 }
 
                 Item {
