@@ -31,7 +31,7 @@ PanelWindow {
     Rectangle {
         id: container
         anchors.fill: parent
-        radius: 2
+        radius: 3
         color: Theme.colBg
         border.color: Theme.colAccent
         opacity: quickMenuRoot.visible ? 1.0 : 0.0

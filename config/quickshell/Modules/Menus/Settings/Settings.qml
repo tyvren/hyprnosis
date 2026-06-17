@@ -58,7 +58,7 @@ FloatingWindow {
                 border.color: Theme.colAccent
                 Layout.preferredWidth: 200
                 Layout.fillHeight: true
-                radius: 10
+                radius: 3
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -109,7 +109,7 @@ FloatingWindow {
                 border.color: Theme.colAccent
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                radius: 10
+                radius: 3
 
                 LazyLoader {
                     id: menuLoader

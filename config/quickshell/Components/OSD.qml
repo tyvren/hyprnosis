@@ -31,7 +31,7 @@ Item {
     Rectangle {
         id: osdContainer
         anchors.fill: parent
-        radius: 2
+        radius: 3
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 0.8

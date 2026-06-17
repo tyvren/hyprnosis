@@ -165,7 +165,7 @@ ColumnLayout {
                             id: comboBackground
                             color: Theme.colMuted
                             opacity: 0.2
-                            radius: 5
+                            radius: 3
                             border.color: deviceSelector.activeFocus ? Theme.colAccent : "transparent"
                             border.width: 1
                         }
@@ -188,7 +188,7 @@ ColumnLayout {
                                 color: Theme.colBg
                                 border.color: Theme.colAccent
                                 border.width: 1
-                                radius: 5
+                                radius: 3
                             }
                         }
                     }
@@ -251,7 +251,7 @@ ColumnLayout {
                     y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
                     implicitWidth: 16
                     implicitHeight: 16
-                    radius: 5
+                    radius: 3
                     color: volSlider.pressed ? Theme.colAccent : Theme.colBg
                     border.color: Theme.colAccent
                     border.width: 2

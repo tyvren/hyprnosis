@@ -109,7 +109,7 @@ PanelWindow {
                 id: topBackground
                 anchors.fill: parent
                 anchors.topMargin: 30
-                radius: 5 
+                radius: 3 
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -157,7 +157,7 @@ PanelWindow {
                 id: bottomBackground
                 anchors.fill: parent
                 anchors.bottomMargin: 30
-                radius: 5 
+                radius: 3 
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1

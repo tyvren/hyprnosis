@@ -87,7 +87,7 @@ ColumnLayout {
                 Rectangle {
                     id: monitorRect
                     anchors.fill: parent
-                    radius: 5
+                    radius: 3
                     color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
                     border.color: Theme.colAccent
                     border.width: 1
@@ -192,7 +192,7 @@ ColumnLayout {
                             opacity: 0.2
                             border.color: Theme.colAccent
                             border.width: 1
-                            radius: 5
+                            radius: 3
                         }
                     }
 
@@ -205,7 +205,7 @@ ColumnLayout {
                         id: modeSelectorBackground
                         color: Theme.colMuted
                         opacity: 0.2
-                        radius: 5
+                        radius: 3
                     }
 
                     popup: Popup {
@@ -225,7 +225,7 @@ ColumnLayout {
                         background: Rectangle {
                             color: Theme.colBg
                             border.color: Theme.colAccent
-                            radius: 5
+                            radius: 3
                         }
                     }
                 }

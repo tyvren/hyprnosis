@@ -63,7 +63,7 @@ ColumnLayout {
                     Rectangle {
                         width: 15
                         height: 15
-                        radius: 15
+                        radius: 3
                         color: modelData
                         border.color: "white"
                         border.width: 1

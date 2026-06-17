@@ -110,7 +110,7 @@ ColumnLayout {
         Layout.topMargin: 10
         color: Theme.colMuted
         opacity: 0.8
-        radius: 10
+        radius: 3
 
         ColumnLayout {
             anchors.fill: parent

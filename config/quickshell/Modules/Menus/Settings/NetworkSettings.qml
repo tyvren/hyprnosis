@@ -29,7 +29,7 @@ Item {
         Rectangle {
             id: ethernetBar
             Layout.fillWidth: true
-            Layout.preferredHeight: 50 
+            Layout.preferredHeight: 50
             color: Network.ethernetConnected ? Theme.colMuted : Theme.colAccent
             opacity: Network.ethernetConnected ? 1 : 0.2
             radius: 3
@@ -193,7 +193,7 @@ Item {
         height: 260
         color: Theme.colBg
         visible: selectedNetwork !== null
-        radius: 5
+        radius: 3
         border.color: Theme.colAccent
         border.width: 1
 
@@ -230,7 +230,7 @@ Item {
                 background: Rectangle {
                     color: Theme.colMuted
                     opacity: 0.1
-                    radius: 5
+                    radius: 3
                     border.color: Theme.colAccent
                     border.width: 1
                 }

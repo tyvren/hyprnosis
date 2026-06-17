@@ -32,7 +32,7 @@ Item {
     Rectangle {
         id: buttonBackground
         anchors.fill: parent
-        radius: 5
+        radius: 3
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 1

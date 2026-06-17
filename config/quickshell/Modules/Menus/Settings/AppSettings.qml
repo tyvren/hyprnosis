@@ -79,7 +79,7 @@ ColumnLayout {
             Layout.preferredHeight: 45
             Layout.margins: 10
             color: Theme.colBg
-            radius: 10
+            radius: 3
             border.color: Theme.colAccent
             border.width: 1
 
@@ -157,7 +157,7 @@ ColumnLayout {
                 id: appRow
                 width: appView.width
                 height: 50
-                radius: 5
+                radius: 3
 
                 property bool isHovered: rowMa.containsMouse || uninstallMa.containsMouse
 

@@ -52,7 +52,7 @@ PanelWindow {
         id: paneRoot
         anchors.fill: parent
         color: Theme.colBg
-        radius: 10
+        radius: 3
         border.color: Theme.colAccent
         border.width: 1
 
@@ -124,7 +124,7 @@ PanelWindow {
                                 x: (trackBg.width * Brightness.brightness) - (width / 2)
                                 width: 14
                                 height: 14
-                                radius: 7
+                                radius: 3
                                 color: Theme.colAccent
                                 border.color: Theme.colBg
                                 border.width: 2

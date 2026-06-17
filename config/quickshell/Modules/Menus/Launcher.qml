@@ -29,7 +29,7 @@ PanelWindow {
     anchors {
         top: Config.data.barLayout === "top" ? true : false
         bottom: Config.data.barLayout === "bottom" ? true : false
-    }
+    } 
 
     onVisibleChanged: {
         if (visible) {
@@ -138,7 +138,7 @@ PanelWindow {
                 id: topBackground
                 anchors.fill: parent
                 anchors.topMargin: 30
-                radius: 5 
+                radius: 3 
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -186,7 +186,7 @@ PanelWindow {
                 id: bottomBackground
                 anchors.fill: parent
                 anchors.bottomMargin: 30
-                radius: 5 
+                radius: 3
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -245,7 +245,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: parent.width - 50
                 height: 28
-                radius: 5
+                radius: 3
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -332,7 +332,7 @@ PanelWindow {
                         width: 80
                         height: 80
                         anchors.centerIn: parent
-                        radius: 5
+                        radius: 3
                         color: Theme.colBg 
                         border.color: Theme.colAccent
                         border.width: 1
