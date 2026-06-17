@@ -21,9 +21,9 @@ Item {
         anchors.fill: osdContainer
         source: osdContainer
         shadowEnabled: true
-        shadowBlur: 0.1
+        shadowBlur: 0.4
         shadowColor: Theme.colAccent
-        shadowVerticalOffset: 0
+        shadowVerticalOffset: 1
         shadowHorizontalOffset: 0
         opacity: osdContainer.opacity
     }
