@@ -65,31 +65,42 @@ FloatingWindow {
                     anchors.margins: 10
                     spacing: 10
 
-                    Repeater {
-                        model: [ 
-                            {icon: "", text: "About"},
-                            {icon: "", text: "Apps"},
-                            {icon: "", text: "Audio"},
-                            {icon: "", text: "Bluetooth"},
-                            {icon: "󰖩", text: "Network"},
-                            {icon: "󰍹", text: "Monitors"},
-                            {icon: "", text: "Bar"},
-                            {icon: "", text: "Themes"},
-                            {icon: "󰸉", text: "Wallpapers"},
-                            {icon: "", text: "Hyprland"},
-                            {icon: "", text: "Keybinds"},
-                            {icon: "󰚰", text: "Updates"}
-                        ]
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        clip: true
+                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
-                        StyledButtonLeftText {
-                            icon: modelData.icon
-                            text: modelData.text
-                            active: settingsMenu.activeIndex === index
-                            onClicked: settingsMenu.activeIndex = index
+                        Column {
+                            width: parent.width
+                            spacing: 10
+
+                            Repeater {
+                                model: [ 
+                                    {icon: "", text: "About"},
+                                    {icon: "", text: "Apps"},
+                                    {icon: "", text: "Audio"},
+                                    {icon: "", text: "Bluetooth"},
+                                    {icon: "󰖩", text: "Network"},
+                                    {icon: "󰍹", text: "Monitors"},
+                                    {icon: "", text: "Bar"},
+                                    {icon: "", text: "Themes"},
+                                    {icon: "󰸉", text: "Wallpapers"},
+                                    {icon: "", text: "Hyprland"},
+                                    {icon: "", text: "Keybinds"},
+                                    {icon: "󰚰", text: "Updates"}
+                                ]
+
+                                StyledButtonLeftText {
+                                    width: parent.width
+                                    icon: modelData.icon
+                                    text: modelData.text
+                                    active: settingsMenu.activeIndex === index
+                                    onClicked: settingsMenu.activeIndex = index
+                                }
+                            }
                         }
                     }
-
-                    Item { Layout.fillHeight: true }
 
                     DividerLine {
                         Layout.fillWidth: true

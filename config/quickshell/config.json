@@ -26,7 +26,7 @@
   "mainMod": "SUPER",
   "pseudo": "P",
   "qsTransparency": 0.25,
-  "rounding": "5",
+  "rounding": "3",
   "screenshot": "Print",
   "shadowEnabled": "true",
   "sysMonitor": "true",
