@@ -37,8 +37,10 @@ Item {
                 fillMode: Image.PreserveAspectCrop
                 visible: false
                 source: {
-                    const url = Players.active?.trackArtUrl;
-                    if (!url) return "";
+                    const url = Players.active ? Players.active.trackArtUrl : "";
+                    if (!url || url === "") {
+                        return backgroundImage.source;
+                    }
                     return (url.startsWith("/") && !url.startsWith("file://")) ? "file://" + url : url;
                 }
             }
