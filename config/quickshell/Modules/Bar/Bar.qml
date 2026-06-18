@@ -34,6 +34,8 @@ Variants {
                     width: topBar.width
                     height: topBar.height
                     anchors.fill: parent
+                    layer.enabled: true
+                    layer.samples: 4
 
                     ShapePath {
                         strokeWidth: 1
