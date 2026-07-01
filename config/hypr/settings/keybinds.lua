@@ -7,6 +7,8 @@ local terminal = "uwsm app -- ghostty +new-window"
 local fileManager = "uwsm app -- thunar"
 local menu = "uwsm app -- qs ipc call launcher-menu toggle"
 local lockScreen = "uwsm app -- qs ipc call lockscreen lock"
+
+-- Lock and Idle
 local gameMode = "pkill hypridle && notify-send 'Game Mode Enabled'"
 local enableIdle = "notify-send 'Idle Enabled' && hypridle &"
 
@@ -16,19 +18,12 @@ local enableIdle = "notify-send 'Idle Enabled' && hypridle &"
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
--- Terminal
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- FileManager
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
--- Float toggle
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
--- AppLauncher
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
--- Pseudo
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
--- Toggle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
