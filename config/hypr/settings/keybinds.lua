@@ -6,6 +6,9 @@
 local terminal = "uwsm app -- ghostty +new-window"
 local fileManager = "uwsm app -- thunar"
 local menu = "uwsm app -- qs ipc call launcher-menu toggle"
+local lockScreen = "uwsm app -- qs ipc call lockscreen lock"
+local gameMode = "pkill hypridle && notify-send 'Game Mode Enabled'"
+local enableIdle = "notify-send 'Idle Enabled' && hypridle &"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -57,9 +60,9 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind("Print", hl.dsp.exec_cmd("uwsm app -- flameshot gui"))
 
 -- Lock screen and idle
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("uwsm app -- qs ipc call lockscreen lock"))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("pkill hypridle"))
-hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("hypridle &"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockScreen))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(gameMode))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(enableIdle))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
