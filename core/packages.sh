@@ -1,5 +1,5 @@
 default_packages=(
-  zen-browser-bin
+  firefox
   steam
   gimp
   occt
