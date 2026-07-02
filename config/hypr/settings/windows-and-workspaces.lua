@@ -5,8 +5,6 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
--- Example window rules that are useful
-
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
 	name = "suppress-maximize-events",
@@ -17,7 +15,6 @@ local suppressMaximizeRule = hl.window_rule({
 -- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
-	-- Fix some dragging issues with XWayland
 	name = "fix-xwayland-drags",
 	match = {
 		class = "^$",
@@ -47,3 +44,30 @@ hl.window_rule({
 	move = "20 monitor_h-120",
 	float = true,
 })
+
+-- Default app rules
+
+hl.window_rule({
+	match = { class = "firefox" },
+	workspace = "1",
+})
+
+hl.window_rule({
+	match = { class = "discord" },
+	workspace = "2 silent",
+})
+
+hl.window_rule({
+	match = { class = "steam" },
+	workspace = "3 silent",
+})
+
+hl.window_rule({
+	match = { title = "Friends List" },
+	workspace = "3 silent",
+})
+
+-- Open app in workspace if empty
+--hl.workspace_rule({ workspace = "1", on_created_empty = "firefox --new-window" })
+--hl.workspace_rule({ workspace = "2", on_created_empty = "discord" })
+--hl.workspace_rule({ workspace = "3", on_created_empty = "steam" })

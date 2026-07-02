@@ -15,7 +15,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 15,
+		rounding = 3,
 		rounding_power = 2,
 		active_opacity = 0.9,
 		inactive_opacity = 0.5,
@@ -42,6 +42,8 @@ hl.config({
 	misc = {
 		disable_hyprland_logo = true,
 		force_default_wallpaper = 0,
+		disable_splash_rendering = true,
+		background_color = 0x1e1e2e,
 	},
 })
 
@@ -77,7 +79,7 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	match = { class = "zen" },
+	match = { class = "firefox" },
 	opaque = true,
 })
 
