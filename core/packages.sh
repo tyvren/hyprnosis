@@ -1,5 +1,6 @@
 default_packages=(
   firefox
+  discord
   steam
   gimp
   occt
