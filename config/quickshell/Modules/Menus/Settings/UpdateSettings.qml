@@ -44,58 +44,52 @@ ColumnLayout {
                     proc.startDetached()
                 }
 
+                StyledText {
+                    id: fontIcon
+                    visible: !modelData.isImage
+                    text: modelData.icon
+                    size: 14
+                    color: btn.active ? Theme.colAccent : Theme.colText
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 12
+                }
+
+                Image {
+                    id: imageIcon
+                    visible: modelData.isImage
+                    source: modelData.isImage ? modelData.icon : ""
+                    width: 16
+                    height: 16
+                    fillMode: Image.PreserveAspectFit
+                    mipmap: true
+                    asynchronous: true
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 13
+                }
+
                 RowLayout {
-                    anchors.fill: parent
-                    anchors.leftMargin: 8
+                    spacing: 4
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 48
+                    anchors.right: parent.right
                     anchors.rightMargin: 14
-                    spacing: 16
 
-                    Item {
-                        Layout.preferredWidth: 24
-                        Layout.preferredHeight: 24
-                        Layout.alignment: Qt.AlignVCenter
-
-                        StyledText {
-                            anchors.fill: parent
-                            text: modelData.icon
-                            size: 14
-                            color: btn.active ? Theme.colAccent : Theme.colText
-                            visible: !modelData.isImage
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Image {
-                            anchors.centerIn: parent
-                            width: 18
-                            height: 18
-                            source: modelData.isImage ? modelData.icon : ""
-                            visible: modelData.isImage
-                            fillMode: Image.PreserveAspectFit
-                            mipmap: true
-                            asynchronous: true
-                        }
+                    StyledText {
+                        text: "Update " + modelData.name
+                        size: 12
+                        color: btn.active ? Theme.colAccent : Theme.colText
                     }
 
-                    RowLayout {
-                        spacing: 4
-                        Layout.alignment: Qt.AlignVCenter
+                    StyledText {
+                        text: modelData.message
+                        size: 11
+                        color: btn.active ? Theme.colAccent : Theme.colText
+                        opacity: 0.4
                         Layout.fillWidth: true
-
-                        StyledText {
-                            text: "Update " + modelData.name
-                            size: 12
-                            color: btn.active ? Theme.colAccent : Theme.colText
-                        }
-
-                        StyledText {
-                            text: modelData.message
-                            size: 11
-                            color: btn.active ? Theme.colAccent : Theme.colText
-                            opacity: 0.4
-                            Layout.fillWidth: true
-                            elide: Text.ElideRight
-                        }
+                        elide: Text.ElideRight
                     }
                 }
 
