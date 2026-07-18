@@ -78,7 +78,7 @@ ColumnLayout {
                     anchors.rightMargin: 14
 
                     StyledText {
-                        text: "Update " + modelData.name
+                        text: modelData.name + " Update"
                         size: 12
                         color: btn.active ? Theme.colAccent : Theme.colText
                     }
