@@ -27,18 +27,76 @@ ColumnLayout {
 
         Repeater {
             model: [
-                { name: "System", script: "update_system.sh" },
-                { name: "AUR", script: "update_aur.sh" },
-                { name: "Hyprnosis", script: "update_hyprnosis.sh" }
+                { name: "System", icon: "󰣇", isImage: false, message: " - update Arch repo packages using pacman -Syu", script: "update_system.sh" },
+                { name: "AUR", icon: "󰣇", isImage: false, message: " - update AUR packages using yay -Syu", script: "update_aur.sh" },
+                { name: "Hyprnosis", icon: Theme.logoPath, isImage: true, message: " - update Hyprnosis shell to the latest release", script: "update_hyprnosis.sh" }
             ]
 
-            StyledButton {
+            StyledButtonLeftText {
+                id: btn
                 Layout.fillWidth: true
                 Layout.preferredHeight: 45
-                text: "Update " + modelData.name
+                
+                icon: ""
+                text: ""
 
                 onClicked: {
                     proc.startDetached()
+                }
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 8
+                    anchors.rightMargin: 14
+                    spacing: 16
+
+                    Item {
+                        Layout.preferredWidth: 24
+                        Layout.preferredHeight: 24
+                        Layout.alignment: Qt.AlignVCenter
+
+                        StyledText {
+                            anchors.fill: parent
+                            text: modelData.icon
+                            size: 14
+                            color: btn.active ? Theme.colAccent : Theme.colText
+                            visible: !modelData.isImage
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        Image {
+                            anchors.centerIn: parent
+                            width: 18
+                            height: 18
+                            source: modelData.isImage ? modelData.icon : ""
+                            visible: modelData.isImage
+                            fillMode: Image.PreserveAspectFit
+                            mipmap: true
+                            asynchronous: true
+                        }
+                    }
+
+                    RowLayout {
+                        spacing: 4
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.fillWidth: true
+
+                        StyledText {
+                            text: "Update " + modelData.name
+                            size: 12
+                            color: btn.active ? Theme.colAccent : Theme.colText
+                        }
+
+                        StyledText {
+                            text: modelData.message
+                            size: 11
+                            color: btn.active ? Theme.colAccent : Theme.colText
+                            opacity: 0.4
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                        }
+                    }
                 }
 
                 Process {
