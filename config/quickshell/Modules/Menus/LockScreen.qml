@@ -9,6 +9,7 @@ import Quickshell.Services.Pam
 import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.Components
+import qs.Modules.Bar
 import qs.Themes
 
 Item {
@@ -100,6 +101,12 @@ Item {
                         anchors.fill: parent
                         anchors.margins: 30
                         spacing: 18
+
+                        Clock {
+                            id: lockScreenClock
+                            Layout.alignment: Qt.AlignHCenter
+                            textSize: 40
+                        }
 
                         StyledInput {
                             id: passwordIn

@@ -8,13 +8,15 @@ Item {
     implicitWidth: clock.implicitWidth
     implicitHeight: clock.implicitHeight
 
+    property int textSize: Theme.fontSize
+    property string orientation: "horizontal"
+
     Text {
         id: clock
-        text: TimeH.time
+        text: clockWrapper.orientation === "vertical" ? Time.vertical : Time.horizontal
         font.family: Theme.fontFamily
-        font.pixelSize: Theme.fontSize
+        font.pixelSize: clockWrapper.textSize
         font.bold: true
         color: Theme.colAccent
     }
 }
-
