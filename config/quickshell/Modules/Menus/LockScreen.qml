@@ -9,7 +9,6 @@ import Quickshell.Services.Pam
 import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.Components
-import qs.Modules.Bar
 import qs.Themes
 
 Item {
