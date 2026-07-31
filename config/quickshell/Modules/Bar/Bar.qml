@@ -187,7 +187,7 @@ Variants {
                     anchors.topMargin: 2
                     anchors.bottomMargin: 2
                     width: bottomBar.width / 2 - 250
-                    height: bottomBar.height
+                    height: bottomBar.height - 2
                     radius: 2 
                     color: Theme.colBg
                     border.color: Theme.colAccent
@@ -199,7 +199,7 @@ Variants {
                     anchors.bottomMargin: 2
                     x: bottomBar.width / 2 + 250
                     width: bottomBar.width / 2 - 250
-                    height: bottomBar.height
+                    height: bottomBar.height - 2
                     radius: 2 
                     color: Theme.colBg
                     border.color: Theme.colAccent
