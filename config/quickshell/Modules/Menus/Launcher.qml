@@ -14,7 +14,7 @@ PanelWindow {
     id: launcherMenu
     visible: false
     focusable: true
-    implicitWidth: 400
+    implicitWidth: 480
     implicitHeight: 400
     color: "transparent"
     property string query: ""
@@ -70,7 +70,7 @@ PanelWindow {
 
     Item {
         id: launcherContainer
-        width: 400
+        width: 480
         height: 400
         anchors.horizontalCenter: parent.horizontalCenter
         state: launcherMenu.open ? "open" : "closed"
@@ -148,7 +148,7 @@ PanelWindow {
                 Image {
                     id: logoImage
                     anchors.centerIn: parent
-                    width: 400
+                    width: 490
                     height: 375
                     source: Theme.logoPath
                     mipmap: true

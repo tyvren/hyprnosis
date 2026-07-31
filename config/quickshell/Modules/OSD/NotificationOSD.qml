@@ -8,7 +8,7 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 400
+    implicitWidth: 480
     implicitHeight: 28
 
     property bool shouldShowOsd: false

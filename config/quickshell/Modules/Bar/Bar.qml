@@ -23,42 +23,31 @@ Variants {
                 id: topBar
                 color: "transparent"
                 visible: Config.data.barLayout === "top"
-                implicitHeight: 30
+                implicitHeight: 32
                 anchors {
                     top: true
                     left: true
                     right: true
+                  }
+
+                Rectangle {
+                    id: topLeftBar
+                    width: topBar.width / 2 - 250
+                    height: topBar.height - 2
+                    radius: 2
+                    color: Theme.colBg
+                    border.color: Theme.colAccent
                 }
-
-                Shape {
-                    width: topBar.width
-                    height: topBar.height
-                    anchors.fill: parent
-                    layer.enabled: true
-                    layer.samples: 4
-
-                    ShapePath {
-                        strokeWidth: 1
-                        strokeColor: Theme.colAccent
-                        fillColor: Theme.colBg
-                        startX: -5
-                        PathLine { x: 0; y: topBar.height }
-                        PathLine { x: (topBar.width / 2) - 290; y: topBar.height }
-                        PathLine { x: (topBar.width / 2) - 250; y: 0 }
-                        PathLine { x: -5; y: 0 }
-                    }
-
-                    ShapePath {
-                        strokeWidth: 1
-                        strokeColor: Theme.colAccent
-                        fillColor: Theme.colBg
-                        startX: (topBar.width / 2) + 250
-                        PathLine { x: (topBar.width / 2) + 290; y: topBar.height }
-                        PathLine { x: topBar.width + 5; y: topBar.height }
-                        PathLine { x: topBar.width + 5; y: 0 }
-                        PathLine { x: (topBar.width / 2) + 250; y: 0 }
-                    }
-                }
+                
+                Rectangle {
+                    id: topRightBar
+                    x: topBar.width / 2 + 250
+                    width: topBar.width / 2 - 250
+                    height: topBar.height - 2
+                    radius: 2 
+                    color: Theme.colBg
+                    border.color: Theme.colAccent
+                  }
 
                 Item {
                     id: topBarContent
@@ -193,32 +182,27 @@ Variants {
                     right: true
                 }
 
-                Shape {
-                    width: bottomBar.width
+                Rectangle {
+                    id: bottomLeftBar
+                    anchors.topMargin: 2
+                    anchors.bottomMargin: 2
+                    width: bottomBar.width / 2 - 250
                     height: bottomBar.height
-                    anchors.fill: parent
+                    radius: 2 
+                    color: Theme.colBg
+                    border.color: Theme.colAccent
+                }
 
-                    ShapePath {
-                        strokeWidth: 1
-                        strokeColor: Theme.colAccent
-                        fillColor: Theme.colBg
-                        startX: -5
-                        PathLine { x: 0; y: bottomBar.height }
-                        PathLine { x: (bottomBar.width / 2) - 250; y: bottomBar.height }
-                        PathLine { x: (bottomBar.width / 2) - 290; y: 0 }
-                        PathLine { x: -5; y: 0 }
-                    }
-
-                    ShapePath {
-                        strokeWidth: 1
-                        strokeColor: Theme.colAccent
-                        fillColor: Theme.colBg
-                        startX: (bottomBar.width / 2) + 290
-                        PathLine { x: (bottomBar.width / 2) + 250; y: bottomBar.height }
-                        PathLine { x: bottomBar.width + 5; y: bottomBar.height }
-                        PathLine { x: bottomBar.width + 5; y: 0 }
-                        PathLine { x: (bottomBar.width / 2) + 290; y: 0 }
-                    }
+                Rectangle {
+                    id: bottomRightBar
+                    anchors.topMargin: 2
+                    anchors.bottomMargin: 2
+                    x: bottomBar.width / 2 + 250
+                    width: bottomBar.width / 2 - 250
+                    height: bottomBar.height
+                    radius: 2 
+                    color: Theme.colBg
+                    border.color: Theme.colAccent
                 }
 
                 Item {

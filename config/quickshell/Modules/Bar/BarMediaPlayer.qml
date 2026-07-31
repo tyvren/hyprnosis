@@ -11,7 +11,7 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 400
+    implicitWidth: 480
     implicitHeight: 28
 
     OSD {
@@ -22,10 +22,7 @@ Item {
         ClippingRectangle {
             id: bgImageContainer
             anchors.fill: parent 
-            anchors.topMargin: 2
-            anchors.bottomMargin: 2
-            anchors.rightMargin: 2
-            anchors.leftMargin: 2
+            anchors.margins: 2
             opacity: 0.2
             radius: 2
             color: "transparent"
@@ -56,7 +53,7 @@ Item {
 
         RowLayout {
             anchors.fill: parent
-            anchors.leftMargin: 6
+            anchors.leftMargin: 50
             anchors.rightMargin: 15
             spacing: 12
 
