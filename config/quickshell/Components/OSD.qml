@@ -3,12 +3,14 @@ import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
+import qs.Services
 import qs.Themes
 
 Item {
     id: osdRoot
 
     property bool active: false
+    readonly property string barLayout: Config.data.barLayout
     default property alias data: osdContainer.data
 
     onActiveChanged: {
@@ -31,7 +33,7 @@ Item {
     Rectangle {
         id: osdContainer
         anchors.fill: parent
-        anchors.bottomMargin: 2
+        anchors.bottomMargin: Config.data.barLayout === "top" ? 2 : 0
         radius: 2
         color: Theme.colBg
         border.color: Theme.colAccent
