@@ -19,17 +19,6 @@ Item {
         }
     }
 
-    MultiEffect {
-        anchors.fill: osdContainer
-        source: osdContainer
-        shadowEnabled: true
-        shadowBlur: 0.4
-        shadowColor: Theme.colAccent
-        shadowVerticalOffset: 1
-        shadowHorizontalOffset: 0
-        opacity: osdContainer.opacity
-    }
-
     Rectangle {
         id: osdContainer
         anchors.fill: parent
@@ -66,7 +55,7 @@ Item {
                 SequentialAnimation {
                     NumberAnimation {
                         properties: "opacity, y"
-                        duration: 200
+                        duration: 500
                         easing.type: Easing.InOutCubic
                     }
                 }
@@ -77,7 +66,7 @@ Item {
                 SequentialAnimation {
                     NumberAnimation {
                         properties: "opacity, y"
-                        duration: 250
+                        duration: 550
                         easing.type: Easing.InOutCubic
                     }
                     ScriptAction { 

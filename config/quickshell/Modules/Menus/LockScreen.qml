@@ -83,7 +83,7 @@ Item {
                     shadowVerticalOffset: 1
                     shadowHorizontalOffset: 1
                 }
-
+                
                 Rectangle {
                     id: dialogContainer
                     anchors.bottom: parent.bottom

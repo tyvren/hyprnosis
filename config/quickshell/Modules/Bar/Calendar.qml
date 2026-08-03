@@ -8,7 +8,7 @@ import qs.Themes
 
 PopupWindow {
     id: calendarRoot
-    implicitWidth: 350
+    implicitWidth: 480
     implicitHeight: 225
     color: "transparent"
 

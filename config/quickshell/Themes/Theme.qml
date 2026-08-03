@@ -90,9 +90,9 @@ QtObject {
 
     readonly property color colBg: Qt.alpha(active.colBg, theme.currentAlpha)
     readonly property color colText: active.colText
-    readonly property color colHilight: active.colHilight
+    readonly property color colHilight: Qt.alpha(active.colHilight, theme.currentAlpha)
     readonly property color colSelect: Qt.alpha(active.colSelect, theme.currentAlpha)
-    readonly property color colAccent: active.colAccent
+    readonly property color colAccent: Qt.alpha(active.colAccent, theme.currentAlpha)
     readonly property color colMuted: Qt.alpha(active.colMuted, theme.currentAlpha)
 
     readonly property string wallpaperPath: {

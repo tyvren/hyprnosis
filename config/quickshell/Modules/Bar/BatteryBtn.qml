@@ -8,11 +8,12 @@ Item {
     id: root
     implicitWidth: 40
     implicitHeight: 20
+    visible: available
+
     property real percentage: Battery.percentage
     property bool isCharging: Battery.isCharging
     property bool isFull: Battery.isFull
     property bool available: Battery.available
-    visible: available 
     
     readonly property color fillCol: percentage <= 0.2 ? Theme.colAccent : percentage <= 0.4 ? Theme.colAccent : Theme.colAccent
     
@@ -25,7 +26,10 @@ Item {
     Rectangle { 
         anchors.fill: parent
         color: Theme.colMuted 
-        radius: height / 2 
+        topLeftRadius: 50
+        bottomLeftRadius: 2
+        topRightRadius: 2
+        bottomRightRadius: 50
     }
 
     ClippingRectangle {

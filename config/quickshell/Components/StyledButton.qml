@@ -9,11 +9,13 @@ Item {
     property string icon: ""
     property string text: ""
     property int textSize: 12
+    property int buttonWidth: 180
+    property int buttonHeight: 40
     property bool active: false
     signal clicked()
 
-    implicitWidth: 180
-    implicitHeight: 40
+    implicitWidth: root.buttonWidth
+    implicitHeight: root.buttonHeight
 
     MultiEffect {
         anchors.fill: buttonBackground

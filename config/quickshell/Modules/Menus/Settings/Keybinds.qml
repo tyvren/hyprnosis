@@ -161,7 +161,7 @@ ColumnLayout {
                 StyledText {
                     text: "mainMod +"
                     color: Theme.colAccent
-                    size: 11 
+                    size: 11
                 }
 
                 StyledInput { 

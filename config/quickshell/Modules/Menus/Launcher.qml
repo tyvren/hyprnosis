@@ -35,9 +35,11 @@ PanelWindow {
         if (visible) {
             open = true
             focusGrab.active = true
+            States.launcherOpen = true
         } else {
             open = false
             focusGrab.active = false
+            States.launcherOpen = false
         }
         query = ""
     }
@@ -165,16 +167,6 @@ PanelWindow {
                     sourceComponent: launcherContent
                 }
             }
-
-            MultiEffect {
-                id: topLauncherShadow
-                anchors.fill: topBackground
-                source: topBackground
-                shadowEnabled: true
-                shadowColor: Theme.colAccent
-                shadowBlur: 0.2
-                z: -1
-            }
         }
 
         Item {
@@ -212,16 +204,6 @@ PanelWindow {
                     focus: true
                     sourceComponent: launcherContent
                 }
-            }
-
-            MultiEffect {
-                id: bottomLauncherShadow
-                anchors.fill: bottomBackground
-                source: bottomBackground
-                shadowEnabled: true
-                shadowColor: Theme.colAccent
-                shadowBlur: 0.2
-                z: -1
             }
         }
     }

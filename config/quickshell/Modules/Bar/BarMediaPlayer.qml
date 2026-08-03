@@ -5,7 +5,6 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
 import qs.Components
-import qs.Modules.OSD
 import qs.Services
 import qs.Themes
 
@@ -17,7 +16,15 @@ Item {
     OSD {
         id: playerMain
         anchors.fill: parent
-        active: Players.active !== null
+        active: Players.isPlaying
+
+        onActiveChanged: {
+            if (Players.isPlaying) {
+                States.mediaPlayerOpen = true
+            } else {
+                States.mediaPlayerOpen = false
+            }
+        }
 
         ClippingRectangle {
             id: bgImageContainer
@@ -53,7 +60,7 @@ Item {
 
         RowLayout {
             anchors.fill: parent
-            anchors.leftMargin: 50
+            anchors.leftMargin: 10
             anchors.rightMargin: 15
             spacing: 12
 

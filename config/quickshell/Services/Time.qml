@@ -11,7 +11,11 @@ Singleton {
       }
 
     readonly property string horizontal: {
-        Qt.formatDateTime(clock.date, "hh:mm AP")
+        Qt.formatDateTime(clock.date, "h:mm AP")
+    }
+
+    readonly property string horizontalFull: {
+        Qt.formatDateTime(clock.date, "h:mm AP   -   MMM d")
     }
 
     SystemClock {

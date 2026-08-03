@@ -65,6 +65,13 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
+                      }
+
+                    TimeDateOSD {
+                        id: timeDate
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
@@ -72,18 +79,6 @@ Variants {
                         anchors.top: parent.top
                         anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    Clock {
-                        id: clockButtonTop
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-                        
-                        MouseArea {
-                            id: clockAreaTop
-                            anchors.fill: clockButtonTop
-                        }
                     }
 
                     MainMenuBtn {
@@ -133,40 +128,34 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
-                    SysMon {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 280
-                    }
-
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 220 
+                        anchors.rightMargin: 130
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 185
+                        anchors.rightMargin: 100
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 155
+                        anchors.rightMargin: 70
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 120
+                        anchors.rightMargin: 40
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 90
+                       anchors.rightMargin: 10
                     }
                 }
             } 
@@ -222,24 +211,19 @@ Variants {
                         anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
+                    
+                    TimeDateOSD {
+                        id: timeDateBottom
+                        anchors.top: parent.top
+                        anchors.bottomMargin: 2
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
 
                     VolumeOSD {
                         id: volumeOSDBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    Clock {
-                        id: clockButtonBottom
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
-
-                        MouseArea {
-                            id: clockAreaBottom
-                            anchors.fill: clockButtonBottom
-                        }
                     }
 
                     MainMenuBtn {
@@ -289,40 +273,34 @@ Variants {
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
-                    SysMon {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 280
-                    }
-
                     BatteryBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 220
+                        anchors.rightMargin: 130
                     }
 
                     AudioBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 185
+                        anchors.rightMargin: 100
                     }
 
                     BluetoothBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 155
+                        anchors.rightMargin: 70
                     }
 
                     NetworkBtn {
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 120
+                        anchors.rightMargin: 40
                     }
 
                     SidePaneBtn {
                        anchors.right: parent.right
                        anchors.verticalCenter: parent.verticalCenter
-                       anchors.rightMargin: 90
+                       anchors.rightMargin: 10
                     }
                 }
             }

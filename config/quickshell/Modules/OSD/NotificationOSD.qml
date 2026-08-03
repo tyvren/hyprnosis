@@ -14,6 +14,14 @@ Item {
     property bool shouldShowOsd: false
     property string currentSummary: ""
     property string currentBody: ""
+    
+    onShouldShowOsdChanged: {
+      if (shouldShowOsd) {
+          States.notificationOSDOpen = true
+        } else {
+          States.notificationOSDOpen = false
+        }
+    }
 
     Scope {
         id: notificationScope

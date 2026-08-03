@@ -13,7 +13,7 @@ PanelWindow {
     id: panelWindowRoot
     visible: false
     focusable: true
-    implicitWidth: 400
+    implicitWidth: 480
     implicitHeight: 400
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
@@ -41,7 +41,7 @@ PanelWindow {
 
     Item {
         id: windowContainer
-        width: 400
+        width: 480
         height: 400
         anchors.horizontalCenter: parent.horizontalCenter
         state: panelWindowRoot.open ? "open" : "closed"
@@ -53,7 +53,7 @@ PanelWindow {
                 name: "closed"
                 PropertyChanges {
                     target: windowContainer
-                    opacity: 0.5
+                    opacity: 0
                     y: Config.data.barLayout === "top" ? -369 : 369
                 }
             },

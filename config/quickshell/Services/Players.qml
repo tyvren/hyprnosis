@@ -15,6 +15,8 @@ Singleton {
         ?? Mpris.activePlayer
         ?? (players.length > 0 ? players[0] : null)
 
+    readonly property bool isPlaying: root.active != null && root.active.playbackState === MprisPlaybackState.Playing
+
     readonly property string currentTrackArt: active ? active.trackArtUrl : ""
 
     function identity(player: MprisPlayer): string {
@@ -40,7 +42,7 @@ Singleton {
     }
 
     FrameAnimation {
-        running: root.active && root.active.playbackState == MprisPlaybackState.Playing
+        running: root.isPlaying
         onTriggered: root.active.positionChanged()
     }
 

@@ -14,6 +14,14 @@ Item {
 
     property bool shouldShowOsd: false
 
+    onShouldShowOsdChanged: {
+      if (shouldShowOsd) {
+          States.volumeOSDOpen = true
+        } else {
+          States.volumeOSDOpen = false
+        }
+    }
+
     function requestShow(customInterval) {
         root.shouldShowOsd = true
         hideTimer.interval = customInterval || 1500
@@ -25,7 +33,7 @@ Item {
 
         function onSinkVolumeChanged() {
             if (!volSlider.pressed) {
-                root.requestShow(1500)
+                root.requestShow(1500) 
             }
         }
     }

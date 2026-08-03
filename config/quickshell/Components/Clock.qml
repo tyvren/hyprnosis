@@ -13,7 +13,7 @@ Item {
 
     Text {
         id: clock
-        text: clockWrapper.orientation === "vertical" ? Time.vertical : Time.horizontal
+        text: Time.horizontalFull 
         font.family: Theme.fontFamily
         font.pixelSize: clockWrapper.textSize
         font.bold: true
