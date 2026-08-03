@@ -12,20 +12,19 @@ Item {
     implicitWidth: 480
     implicitHeight: 28
 
-    property bool shouldShowOsd: false
-
-    onShouldShowOsdChanged: {
-      if (shouldShowOsd) {
-          States.volumeOSDOpen = true
-        } else {
-          States.volumeOSDOpen = false
-        }
-    }
-
     function requestShow(customInterval) {
-        root.shouldShowOsd = true
+        States.volumeOSDOpen = true
         hideTimer.interval = customInterval || 1500
         hideTimer.restart()
+    }
+
+    Connections {
+        target: States
+        function onVolumeOSDOpenChanged() {
+            if (!States.volumeOSDOpen) {
+                hideTimer.stop()
+            }
+        }
     }
 
     Connections {
@@ -41,18 +40,19 @@ Item {
     Timer {
         id: hideTimer
         interval: 1500
-        onTriggered: root.shouldShowOsd = false
+        onTriggered: States.volumeOSDOpen = false
     }
 
     OSD {
         anchors.fill: parent
-        active: root.shouldShowOsd
+        active: States.volumeOSDOpen
 
         RowLayout {
             anchors.fill: parent
             anchors.leftMargin: 15
             anchors.rightMargin: 15
             spacing: 10
+            enabled: States.volumeOSDOpen
 
             StyledText {
                 color: Theme.colAccent

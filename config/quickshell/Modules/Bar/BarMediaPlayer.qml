@@ -13,18 +13,34 @@ Item {
     implicitWidth: 480
     implicitHeight: 28
 
+    Timer {
+        id: pauseTimer
+        interval: 30000
+        repeat: false
+        onTriggered: {
+            States.mediaPlayerInGracePeriod = false
+            States.restoreDefaultState()
+        }
+    }
+
+    Connections {
+        target: Players
+        function onIsPlayingChanged() {
+            if (Players.isPlaying) {
+                pauseTimer.stop()
+                States.mediaPlayerInGracePeriod = false
+            } else {
+                States.mediaPlayerInGracePeriod = true
+                pauseTimer.restart()
+            }
+            States.restoreDefaultState()
+        }
+    }
+
     OSD {
         id: playerMain
         anchors.fill: parent
-        active: Players.isPlaying
-
-        onActiveChanged: {
-            if (Players.isPlaying) {
-                States.mediaPlayerOpen = true
-            } else {
-                States.mediaPlayerOpen = false
-            }
-        }
+        active: States.mediaPlayerOpen
 
         ClippingRectangle {
             id: bgImageContainer

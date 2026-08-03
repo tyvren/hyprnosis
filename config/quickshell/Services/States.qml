@@ -1,5 +1,6 @@
 pragma Singleton
 import QtQuick
+import qs.Services
 
 QtObject {
     id: windowStates
@@ -11,8 +12,23 @@ QtObject {
     property bool notificationOSDOpen: false
     property bool timeDateOSDOpen: true
     property bool volumeOSDOpen: false
+    property bool mediaPlayerInGracePeriod: false
 
-   onBluetoothOpenChanged: {
+    function restoreDefaultState() {
+        bluetoothOpen = false
+        launcherOpen = false
+        networkOpen = false
+
+        if (Players.isPlaying || mediaPlayerInGracePeriod) {
+            mediaPlayerOpen = true
+            timeDateOSDOpen = false
+        } else {
+            mediaPlayerOpen = false
+            timeDateOSDOpen = true
+        }
+    }
+
+    onBluetoothOpenChanged: {
         if (bluetoothOpen) {
             launcherOpen = false
             mediaPlayerOpen = false
@@ -20,9 +36,9 @@ QtObject {
             notificationOSDOpen = false
             timeDateOSDOpen = false
             volumeOSDOpen = false
-          } else {
-            timeDateOSDOpen = true
-          } 
+        } else {
+            restoreDefaultState()
+        }
     }
 
     onLauncherOpenChanged: {
@@ -33,9 +49,9 @@ QtObject {
             notificationOSDOpen = false
             timeDateOSDOpen = false
             volumeOSDOpen = false
-          } else {
-            timeDateOSDOpen = true
-          } 
+        } else {
+            restoreDefaultState()
+        }
     }
 
     onMediaPlayerOpenChanged: {
@@ -46,22 +62,35 @@ QtObject {
             notificationOSDOpen = false
             timeDateOSDOpen = false
             volumeOSDOpen = false
-        } else {
-            timeDateOSDOpen = true
         }
     }
-    
+
+    onNetworkOpenChanged: {
+        if (networkOpen) {
+            bluetoothOpen = false
+            launcherOpen = false
+            mediaPlayerOpen = false
+            notificationOSDOpen = false
+            timeDateOSDOpen = false
+            volumeOSDOpen = false
+        } else {
+            restoreDefaultState()
+        }
+    }
+
     onNotificationOSDOpenChanged: {
         if (notificationOSDOpen) {
             bluetoothOpen = false
             launcherOpen = false
+            mediaPlayerOpen = false
             networkOpen = false
             timeDateOSDOpen = false
             volumeOSDOpen = false
-        } else {
-            timeDateOSDOpen = true
+        } else if (!volumeOSDOpen) {
+            restoreDefaultState()
         }
     }
+
     onVolumeOSDOpenChanged: {
         if (volumeOSDOpen) {
             bluetoothOpen = false
@@ -70,8 +99,8 @@ QtObject {
             networkOpen = false
             notificationOSDOpen = false
             timeDateOSDOpen = false
-          } else {
-            timeDateOSDOpen = true
-          }
+        } else if (!notificationOSDOpen) {
+            restoreDefaultState()
+        }
     }
 }
