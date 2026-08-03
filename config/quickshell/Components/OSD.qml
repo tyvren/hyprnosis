@@ -69,9 +69,6 @@ Item {
                         duration: 550
                         easing.type: Easing.InOutCubic
                     }
-                    ScriptAction { 
-                        script: { osdRoot.visible = false } 
-                    }
                 }
             }
         ]

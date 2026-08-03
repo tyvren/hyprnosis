@@ -13,7 +13,16 @@ Item {
 
     Text {
         id: clock
-        text: Time.horizontalFull 
+        text: {
+            if (clockWrapper.orientation === "vertical") {
+                return Time.vertical;
+            } else if (clockWrapper.orientation === "horizontal") {
+                     return Time.horizontal;
+              }
+              else if (clockWrapper.orientation === "horizontalFull") {
+                     return Time.horizontalFull;
+              }    
+        }  
         font.family: Theme.fontFamily
         font.pixelSize: clockWrapper.textSize
         font.bold: true

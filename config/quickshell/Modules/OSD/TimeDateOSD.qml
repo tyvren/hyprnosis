@@ -18,7 +18,7 @@ Item {
         Clock {
             id: clock
             anchors.centerIn: parent
-            orientation: horizontalFull
+            orientation: "horizontalFull" 
         }
     }
 }

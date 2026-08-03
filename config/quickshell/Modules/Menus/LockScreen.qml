@@ -105,6 +105,7 @@ Item {
                             id: lockScreenClock
                             Layout.alignment: Qt.AlignHCenter
                             textSize: 40
+                            orientation: "horizontal"
                         }
 
                         StyledInput {
