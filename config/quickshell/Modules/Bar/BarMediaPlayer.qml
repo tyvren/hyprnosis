@@ -78,7 +78,7 @@ Item {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 15
-            spacing: 12
+            spacing: 10
 
             Item {
                 id: albumArt
@@ -109,101 +109,50 @@ Item {
 
             RowLayout {
                 id: playerControls
-                spacing: 10
+                spacing: 5
 
-                MouseArea {
-                    id: prevBtn
-                    implicitWidth: 16
-                    implicitHeight: 16
+                StyledButton {
+                    id: prevText
                     Layout.alignment: Qt.AlignVCenter
-                    hoverEnabled: true
-                    onClicked: Players.active?.previous()
-
-                    MultiEffect {
-                        anchors.fill: prevText
-                        source: prevText
-                        shadowEnabled: true
-                        shadowBlur: prevBtn.containsMouse ? 0.5 : 0.2
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 1
-                        shadowHorizontalOffset: 1
-                        opacity: prevBtn.containsMouse ? 1.0 : 0.5
-
-                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
-                        Behavior on opacity { NumberAnimation { duration: 150 } }
-                    }
-
-                    StyledText {
-                        id: prevText
-                        anchors.centerIn: parent
-                        text: "󰒮"
-                        color: prevBtn.containsMouse ? Theme.colAccent : Theme.colText
-
-                        Behavior on color { ColorAnimation { duration: 150 } }
+                    Layout.preferredWidth: 18
+                    Layout.preferredHeight: 18
+                    opacity: 0.7
+                    textSize: 10
+                    text: "󰒮"
+                    onClicked: {
+                        if (Players.active) {
+                            Players.active.previous()
+                        }
                     }
                 }
 
-                MouseArea {
-                    id: playBtn
-                    implicitWidth: 16
-                    implicitHeight: 16
+                StyledButton {
+                    id: playText
                     Layout.alignment: Qt.AlignVCenter
-                    hoverEnabled: true
-                    onClicked: Players.active?.togglePlaying()
-
-                    MultiEffect {
-                        anchors.fill: playText
-                        source: playText
-                        shadowEnabled: true
-                        shadowBlur: playBtn.containsMouse ? 0.5 : 0.2
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 1
-                        shadowHorizontalOffset: 1
-                        opacity: playBtn.containsMouse ? 1.0 : 0.5
-
-                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
-                        Behavior on opacity { NumberAnimation { duration: 150 } }
-                    }
-
-                    StyledText {
-                        id: playText
-                        anchors.centerIn: parent
-                        text: Players.active && Players.active.isPlaying ? "" : ""
-                        color: playBtn.containsMouse ? Theme.colAccent : Theme.colText
-
-                        Behavior on color { ColorAnimation { duration: 150 } }
+                    Layout.preferredWidth: 18
+                    Layout.preferredHeight: 18
+                    opacity: 0.7
+                    textSize: 8
+                    text: Players.active && Players.active.isPlaying ? " " : " "
+                    onClicked: {
+                        if (Players.active) {
+                            Players.active.togglePlaying()
+                        }
                     }
                 }
 
-                MouseArea {
-                    id: nextBtn
-                    implicitWidth: 16
-                    implicitHeight: 16
+                StyledButton {
+                    id: nextText
                     Layout.alignment: Qt.AlignVCenter
-                    hoverEnabled: true
-                    onClicked: Players.active?.next()
-
-                    MultiEffect {
-                        anchors.fill: nextText
-                        source: nextText
-                        shadowEnabled: true
-                        shadowBlur: nextBtn.containsMouse ? 0.5 : 0.2
-                        shadowColor: Theme.colAccent
-                        shadowVerticalOffset: 1
-                        shadowHorizontalOffset: 1
-                        opacity: nextBtn.containsMouse ? 1.0 : 0.5
-
-                        Behavior on shadowBlur { NumberAnimation { duration: 150 } }
-                        Behavior on opacity { NumberAnimation { duration: 150 } }
-                    }
-
-                    StyledText {
-                        id: nextText
-                        anchors.centerIn: parent
-                        text: "󰒭"
-                        color: nextBtn.containsMouse ? Theme.colAccent : Theme.colText
-
-                        Behavior on color { ColorAnimation { duration: 150 } }
+                    Layout.preferredWidth: 18
+                    Layout.preferredHeight: 18
+                    opacity: 0.7
+                    textSize: 10
+                    text: "󰒭"
+                    onClicked: {
+                        if (Players.active) {
+                            Players.active.next()
+                        }
                     }
                 }
             }

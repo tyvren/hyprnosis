@@ -25,7 +25,7 @@ Item {
         shadowColor: Theme.colAccent
         shadowVerticalOffset: 0
         shadowHorizontalOffset: 0
-        opacity: (root.active || mouseArea.containsMouse) ? 1 : 1
+        opacity: (root.active || mouseArea.containsMouse) ? 0 : 1
         
         Behavior on shadowBlur { NumberAnimation { duration: 150 } }
         Behavior on opacity { NumberAnimation { duration: 150 } }
@@ -34,7 +34,7 @@ Item {
     Rectangle {
         id: buttonBackground
         anchors.fill: parent
-        radius: 3
+        radius: 2
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 1
