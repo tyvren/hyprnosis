@@ -164,7 +164,7 @@ Variants {
                 id: bottomBar
                 color: "transparent"
                 visible: Config.data.barLayout === "bottom"
-                implicitHeight: 30
+                implicitHeight: 32
                 anchors {
                     bottom: true
                     left: true
