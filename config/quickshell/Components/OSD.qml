@@ -26,7 +26,7 @@ Item {
         radius: 2
         color: Theme.colBg
         border.color: Theme.colAccent
-        border.width: 0.8
+        border.width: 1
         state: osdRoot.active ? "visible" : "hidden"
 
         states: [
