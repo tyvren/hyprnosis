@@ -16,12 +16,27 @@ Item {
 
     property bool isLocked: false
     property string pendingPassword: ""
+    property bool authFailed: false
+
+    Timer {
+        id: resetTimer
+        interval: 400
+        repeat: false
+        onTriggered: {
+            root.authFailed = false
+            root.pendingPassword = ""
+            passwordIn.text = ""
+            passwordIn.forceActiveFocus()
+        }
+    }
 
     IpcHandler {
         target: "lockscreen"
 
         function lock(): void {
             root.isLocked = true
+            root.authFailed = false
+            resetTimer.stop()
         }
     }
 
@@ -30,12 +45,14 @@ Item {
 
         onCompleted: (result) => {
             if (result === PamResult.Success) {
+                resetTimer.stop()
                 root.isLocked = false
                 root.pendingPassword = ""
+                root.authFailed = false
             } else {
                 root.pendingPassword = ""
-                passwordIn.text = ""
-                passwordIn.forceActiveFocus()
+                root.authFailed = true
+                resetTimer.restart()
             }
         }
 
@@ -83,12 +100,12 @@ Item {
                     shadowVerticalOffset: 1
                     shadowHorizontalOffset: 1
                 }
-                
+
                 Rectangle {
                     id: dialogContainer
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 150
-                    anchors.horizontalCenter: parent.horizontalCenter  
+                    anchors.horizontalCenter: parent.horizontalCenter
                     width: 440
                     height: 340
                     color: Theme.colBg
@@ -118,8 +135,20 @@ Item {
                             placeholderTextColor: Theme.colMuted
                             focus: false
                             font.pointSize: 13
-                            color: Theme.colAccent
-                            
+                            color: root.authFailed ? Theme.colText : Theme.colAccent
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 250
+                                    easing.type: Easing.InOutQuad
+                                }
+                            }
+
+                            onTextChanged: {
+                                if (!root.authFailed && resetTimer.running) {
+                                    resetTimer.stop()
+                                }
+                            }
                             onAccepted: unlockButton.unlock()
                         }
 
@@ -134,7 +163,7 @@ Item {
                             Layout.alignment: Qt.AlignHCenter
 
                             function unlock() {
-                                if (passwordIn.text === "") return
+                                if (passwordIn.text === "" || resetTimer.running) return
 
                                 root.pendingPassword = passwordIn.text
 
