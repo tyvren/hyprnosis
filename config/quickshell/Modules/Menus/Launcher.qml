@@ -214,7 +214,7 @@ PanelWindow {
             anchors.fill: parent
             anchors.topMargin: Config.data.barLayout === "top" ? 6 : 10
             anchors.bottomMargin: Config.data.barLayout === "top" ? 10 : 6
-            spacing: 5
+            spacing: 20
             opacity: 0
             Component.onCompleted: {
                 opacity = 1
@@ -227,7 +227,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: parent.width - 50
                 height: 28
-                radius: 3
+                radius: 2
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -264,13 +264,13 @@ PanelWindow {
                 id: gridview
                 Layout.row: Config.data.barLayout === "top" ? 1 : 0
                 Layout.fillHeight: true
-                Layout.preferredWidth: 376
+                Layout.preferredWidth: 390
                 Layout.alignment: Qt.AlignHCenter
                 model: launcherMenu.filteredApps
                 clip: true
                 keyNavigationEnabled: true
-                cellWidth: 94
-                cellHeight: 105
+                cellWidth: 78
+                cellHeight: 85
                 currentIndex: launcherMenu.filteredApps.length > 0 ? 0 : -1
 
                 ScrollBar.vertical: ScrollBar {
@@ -291,8 +291,8 @@ PanelWindow {
 
                 delegate: Item {
                     id: appDelegate
-                    width: 94
-                    height: 105
+                    width: 70
+                    height: 70
                     property bool isHighlighted: GridView.isCurrentItem || mouseArea.containsMouse
 
                     MultiEffect {
@@ -311,8 +311,8 @@ PanelWindow {
 
                     Rectangle {
                         id: delegateRectangle
-                        width: 80
-                        height: 80
+                        width: 70
+                        height: 70
                         anchors.centerIn: parent
                         radius: 3
                         color: Theme.colBg 
@@ -324,7 +324,7 @@ PanelWindow {
                         ColumnLayout {
                             anchors.centerIn: parent
                             width: parent.width - 15
-                            spacing: 4
+                            spacing: 5
 
                             IconImage {
                                 source: Quickshell.iconPath(modelData.icon, true) || ""
