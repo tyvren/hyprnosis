@@ -359,38 +359,6 @@ ScrollView {
             }
         }
 
-        ColumnLayout {
-            spacing: 15
-            Layout.fillWidth: true
-            Layout.topMargin: 10
-
-            StyledText {
-                text: "System Monitor"
-                color: Theme.colAccent
-                size: 10
-                bold: true
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-
-                StyledText {
-                    text: "Enable Monitoring"
-                    color: Theme.colText
-                    Layout.fillWidth: true
-                }
-
-                StyledSwitch {
-                    id: sysMonitorToggle
-                    checked: appearancePane.sysMonitor
-                    onToggled: {
-                        appearancePane.sysMonitor = checked
-                        Config.data.sysMonitor = checked ? "true" : "false"
-                    }
-                }
-            }
-        }
-
         DividerLine {
             Layout.fillWidth: true
         }
