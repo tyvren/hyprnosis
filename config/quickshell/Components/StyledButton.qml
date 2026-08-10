@@ -38,7 +38,7 @@ Item {
         radius: Config.data.rounding 
         color: Theme.colBg
         border.color: Theme.colAccent
-        border.width: 1
+        border.width: Config.data.borderSize
 
         Behavior on color { ColorAnimation { duration: 150 } }
         Behavior on border.color { ColorAnimation { duration: 150 } }

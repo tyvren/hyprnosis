@@ -81,7 +81,7 @@ ColumnLayout {
             color: Theme.colBg
             radius: Config.data.rounding
             border.color: Theme.colAccent
-            border.width: 1
+            border.width: Config.data.borderSize
 
             RowLayout {
                 anchors.fill: parent
@@ -163,7 +163,7 @@ ColumnLayout {
 
                 color: isHovered ? Theme.colMuted : Theme.colBg
                 border.color: Theme.colAccent
-                border.width: 1
+                border.width: Config.data.borderSize
                 opacity: isHovered ? 1.0 : 0.6
 
                 MouseArea {
@@ -198,7 +198,7 @@ ColumnLayout {
                             radius: Config.data.rounding 
                             color: uninstallMa.containsMouse ? Theme.colAccent : "transparent"
                             border.color: Theme.colAccent
-                            border.width: 1
+                            border.width: Config.data.borderSize
 
                             StyledText {
                                 anchors.centerIn: parent

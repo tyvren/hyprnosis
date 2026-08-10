@@ -54,7 +54,7 @@ PanelWindow {
         color: Theme.colBg
         radius: Config.data.rounding
         border.color: Theme.colAccent
-        border.width: 1
+        border.width: Config.data.borderSize
 
         Keys.onEscapePressed: sidePane.visible = false
 
@@ -127,7 +127,7 @@ PanelWindow {
                                 radius: Config.data.rounding
                                 color: Theme.colAccent
                                 border.color: Theme.colBg
-                                border.width: 2
+                                border.width: Config.data.borderSize
 
                                 Behavior on x {
                                     NumberAnimation { duration: 80; easing.type: Easing.OutQuad }
@@ -242,7 +242,7 @@ PanelWindow {
                                     radius: Config.data.rounding
                                     color: Theme.colBg
                                     border.color: dismissMa.containsMouse ? Theme.colAccent : Theme.colMuted
-                                    border.width: 1
+                                    border.width: Config.data.borderSize
 
                                     Behavior on border.color { ColorAnimation { duration: 150 } }
 

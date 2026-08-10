@@ -66,7 +66,7 @@ ColumnLayout {
                         radius: Config.data.rounding
                         color: modelData
                         border.color: "white"
-                        border.width: 1
+                        border.width: Config.data.borderSize 
                     }
                 }
             }

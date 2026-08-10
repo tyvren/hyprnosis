@@ -26,7 +26,7 @@ Item {
         radius: Config.data.rounding
         color: Theme.colBg
         border.color: Theme.colAccent
-        border.width: 1
+        border.width: Config.data.borderSize
         state: osdRoot.active ? "visible" : "hidden"
 
         states: [

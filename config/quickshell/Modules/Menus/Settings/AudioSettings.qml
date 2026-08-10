@@ -167,7 +167,7 @@ ColumnLayout {
                             opacity: 0.2
                             radius: Config.data.rounding 
                             border.color: deviceSelector.activeFocus ? Theme.colAccent : "transparent"
-                            border.width: 1
+                            border.width: Config.data.borderSize
                         }
 
                         popup: Popup {
@@ -187,7 +187,7 @@ ColumnLayout {
                             background: Rectangle {
                                 color: Theme.colBg
                                 border.color: Theme.colAccent
-                                border.width: 1
+                                border.width: Config.data.borderSize
                                 radius: Config.data.rounding 
                             }
                         }
@@ -242,7 +242,7 @@ ColumnLayout {
                         width: volSlider.visualPosition * parent.width
                         height: parent.height
                         color: isMuted ? Theme.colMuted : Theme.colAccent
-                        radius: 3
+                        radius: Config.data.rounding 
                     }
                 }
 
@@ -251,10 +251,10 @@ ColumnLayout {
                     y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
                     implicitWidth: 16
                     implicitHeight: 16
-                    radius: 3
+                    radius: Config.data.rounding
                     color: volSlider.pressed ? Theme.colAccent : Theme.colBg
                     border.color: Theme.colAccent
-                    border.width: 2
+                    border.width: Config.data.borderSize
                 }
 
                 onMoved: volumeSet(value)

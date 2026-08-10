@@ -56,6 +56,7 @@ FloatingWindow {
                 id: sidePane
                 color: Theme.colBg
                 border.color: Theme.colAccent
+                border.width: Config.data.borderSize
                 Layout.preferredWidth: 200
                 Layout.fillHeight: true
                 radius: Config.data.rounding
@@ -118,6 +119,7 @@ FloatingWindow {
                 id: contentPane
                 color: Theme.colBg
                 border.color: Theme.colAccent
+                border.width: Config.data.borderSize
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 radius: Config.data.rounding

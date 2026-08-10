@@ -35,6 +35,7 @@ PanelWindow {
         radius: Config.data.rounding
         color: Theme.colBg
         border.color: Theme.colAccent
+        border.width: Config.data.borderSize
         opacity: quickMenuRoot.visible ? 1.0 : 0.0
         focus: true
 

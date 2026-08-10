@@ -111,7 +111,7 @@ Item {
                     height: 340
                     color: Theme.colBg
                     border.color: Theme.colAccent
-                    border.width: 1
+                    border.width: Config.data.borderSize
                     radius: Config.data.rounding 
 
                     ColumnLayout {

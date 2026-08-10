@@ -91,7 +91,7 @@ ColumnLayout {
                     radius: Config.data.rounding
                     color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
                     border.color: Theme.colAccent
-                    border.width: 1
+                    border.width: Config.data.borderSize 
 
                     ColumnLayout {
                         anchors.centerIn: parent
@@ -192,7 +192,7 @@ ColumnLayout {
                             color: Theme.colMuted
                             opacity: 0.2
                             border.color: Theme.colAccent
-                            border.width: 1
+                            border.width: Config.data.borderSize 
                             radius: Config.data.rounding
                         }
                     }

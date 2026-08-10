@@ -37,6 +37,7 @@ Variants {
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
+                    border.width: Config.data.borderSize
                 }
                 
                 Rectangle {
@@ -47,6 +48,7 @@ Variants {
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
+                    border.width: Config.data.borderSize
                   }
 
                 Item {
@@ -180,6 +182,7 @@ Variants {
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
+                    border.width: Config.data.borderSize
                 }
 
                 Rectangle {
@@ -192,6 +195,7 @@ Variants {
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
+                    border.width: Config.data.borderSize
                 }
 
                 Item {

@@ -143,7 +143,7 @@ PanelWindow {
                 radius: Config.data.rounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
-                border.width: 1
+                border.width: Config.data.borderSize
                 clip: true
                 visible: Config.data.barLayout === "top"
 
@@ -181,7 +181,7 @@ PanelWindow {
                 radius: Config.data.rounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
-                border.width: 1
+                border.width: Config.data.borderSize
                 clip: true
                 visible: Config.data.barLayout === "bottom"
 
@@ -230,7 +230,7 @@ PanelWindow {
                 radius: Config.data.rounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
-                border.width: 1
+                border.width: Config.data.borderSize
 
                 StyledInput {
                     id: searchField
@@ -317,7 +317,7 @@ PanelWindow {
                         radius: Config.data.rounding
                         color: Theme.colBg 
                         border.color: Theme.colAccent
-                        border.width: 1
+                        border.width: Config.data.borderSize
                         
                         Behavior on border.color { ColorAnimation { duration: 150 } }
                         

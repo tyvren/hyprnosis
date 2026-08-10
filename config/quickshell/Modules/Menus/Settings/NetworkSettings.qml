@@ -116,7 +116,7 @@ Item {
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : (delegateItem.hovered ? Theme.colMuted : "transparent")
                         border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
-                        border.width: 1
+                        border.width: Config.data.borderSize
                         opacity: modelData.connected ? 0.3 : 0.6
                         radius: Config.data.rounding
                     }
@@ -195,7 +195,7 @@ Item {
         visible: selectedNetwork !== null
         radius: Config.data.rounding
         border.color: Theme.colAccent
-        border.width: 1
+        border.width: Config.data.borderSize 
 
         ColumnLayout {
             anchors.fill: parent
@@ -232,7 +232,7 @@ Item {
                     opacity: 0.1
                     radius: 3
                     border.color: Theme.colAccent
-                    border.width: 1
+                    border.width: Config.data.borderSize 
                 }
                 onAccepted: if (!Network.connecting) Network.connect(selectedNetwork.ssid, passInput.text)
             }

@@ -52,7 +52,7 @@ Item {
                     background: Rectangle {
                         color: modelData.connected ? Theme.colAccent : Theme.colMuted
                         border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
-                        border.width: 1
+                        border.width: Config.data.borderSize 
                         opacity: modelData.connected ? 0.3 : 0.6
                         radius: Config.data.rounding 
 

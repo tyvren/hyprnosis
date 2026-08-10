@@ -85,7 +85,7 @@ ColumnLayout {
                         height: 160
                         color: "transparent"
                         border.color: Theme.colAccent 
-                        border.width: 1
+                        border.width: Config.data.borderSize
                         radius: Config.data.rounding
 
                         ClippingRectangle {
@@ -190,7 +190,7 @@ ColumnLayout {
                 height: 120
                 color: "transparent"
                 border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
-                border.width: 1
+                border.width: Config.data.borderSize
                 radius: Config.data.rounding
 
                 ClippingRectangle {

@@ -21,6 +21,6 @@ TextField {
         color: Theme.colMuted 
         opacity: 0.3
         border.color: input.activeFocus ? Theme.colAccent : "transparent" 
-        border.width: 1
+        border.width: Config.data.borderSize
     }
 }
