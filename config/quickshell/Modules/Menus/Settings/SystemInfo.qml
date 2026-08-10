@@ -75,7 +75,7 @@ ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
 
             StyledText {
-                text: "hyprnosis"
+                text: "Somnium"
                 size: 24
                 bold: true
                 color: Theme.colAccent
@@ -100,7 +100,7 @@ ColumnLayout {
                 text: "GitHub"
                 icon: "󰊤"
 
-                onClicked: Qt.openUrlExternally("https://github.com/tyvren/hyprnosis")
+                onClicked: Qt.openUrlExternally("https://github.com/tyvren/somnium")
             }
         }
     }

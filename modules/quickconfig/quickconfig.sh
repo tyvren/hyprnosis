@@ -13,7 +13,7 @@ case "$config_choice" in
   autostart_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$autostart_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/quickconfig/autostart_apps.sh
+    bash ~/.config/somnium/modules/quickconfig/autostart_apps.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
   "Manual Config")
@@ -41,7 +41,7 @@ case "$config_choice" in
   input_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$input_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/quickconfig/input.sh
+    bash ~/.config/somnium/modules/quickconfig/input.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
   "Manual Config")
@@ -69,7 +69,7 @@ case "$config_choice" in
   monitors_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$monitors_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/quickconfig/monitors.sh
+    bash ~/.config/somnium/modules/quickconfig/monitors.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
   "Manual Config")
@@ -85,7 +85,7 @@ case "$config_choice" in
   waw_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$waw_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/quickconfig/windows_workspaces.sh
+    bash ~/.config/somnium/modules/quickconfig/windows_workspaces.sh
     ;;
   "Manual Config")
     nvim ~/.config/hypr/settings/windows-and-workspaces.conf
@@ -112,7 +112,7 @@ case "$config_choice" in
   idle_choice=$(gum choose "Config TUI" "Manual Config" "Back ")
   case "$idle_choice" in
   "Config TUI")
-    bash ~/.config/hyprnosis/modules/quickconfig/hypridle.sh
+    bash ~/.config/somnium/modules/quickconfig/hypridle.sh
     gum confirm "Press enter to return to menu." && exec "$0"
     ;;
   "Manual Config")
@@ -129,21 +129,6 @@ case "$config_choice" in
   case "$hyprlock_choice" in
   "Manual Config")
     nvim ~/.config/hypr/hyprlock.conf
-    ;;
-  "Back ")
-    gum confirm "Press enter to return to menu." && exec "$0"
-    ;;
-  esac
-  ;;
-
-"Waybar")
-  waybar_choice=$(gum choose "CPU Temp Autoconfig" "Manual Config" "Back ")
-  case "$waybar_choice" in
-  "CPU Temp Autoconfig")
-    bash ~/.config/hyprnosis/modules/quickconfig/waybar_cpu.sh
-    ;;
-  "Manual Config")
-    nvim ~/.config/waybar/config.jsonc
     ;;
   "Back ")
     gum confirm "Press enter to return to menu." && exec "$0"

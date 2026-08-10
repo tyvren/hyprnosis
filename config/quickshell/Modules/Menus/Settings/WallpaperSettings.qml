@@ -19,7 +19,7 @@ ColumnLayout {
     property var wallpaperList: []
 
     readonly property string folderName: Theme.activeId.charAt(0).toUpperCase() + Theme.activeId.slice(1)
-    property string themeWallpaperDir: Quickshell.env("HOME") + "/.config/hyprnosis/wallpapers/" + folderName
+    property string themeWallpaperDir: Quickshell.env("HOME") + "/.config/somnium/wallpapers/" + folderName
     property var themeWallpaperList: []
 
     Process {
@@ -155,7 +155,7 @@ ColumnLayout {
                     }
                     
                     StyledText {
-                        text: "hyprnosis/wallpapers/" + wallpaperPane.folderName
+                        text: "somnium/wallpapers/" + wallpaperPane.folderName
                         color: Theme.colMuted
                         size: 11 
                     }
@@ -216,7 +216,7 @@ ColumnLayout {
                     onClicked: {
                         Config.updateWallpaper(modelData);
                         Quickshell.execDetached([
-                            Quickshell.env("HOME") + "/.config/hyprnosis/modules/style/wallpaper_changer.sh",
+                            Quickshell.env("HOME") + "/.config/somnium/modules/style/wallpaper_changer.sh",
                             modelData
                         ]);
                     }

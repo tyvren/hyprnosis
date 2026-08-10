@@ -28,7 +28,7 @@ ScrollView {
 
         function applyHypr() {
             Quickshell.execDetached([
-                Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_hyprland.sh",
+                Quickshell.env("HOME") + "/.config/somnium/modules/quickshell/qs_apply_hyprland.sh",
                 Config.data.gapsIn.toString(),
                 Config.data.gapsOut.toString(),
                 Config.data.borderSize.toString(),
@@ -378,7 +378,7 @@ ScrollView {
 
             Repeater {
                 model: [
-                    { name: "Hyprnosis",  themeId: "hyprnosis",  script: "Hyprnosis" },
+                    { name: "Somnium",  themeId: "somnium",  script: "Somnium" },
                     { name: "Mocha",      themeId: "mocha",      script: "Mocha" },
                     { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
                     { name: "Dracula",    themeId: "dracula",    script: "Dracula" },

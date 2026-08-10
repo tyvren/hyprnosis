@@ -342,7 +342,7 @@ ColumnLayout {
         onClicked: {
             let monitor = displayPane.monitors[displayPane.selectedMonitorIdx];
             Quickshell.execDetached([
-                Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_monitors.sh",
+                Quickshell.env("HOME") + "/.config/somnium/modules/quickshell/qs_apply_monitors.sh",
                 monitor.name,
                 displayPane.currentMode,
                 displayPane.currentPos,

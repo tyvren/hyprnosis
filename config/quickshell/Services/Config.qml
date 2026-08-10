@@ -8,8 +8,8 @@ Singleton {
     id: root
 
     readonly property string homeDir: Quickshell.env("HOME")
-    readonly property string scriptPath: homeDir + "/.config/hyprnosis/modules/quickshell"
-    readonly property string themeScript: homeDir + "/.config/hyprnosis/modules/style"
+    readonly property string scriptPath: homeDir + "/.config/somnium/modules/quickshell"
+    readonly property string themeScript: homeDir + "/.config/somnium/modules/style"
     readonly property string configPath: Quickshell.shellDir + "/config.json"
     readonly property alias data: adapter
 
@@ -28,7 +28,7 @@ Singleton {
 
         JsonAdapter {
             id: adapter
-            property string theme: "hyprnosis"
+            property string theme: "somnium"
             property string wallpaper: ""
 
             property string barLayout: "top"

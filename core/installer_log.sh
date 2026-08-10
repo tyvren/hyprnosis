@@ -1,5 +1,5 @@
-LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/hyprnosis/logs"
-LOG_PATH="$LOG_DIR/hyprnosis.log"
+LOG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/somnium/logs"
+LOG_PATH="$LOG_DIR/somnium.log"
 
 _ICON_STEP="▸"
 _ICON_INFO="→"
@@ -13,7 +13,7 @@ create_log() {
 
 log_step() {
   clear
-  header "hyprnosis"
+  header "somnium"
   local text="$1"
   gum style --foreground 99 --bold "$_ICON_STEP $text" | tee -a "$LOG_PATH"
 }

@@ -9,7 +9,7 @@ ColumnLayout {
     id: updatePane
     spacing: 10
 
-    property string scriptDir: Quickshell.env("HOME") + "/.config/hyprnosis/modules/updates/"
+    property string scriptDir: Quickshell.env("HOME") + "/.config/somnium/modules/updates/"
 
     StyledText {
         text: "Updates"
@@ -29,7 +29,7 @@ ColumnLayout {
             model: [
                 { name: "System", icon: "󰣇", isImage: false, message: " - update Arch repo packages using pacman -Syu", script: "update_system.sh" },
                 { name: "AUR", icon: "󰣇", isImage: false, message: " - update AUR packages using yay -Syu", script: "update_aur.sh" },
-                { name: "Hyprnosis", icon: Theme.logoPath, isImage: true, message: " - update Hyprnosis shell to the latest release", script: "update_hyprnosis.sh" }
+                { name: "Somnium", icon: Theme.logoPath, isImage: true, message: " - update Somnium to the latest release", script: "update_somnium.sh" }
             ]
 
             StyledButtonLeftText {

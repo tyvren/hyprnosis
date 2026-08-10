@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=somnium
+Description=Static splash screen with Somnium logo
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/somnium
+ScriptFile=/usr/share/plymouth/themes/somnium/somnium.script
+

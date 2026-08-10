@@ -1,7 +1,7 @@
 #!/bin/bash
 
-THEME_DIR="$HOME/.config/hyprnosis/themes"
-WALLPAPER_DIR="$HOME/.config/hyprnosis/wallpapers"
+THEME_DIR="$HOME/.config/somnium/themes"
+WALLPAPER_DIR="$HOME/.config/somnium/wallpapers"
 
 if [[ -z "$1" ]]; then
   exit 1

@@ -23,8 +23,8 @@ enable_service() {
 }
 
 enable_plymouth() {
-  spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/hyprnosis/config/plymouth/themes/hyprnosis" "/usr/share/plymouth/themes/"
-  sudo plymouth-set-default-theme -R hyprnosis
+  spinner "Installing bootloader logo..." sudo cp -r "$HOME/.config/somnium/config/plymouth/themes/somnium" "/usr/share/plymouth/themes/"
+  sudo plymouth-set-default-theme -R somnium
 
   if [ -d "/boot/loader/entries" ]; then
     shopt -s nullglob
@@ -46,7 +46,7 @@ enable_plymouth() {
     sudo mkinitcpio -P
   fi
 
-  log_success "hyprnosis bootloader logo configured"
+  log_success "somnium bootloader logo configured"
 }
 
 enable_iwd() {

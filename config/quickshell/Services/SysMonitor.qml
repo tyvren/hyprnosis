@@ -8,7 +8,7 @@ Singleton {
     id: root
 
     readonly property string homeDir: Quickshell.env("HOME")
-    readonly property string scriptPath: homeDir + "/.config/hyprnosis/modules/quickshell"
+    readonly property string scriptPath: homeDir + "/.config/somnium/modules/quickshell"
 
     readonly property real cpuUsage: _cpuUsage
     readonly property real ramUsage: _ramUsage

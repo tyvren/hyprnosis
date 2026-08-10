@@ -448,7 +448,7 @@ ColumnLayout {
             Config.data.focusDown = keybinds.focusDown
 
             Quickshell.execDetached([
-                Quickshell.env("HOME") + "/.config/hyprnosis/modules/quickshell/qs_apply_keybinds.sh",
+                Quickshell.env("HOME") + "/.config/somnium/modules/quickshell/qs_apply_keybinds.sh",
                 keybinds.mainMod,
                 keybinds.terminal,
                 keybinds.fileManager,

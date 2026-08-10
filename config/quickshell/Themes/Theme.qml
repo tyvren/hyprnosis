@@ -64,15 +64,15 @@ QtObject {
             logo: "spiral_emberforge.png",
             wall: "emberforge.jpg"
         },
-        hyprnosis: {
+        somnium: {
             colBg: "#0c0c27",
             colText: "#e0def4",
             colHilight: "#517187",
             colSelect: "#214154",
             colAccent: "#01A2FC",
             colMuted: "#444b6a",
-            logo: "spiral_hyprnosis.png",
-            wall: "hyprnosis.png"
+            logo: "spiral_somnium.png",
+            wall: "somnium.png"
         },
         ghost: {
             colBg: "#000000",
@@ -82,7 +82,7 @@ QtObject {
             colAccent: "#80FFFFFF",
             colMuted: "#3B3B3B",
             logo: "spiral_ghost.png",
-            wall: "hyprnosis_ghost.png"
+            wall: "somnium_ghost.png"
         },
         verdant: {
             colBg: "#08110B",
@@ -96,7 +96,7 @@ QtObject {
         }
     })
 
-    readonly property var active: themes[activeId] || themes["hyprnosis"]
+    readonly property var active: themes[activeId] || themes["somnium"]
 
     readonly property color colBg: Qt.alpha(active.colBg, theme.currentAlpha)
     readonly property color colText: active.colText
@@ -111,8 +111,8 @@ QtObject {
         }
             
         let folder = activeId.charAt(0).toUpperCase() + activeId.slice(1)
-        return "file://" + Quickshell.env("HOME") + "/.config/hyprnosis/wallpapers/" + folder + "/" + active.wall
+        return "file://" + Quickshell.env("HOME") + "/.config/somnium/wallpapers/" + folder + "/" + active.wall
     }
 
-    readonly property url logoPath: Quickshell.env("HOME") + "/.config/hyprnosis/config/quickshell/Assets/" + active.logo
+    readonly property url logoPath: Quickshell.env("HOME") + "/.config/somnium/config/quickshell/Assets/" + active.logo
 }

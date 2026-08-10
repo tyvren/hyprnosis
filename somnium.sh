@@ -70,7 +70,7 @@ enable_service "paccache.timer"
 log_step "Enabling user services"
 enable_user_service "app-com.mitchellh.ghostty.service"
 
-log_step "Setting up hyprnosis bootloader logo"
+log_step "Setting up somnium bootloader logo"
 enable_plymouth
 
 log_step "Setting up quickconfig bash alias"
@@ -79,7 +79,7 @@ setup_quickconfig_alias
 log_step "Configuring Hyprland login settings"
 hyprland_autologin
 
-log_success "Hyprnosis installation complete!"
+log_success "Somnium installation complete!"
 log_info "Please reboot for all changes to take effect."
 
 if prompt_yes_no "Reboot now?"; then

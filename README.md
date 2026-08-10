@@ -1,7 +1,7 @@
 
-<img width="3825" height="1518" alt="hyprnosis_banner" src="https://github.com/user-attachments/assets/66b5b537-8012-4dc3-acbc-162e3d3d2a11" />
+<img width="3825" height="1518" alt="somnium_banner" src="https://github.com/user-attachments/assets/66b5b537-8012-4dc3-acbc-162e3d3d2a11" />
 
-**hyprnosis - a hyprland offering - setup script and full configuration for arch linux**
+**somnium - a hyprland offering - setup script and full configuration for arch linux**
 -----------------------------------------------------------------------
 <img width="5120" height="2880" alt="2026-08-03_19-49" src="https://github.com/user-attachments/assets/f3c0a7c5-ec02-4795-a987-c4f8cfaa071d" />
 
@@ -34,7 +34,7 @@ Detailed documentation can be found in the wiki.
 
 After logging into your new Arch system, run the following command to start the setup:
 
-    bash <(curl -sL https://raw.githubusercontent.com/tyvren/hyprnosis/main/boot.sh)
+    bash <(curl -sL https://raw.githubusercontent.com/tyvren/somnium/main/boot.sh)
 
 - Enter your password when prompted
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INSTALL_DIR="$HOME/.config/hyprnosis"
-CONFIG_DIR="$HOME/.config/hyprnosis/config"
+INSTALL_DIR="$HOME/.config/somnium"
+CONFIG_DIR="$HOME/.config/somnium/config"
 LOCAL_CONFIG="$HOME/.config"
 
 clear
@@ -10,7 +10,7 @@ header() {
   gum style \
     --foreground 37 --border-foreground 69 --border double \
     --align center --width 50 --margin "1 0" --padding "0 2" \
-    'hyprnosis update'
+    'somnium update'
 }
 
 spin() {
@@ -23,14 +23,14 @@ prompt() {
 
 header
 
-spin "Fetching updates for hyprnosis" git -C "$INSTALL_DIR" fetch origin
+spin "Fetching updates for somnium" git -C "$INSTALL_DIR" fetch origin
 spin "Resetting repo to main branch" git -C "$INSTALL_DIR" reset --hard origin/main
 
 prompt "Updating Quickshell"
 cp -r "$CONFIG_DIR/quickshell" "$LOCAL_CONFIG"
 
-if gum confirm "Update hyprnosis wallpapers?"; then
-  spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/hyprnosis-wallpapers.git /tmp/wallpapers
+if gum confirm "Update somnium wallpapers?"; then
+  spin "Updating wallpapers" git clone --depth 1 https://github.com/tyvren/somnium-wallpapers.git /tmp/wallpapers
   rm -rf /tmp/wallpapers/.git
   rm -rf /tmp/wallpapers/README.md
   cp -r /tmp/wallpapers/. "$INSTALL_DIR/wallpapers/"
