@@ -402,49 +402,56 @@ ScrollView {
             bold: true
         }
 
-        Repeater {
-            model: [
-                { name: "Hyprnosis",  themeId: "hyprnosis",  script: "Hyprnosis" },
-                { name: "Mocha",      themeId: "mocha",      script: "Mocha" },
-                { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
-                { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
-                { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
-                { name: "Eden",       themeId: "eden",       script: "Eden" },
-                { name: "Ghost",      themeId: "ghost",      script: "Ghost" }
-            ]
+        GridLayout {
+            columns: 2
+            Layout.fillWidth: true
+            rowSpacing: 10
+            columnSpacing: 10
 
-            StyledButton {
-                id: btnShell
-                Layout.fillWidth: true
-                Layout.preferredHeight: 45
-                text: modelData.name
-                active: appearancePane.theme === modelData.themeId
+            Repeater {
+                model: [
+                    { name: "Hyprnosis",  themeId: "hyprnosis",  script: "Hyprnosis" },
+                    { name: "Mocha",      themeId: "mocha",      script: "Mocha" },
+                    { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
+                    { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
+                    { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
+                    { name: "Eden",       themeId: "eden",       script: "Eden" },
+                    { name: "Ghost",      themeId: "ghost",      script: "Ghost" }
+                ]
 
-                onClicked: {
-                    Config.updateTheme(modelData.themeId, modelData.script)
-                    Config.updateWallpaper("")
-                }
+                StyledButton {
+                    id: btnShell
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 45
+                    text: modelData.name
+                    active: appearancePane.theme === modelData.themeId
 
-                Row {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 22
-                    anchors.verticalCenter: parent.verticalCenter
-                    spacing: 4
+                    onClicked: {
+                        Config.updateTheme(modelData.themeId, modelData.script)
+                        Config.updateWallpaper("")
+                    }
 
-                    Repeater {
-                        model: [
-                            Theme.themes[modelData.themeId].colBg,
-                            Theme.themes[modelData.themeId].colAccent,
-                            Theme.themes[modelData.themeId].colHilight
-                        ]
+                    Row {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 22
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 4
 
-                        Rectangle {
-                            width: 15
-                            height: 15
-                            radius: Config.data.rounding
-                            color: modelData
-                            border.color: "white"
-                            border.width: Config.data.borderSize
+                        Repeater {
+                            model: [
+                                Theme.themes[modelData.themeId].colBg,
+                                Theme.themes[modelData.themeId].colAccent,
+                                Theme.themes[modelData.themeId].colHilight
+                            ]
+
+                            Rectangle {
+                                width: 15
+                                height: 15
+                                radius: Config.data.rounding
+                                color: modelData
+                                border.color: "white"
+                                border.width: Config.data.borderSize
+                            }
                         }
                     }
                 }
