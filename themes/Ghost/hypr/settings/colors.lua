@@ -15,7 +15,7 @@ hl.config({
 	},
 	decoration = {
 		glow = {
-			enabled = true,
+			enabled = false,
 			color = hilight,
 			range = 8,
 		},

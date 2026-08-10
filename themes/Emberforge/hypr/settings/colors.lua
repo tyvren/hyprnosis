@@ -14,7 +14,7 @@ hl.config({
 	},
 	decoration = {
 		glow = {
-			enabled = true,
+			enabled = false,
 			color = neon_orange,
 			range = 8,
 		},

@@ -19,7 +19,7 @@ hl.config({
 	},
 	decoration = {
 		glow = {
-			enabled = true,
+			enabled = false,
 			color = blue,
 			range = 8,
 		},
