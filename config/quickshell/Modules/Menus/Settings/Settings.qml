@@ -84,10 +84,8 @@ FloatingWindow {
                                     {icon: "", text: "Bluetooth"},
                                     {icon: "󰖩", text: "Network"},
                                     {icon: "󰍹", text: "Monitors"},
-                                    {icon: "", text: "Bar"},
-                                    {icon: "", text: "Themes"},
+                                    {icon: "", text: "Appearance"},
                                     {icon: "󰸉", text: "Wallpapers"},
-                                    {icon: "", text: "Hyprland"},
                                     {icon: "", text: "Keybinds"},
                                     {icon: "󰚰", text: "Updates"}
                                 ]
@@ -144,12 +142,10 @@ FloatingWindow {
                         DisplaySettings {
                             active: settingsMenu.visible && settingsMenu.activeIndex === 5
                         }
-                        BarSettings {}
-                        ThemeSettings {}
+                        Appearance {}
                         WallpaperSettings {
-                            active: settingsMenu.visible && settingsMenu.activeIndex === 8
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 7
                         }
-                        HyprSettings {}
                         Keybinds {}
                         UpdateSettings {}
                     }
