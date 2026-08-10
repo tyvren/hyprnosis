@@ -32,8 +32,8 @@ Singleton {
             property string wallpaper: ""
 
             property string barLayout: "top"
-            property int barRadius: 15
             property int barMargin: 10
+            property int shellRounding: 2
 
             property int gapsIn: 5
             property int gapsOut: 10

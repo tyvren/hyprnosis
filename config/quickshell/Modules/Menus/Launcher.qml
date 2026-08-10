@@ -140,7 +140,7 @@ PanelWindow {
                 id: topBackground
                 anchors.fill: parent
                 anchors.topMargin: 30
-                radius: 3 
+                radius: Config.data.shellRounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -178,7 +178,7 @@ PanelWindow {
                 id: bottomBackground
                 anchors.fill: parent
                 anchors.bottomMargin: 30
-                radius: 3
+                radius: Config.data.shellRounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -227,7 +227,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: parent.width - 50
                 height: 28
-                radius: 2
+                radius: Config.data.shellRounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -314,7 +314,7 @@ PanelWindow {
                         width: 70
                         height: 70
                         anchors.centerIn: parent
-                        radius: 3
+                        radius: Config.data.shellRounding
                         color: Theme.colBg 
                         border.color: Theme.colAccent
                         border.width: 1

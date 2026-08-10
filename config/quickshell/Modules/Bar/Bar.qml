@@ -34,7 +34,7 @@ Variants {
                     id: topLeftBar
                     width: topBar.width / 2 - 250
                     height: topBar.height - 2
-                    radius: 2
+                    radius: Config.data.shellRounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
                 }
@@ -44,7 +44,7 @@ Variants {
                     x: topBar.width / 2 + 250
                     width: topBar.width / 2 - 250
                     height: topBar.height - 2
-                    radius: 2 
+                    radius: Config.data.shellRounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
                   }
@@ -177,7 +177,7 @@ Variants {
                     anchors.bottomMargin: 2
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
-                    radius: 2 
+                    radius: Config.data.shellRounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
                 }
@@ -189,7 +189,7 @@ Variants {
                     x: bottomBar.width / 2 + 250
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
-                    radius: 2 
+                    radius: Config.data.shellRounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
                 }
