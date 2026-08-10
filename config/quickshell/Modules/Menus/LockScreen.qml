@@ -9,6 +9,7 @@ import Quickshell.Services.Pam
 import Quickshell.Wayland
 import Quickshell.Widgets
 import qs.Components
+import qs.Services
 import qs.Themes
 
 Item {
@@ -111,7 +112,7 @@ Item {
                     color: Theme.colBg
                     border.color: Theme.colAccent
                     border.width: 1
-                    radius: 5
+                    radius: Config.data.rounding 
 
                     ColumnLayout {
                         anchors.fill: parent
