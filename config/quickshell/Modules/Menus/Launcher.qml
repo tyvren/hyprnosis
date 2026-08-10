@@ -227,7 +227,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredWidth: parent.width - 50
                 height: 28
-                radius: Config.data.shellRounding
+                radius: Config.data.rounding
                 color: Theme.colBg
                 border.color: Theme.colAccent
                 border.width: 1
@@ -314,7 +314,7 @@ PanelWindow {
                         width: 70
                         height: 70
                         anchors.centerIn: parent
-                        radius: Config.data.shellRounding
+                        radius: Config.data.rounding
                         color: Theme.colBg 
                         border.color: Theme.colAccent
                         border.width: 1
