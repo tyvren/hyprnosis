@@ -5,6 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.Components
+import qs.Services
 import qs.Themes
 
 PanelWindow {
@@ -31,7 +32,7 @@ PanelWindow {
     Rectangle {
         id: container
         anchors.fill: parent
-        radius: 3
+        radius: Config.data.rounding
         color: Theme.colBg
         border.color: Theme.colAccent
         opacity: quickMenuRoot.visible ? 1.0 : 0.0

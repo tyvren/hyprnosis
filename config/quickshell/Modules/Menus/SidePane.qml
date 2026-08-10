@@ -52,7 +52,7 @@ PanelWindow {
         id: paneRoot
         anchors.fill: parent
         color: Theme.colBg
-        radius: 2
+        radius: Config.data.rounding
         border.color: Theme.colAccent
         border.width: 1
 
@@ -67,7 +67,7 @@ PanelWindow {
                 Layout.fillWidth: true
                 height: controlsColumn.implicitHeight + 24
                 color: Theme.colMuted
-                radius: 2
+                radius: Config.data.rounding
 
                 ColumnLayout {
                     id: controlsColumn
@@ -101,7 +101,7 @@ PanelWindow {
                                 anchors.verticalCenter: parent.verticalCenter
                                 width: parent.width
                                 height: 5
-                                radius: 2
+                                radius: Config.data.rounding
                                 color: Qt.rgba(1, 1, 1, 0.12)
                             }
 
@@ -110,7 +110,7 @@ PanelWindow {
                                 anchors.left: trackBg.left
                                 width: trackBg.width * Brightness.brightness
                                 height: 5
-                                radius: 2
+                                radius: Config.data.rounding
                                 color: Theme.colAccent
 
                                 Behavior on width {
@@ -124,7 +124,7 @@ PanelWindow {
                                 x: (trackBg.width * Brightness.brightness) - (width / 2)
                                 width: 14
                                 height: 14
-                                radius: 2
+                                radius: Config.data.rounding
                                 color: Theme.colAccent
                                 border.color: Theme.colBg
                                 border.width: 2
@@ -239,7 +239,7 @@ PanelWindow {
                                     id: dismissBox
                                     Layout.preferredWidth: 15
                                     Layout.preferredHeight: 15
-                                    radius: 2
+                                    radius: Config.data.rounding
                                     color: Theme.colBg
                                     border.color: dismissMa.containsMouse ? Theme.colAccent : Theme.colMuted
                                     border.width: 1

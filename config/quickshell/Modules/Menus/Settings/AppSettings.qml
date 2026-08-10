@@ -79,7 +79,7 @@ ColumnLayout {
             Layout.preferredHeight: 45
             Layout.margins: 10
             color: Theme.colBg
-            radius: 3
+            radius: Config.data.rounding
             border.color: Theme.colAccent
             border.width: 1
 
@@ -157,7 +157,7 @@ ColumnLayout {
                 id: appRow
                 width: appView.width
                 height: 50
-                radius: 3
+                radius: Config.data.rounding 
 
                 property bool isHovered: rowMa.containsMouse || uninstallMa.containsMouse
 
@@ -195,7 +195,7 @@ ColumnLayout {
                         Rectangle {
                             id: uninstallBtnRect
                             anchors.fill: parent
-                            radius: 2
+                            radius: Config.data.rounding 
                             color: uninstallMa.containsMouse ? Theme.colAccent : "transparent"
                             border.color: Theme.colAccent
                             border.width: 1

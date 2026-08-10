@@ -23,7 +23,7 @@ Item {
         id: osdContainer
         anchors.fill: parent
         anchors.bottomMargin: Config.data.barLayout === "top" ? 2 : 2
-        radius: 2
+        radius: Config.data.rounding
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 1

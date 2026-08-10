@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import qs.Services
 import qs.Themes
 
 Item {
@@ -32,7 +33,7 @@ Item {
     Rectangle {
         id: buttonBackground
         anchors.fill: parent
-        radius: 3
+        radius: Config.data.rounding 
         color: Theme.colBg
         border.color: Theme.colAccent
         border.width: 1

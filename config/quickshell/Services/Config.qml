@@ -33,7 +33,6 @@ Singleton {
 
             property string barLayout: "top"
             property int barMargin: 10
-            property int shellRounding: 2
 
             property int gapsIn: 5
             property int gapsOut: 10

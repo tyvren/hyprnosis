@@ -54,7 +54,7 @@ Item {
                         border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
                         border.width: 1
                         opacity: modelData.connected ? 0.3 : 0.6
-                        radius: 3
+                        radius: Config.data.rounding 
 
                         MouseArea {
                             anchors.fill: parent

@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import qs.Components
+import qs.Services
 import qs.Themes
 
 ColumnLayout {
@@ -87,7 +88,7 @@ ColumnLayout {
                 Rectangle {
                     id: monitorRect
                     anchors.fill: parent
-                    radius: 3
+                    radius: Config.data.rounding
                     color: (displayPane.selectedMonitorIdx === index || monitorMa.containsMouse) ? Theme.colAccent : Theme.colMuted
                     border.color: Theme.colAccent
                     border.width: 1
@@ -192,7 +193,7 @@ ColumnLayout {
                             opacity: 0.2
                             border.color: Theme.colAccent
                             border.width: 1
-                            radius: 3
+                            radius: Config.data.rounding
                         }
                     }
 
@@ -205,7 +206,7 @@ ColumnLayout {
                         id: modeSelectorBackground
                         color: Theme.colMuted
                         opacity: 0.2
-                        radius: 3
+                        radius: Config.data.rounding
                     }
 
                     popup: Popup {
@@ -225,7 +226,7 @@ ColumnLayout {
                         background: Rectangle {
                             color: Theme.colBg
                             border.color: Theme.colAccent
-                            radius: 3
+                            radius: Config.data.rounding
                         }
                     }
                 }

@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import qs.Components
+import qs.Services
 import qs.Themes
 
 ColumnLayout {
@@ -110,7 +111,7 @@ ColumnLayout {
         Layout.topMargin: 10
         color: Theme.colMuted
         opacity: 0.8
-        radius: 3
+        radius: Config.data.rounding 
 
         ColumnLayout {
             anchors.fill: parent

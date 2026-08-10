@@ -86,7 +86,7 @@ ColumnLayout {
                         color: "transparent"
                         border.color: Theme.colAccent 
                         border.width: 1
-                        radius: 3
+                        radius: Config.data.rounding
 
                         ClippingRectangle {
                             id: clipCurrentWall
@@ -191,14 +191,14 @@ ColumnLayout {
                 color: "transparent"
                 border.color: wallMouse.containsMouse ? Theme.colAccent : "transparent"
                 border.width: 1
-                radius: 3
+                radius: Config.data.rounding
 
                 ClippingRectangle {
                     id: clipImage
                     anchors.fill: imageBox
                     anchors.margins: 2
                     color: "transparent"
-                    radius: 3
+                    radius: Config.data.rounding
                     
                     Image {
                         anchors.fill: parent

@@ -32,7 +32,7 @@ Item {
             Layout.preferredHeight: 50
             color: Network.ethernetConnected ? Theme.colMuted : Theme.colAccent
             opacity: Network.ethernetConnected ? 1 : 0.2
-            radius: 3
+            radius: Config.data.rounding
             visible: Network.ethernetConnected
 
             Item {
@@ -118,7 +118,7 @@ Item {
                         border.color: modelData.connected ? Theme.colHilight : Theme.colAccent 
                         border.width: 1
                         opacity: modelData.connected ? 0.3 : 0.6
-                        radius: 3
+                        radius: Config.data.rounding
                     }
 
                     contentItem: Item {
@@ -193,7 +193,7 @@ Item {
         height: 260
         color: Theme.colBg
         visible: selectedNetwork !== null
-        radius: 3
+        radius: Config.data.rounding
         border.color: Theme.colAccent
         border.width: 1
 
