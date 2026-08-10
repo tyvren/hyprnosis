@@ -83,6 +83,16 @@ QtObject {
             colMuted: "#3B3B3B",
             logo: "spiral_ghost.png",
             wall: "hyprnosis_ghost.png"
+        },
+        verdant: {
+            colBg: "#08110B",
+            colText: "#D0D0D0",
+            colSelect: "#50AF73",
+            colHilight: "#CDEAD4",
+            colAccent: "#50AF73",
+            colMuted: "#163120",
+            logo: "spiral_verdant.png",
+            wall: "verdant.jpg"
         }
     })
 
