@@ -52,7 +52,7 @@ Item {
             StyledText {
                 text: root.icon
                 size: root.textSize
-                color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
+                color: mouseArea.containsMouse ? Theme.colAccent : Theme.colText
                 visible: root.icon !== ""
                 Behavior on color { ColorAnimation { duration: 150 } }
             }
@@ -60,7 +60,7 @@ Item {
             StyledText {
                 text: root.text
                 size: root.textSize
-                color: (root.active || mouseArea.containsMouse) ? Theme.colAccent : Theme.colText
+                color: mouseArea.containsMouse ? Theme.colAccent : Theme.colText
                 visible: root.text !== ""
                 Behavior on color { ColorAnimation { duration: 150 } }
             }
