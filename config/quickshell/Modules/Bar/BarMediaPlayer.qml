@@ -116,7 +116,8 @@ Item {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: 18
                     Layout.preferredHeight: 18
-                    opacity: 0.7
+                    color: "transparent"
+                    borderColor: "transparent" 
                     textSize: 10
                     text: "󰒮"
                     onClicked: {
@@ -131,7 +132,8 @@ Item {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: 18
                     Layout.preferredHeight: 18
-                    opacity: 0.7
+                    color: "transparent"
+                    borderColor: "transparent" 
                     textSize: 8
                     text: Players.active && Players.active.isPlaying ? " " : " "
                     onClicked: {
@@ -146,7 +148,8 @@ Item {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: 18
                     Layout.preferredHeight: 18
-                    opacity: 0.7
+                    color: "transparent"
+                    borderColor: "transparent" 
                     textSize: 10
                     text: "󰒭"
                     onClicked: {

@@ -9,6 +9,8 @@ Item {
     id: root
     property string icon: ""
     property string text: ""
+    property string color: Theme.colBg
+    property string borderColor: Theme.colAccent
     property int textSize: 12
     property int buttonWidth: 180
     property int buttonHeight: 40
@@ -36,8 +38,8 @@ Item {
         id: buttonBackground
         anchors.fill: parent
         radius: Config.data.rounding 
-        color: Theme.colBg
-        border.color: Theme.colAccent
+        color: root.color
+        border.color: root.borderColor 
         border.width: Config.data.borderSize
 
         Behavior on color { ColorAnimation { duration: 150 } }
