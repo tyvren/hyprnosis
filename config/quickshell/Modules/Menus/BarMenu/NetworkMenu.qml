@@ -14,6 +14,14 @@ StyledPanelWindow {
     visible: false
     open: false
 
+    onOpenChanged: {
+        if (open) {
+            States.networkOpen = true
+        } else {
+            States.networkOpen = false
+        }
+    }
+
     IpcHandler {
         target: "barMenuNetwork"
 

@@ -14,6 +14,14 @@ StyledPanelWindow {
     visible: false
     open: false
 
+    onOpenChanged: {
+        if (open) {
+            States.bluetoothOpen = true
+        } else {
+            States.bluetoothOpen = false
+        }
+    }
+
     IpcHandler {
         target: "barMenuBluetooth"
 
