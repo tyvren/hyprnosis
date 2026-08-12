@@ -28,7 +28,10 @@ Variants {
                     top: true
                     left: true
                     right: true
-                  }
+                }
+                margins.top: 2
+                margins.left: 2
+                margins.right: 2
 
                 Rectangle {
                     id: topLeftBar
@@ -37,7 +40,7 @@ Variants {
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
-                    border.width: Config.data.borderSize
+                    border.width: Config.data.borderSize 
                 }
                 
                 Rectangle {
@@ -172,11 +175,12 @@ Variants {
                     left: true
                     right: true
                 }
+                margins.bottom: 2
+                margins.left: 2
+                margins.right: 2
 
                 Rectangle {
                     id: bottomLeftBar
-                    anchors.topMargin: 2
-                    anchors.bottomMargin: 2
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
                     radius: Config.data.rounding
@@ -187,8 +191,6 @@ Variants {
 
                 Rectangle {
                     id: bottomRightBar
-                    anchors.topMargin: 2
-                    anchors.bottomMargin: 2
                     x: bottomBar.width / 2 + 250
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
