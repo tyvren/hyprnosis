@@ -26,6 +26,8 @@ system_utils=(
   pacman-contrib
   upower
   flameshot
+  vlc
+  vlc-plugins-all
 )
 
 development=(
