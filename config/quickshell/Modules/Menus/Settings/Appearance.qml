@@ -88,9 +88,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.gapsIn.toString()
-                        onUserEdited: (val) => { Config.data.gapsIn = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.gapsIn
+                        fromValue: 0
+                        toValue: 20
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.gapsIn = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.gapsIn
+                        Layout.leftMargin: 10
                     }
                 }
 
@@ -103,9 +111,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.gapsOut.toString()
-                        onUserEdited: (val) => { Config.data.gapsOut = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.gapsOut
+                        fromValue: 0 
+                        toValue: 20
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.gapsOut = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.gapsOut
+                        Layout.leftMargin: 10
                     }
                 }
 
@@ -118,9 +134,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.borderSize.toString()
-                        onUserEdited: (val) => { Config.data.borderSize = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.borderSize
+                        fromValue: 0
+                        toValue: 2
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.borderSize = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.borderSize
+                        Layout.leftMargin: 10
                     }
                 }
             }
@@ -146,9 +170,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.rounding.toString()
-                        onUserEdited: (val) => { Config.data.rounding = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.rounding
+                        fromValue: 0
+                        toValue: 20
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.rounding = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.rounding
+                        Layout.leftMargin: 10
                     }
                 }
 
@@ -161,9 +193,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.activeOpacity.toString()
-                        onUserEdited: (val) => { Config.data.activeOpacity = parseFloat(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.activeOpacity
+                        fromValue: 0.5
+                        toValue: 1.0
+                        stepSizeValue: 0.1
+                        onMoved: (val) => { Config.data.activeOpacity = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.activeOpacity.toFixed(1)
+                        Layout.leftMargin: 10
                     }
                 }
 
@@ -176,9 +216,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.inactiveOpacity.toString()
-                        onUserEdited: (val) => { Config.data.inactiveOpacity = parseFloat(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.inactiveOpacity
+                        fromValue: 0.2
+                        toValue: 1.0
+                        stepSizeValue: 0.1
+                        onMoved: (val) => { Config.data.inactiveOpacity = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.inactiveOpacity.toFixed(1)
+                        Layout.leftMargin: 10
                     }
                 }
             }
@@ -221,9 +269,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.blurSize.toString()
-                        onUserEdited: (val) => { Config.data.blurSize = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.blurSize
+                        fromValue: 0
+                        toValue: 5
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.blurSize = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.blurSize
+                        Layout.leftMargin: 10
                     }
                 }
 
@@ -238,9 +294,17 @@ ScrollView {
                         Layout.fillWidth: true
                     }
 
-                    StyledInput {
-                        text: Config.data.blurPasses.toString()
-                        onUserEdited: (val) => { Config.data.blurPasses = parseInt(val); appearancePane.applyHypr(); }
+                    StyledSlider {
+                        inputValue: Config.data.blurPasses
+                        fromValue: 0
+                        toValue: 5
+                        stepSizeValue: 1
+                        onMoved: (val) => { Config.data.blurPasses = val; appearancePane.applyHypr(); }
+                    }
+
+                    StyledText {
+                        text: Config.data.blurPasses
+                        Layout.leftMargin: 10
                     }
                 }
             }
@@ -340,8 +404,6 @@ ScrollView {
                 model: [
                     { name: "Top Bar", value: "top", icon: "󱔓" },
                     { name: "Bottom Bar", value: "bottom", icon: "󱂩" }
-                    //{ name: "Left Bar", value: "left", icon: "󱂪" },
-                    //{ name: "Right Bar", value: "right", icon: "󱂫" }
                 ]
 
                 StyledButton {
