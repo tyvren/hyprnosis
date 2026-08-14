@@ -96,9 +96,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.gapsIn = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.gapsIn
+                    Rectangle {
+                        id: gapsInTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+                        
+                        StyledText {
+                            text: Config.data.gapsIn
+                            anchors.centerIn: parent
+                        }
                     }
                 }
 
@@ -119,9 +127,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.gapsOut = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.gapsOut
+                    Rectangle {
+                        id: gapsOutTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.gapsOut
+                            anchors.centerIn: parent
+                        }
                     }
                 }
 
@@ -142,9 +158,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.borderSize = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.borderSize
+                    Rectangle {
+                        id: borderSizeTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.borderSize
+                            anchors.centerIn: parent
+                        }
                     }
                 }
             }
@@ -178,9 +202,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.rounding = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.rounding
+                    Rectangle {
+                        id: roundingTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.rounding
+                            anchors.centerIn: parent
+                        }
                     }
                 }
 
@@ -201,9 +233,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.activeOpacity = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.activeOpacity.toFixed(1)
+                    Rectangle {
+                        id: activeOpacityTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.activeOpacity.toFixed(1)
+                            anchors.centerIn: parent
+                        }
                     }
                 }
 
@@ -224,9 +264,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.inactiveOpacity = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.inactiveOpacity.toFixed(1)
+                    Rectangle {
+                        id: inactiveOpacityTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.inactiveOpacity.toFixed(1)
+                            anchors.centerIn: parent
+                        }
                     }
                 }
             }
@@ -277,9 +325,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.blurSize = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.blurSize
+                    Rectangle {
+                        id: blurSizeTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.blurSize
+                            anchors.centerIn: parent
+                        }
                     }
                 }
 
@@ -302,9 +358,17 @@ ScrollView {
                         onMoved: (val) => { Config.data.blurPasses = val; appearancePane.applyHypr(); }
                     }
 
-                    StyledText {
-                        text: Config.data.blurPasses
+                    Rectangle {
+                        id: blurPassesTextContainer
+                        width: 20
+                        height: 10
+                        color: "transparent"
                         Layout.leftMargin: 10
+
+                        StyledText {
+                            text: Config.data.blurPasses
+                            anchors.centerIn: parent
+                        }
                     }
                 }
             }
@@ -440,14 +504,14 @@ ScrollView {
 
             Repeater {
                 model: [
-                    { name: "Somnium",  themeId: "somnium",  script: "Somnium" },
+                    { name: "Somnium",   themeId: "somnium",   script: "Somnium" },
                     { name: "Mocha",      themeId: "mocha",      script: "Mocha" },
                     { name: "Emberforge", themeId: "emberforge", script: "Emberforge" },
                     { name: "Dracula",    themeId: "dracula",    script: "Dracula" },
                     { name: "Arcadia",    themeId: "arcadia",    script: "Arcadia" },
                     { name: "Eden",       themeId: "eden",       script: "Eden" },
                     { name: "Ghost",      themeId: "ghost",      script: "Ghost" },
-                    { name: "Verdant",      themeId: "verdant",      script: "Verdant" }
+                    { name: "Verdant",    themeId: "verdant",    script: "Verdant" }
                 ]
 
                 StyledButton {
