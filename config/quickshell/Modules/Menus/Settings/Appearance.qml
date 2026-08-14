@@ -177,6 +177,7 @@ ScrollView {
                 spacing: 15
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignTop
+                Layout.rightMargin: 5
 
                 StyledText {
                     text: "Decoration"
@@ -303,6 +304,7 @@ ScrollView {
                     StyledSwitch {
                         checked: Config.data.blurEnabled
                         onToggled: { Config.data.blurEnabled = checked; appearancePane.applyHypr(); }
+                        Layout.alignment: Qt.AlignRight
                     }
                 }
 
