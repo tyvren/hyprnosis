@@ -58,8 +58,8 @@ Variants {
                     id: topBarContent
                     anchors.fill: parent
 
-                    BarMediaPlayer {
-                        id: barMedia
+                    MediaPlayer {
+                        id: mediaOSDTop
                         anchors.top: parent.top
                         anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -204,8 +204,8 @@ Variants {
                     id: bottomBarContent
                     anchors.fill: parent
 
-                    BarMediaPlayer {
-                        id: barMediaBottom
+                    MediaPlayer {
+                        id: mediaOSDBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
