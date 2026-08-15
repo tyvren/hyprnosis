@@ -13,9 +13,7 @@ Item {
     BarButton {
         id: button
         icon: "󰍜"
-        onClicked: {
-            onClicked: sidePaneLoader.item.visible = !sidePaneLoader.item.visible 
-        }
+        onClicked: { sidePaneLoader.item.visible = !sidePaneLoader.item.visible }
     }
 
     LazyLoader {
