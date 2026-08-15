@@ -22,22 +22,6 @@ StyledPanelWindow {
         }
     }
 
-    IpcHandler {
-        target: "barMenuBluetooth"
-
-        function toggle(): void {
-            if (btMenuRoot.visible && btMenuRoot.open) {
-                btMenuRoot.open = false
-            } else {
-                btMenuRoot.visible = true
-            }
-        }
-
-        function hide(): void {
-            btMenuRoot.open = false
-        }
-    }
-
     Rectangle {
         id: contentPane
         anchors.fill: parent

@@ -21,8 +21,6 @@ PanelWindow {
     property bool open: false
     property bool showContent: false
 
-    required property var modelData
-
     anchors {
         top: Config.data.barLayout === "top" ? true : false
         bottom: Config.data.barLayout === "bottom" ? true : false
@@ -36,7 +34,6 @@ PanelWindow {
             open = false
             focusGrab.active = false
         }
-        query = ""
     }
 
     Item {
@@ -104,7 +101,6 @@ PanelWindow {
             anchors.fill: parent
             visible: Config.data.barLayout === "top"
         
-
             Rectangle {
                 id: topBackground
                 anchors.fill: parent
@@ -126,14 +122,6 @@ PanelWindow {
                     asynchronous: true
                     fillMode: Image.PreserveAspectFit
                     opacity: 0.3
-                }
-
-                Loader {
-                    id: topContentLoader
-                    anchors.fill: parent
-                    active: launcherMenu.showContent
-                    focus: true
-                    sourceComponent: launcherContent
                 }
             }
 
@@ -174,14 +162,6 @@ PanelWindow {
                     asynchronous: true
                     fillMode: Image.PreserveAspectFit
                     opacity: 0.3
-                }
-
-                Loader {
-                    id: bottomContentLoader
-                    anchors.fill: parent
-                    active: panelWindowRoot.showContent
-                    focus: true
-                    sourceComponent: launcherContent
                 }
             }
 

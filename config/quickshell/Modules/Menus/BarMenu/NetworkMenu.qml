@@ -22,22 +22,6 @@ StyledPanelWindow {
         }
     }
 
-    IpcHandler {
-        target: "barMenuNetwork"
-
-        function toggle(): void {
-            if (networkMenuRoot.visible && networkMenuRoot.open) {
-                networkMenuRoot.open = false
-            } else {
-                networkMenuRoot.visible = true
-            }
-        }
-
-        function hide(): void {
-            networkMenuRoot.open = false
-        }
-    }
-
     Rectangle {
         id: contentPane
         anchors.fill: parent

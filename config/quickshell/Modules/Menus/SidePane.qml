@@ -41,13 +41,6 @@ PanelWindow {
         }
     }
 
-    IpcHandler {
-        target: "sidePane"
-        function toggle(): void {
-            sidePane.visible = !sidePane.visible
-        }
-    }
-
     Rectangle {
         id: paneRoot
         anchors.fill: parent
