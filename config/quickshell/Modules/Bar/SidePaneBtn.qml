@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.Components
+import qs.Modules.Menus
 import qs.Themes
 
 Item {
@@ -13,7 +14,14 @@ Item {
         id: button
         icon: "󰍜"
         onClicked: {
-          Quickshell.execDetached(["qs", "ipc", "call", "sidePane", "toggle"])
+            onClicked: sidePaneLoader.item.visible = !sidePaneLoader.item.visible 
         }
+    }
+
+    LazyLoader {
+        id: sidePaneLoader
+        loading: true
+
+        SidePane {}
     }
 }

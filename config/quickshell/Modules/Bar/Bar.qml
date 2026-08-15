@@ -91,39 +91,6 @@ Variants {
                         anchors.left: parent.left
                         anchors.leftMargin: 10
                         anchors.verticalCenter: parent.verticalCenter
-
-                        BarButton {
-                            icon: "    "
-                            onClicked: quickMenuLoader.item.visible = !quickMenuLoader.item.visible 
-                            onEntered: spinAnimTop.start()
-                        }
-
-                        RotationAnimation on rotation {
-                            id: spinAnimTop
-                            running: false
-                            loops: 1
-                            from: 0
-                            to: -360
-                            duration: 6000
-                        }
-                    }
-
-                    LazyLoader {
-                        id: quickMenuLoader
-                        loading: true
-
-                        QuickMenu {
-                            id: quickMenu
-                            anchors {
-                              top: true
-                              left: true
-                            }
-
-                            margins {
-                              top: 5
-                              left: 5
-                            }
-                        }
                     }
 
                     Workspaces {
@@ -237,39 +204,6 @@ Variants {
                         anchors.left: parent.left
                         anchors.leftMargin: 10
                         anchors.verticalCenter: parent.verticalCenter
-
-                        BarButton {
-                            icon: "    "
-                            onClicked: quickMenuLoaderBottom.item.visible = !quickMenuLoaderBottom.item.visible 
-                            onEntered: spinAnimBottom.start()
-                        }
-
-                        RotationAnimation on rotation {
-                            id: spinAnimBottom
-                            running: false
-                            loops: 1
-                            from: 0
-                            to: -360
-                            duration: 6000
-                        }
-                    }
-
-                    LazyLoader {
-                        id: quickMenuLoaderBottom
-                        loading: true
-
-                        QuickMenu {
-                            id: quickMenuBottom
-                            anchors {
-                              bottom: true
-                              left: true
-                            }
-
-                            margins {
-                              top: 5
-                              left: 5
-                            }
-                        }
                     }
 
                     Workspaces {
