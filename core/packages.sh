@@ -28,6 +28,7 @@ system_utils=(
   flameshot
   vlc
   vlc-plugins-all
+  fwupd
 )
 
 development=(
