@@ -9,6 +9,7 @@ QtObject {
     property bool launcherOpen: false
     property bool mediaPlayerOpen: false
     property bool networkOpen: false
+    property bool brightnessOSDOpen: false
     property bool notificationOSDOpen: false
     property bool timeDateOSDOpen: true
     property bool volumeOSDOpen: false
@@ -99,6 +100,20 @@ QtObject {
             networkOpen = false
             notificationOSDOpen = false
             timeDateOSDOpen = false
+        } else if (!notificationOSDOpen) {
+            restoreDefaultState()
+        }
+    }
+
+    onBrightnessOSDOpenChanged: {
+        if (brightnessOSDOpen) {
+            bluetoothOpen = false
+            launcherOpen = false
+            mediaPlayerOpen = false
+            networkOpen = false
+            notificationOSDOpen = false
+            timeDateOSDOpen = false
+            volumeOSDOpen = false
         } else if (!notificationOSDOpen) {
             restoreDefaultState()
         }

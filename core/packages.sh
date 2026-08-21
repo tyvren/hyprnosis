@@ -117,4 +117,5 @@ laptop_packages=(
   fprintd-en
   easyeffects
   wireless-regdb
+  xiccd
 )

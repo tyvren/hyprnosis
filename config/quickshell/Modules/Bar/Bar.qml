@@ -64,6 +64,13 @@ Variants {
                         anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
+    
+                    BrightnessOSD {
+                        id: brightnessOSD
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
 
                     NotificationOSD {
                         id: notificationOSD
@@ -175,6 +182,13 @@ Variants {
                         id: mediaOSDBottom
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: 2
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    BrightnessOSD {
+                        id: brightnessOSDBottom
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 

@@ -1,9 +1,10 @@
 pragma Singleton
+
 import QtQuick
 import Quickshell
 import Quickshell.Io
 
-QtObject {
+Singleton {
     id: root
 
     property real brightness: 0
@@ -11,12 +12,14 @@ QtObject {
 
     function setBrightness(value) {
         if (device === "") return
-        const percent = Math.floor(Math.max(0, Math.min(1, value)) * 100)
+        const normalized = Math.max(0, Math.min(1, value))
+        const percent = Math.floor(normalized * 100)
         Quickshell.execDetached(["brightnessctl", "-d", device, "s", percent + "%"])
-        brightness = value
+        brightness = normalized
     }
 
     function initBrightness() {
+        if (device === "") return
         initProc.command = ["sh", "-c", `echo a b c $(brightnessctl -d '${root.device}' g) $(brightnessctl -d '${root.device}' m)`]
         initProc.running = true
     }
@@ -27,7 +30,7 @@ QtObject {
 
     readonly property Process detectProc: Process {
         running: true
-        command: ["sh", "-c", "brightnessctl -l -c backlight | awk '/Max brightness:/ {print max, dev} {if (/Device/) dev=$2; if (/Max/) max=$NF}' | sort -rn | head -1 | awk '{print $2}' | tr -d \"'\""]
+        command: ["sh", "-c", "brightnessctl -c backlight -l | grep -oP \"Device '\\K[^']+\" | head -n 1"]
         stdout: StdioCollector {
             onStreamFinished: {
                 const name = text.trim()
@@ -40,11 +43,31 @@ QtObject {
         running: false
         stdout: StdioCollector {
             onStreamFinished: {
-                const [, , , cur, max] = text.trim().split(" ")
-                const c = parseInt(cur)
-                const m = parseInt(max)
-                if (m > 0) root.brightness = c / m
+                const parts = text.trim().split(" ")
+                if (parts.length >= 5) {
+                    const c = parseInt(parts[3])
+                    const m = parseInt(parts[4])
+                    if (m > 0) root.brightness = c / m
+                }
             }
+        }
+    }
+
+    IpcHandler {
+        target: "brightness"
+
+        function stepUp() {
+            root.setBrightness(root.brightness + 0.05)
+        }
+
+        function stepDown() {
+            root.setBrightness(root.brightness - 0.05)
+        }
+
+        function set(val) {
+            let num = parseFloat(val)
+            if (val.endsWith("%")) num = num / 100
+            if (!isNaN(num)) root.setBrightness(num)
         }
     }
 }
