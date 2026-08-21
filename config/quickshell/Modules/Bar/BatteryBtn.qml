@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Widgets
-import qs.Services
 import qs.Components
+import qs.Services
 import qs.Themes
 
 Item {
@@ -26,15 +26,13 @@ Item {
     Rectangle { 
         anchors.fill: parent
         color: Theme.colMuted 
-        topLeftRadius: 50
-        bottomLeftRadius: 2
-        topRightRadius: 2
-        bottomRightRadius: 50
+        radius: Config.data.rounding
+        border.color: Theme.colAccent
     }
 
     ClippingRectangle {
         anchors.fill: parent
-        radius: height / 2
+        radius: Config.data.rounding
         color: "transparent"
         
         Rectangle {
