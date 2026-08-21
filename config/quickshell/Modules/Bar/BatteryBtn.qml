@@ -6,7 +6,7 @@ import qs.Themes
 
 Item {
     id: root
-    implicitWidth: 40
+    implicitWidth: 50
     implicitHeight: 20
     visible: available
 
@@ -14,9 +14,7 @@ Item {
     property bool isCharging: Battery.isCharging
     property bool isFull: Battery.isFull
     property bool available: Battery.available
-    
-    readonly property color fillCol: percentage <= 0.2 ? Theme.colAccent : percentage <= 0.4 ? Theme.colAccent : Theme.colAccent
-    
+     
     readonly property string icon: {
         if (isCharging) return ""
         const icons = ["", "", "", "", ""]
@@ -36,9 +34,10 @@ Item {
         color: "transparent"
         
         Rectangle {
-          color: root.fillCol
+          color: Theme.colAccent
           height: parent.height
           width: parent.width * root.percentage
+          opacity: 0.5
           Behavior on width { 
               NumberAnimation { 
                 duration: 250 
@@ -48,35 +47,25 @@ Item {
         }
     }
     
-    Column {
-        anchors.centerIn: parent
-
-        Row { 
-            spacing: 2
+    Row {
+        anchors.fill: parent
+        anchors.leftMargin: 4
+        spacing: 2
             
-            Text {
-                id: icon
-                text: root.icon
-                color: Theme.colBg
-                font.bold: true
-                font.pointSize: 9
-            }
-            
-            Text {
-              id: percentageText
-              text: Math.round(root.percentage * 100)
-              color: Theme.colBg 
-              font.bold: true 
-              font.pointSize: 9
-            }
+        StyledText {
+            id: icon
+            anchors.verticalCenter: parent.verticalCenter
+            text: root.icon
+            color: root.percentage < 0.05 ? Theme.colAccent : Theme.colBg
         }
-        
-        Text {
-          id: statusText
-          text: root.statusText 
-          color: Theme.colBg 
-          font.pointSize: 6 
-          opacity: 0.7 
-        }         
-    }
+            
+        StyledText {
+          id: percentageText
+          anchors.verticalCenter: parent.verticalCenter
+          text: Math.round(root.percentage * 100) + "%"
+          color: root.percentage < 0.5 ? Theme.colAccent : Theme.colBg
+          size: 9
+          bold: false
+        }
+    } 
 }
