@@ -56,7 +56,7 @@ Item {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
             text: root.icon
-            color: root.percentage < 0.05 ? Theme.colAccent : Theme.colBg
+            color: root.percentage <= 0.10 ? Theme.colAccent : Theme.colBg
         }
             
         StyledText {
