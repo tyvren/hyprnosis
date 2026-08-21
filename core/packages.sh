@@ -114,7 +114,7 @@ nvidia_packages=(
 
 laptop_packages=(
   brightnessctl
-  fprintd-en
+  fprintd
   easyeffects
   wireless-regdb
   xiccd
