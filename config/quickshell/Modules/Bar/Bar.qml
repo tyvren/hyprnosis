@@ -37,6 +37,7 @@ Variants {
                     id: topLeftBar
                     width: topBar.width / 2 - 250
                     height: topBar.height - 2
+                    anchors.verticalCenter: parent.verticalCenter
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
@@ -48,11 +49,12 @@ Variants {
                     x: topBar.width / 2 + 250
                     width: topBar.width / 2 - 250
                     height: topBar.height - 2
+                    anchors.verticalCenter: parent.verticalCenter
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
                     border.width: Config.data.borderSize
-                  }
+                }
 
                 Item {
                     id: topBarContent
@@ -60,36 +62,31 @@ Variants {
 
                     MediaPlayer {
                         id: mediaOSDTop
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
     
                     BrightnessOSD {
                         id: brightnessOSD
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NotificationOSD {
                         id: notificationOSD
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
-                      }
+                    }
 
                     TimeDateOSD {
                         id: timeDate
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
                         id: volumeOSD
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
@@ -157,6 +154,7 @@ Variants {
                     id: bottomLeftBar
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
+                    anchors.verticalCenter: parent.verticalCenter
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
@@ -168,6 +166,7 @@ Variants {
                     x: bottomBar.width / 2 + 250
                     width: bottomBar.width / 2 - 250
                     height: bottomBar.height - 2
+                    anchors.verticalCenter: parent.verticalCenter
                     radius: Config.data.rounding
                     color: Theme.colBg
                     border.color: Theme.colAccent
@@ -180,36 +179,31 @@ Variants {
 
                     MediaPlayer {
                         id: mediaOSDBottom
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     BrightnessOSD {
-                        id: brightnessOSDBottom
-                        anchors.top: parent.top
-                        anchors.topMargin: 2
+                        id: brightnessOSDbottom
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     NotificationOSD {
                         id: notificationOSDBottom
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                     
                     TimeDateOSD {
                         id: timeDateBottom
-                        anchors.top: parent.top
-                        anchors.bottomMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     VolumeOSD {
                         id: volumeOSDBottom
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 2
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
