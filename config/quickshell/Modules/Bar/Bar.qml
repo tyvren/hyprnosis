@@ -21,6 +21,7 @@ Variants {
 
             PanelWindow {
                 id: topBar
+                screen: modelData
                 color: "transparent"
                 visible: Config.data.barLayout === "top"
                 implicitHeight: 32
@@ -138,6 +139,7 @@ Variants {
 
             PanelWindow {
                 id: bottomBar
+                screen: modelData
                 color: "transparent"
                 visible: Config.data.barLayout === "bottom"
                 implicitHeight: 32
