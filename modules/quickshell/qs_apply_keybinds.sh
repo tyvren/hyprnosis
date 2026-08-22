@@ -35,8 +35,8 @@ sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"right\"\)/\1$FR\2/" "$CONF
 sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"up\"\)/\1$FU\2/" "$CONF_FILE"
 sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*direction = \"down\"\)/\1$FD\2/" "$CONF_FILE"
 
-sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*hyprlock\)/\1$LOCK\2/" "$CONF_FILE"
-sed -i "s/\(\" \+ \)[^\"]*\(.*hyprshot\)/\1$SHOT\2/" "$CONF_FILE"
+sed -i "s/\(hl\.bind(mainMod .. \" + \)[^\"]*\(\", hl\.dsp\.exec_cmd(lockScreen))\)/\1$LOCK\2/" "$CONF_FILE"
+sed -i "s/\(hl\.bind(\)[^\"]*\(\", hl\.dsp\.exec_cmd(\"uwsm app -- flameshot gui\"))\)/\1\"$SHOT\2/" "$CONF_FILE"
 sed -i "s/\(mainMod .. \" + SHIFT + \)[^\"]*\(.*hypridle &\)/\1$EIDL\2/" "$CONF_FILE"
 sed -i "s/\(mainMod .. \" + \)[^\"]*\(.*pkill hypridle\)/\1$DIDL\2/" "$CONF_FILE"
 

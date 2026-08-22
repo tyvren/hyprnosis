@@ -9,14 +9,14 @@ local menu = "uwsm app -- qs ipc call launcher-menu toggle"
 local lockScreen = "uwsm app -- qs ipc call lockscreen lock"
 
 -- Lock and Idle
-local gameMode = "pkill hypridle && notify-send 'Game Mode Enabled'"
+local disableIdle = "pkill hypridle && notify-send 'Idle Mode Disabled'"
 local enableIdle = "notify-send 'Idle Enabled' && hypridle &"
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
@@ -56,7 +56,7 @@ hl.bind("Print", hl.dsp.exec_cmd("uwsm app -- flameshot gui"))
 
 -- Lock screen and idle
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lockScreen))
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(gameMode))
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd(disableIdle))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(enableIdle))
 
 -- Laptop multimedia keys for volume and LCD brightness
