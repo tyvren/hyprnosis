@@ -10,7 +10,6 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- hypridle")
 	hl.exec_cmd("uwsm app -- qs")
-	hl.exec_cmd("bash -c 'sleep 0.5 && uwsm app -- qs ipc call lockscreen lock'")
 	hl.exec_cmd("uwsm app -- firefox")
 	hl.exec_cmd("uwsm app -- steam")
 	hl.exec_cmd("uwsm app -- discord")
