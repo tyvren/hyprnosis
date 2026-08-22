@@ -20,7 +20,7 @@ Item {
             StyledText { 
                 text: "Bluetooth"
                 color: Theme.colAccent
-                size: 14 
+                size: 16 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 5
             }

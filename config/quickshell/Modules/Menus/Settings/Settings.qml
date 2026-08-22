@@ -79,15 +79,16 @@ FloatingWindow {
                             Repeater {
                                 model: [ 
                                     {icon: "", text: "About"},
+                                    {icon: "", text: "Appearance"},
                                     {icon: "", text: "Apps"},
                                     {icon: "", text: "Audio"},
                                     {icon: "", text: "Bluetooth"},
-                                    {icon: "󰖩", text: "Network"},
-                                    {icon: "󰍹", text: "Monitors"},
-                                    {icon: "", text: "Appearance"},
-                                    {icon: "󰸉", text: "Wallpapers"},
+                                    {icon: "󰍹", text: "Displays"},
                                     {icon: "", text: "Keybinds"},
-                                    {icon: "󰚰", text: "Updates"}
+                                    {icon: "󰖩", text: "Network"},
+                                    {icon: "󰒃", text: "Security"},
+                                    {icon: "󰚰", text: "Updates"},
+                                    {icon: "󰸉", text: "Wallpaper"},
                                 ]
 
                                 StyledButtonLeftText {
@@ -135,19 +136,20 @@ FloatingWindow {
                         SystemInfo {
                             active: settingsMenu.visible && settingsMenu.activeIndex === 0
                         }
+                        Appearance {}
                         AppSettings {}
                         AudioSettings {}
                         BluetoothSettings {}
-                        NetworkSettings {}
                         DisplaySettings {
-                            active: settingsMenu.visible && settingsMenu.activeIndex === 5
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 6
                         }
-                        Appearance {}
-                        WallpaperSettings {
-                            active: settingsMenu.visible && settingsMenu.activeIndex === 7
-                        }
-                        Keybinds {}
+                        Keybinds {}  
+                        NetworkSettings {}
+                        Security {}
                         UpdateSettings {}
+                        WallpaperSettings {
+                            active: settingsMenu.visible && settingsMenu.activeIndex === 10
+                        }
                     }
                 }
             }

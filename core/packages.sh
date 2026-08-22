@@ -29,6 +29,7 @@ system_utils=(
   vlc
   vlc-plugins-all
   fwupd
+  fprintd
 )
 
 development=(

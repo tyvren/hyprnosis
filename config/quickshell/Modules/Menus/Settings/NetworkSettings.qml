@@ -42,7 +42,7 @@ Item {
                     id: ethIcon
                     text: "󰈀"
                     color: Theme.colAccent
-                    size: 14
+                    size: 16
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
                     anchors.leftMargin: 15
@@ -50,6 +50,7 @@ Item {
 
                 StyledText {
                     text: "Ethernet (" + Network.ethernetInterface + ")"
+                    size: 16
                     bold: true
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: ethIcon.right
@@ -72,7 +73,7 @@ Item {
             StyledText { 
                 text: "Wi-Fi"
                 color: Theme.colAccent
-                size: 14 
+                size: 16 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 5
             }
