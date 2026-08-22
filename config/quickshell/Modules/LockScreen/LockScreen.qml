@@ -99,17 +99,6 @@ Item {
                     spacing: 12
 
                     StyledButton {
-                        id: fingerprintButton
-                        focus: true
-                        icon: "󰈷"
-                        Layout.preferredWidth: 40
-                        Layout.preferredHeight: 40
-
-                        onActiveFocusChanged: root.context.tryFingerprintUnlock()
-                        onClicked: root.context.tryFingerprintUnlock()
-                    }
-
-                    StyledButton {
                         id: unlockButton
                         focusPolicy: Qt.NoFocus
                         text: "Unlock"
@@ -119,6 +108,17 @@ Item {
 
                         enabled: root.context.currentText !== ""
                         onClicked: root.context.tryUnlock()
+                      }
+
+                    StyledButton {
+                        id: fingerprintButton
+                        focus: true
+                        icon: "󰈷"
+                        Layout.preferredWidth: 40
+                        Layout.preferredHeight: 40
+
+                        onActiveFocusChanged: root.context.tryFingerprintUnlock()
+                        onClicked: root.context.tryFingerprintUnlock()
                     }
                 }
 
