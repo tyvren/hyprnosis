@@ -51,7 +51,6 @@ Item {
                 StyledText {
                     text: "Ethernet (" + Network.ethernetInterface + ")"
                     size: 16
-                    bold: true
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: ethIcon.right
                     anchors.leftMargin: 10
