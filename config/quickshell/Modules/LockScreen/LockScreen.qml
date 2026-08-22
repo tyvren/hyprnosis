@@ -18,8 +18,6 @@ Item {
 
     Process { id: restartProcess; command: ["systemctl", "reboot"] }
     Process { id: shutdownProcess; command: ["systemctl", "poweroff"] }
-    Process { id: killLock; command: ["qs", "kill"] }
-
 
     Rectangle {
         anchors.fill: parent
@@ -57,16 +55,16 @@ Item {
             anchors.bottomMargin: 150
             anchors.horizontalCenter: parent.horizontalCenter
             width: 440
-            height: 340
+            height: 380
             color: Theme.colBg
-            border.color: root.context.showFailure ? "#ff5555" : Theme.colAccent
+            border.color: root.context.showFailure ? Theme.colHilight : Theme.colAccent
             border.width: Config.data.borderSize
-            radius: Config.data.rounding 
+            radius: Config.data.rounding
 
             ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 30
-                spacing: 18
+                spacing: 16
 
                 Clock {
                     id: lockScreenClock
@@ -81,39 +79,47 @@ Item {
                     Layout.preferredHeight: 45
                     Layout.alignment: Qt.AlignHCenter
                     echoMode: TextInput.Password
-                    placeholderText: root.context.showFailure ? "Invalid Password" : "Enter Password"
-                    placeholderTextColor: root.context.showFailure ? "#ff5555" : Theme.colMuted
-                    focus: root.isLocked
-                    font.pointSize: 13
-                    enabled: !root.context.unlockInProgress
+                    placeholderText: "Enter password"
+                    placeholderTextColor: Theme.colMuted
+                    font.pointSize: 14
                     inputMethodHints: Qt.ImhSensitiveData
+                    text: root.context.currentText
 
-                    onTextChanged: root.context.currentText = this.text
-                    onAccepted: root.context.tryUnlock()
-
-                    Connections {
-                        target: root.context
-
-                        function onCurrentTextChanged() {
-                            if (passwordBox.text !== root.context.currentText) {
-                                passwordBox.text = root.context.currentText
-                            }
+                    onTextChanged: {
+                        if (root.context.currentText !== text) {
+                            root.context.currentText = text
                         }
                     }
+
+                    onAccepted: root.context.tryUnlock()
                 }
 
-                StyledButton {
-                    id: unlockButton
-                    text: "Unlock"
-                    icon: "󰌾"
+                RowLayout {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 40
-                    Layout.leftMargin: 40
-                    Layout.rightMargin: 40
-                    Layout.alignment: Qt.AlignHCenter
+                    spacing: 12
 
-                    enabled: !root.context.unlockInProgress && root.context.currentText !== ""
-                    onClicked: root.context.tryUnlock()
+                    StyledButton {
+                        id: fingerprintButton
+                        focus: true
+                        icon: "󰈷"
+                        Layout.preferredWidth: 40
+                        Layout.preferredHeight: 40
+
+                        onActiveFocusChanged: root.context.tryFingerprintUnlock()
+                        onClicked: root.context.tryFingerprintUnlock()
+                    }
+
+                    StyledButton {
+                        id: unlockButton
+                        focusPolicy: Qt.NoFocus
+                        text: "Unlock"
+                        icon: "󰌾"
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 40
+
+                        enabled: root.context.currentText !== ""
+                        onClicked: root.context.tryUnlock()
+                    }
                 }
 
                 DividerLine {

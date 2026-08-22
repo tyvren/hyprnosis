@@ -5,6 +5,7 @@ import Quickshell.Services.Pam
 
 Scope {
     id: root
+
     signal lockRequested()
     signal unlocked()
     signal failed()
@@ -17,10 +18,27 @@ Scope {
     onCurrentTextChanged: showFailure = false
 
     function tryUnlock() {
-        if (currentText === "" || unlockInProgress) return
-
+        if (currentText === "") return
+        
+        fingerprintPam.abort()
         root.unlockInProgress = true
-        pam.start()
+        root.showFailure = false
+        passwordPam.start()
+    }
+
+    function tryFingerprintUnlock() {
+        passwordPam.abort()
+        root.unlockInProgress = true
+        root.showFailure = false
+        fingerprintPam.start()
+    }
+
+    function reset() {
+        currentText = ""
+        unlockInProgress = false
+        showFailure = false
+        passwordPam.abort()
+        fingerprintPam.abort()
     }
 
     IpcHandler {
@@ -29,29 +47,59 @@ Scope {
         function lock(): void {
             root.lockRequested()
         }
+
+        function unlock(): void {
+            root.reset()
+            root.unlocked()
+        }
     }
 
     PamContext {
-        id: pam
+        id: passwordPam
 
         configDirectory: "."
-        config: "authentication.conf"
+        config: "passwordauth.conf"
 
         onPamMessage: {
             if (this.responseRequired) {
-                this.respond(root.currentText);
+                this.respond(root.currentText)
             }
         }
 
         onCompleted: result => {
-            if (result == PamResult.Success) {
-                root.unlocked();
+            root.unlockInProgress = false
+            if (result === PamResult.Success) {
+                root.currentText = ""
+                root.unlocked()
             } else {
-                root.currentText = "";
-                root.showFailure = true;
+                root.currentText = ""
+                root.showFailure = true
+                root.failed()
             }
+        }
+    }
 
-            root.unlockInProgress = false;
+    PamContext {
+        id: fingerprintPam
+
+        configDirectory: "."
+        config: "fingerprintauth.conf"
+
+        onPamMessage: {
+            if (this.responseRequired) {
+                this.respond("")
+            }
+        }
+
+        onCompleted: result => {
+            root.unlockInProgress = false
+            if (result === PamResult.Success) {
+                root.currentText = ""
+                root.unlocked()
+            } else {
+                root.showFailure = true
+                root.failed()
+            }
         }
     }
 }
